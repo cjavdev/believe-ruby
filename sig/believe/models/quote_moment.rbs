@@ -1,0 +1,34 @@
+module Believe
+  module Models
+    type quote_moment =
+      :halftime_speech
+      | :press_conference
+      | :locker_room
+      | :training
+      | :biscuits_with_boss
+      | :pub
+      | :one_on_one
+      | :celebration
+      | :crisis
+      | :casual
+      | :confrontation
+
+    module QuoteMoment
+      extend Believe::Internal::Type::Enum
+
+      HALFTIME_SPEECH: :halftime_speech
+      PRESS_CONFERENCE: :press_conference
+      LOCKER_ROOM: :locker_room
+      TRAINING: :training
+      BISCUITS_WITH_BOSS: :biscuits_with_boss
+      PUB: :pub
+      ONE_ON_ONE: :one_on_one
+      CELEBRATION: :celebration
+      CRISIS: :crisis
+      CASUAL: :casual
+      CONFRONTATION: :confrontation
+
+      def self?.values: -> ::Array[Believe::Models::quote_moment]
+    end
+  end
+end

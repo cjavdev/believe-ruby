@@ -1,0 +1,93 @@
+module Believe
+  module Models
+    type webhook_trigger_event_response =
+      {
+        deliveries: ::Array[Believe::Models::WebhookTriggerEventResponse::Delivery],
+        event_id: String,
+        event_type: Believe::Models::WebhookTriggerEventResponse::event_type,
+        successful_deliveries: Integer,
+        ted_says: String,
+        total_webhooks: Integer
+      }
+
+    class WebhookTriggerEventResponse < Believe::Internal::Type::BaseModel
+      attr_accessor deliveries: ::Array[Believe::Models::WebhookTriggerEventResponse::Delivery]
+
+      attr_accessor event_id: String
+
+      attr_accessor event_type: Believe::Models::WebhookTriggerEventResponse::event_type
+
+      attr_accessor successful_deliveries: Integer
+
+      attr_accessor ted_says: String
+
+      attr_accessor total_webhooks: Integer
+
+      def initialize: (
+        deliveries: ::Array[Believe::Models::WebhookTriggerEventResponse::Delivery],
+        event_id: String,
+        event_type: Believe::Models::WebhookTriggerEventResponse::event_type,
+        successful_deliveries: Integer,
+        ted_says: String,
+        total_webhooks: Integer
+      ) -> void
+
+      def to_hash: -> {
+        deliveries: ::Array[Believe::Models::WebhookTriggerEventResponse::Delivery],
+        event_id: String,
+        event_type: Believe::Models::WebhookTriggerEventResponse::event_type,
+        successful_deliveries: Integer,
+        ted_says: String,
+        total_webhooks: Integer
+      }
+
+      type delivery =
+        {
+          success: bool,
+          url: String,
+          webhook_id: String,
+          error: String?,
+          status_code: Integer?
+        }
+
+      class Delivery < Believe::Internal::Type::BaseModel
+        attr_accessor success: bool
+
+        attr_accessor url: String
+
+        attr_accessor webhook_id: String
+
+        attr_accessor error: String?
+
+        attr_accessor status_code: Integer?
+
+        def initialize: (
+          success: bool,
+          url: String,
+          webhook_id: String,
+          ?error: String?,
+          ?status_code: Integer?
+        ) -> void
+
+        def to_hash: -> {
+          success: bool,
+          url: String,
+          webhook_id: String,
+          error: String?,
+          status_code: Integer?
+        }
+      end
+
+      type event_type = :"match.completed" | :"team_member.transferred"
+
+      module EventType
+        extend Believe::Internal::Type::Enum
+
+        MATCH_COMPLETED: :"match.completed"
+        TEAM_MEMBER_TRANSFERRED: :"team_member.transferred"
+
+        def self?.values: -> ::Array[Believe::Models::WebhookTriggerEventResponse::event_type]
+      end
+    end
+  end
+end

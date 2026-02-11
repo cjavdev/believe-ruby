@@ -1,0 +1,58 @@
+module Believe
+  module Models
+    type team_member_list_params =
+      {
+        limit: Integer,
+        member_type: Believe::Models::TeamMemberListParams::member_type?,
+        skip: Integer,
+        team_id: String?
+      }
+      & Believe::Internal::Type::request_parameters
+
+    class TeamMemberListParams < Believe::Internal::Type::BaseModel
+      extend Believe::Internal::Type::RequestParameters::Converter
+      include Believe::Internal::Type::RequestParameters
+
+      attr_reader limit: Integer?
+
+      def limit=: (Integer) -> Integer
+
+      attr_accessor member_type: Believe::Models::TeamMemberListParams::member_type?
+
+      attr_reader skip: Integer?
+
+      def skip=: (Integer) -> Integer
+
+      attr_accessor team_id: String?
+
+      def initialize: (
+        ?limit: Integer,
+        ?member_type: Believe::Models::TeamMemberListParams::member_type?,
+        ?skip: Integer,
+        ?team_id: String?,
+        ?request_options: Believe::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        limit: Integer,
+        member_type: Believe::Models::TeamMemberListParams::member_type?,
+        skip: Integer,
+        team_id: String?,
+        request_options: Believe::RequestOptions
+      }
+
+      type member_type = :player | :coach | :medical_staff | :equipment_manager
+
+      module MemberType
+        extend Believe::Internal::Type::Enum
+
+        PLAYER: :player
+        COACH: :coach
+        MEDICAL_STAFF: :medical_staff
+        EQUIPMENT_MANAGER: :equipment_manager
+
+        def self?.values: -> ::Array[Believe::Models::TeamMemberListParams::member_type]
+      end
+    end
+  end
+end

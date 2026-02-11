@@ -1,0 +1,22 @@
+module Believe
+  module Resources
+    class Biscuits
+      def retrieve: (
+        String biscuit_id,
+        ?request_options: Believe::request_opts
+      ) -> Believe::Biscuit
+
+      def list: (
+        ?limit: Integer,
+        ?skip: Integer,
+        ?request_options: Believe::request_opts
+      ) -> Believe::Internal::SkipLimitPage[Believe::Biscuit]
+
+      def get_fresh: (
+        ?request_options: Believe::request_opts
+      ) -> Believe::Biscuit
+
+      def initialize: (client: Believe::Client) -> void
+    end
+  end
+end

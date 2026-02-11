@@ -1,0 +1,27 @@
+module Believe
+  module Resources
+    class Teams
+      class Logo
+        def delete: (
+          String file_id,
+          team_id: String,
+          ?request_options: Believe::request_opts
+        ) -> nil
+
+        def download: (
+          String file_id,
+          team_id: String,
+          ?request_options: Believe::request_opts
+        ) -> top
+
+        def upload: (
+          String team_id,
+          file: Believe::Internal::file_input,
+          ?request_options: Believe::request_opts
+        ) -> Believe::Teams::FileUpload
+
+        def initialize: (client: Believe::Client) -> void
+      end
+    end
+  end
+end

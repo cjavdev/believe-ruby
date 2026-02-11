@@ -1,0 +1,96 @@
+module Believe
+  module Models
+    type episode_update_params =
+      {
+        air_date: Date?,
+        biscuits_with_boss_moment: String?,
+        character_focus: ::Array[String]?,
+        director: String?,
+        episode_number: Integer?,
+        main_theme: String?,
+        memorable_moments: ::Array[String]?,
+        runtime_minutes: Integer?,
+        season: Integer?,
+        synopsis: String?,
+        ted_wisdom: String?,
+        title: String?,
+        us_viewers_millions: Float?,
+        viewer_rating: Float?,
+        writer: String?
+      }
+      & Believe::Internal::Type::request_parameters
+
+    class EpisodeUpdateParams < Believe::Internal::Type::BaseModel
+      extend Believe::Internal::Type::RequestParameters::Converter
+      include Believe::Internal::Type::RequestParameters
+
+      attr_accessor air_date: Date?
+
+      attr_accessor biscuits_with_boss_moment: String?
+
+      attr_accessor character_focus: ::Array[String]?
+
+      attr_accessor director: String?
+
+      attr_accessor episode_number: Integer?
+
+      attr_accessor main_theme: String?
+
+      attr_accessor memorable_moments: ::Array[String]?
+
+      attr_accessor runtime_minutes: Integer?
+
+      attr_accessor season: Integer?
+
+      attr_accessor synopsis: String?
+
+      attr_accessor ted_wisdom: String?
+
+      attr_accessor title: String?
+
+      attr_accessor us_viewers_millions: Float?
+
+      attr_accessor viewer_rating: Float?
+
+      attr_accessor writer: String?
+
+      def initialize: (
+        ?air_date: Date?,
+        ?biscuits_with_boss_moment: String?,
+        ?character_focus: ::Array[String]?,
+        ?director: String?,
+        ?episode_number: Integer?,
+        ?main_theme: String?,
+        ?memorable_moments: ::Array[String]?,
+        ?runtime_minutes: Integer?,
+        ?season: Integer?,
+        ?synopsis: String?,
+        ?ted_wisdom: String?,
+        ?title: String?,
+        ?us_viewers_millions: Float?,
+        ?viewer_rating: Float?,
+        ?writer: String?,
+        ?request_options: Believe::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        air_date: Date?,
+        biscuits_with_boss_moment: String?,
+        character_focus: ::Array[String]?,
+        director: String?,
+        episode_number: Integer?,
+        main_theme: String?,
+        memorable_moments: ::Array[String]?,
+        runtime_minutes: Integer?,
+        season: Integer?,
+        synopsis: String?,
+        ted_wisdom: String?,
+        title: String?,
+        us_viewers_millions: Float?,
+        viewer_rating: Float?,
+        writer: String?,
+        request_options: Believe::RequestOptions
+      }
+    end
+  end
+end

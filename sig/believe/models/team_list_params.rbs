@@ -1,0 +1,45 @@
+module Believe
+  module Models
+    type team_list_params =
+      {
+        league: Believe::Models::league?,
+        limit: Integer,
+        min_culture_score: Integer?,
+        skip: Integer
+      }
+      & Believe::Internal::Type::request_parameters
+
+    class TeamListParams < Believe::Internal::Type::BaseModel
+      extend Believe::Internal::Type::RequestParameters::Converter
+      include Believe::Internal::Type::RequestParameters
+
+      attr_accessor league: Believe::Models::league?
+
+      attr_reader limit: Integer?
+
+      def limit=: (Integer) -> Integer
+
+      attr_accessor min_culture_score: Integer?
+
+      attr_reader skip: Integer?
+
+      def skip=: (Integer) -> Integer
+
+      def initialize: (
+        ?league: Believe::Models::league?,
+        ?limit: Integer,
+        ?min_culture_score: Integer?,
+        ?skip: Integer,
+        ?request_options: Believe::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        league: Believe::Models::league?,
+        limit: Integer,
+        min_culture_score: Integer?,
+        skip: Integer,
+        request_options: Believe::RequestOptions
+      }
+    end
+  end
+end

@@ -1,0 +1,7 @@
+module Believe
+  module Models
+    type match_get_turning_points_response = ::Array[::Hash[Symbol, top]]
+
+    MatchGetTurningPointsResponse: Believe::Internal::Type::Converter
+  end
+end

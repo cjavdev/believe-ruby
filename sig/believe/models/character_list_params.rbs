@@ -1,0 +1,50 @@
+module Believe
+  module Models
+    type character_list_params =
+      {
+        limit: Integer,
+        min_optimism: Integer?,
+        role: Believe::Models::character_role?,
+        skip: Integer,
+        team_id: String?
+      }
+      & Believe::Internal::Type::request_parameters
+
+    class CharacterListParams < Believe::Internal::Type::BaseModel
+      extend Believe::Internal::Type::RequestParameters::Converter
+      include Believe::Internal::Type::RequestParameters
+
+      attr_reader limit: Integer?
+
+      def limit=: (Integer) -> Integer
+
+      attr_accessor min_optimism: Integer?
+
+      attr_accessor role: Believe::Models::character_role?
+
+      attr_reader skip: Integer?
+
+      def skip=: (Integer) -> Integer
+
+      attr_accessor team_id: String?
+
+      def initialize: (
+        ?limit: Integer,
+        ?min_optimism: Integer?,
+        ?role: Believe::Models::character_role?,
+        ?skip: Integer,
+        ?team_id: String?,
+        ?request_options: Believe::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        limit: Integer,
+        min_optimism: Integer?,
+        role: Believe::Models::character_role?,
+        skip: Integer,
+        team_id: String?,
+        request_options: Believe::RequestOptions
+      }
+    end
+  end
+end

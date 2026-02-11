@@ -1,0 +1,62 @@
+module Believe
+  class Client < Believe::Internal::Transport::BaseClient
+    DEFAULT_MAX_RETRIES: 2
+
+    DEFAULT_TIMEOUT_IN_SECONDS: Float
+
+    DEFAULT_INITIAL_RETRY_DELAY: Float
+
+    DEFAULT_MAX_RETRY_DELAY: Float
+
+    attr_reader api_key: String
+
+    attr_reader characters: Believe::Resources::Characters
+
+    attr_reader teams: Believe::Resources::Teams
+
+    attr_reader matches: Believe::Resources::Matches
+
+    attr_reader episodes: Believe::Resources::Episodes
+
+    attr_reader quotes: Believe::Resources::Quotes
+
+    attr_reader believe: Believe::Resources::Believe
+
+    attr_reader conflicts: Believe::Resources::Conflicts
+
+    attr_reader reframe: Believe::Resources::Reframe
+
+    attr_reader press: Believe::Resources::Press
+
+    attr_reader coaching: Believe::Resources::Coaching
+
+    attr_reader biscuits: Believe::Resources::Biscuits
+
+    attr_reader pep_talk: Believe::Resources::PepTalk
+
+    attr_reader stream: Believe::Resources::Stream
+
+    attr_reader team_members: Believe::Resources::TeamMembers
+
+    attr_reader webhooks: Believe::Resources::Webhooks
+
+    attr_reader health: Believe::Resources::Health
+
+    attr_reader version: Believe::Resources::Version
+
+    attr_reader client_: Believe::Resources::Client
+
+    def get_welcome: (?request_options: Believe::request_opts) -> top
+
+    private def auth_headers: -> ::Hash[String, String]
+
+    def initialize: (
+      ?api_key: String?,
+      ?base_url: String?,
+      ?max_retries: Integer,
+      ?timeout: Float,
+      ?initial_retry_delay: Float,
+      ?max_retry_delay: Float
+    ) -> void
+  end
+end

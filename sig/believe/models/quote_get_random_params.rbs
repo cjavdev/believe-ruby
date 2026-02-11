@@ -1,0 +1,36 @@
+module Believe
+  module Models
+    type quote_get_random_params =
+      {
+        character_id: String?,
+        inspirational: bool?,
+        theme: Believe::Models::quote_theme?
+      }
+      & Believe::Internal::Type::request_parameters
+
+    class QuoteGetRandomParams < Believe::Internal::Type::BaseModel
+      extend Believe::Internal::Type::RequestParameters::Converter
+      include Believe::Internal::Type::RequestParameters
+
+      attr_accessor character_id: String?
+
+      attr_accessor inspirational: bool?
+
+      attr_accessor theme: Believe::Models::quote_theme?
+
+      def initialize: (
+        ?character_id: String?,
+        ?inspirational: bool?,
+        ?theme: Believe::Models::quote_theme?,
+        ?request_options: Believe::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        character_id: String?,
+        inspirational: bool?,
+        theme: Believe::Models::quote_theme?,
+        request_options: Believe::RequestOptions
+      }
+    end
+  end
+end

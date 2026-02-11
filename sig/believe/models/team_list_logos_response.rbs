@@ -1,0 +1,7 @@
+module Believe
+  module Models
+    type team_list_logos_response = ::Array[Believe::Teams::FileUpload]
+
+    TeamListLogosResponse: Believe::Internal::Type::Converter
+  end
+end

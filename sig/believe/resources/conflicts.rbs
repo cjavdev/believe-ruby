@@ -1,0 +1,15 @@
+module Believe
+  module Resources
+    class Conflicts
+      def resolve: (
+        conflict_type: Believe::Models::ConflictResolveParams::conflict_type,
+        description: String,
+        parties_involved: ::Array[String],
+        ?attempts_made: ::Array[String]?,
+        ?request_options: Believe::request_opts
+      ) -> Believe::Models::ConflictResolveResponse
+
+      def initialize: (client: Believe::Client) -> void
+    end
+  end
+end

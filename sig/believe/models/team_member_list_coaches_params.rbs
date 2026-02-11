@@ -1,0 +1,45 @@
+module Believe
+  module Models
+    type team_member_list_coaches_params =
+      {
+        limit: Integer,
+        skip: Integer,
+        specialty: Believe::Models::coach_specialty?,
+        team_id: String?
+      }
+      & Believe::Internal::Type::request_parameters
+
+    class TeamMemberListCoachesParams < Believe::Internal::Type::BaseModel
+      extend Believe::Internal::Type::RequestParameters::Converter
+      include Believe::Internal::Type::RequestParameters
+
+      attr_reader limit: Integer?
+
+      def limit=: (Integer) -> Integer
+
+      attr_reader skip: Integer?
+
+      def skip=: (Integer) -> Integer
+
+      attr_accessor specialty: Believe::Models::coach_specialty?
+
+      attr_accessor team_id: String?
+
+      def initialize: (
+        ?limit: Integer,
+        ?skip: Integer,
+        ?specialty: Believe::Models::coach_specialty?,
+        ?team_id: String?,
+        ?request_options: Believe::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        limit: Integer,
+        skip: Integer,
+        specialty: Believe::Models::coach_specialty?,
+        team_id: String?,
+        request_options: Believe::RequestOptions
+      }
+    end
+  end
+end

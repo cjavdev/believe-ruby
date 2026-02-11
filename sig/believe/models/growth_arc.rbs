@@ -1,0 +1,40 @@
+module Believe
+  module Models
+    type growth_arc =
+      {
+        breakthrough: String,
+        challenge: String,
+        ending_point: String,
+        season: Integer,
+        starting_point: String
+      }
+
+    class GrowthArc < Believe::Internal::Type::BaseModel
+      attr_accessor breakthrough: String
+
+      attr_accessor challenge: String
+
+      attr_accessor ending_point: String
+
+      attr_accessor season: Integer
+
+      attr_accessor starting_point: String
+
+      def initialize: (
+        breakthrough: String,
+        challenge: String,
+        ending_point: String,
+        season: Integer,
+        starting_point: String
+      ) -> void
+
+      def to_hash: -> {
+        breakthrough: String,
+        challenge: String,
+        ending_point: String,
+        season: Integer,
+        starting_point: String
+      }
+    end
+  end
+end

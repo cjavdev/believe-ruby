@@ -1,0 +1,15 @@
+module Believe
+  module Resources
+    class Believe
+      def submit: (
+        situation: String,
+        situation_type: Believe::Models::BelieveSubmitParams::situation_type,
+        ?context: String?,
+        ?intensity: Integer,
+        ?request_options: Believe::request_opts
+      ) -> Believe::Models::BelieveSubmitResponse
+
+      def initialize: (client: Believe::Client) -> void
+    end
+  end
+end

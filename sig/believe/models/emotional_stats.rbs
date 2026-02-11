@@ -1,0 +1,40 @@
+module Believe
+  module Models
+    type emotional_stats =
+      {
+        curiosity: Integer,
+        empathy: Integer,
+        optimism: Integer,
+        resilience: Integer,
+        vulnerability: Integer
+      }
+
+    class EmotionalStats < Believe::Internal::Type::BaseModel
+      attr_accessor curiosity: Integer
+
+      attr_accessor empathy: Integer
+
+      attr_accessor optimism: Integer
+
+      attr_accessor resilience: Integer
+
+      attr_accessor vulnerability: Integer
+
+      def initialize: (
+        curiosity: Integer,
+        empathy: Integer,
+        optimism: Integer,
+        resilience: Integer,
+        vulnerability: Integer
+      ) -> void
+
+      def to_hash: -> {
+        curiosity: Integer,
+        empathy: Integer,
+        optimism: Integer,
+        resilience: Integer,
+        vulnerability: Integer
+      }
+    end
+  end
+end

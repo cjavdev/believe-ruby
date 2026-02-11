@@ -1,0 +1,58 @@
+module Believe
+  module Models
+    type biscuit =
+      {
+        id: String,
+        message: String,
+        pairs_well_with: String,
+        ted_note: String,
+        type: Believe::Models::Biscuit::type_,
+        warmth_level: Integer
+      }
+
+    class Biscuit < Believe::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor message: String
+
+      attr_accessor pairs_well_with: String
+
+      attr_accessor ted_note: String
+
+      attr_accessor type: Believe::Models::Biscuit::type_
+
+      attr_accessor warmth_level: Integer
+
+      def initialize: (
+        id: String,
+        message: String,
+        pairs_well_with: String,
+        ted_note: String,
+        type: Believe::Models::Biscuit::type_,
+        warmth_level: Integer
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        message: String,
+        pairs_well_with: String,
+        ted_note: String,
+        type: Believe::Models::Biscuit::type_,
+        warmth_level: Integer
+      }
+
+      type type_ = :classic | :shortbread | :chocolate_chip | :oatmeal_raisin
+
+      module Type
+        extend Believe::Internal::Type::Enum
+
+        CLASSIC: :classic
+        SHORTBREAD: :shortbread
+        CHOCOLATE_CHIP: :chocolate_chip
+        OATMEAL_RAISIN: :oatmeal_raisin
+
+        def self?.values: -> ::Array[Believe::Models::Biscuit::type_]
+      end
+    end
+  end
+end

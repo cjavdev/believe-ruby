@@ -1,0 +1,66 @@
+module Believe
+  module Models
+    type quote_theme =
+      :belief
+      | :teamwork
+      | :curiosity
+      | :kindness
+      | :resilience
+      | :vulnerability
+      | :growth
+      | :humor
+      | :wisdom
+      | :leadership
+      | :love
+      | :forgiveness
+      | :philosophy
+      | :romance
+      | :"cultural-pride"
+      | :"cultural-differences"
+      | :antagonism
+      | :celebration
+      | :identity
+      | :isolation
+      | :power
+      | :sacrifice
+      | :standards
+      | :confidence
+      | :conflict
+      | :honesty
+      | :integrity
+
+    module QuoteTheme
+      extend Believe::Internal::Type::Enum
+
+      BELIEF: :belief
+      TEAMWORK: :teamwork
+      CURIOSITY: :curiosity
+      KINDNESS: :kindness
+      RESILIENCE: :resilience
+      VULNERABILITY: :vulnerability
+      GROWTH: :growth
+      HUMOR: :humor
+      WISDOM: :wisdom
+      LEADERSHIP: :leadership
+      LOVE: :love
+      FORGIVENESS: :forgiveness
+      PHILOSOPHY: :philosophy
+      ROMANCE: :romance
+      CULTURAL_PRIDE: :"cultural-pride"
+      CULTURAL_DIFFERENCES: :"cultural-differences"
+      ANTAGONISM: :antagonism
+      CELEBRATION: :celebration
+      IDENTITY: :identity
+      ISOLATION: :isolation
+      POWER: :power
+      SACRIFICE: :sacrifice
+      STANDARDS: :standards
+      CONFIDENCE: :confidence
+      CONFLICT: :conflict
+      HONESTY: :honesty
+      INTEGRITY: :integrity
+
+      def self?.values: -> ::Array[Believe::Models::quote_theme]
+    end
+  end
+end
