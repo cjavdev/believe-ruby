@@ -1,0 +1,109 @@
+module Believe
+  module Models
+    type team =
+      {
+        id: String,
+        culture_score: Integer,
+        founded_year: Integer,
+        league: Believe::Models::league,
+        name: String,
+        stadium: String,
+        values: Believe::TeamValues,
+        annual_budget_gbp: String?,
+        average_attendance: Float?,
+        contact_email: String?,
+        is_active: bool,
+        nickname: String?,
+        primary_color: String?,
+        rival_teams: ::Array[String],
+        secondary_color: String?,
+        stadium_location: Believe::GeoLocation?,
+        website: String?,
+        win_percentage: Float?
+      }
+
+    class Team < Believe::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor culture_score: Integer
+
+      attr_accessor founded_year: Integer
+
+      attr_accessor league: Believe::Models::league
+
+      attr_accessor name: String
+
+      attr_accessor stadium: String
+
+      attr_accessor values: Believe::TeamValues
+
+      attr_accessor annual_budget_gbp: String?
+
+      attr_accessor average_attendance: Float?
+
+      attr_accessor contact_email: String?
+
+      attr_reader is_active: bool?
+
+      def is_active=: (bool) -> bool
+
+      attr_accessor nickname: String?
+
+      attr_accessor primary_color: String?
+
+      attr_reader rival_teams: ::Array[String]?
+
+      def rival_teams=: (::Array[String]) -> ::Array[String]
+
+      attr_accessor secondary_color: String?
+
+      attr_accessor stadium_location: Believe::GeoLocation?
+
+      attr_accessor website: String?
+
+      attr_accessor win_percentage: Float?
+
+      def initialize: (
+        id: String,
+        culture_score: Integer,
+        founded_year: Integer,
+        league: Believe::Models::league,
+        name: String,
+        stadium: String,
+        values: Believe::TeamValues,
+        ?annual_budget_gbp: String?,
+        ?average_attendance: Float?,
+        ?contact_email: String?,
+        ?is_active: bool,
+        ?nickname: String?,
+        ?primary_color: String?,
+        ?rival_teams: ::Array[String],
+        ?secondary_color: String?,
+        ?stadium_location: Believe::GeoLocation?,
+        ?website: String?,
+        ?win_percentage: Float?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        culture_score: Integer,
+        founded_year: Integer,
+        league: Believe::Models::league,
+        name: String,
+        stadium: String,
+        values: Believe::TeamValues,
+        annual_budget_gbp: String?,
+        average_attendance: Float?,
+        contact_email: String?,
+        is_active: bool,
+        nickname: String?,
+        primary_color: String?,
+        rival_teams: ::Array[String],
+        secondary_color: String?,
+        stadium_location: Believe::GeoLocation?,
+        website: String?,
+        win_percentage: Float?
+      }
+    end
+  end
+end

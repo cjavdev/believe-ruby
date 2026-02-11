@@ -1,0 +1,45 @@
+module Believe
+  module Models
+    type conflict_resolve_response =
+      {
+        barbecue_sauce_wisdom: String,
+        diagnosis: String,
+        diamond_dogs_advice: String,
+        potential_outcome: String,
+        steps_to_resolution: ::Array[String],
+        ted_approach: String
+      }
+
+    class ConflictResolveResponse < Believe::Internal::Type::BaseModel
+      attr_accessor barbecue_sauce_wisdom: String
+
+      attr_accessor diagnosis: String
+
+      attr_accessor diamond_dogs_advice: String
+
+      attr_accessor potential_outcome: String
+
+      attr_accessor steps_to_resolution: ::Array[String]
+
+      attr_accessor ted_approach: String
+
+      def initialize: (
+        barbecue_sauce_wisdom: String,
+        diagnosis: String,
+        diamond_dogs_advice: String,
+        potential_outcome: String,
+        steps_to_resolution: ::Array[String],
+        ted_approach: String
+      ) -> void
+
+      def to_hash: -> {
+        barbecue_sauce_wisdom: String,
+        diagnosis: String,
+        diamond_dogs_advice: String,
+        potential_outcome: String,
+        steps_to_resolution: ::Array[String],
+        ted_approach: String
+      }
+    end
+  end
+end

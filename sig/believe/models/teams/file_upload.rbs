@@ -1,0 +1,47 @@
+module Believe
+  module Models
+    module Teams
+      type file_upload =
+        {
+          :checksum_sha256 => String,
+          content_type: String,
+          file_id: String,
+          filename: String,
+          size_bytes: Integer,
+          uploaded_at: Time
+        }
+
+      class FileUpload < Believe::Internal::Type::BaseModel
+        attr_accessor checksum_sha256: String
+
+        attr_accessor content_type: String
+
+        attr_accessor file_id: String
+
+        attr_accessor filename: String
+
+        attr_accessor size_bytes: Integer
+
+        attr_accessor uploaded_at: Time
+
+        def initialize: (
+          checksum_sha256: String,
+          content_type: String,
+          file_id: String,
+          filename: String,
+          size_bytes: Integer,
+          uploaded_at: Time
+        ) -> void
+
+        def to_hash: -> {
+          :checksum_sha256 => String,
+          content_type: String,
+          file_id: String,
+          filename: String,
+          size_bytes: Integer,
+          uploaded_at: Time
+        }
+      end
+    end
+  end
+end

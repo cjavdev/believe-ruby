@@ -1,0 +1,16 @@
+module Believe
+  module Models
+    type position = :goalkeeper | :defender | :midfielder | :forward
+
+    module Position
+      extend Believe::Internal::Type::Enum
+
+      GOALKEEPER: :goalkeeper
+      DEFENDER: :defender
+      MIDFIELDER: :midfielder
+      FORWARD: :forward
+
+      def self?.values: -> ::Array[Believe::Models::position]
+    end
+  end
+end

@@ -1,0 +1,76 @@
+module Believe
+  module Resources
+    class Episodes
+      def create: (
+        air_date: Date,
+        character_focus: ::Array[String],
+        director: String,
+        episode_number: Integer,
+        main_theme: String,
+        runtime_minutes: Integer,
+        season: Integer,
+        synopsis: String,
+        ted_wisdom: String,
+        title: String,
+        writer: String,
+        ?biscuits_with_boss_moment: String?,
+        ?memorable_moments: ::Array[String],
+        ?us_viewers_millions: Float?,
+        ?viewer_rating: Float?,
+        ?request_options: Believe::request_opts
+      ) -> Believe::Episode
+
+      def retrieve: (
+        String episode_id,
+        ?request_options: Believe::request_opts
+      ) -> Believe::Episode
+
+      def update: (
+        String episode_id,
+        ?air_date: Date?,
+        ?biscuits_with_boss_moment: String?,
+        ?character_focus: ::Array[String]?,
+        ?director: String?,
+        ?episode_number: Integer?,
+        ?main_theme: String?,
+        ?memorable_moments: ::Array[String]?,
+        ?runtime_minutes: Integer?,
+        ?season: Integer?,
+        ?synopsis: String?,
+        ?ted_wisdom: String?,
+        ?title: String?,
+        ?us_viewers_millions: Float?,
+        ?viewer_rating: Float?,
+        ?writer: String?,
+        ?request_options: Believe::request_opts
+      ) -> Believe::Episode
+
+      def list: (
+        ?character_focus: String?,
+        ?limit: Integer,
+        ?season: Integer?,
+        ?skip: Integer,
+        ?request_options: Believe::request_opts
+      ) -> Believe::Internal::SkipLimitPage[Believe::Episode]
+
+      def delete: (
+        String episode_id,
+        ?request_options: Believe::request_opts
+      ) -> nil
+
+      def get_wisdom: (
+        String episode_id,
+        ?request_options: Believe::request_opts
+      ) -> Believe::Models::episode_get_wisdom_response
+
+      def list_by_season: (
+        Integer season_number,
+        ?limit: Integer,
+        ?skip: Integer,
+        ?request_options: Believe::request_opts
+      ) -> Believe::Internal::SkipLimitPage[Believe::Episode]
+
+      def initialize: (client: Believe::Client) -> void
+    end
+  end
+end

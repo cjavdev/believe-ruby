@@ -1,0 +1,50 @@
+module Believe
+  module Models
+    type paginated_response_quote =
+      {
+        data: ::Array[Believe::Quote],
+        has_more: bool,
+        limit: Integer,
+        page: Integer,
+        pages: Integer,
+        skip: Integer,
+        total: Integer
+      }
+
+    class PaginatedResponseQuote < Believe::Internal::Type::BaseModel
+      attr_accessor data: ::Array[Believe::Quote]
+
+      attr_accessor limit: Integer
+
+      attr_accessor skip: Integer
+
+      attr_accessor total: Integer
+
+      attr_accessor has_more: bool
+
+      attr_accessor page: Integer
+
+      attr_accessor pages: Integer
+
+      def initialize: (
+        data: ::Array[Believe::Quote],
+        has_more: bool,
+        limit: Integer,
+        page: Integer,
+        pages: Integer,
+        skip: Integer,
+        total: Integer
+      ) -> void
+
+      def to_hash: -> {
+        data: ::Array[Believe::Quote],
+        has_more: bool,
+        limit: Integer,
+        page: Integer,
+        pages: Integer,
+        skip: Integer,
+        total: Integer
+      }
+    end
+  end
+end

@@ -1,0 +1,34 @@
+module Believe
+  module Models
+    module Coaching
+      type principle_list_params =
+        { limit: Integer, skip: Integer }
+        & Believe::Internal::Type::request_parameters
+
+      class PrincipleListParams < Believe::Internal::Type::BaseModel
+        extend Believe::Internal::Type::RequestParameters::Converter
+        include Believe::Internal::Type::RequestParameters
+
+        attr_reader limit: Integer?
+
+        def limit=: (Integer) -> Integer
+
+        attr_reader skip: Integer?
+
+        def skip=: (Integer) -> Integer
+
+        def initialize: (
+          ?limit: Integer,
+          ?skip: Integer,
+          ?request_options: Believe::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          limit: Integer,
+          skip: Integer,
+          request_options: Believe::RequestOptions
+        }
+      end
+    end
+  end
+end

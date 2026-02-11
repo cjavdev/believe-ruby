@@ -1,0 +1,7 @@
+module Believe
+  module Models
+    module Teams
+      LogoDownloadResponse: Believe::Internal::Type::Converter
+    end
+  end
+end

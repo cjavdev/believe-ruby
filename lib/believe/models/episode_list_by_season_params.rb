@@ -1,0 +1,30 @@
+# frozen_string_literal: true
+
+module Believe
+  module Models
+    # @see Believe::Resources::Episodes#list_by_season
+    class EpisodeListBySeasonParams < Believe::Internal::Type::BaseModel
+      extend Believe::Internal::Type::RequestParameters::Converter
+      include Believe::Internal::Type::RequestParameters
+
+      # @!attribute limit
+      #   Maximum number of items to return (max: 100)
+      #
+      #   @return [Integer, nil]
+      optional :limit, Integer
+
+      # @!attribute skip
+      #   Number of items to skip (offset)
+      #
+      #   @return [Integer, nil]
+      optional :skip, Integer
+
+      # @!method initialize(limit: nil, skip: nil, request_options: {})
+      #   @param limit [Integer] Maximum number of items to return (max: 100)
+      #
+      #   @param skip [Integer] Number of items to skip (offset)
+      #
+      #   @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}]
+    end
+  end
+end

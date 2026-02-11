@@ -1,0 +1,28 @@
+module Believe
+  module Models
+    type league =
+      :"Premier League"
+      | :Championship
+      | :"League One"
+      | :"League Two"
+      | :"La Liga"
+      | :"Serie A"
+      | :Bundesliga
+      | :"Ligue 1"
+
+    module League
+      extend Believe::Internal::Type::Enum
+
+      PREMIER_LEAGUE: :"Premier League"
+      CHAMPIONSHIP: :Championship
+      LEAGUE_ONE: :"League One"
+      LEAGUE_TWO: :"League Two"
+      LA_LIGA: :"La Liga"
+      SERIE_A: :"Serie A"
+      BUNDESLIGA: :Bundesliga
+      LIGUE_1: :"Ligue 1"
+
+      def self?.values: -> ::Array[Believe::Models::league]
+    end
+  end
+end

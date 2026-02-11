@@ -1,0 +1,60 @@
+module Believe
+  module Models
+    type quote_list_params =
+      {
+        character_id: String?,
+        funny: bool?,
+        inspirational: bool?,
+        limit: Integer,
+        moment_type: Believe::Models::quote_moment?,
+        skip: Integer,
+        theme: Believe::Models::quote_theme?
+      }
+      & Believe::Internal::Type::request_parameters
+
+    class QuoteListParams < Believe::Internal::Type::BaseModel
+      extend Believe::Internal::Type::RequestParameters::Converter
+      include Believe::Internal::Type::RequestParameters
+
+      attr_accessor character_id: String?
+
+      attr_accessor funny: bool?
+
+      attr_accessor inspirational: bool?
+
+      attr_reader limit: Integer?
+
+      def limit=: (Integer) -> Integer
+
+      attr_accessor moment_type: Believe::Models::quote_moment?
+
+      attr_reader skip: Integer?
+
+      def skip=: (Integer) -> Integer
+
+      attr_accessor theme: Believe::Models::quote_theme?
+
+      def initialize: (
+        ?character_id: String?,
+        ?funny: bool?,
+        ?inspirational: bool?,
+        ?limit: Integer,
+        ?moment_type: Believe::Models::quote_moment?,
+        ?skip: Integer,
+        ?theme: Believe::Models::quote_theme?,
+        ?request_options: Believe::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        character_id: String?,
+        funny: bool?,
+        inspirational: bool?,
+        limit: Integer,
+        moment_type: Believe::Models::quote_moment?,
+        skip: Integer,
+        theme: Believe::Models::quote_theme?,
+        request_options: Believe::RequestOptions
+      }
+    end
+  end
+end

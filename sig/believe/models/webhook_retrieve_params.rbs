@@ -1,0 +1,15 @@
+module Believe
+  module Models
+    type webhook_retrieve_params =
+      {  } & Believe::Internal::Type::request_parameters
+
+    class WebhookRetrieveParams < Believe::Internal::Type::BaseModel
+      extend Believe::Internal::Type::RequestParameters::Converter
+      include Believe::Internal::Type::RequestParameters
+
+      def initialize: (?request_options: Believe::request_opts) -> void
+
+      def to_hash: -> { request_options: Believe::RequestOptions }
+    end
+  end
+end

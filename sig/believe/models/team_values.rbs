@@ -1,0 +1,30 @@
+module Believe
+  module Models
+    type team_values =
+      {
+        primary_value: String,
+        secondary_values: ::Array[String],
+        team_motto: String
+      }
+
+    class TeamValues < Believe::Internal::Type::BaseModel
+      attr_accessor primary_value: String
+
+      attr_accessor secondary_values: ::Array[String]
+
+      attr_accessor team_motto: String
+
+      def initialize: (
+        primary_value: String,
+        secondary_values: ::Array[String],
+        team_motto: String
+      ) -> void
+
+      def to_hash: -> {
+        primary_value: String,
+        secondary_values: ::Array[String],
+        team_motto: String
+      }
+    end
+  end
+end

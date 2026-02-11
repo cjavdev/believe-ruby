@@ -1,0 +1,85 @@
+module Believe
+  module Resources
+    class Teams
+      attr_reader logo: Believe::Resources::Teams::Logo
+
+      def create: (
+        culture_score: Integer,
+        founded_year: Integer,
+        league: Believe::Models::league,
+        name: String,
+        stadium: String,
+        values: Believe::TeamValues,
+        ?annual_budget_gbp: Believe::Models::TeamCreateParams::annual_budget_gbp?,
+        ?average_attendance: Float?,
+        ?contact_email: String?,
+        ?is_active: bool,
+        ?nickname: String?,
+        ?primary_color: String?,
+        ?rival_teams: ::Array[String],
+        ?secondary_color: String?,
+        ?stadium_location: Believe::GeoLocation?,
+        ?website: String?,
+        ?win_percentage: Float?,
+        ?request_options: Believe::request_opts
+      ) -> Believe::Team
+
+      def retrieve: (
+        String team_id,
+        ?request_options: Believe::request_opts
+      ) -> Believe::Team
+
+      def update: (
+        String team_id,
+        ?annual_budget_gbp: Believe::Models::TeamUpdateParams::annual_budget_gbp?,
+        ?average_attendance: Float?,
+        ?contact_email: String?,
+        ?culture_score: Integer?,
+        ?founded_year: Integer?,
+        ?is_active: bool?,
+        ?league: Believe::Models::league?,
+        ?name: String?,
+        ?nickname: String?,
+        ?primary_color: String?,
+        ?rival_teams: ::Array[String]?,
+        ?secondary_color: String?,
+        ?stadium: String?,
+        ?stadium_location: Believe::GeoLocation?,
+        ?values: Believe::TeamValues?,
+        ?website: String?,
+        ?win_percentage: Float?,
+        ?request_options: Believe::request_opts
+      ) -> Believe::Team
+
+      def list: (
+        ?league: Believe::Models::league?,
+        ?limit: Integer,
+        ?min_culture_score: Integer?,
+        ?skip: Integer,
+        ?request_options: Believe::request_opts
+      ) -> Believe::Internal::SkipLimitPage[Believe::Team]
+
+      def delete: (
+        String team_id,
+        ?request_options: Believe::request_opts
+      ) -> nil
+
+      def get_culture: (
+        String team_id,
+        ?request_options: Believe::request_opts
+      ) -> Believe::Models::team_get_culture_response
+
+      def get_rivals: (
+        String team_id,
+        ?request_options: Believe::request_opts
+      ) -> Believe::Models::team_get_rivals_response
+
+      def list_logos: (
+        String team_id,
+        ?request_options: Believe::request_opts
+      ) -> Believe::Models::team_list_logos_response
+
+      def initialize: (client: Believe::Client) -> void
+    end
+  end
+end

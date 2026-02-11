@@ -1,0 +1,40 @@
+module Believe
+  module Models
+    type press_simulate_response =
+      {
+        actual_wisdom: String,
+        follow_up_dodge: String,
+        reporter_reaction: String,
+        response: String,
+        deflection_humor: String?
+      }
+
+    class PressSimulateResponse < Believe::Internal::Type::BaseModel
+      attr_accessor actual_wisdom: String
+
+      attr_accessor follow_up_dodge: String
+
+      attr_accessor reporter_reaction: String
+
+      attr_accessor response: String
+
+      attr_accessor deflection_humor: String?
+
+      def initialize: (
+        actual_wisdom: String,
+        follow_up_dodge: String,
+        reporter_reaction: String,
+        response: String,
+        ?deflection_humor: String?
+      ) -> void
+
+      def to_hash: -> {
+        actual_wisdom: String,
+        follow_up_dodge: String,
+        reporter_reaction: String,
+        response: String,
+        deflection_humor: String?
+      }
+    end
+  end
+end

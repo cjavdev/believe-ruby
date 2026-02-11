@@ -1,0 +1,40 @@
+module Believe
+  module Models
+    type reframe_transform_negative_thoughts_response =
+      {
+        daily_affirmation: String,
+        original_thought: String,
+        reframed_thought: String,
+        ted_perspective: String,
+        dr_sharon_insight: String?
+      }
+
+    class ReframeTransformNegativeThoughtsResponse < Believe::Internal::Type::BaseModel
+      attr_accessor daily_affirmation: String
+
+      attr_accessor original_thought: String
+
+      attr_accessor reframed_thought: String
+
+      attr_accessor ted_perspective: String
+
+      attr_accessor dr_sharon_insight: String?
+
+      def initialize: (
+        daily_affirmation: String,
+        original_thought: String,
+        reframed_thought: String,
+        ted_perspective: String,
+        ?dr_sharon_insight: String?
+      ) -> void
+
+      def to_hash: -> {
+        daily_affirmation: String,
+        original_thought: String,
+        reframed_thought: String,
+        ted_perspective: String,
+        dr_sharon_insight: String?
+      }
+    end
+  end
+end

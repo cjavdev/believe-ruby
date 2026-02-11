@@ -1,0 +1,97 @@
+module Believe
+  module Models
+    type episode =
+      {
+        id: String,
+        air_date: Date,
+        character_focus: ::Array[String],
+        director: String,
+        episode_number: Integer,
+        main_theme: String,
+        runtime_minutes: Integer,
+        season: Integer,
+        synopsis: String,
+        ted_wisdom: String,
+        title: String,
+        writer: String,
+        biscuits_with_boss_moment: String?,
+        memorable_moments: ::Array[String],
+        us_viewers_millions: Float?,
+        viewer_rating: Float?
+      }
+
+    class Episode < Believe::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor air_date: Date
+
+      attr_accessor character_focus: ::Array[String]
+
+      attr_accessor director: String
+
+      attr_accessor episode_number: Integer
+
+      attr_accessor main_theme: String
+
+      attr_accessor runtime_minutes: Integer
+
+      attr_accessor season: Integer
+
+      attr_accessor synopsis: String
+
+      attr_accessor ted_wisdom: String
+
+      attr_accessor title: String
+
+      attr_accessor writer: String
+
+      attr_accessor biscuits_with_boss_moment: String?
+
+      attr_reader memorable_moments: ::Array[String]?
+
+      def memorable_moments=: (::Array[String]) -> ::Array[String]
+
+      attr_accessor us_viewers_millions: Float?
+
+      attr_accessor viewer_rating: Float?
+
+      def initialize: (
+        id: String,
+        air_date: Date,
+        character_focus: ::Array[String],
+        director: String,
+        episode_number: Integer,
+        main_theme: String,
+        runtime_minutes: Integer,
+        season: Integer,
+        synopsis: String,
+        ted_wisdom: String,
+        title: String,
+        writer: String,
+        ?biscuits_with_boss_moment: String?,
+        ?memorable_moments: ::Array[String],
+        ?us_viewers_millions: Float?,
+        ?viewer_rating: Float?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        air_date: Date,
+        character_focus: ::Array[String],
+        director: String,
+        episode_number: Integer,
+        main_theme: String,
+        runtime_minutes: Integer,
+        season: Integer,
+        synopsis: String,
+        ted_wisdom: String,
+        title: String,
+        writer: String,
+        biscuits_with_boss_moment: String?,
+        memorable_moments: ::Array[String],
+        us_viewers_millions: Float?,
+        viewer_rating: Float?
+      }
+    end
+  end
+end

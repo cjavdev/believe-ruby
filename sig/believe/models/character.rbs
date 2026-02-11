@@ -1,0 +1,91 @@
+module Believe
+  module Models
+    type character =
+      {
+        id: String,
+        background: String,
+        emotional_stats: Believe::EmotionalStats,
+        name: String,
+        personality_traits: ::Array[String],
+        role: Believe::Models::character_role,
+        date_of_birth: Date?,
+        email: String?,
+        growth_arcs: ::Array[Believe::GrowthArc],
+        height_meters: Float?,
+        profile_image_url: String?,
+        salary_gbp: String?,
+        signature_quotes: ::Array[String],
+        team_id: String?
+      }
+
+    class Character < Believe::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor background: String
+
+      attr_accessor emotional_stats: Believe::EmotionalStats
+
+      attr_accessor name: String
+
+      attr_accessor personality_traits: ::Array[String]
+
+      attr_accessor role: Believe::Models::character_role
+
+      attr_accessor date_of_birth: Date?
+
+      attr_accessor email: String?
+
+      attr_reader growth_arcs: ::Array[Believe::GrowthArc]?
+
+      def growth_arcs=: (
+        ::Array[Believe::GrowthArc]
+      ) -> ::Array[Believe::GrowthArc]
+
+      attr_accessor height_meters: Float?
+
+      attr_accessor profile_image_url: String?
+
+      attr_accessor salary_gbp: String?
+
+      attr_reader signature_quotes: ::Array[String]?
+
+      def signature_quotes=: (::Array[String]) -> ::Array[String]
+
+      attr_accessor team_id: String?
+
+      def initialize: (
+        id: String,
+        background: String,
+        emotional_stats: Believe::EmotionalStats,
+        name: String,
+        personality_traits: ::Array[String],
+        role: Believe::Models::character_role,
+        ?date_of_birth: Date?,
+        ?email: String?,
+        ?growth_arcs: ::Array[Believe::GrowthArc],
+        ?height_meters: Float?,
+        ?profile_image_url: String?,
+        ?salary_gbp: String?,
+        ?signature_quotes: ::Array[String],
+        ?team_id: String?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        background: String,
+        emotional_stats: Believe::EmotionalStats,
+        name: String,
+        personality_traits: ::Array[String],
+        role: Believe::Models::character_role,
+        date_of_birth: Date?,
+        email: String?,
+        growth_arcs: ::Array[Believe::GrowthArc],
+        height_meters: Float?,
+        profile_image_url: String?,
+        salary_gbp: String?,
+        signature_quotes: ::Array[String],
+        team_id: String?
+      }
+    end
+  end
+end

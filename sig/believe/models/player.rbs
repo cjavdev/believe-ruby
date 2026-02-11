@@ -1,0 +1,85 @@
+module Believe
+  module Models
+    type player =
+      {
+        id: String,
+        character_id: String,
+        jersey_number: Integer,
+        position: Believe::Models::position,
+        team_id: String,
+        years_with_team: Integer,
+        assists: Integer,
+        goals_scored: Integer,
+        is_captain: bool,
+        member_type: Believe::Models::Player::member_type
+      }
+
+    class Player < Believe::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor character_id: String
+
+      attr_accessor jersey_number: Integer
+
+      attr_accessor position: Believe::Models::position
+
+      attr_accessor team_id: String
+
+      attr_accessor years_with_team: Integer
+
+      attr_reader assists: Integer?
+
+      def assists=: (Integer) -> Integer
+
+      attr_reader goals_scored: Integer?
+
+      def goals_scored=: (Integer) -> Integer
+
+      attr_reader is_captain: bool?
+
+      def is_captain=: (bool) -> bool
+
+      attr_reader member_type: Believe::Models::Player::member_type?
+
+      def member_type=: (
+        Believe::Models::Player::member_type
+      ) -> Believe::Models::Player::member_type
+
+      def initialize: (
+        id: String,
+        character_id: String,
+        jersey_number: Integer,
+        position: Believe::Models::position,
+        team_id: String,
+        years_with_team: Integer,
+        ?assists: Integer,
+        ?goals_scored: Integer,
+        ?is_captain: bool,
+        ?member_type: Believe::Models::Player::member_type
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        character_id: String,
+        jersey_number: Integer,
+        position: Believe::Models::position,
+        team_id: String,
+        years_with_team: Integer,
+        assists: Integer,
+        goals_scored: Integer,
+        is_captain: bool,
+        member_type: Believe::Models::Player::member_type
+      }
+
+      type member_type = :player
+
+      module MemberType
+        extend Believe::Internal::Type::Enum
+
+        PLAYER: :player
+
+        def self?.values: -> ::Array[Believe::Models::Player::member_type]
+      end
+    end
+  end
+end

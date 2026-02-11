@@ -1,0 +1,35 @@
+module Believe
+  module Models
+    type turning_point =
+      {
+        description: String,
+        emotional_impact: String,
+        minute: Integer,
+        character_involved: String?
+      }
+
+    class TurningPoint < Believe::Internal::Type::BaseModel
+      attr_accessor description: String
+
+      attr_accessor emotional_impact: String
+
+      attr_accessor minute: Integer
+
+      attr_accessor character_involved: String?
+
+      def initialize: (
+        description: String,
+        emotional_impact: String,
+        minute: Integer,
+        ?character_involved: String?
+      ) -> void
+
+      def to_hash: -> {
+        description: String,
+        emotional_impact: String,
+        minute: Integer,
+        character_involved: String?
+      }
+    end
+  end
+end

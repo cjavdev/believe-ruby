@@ -1,0 +1,7 @@
+module Believe
+  module Models
+    type character_get_quotes_response = ::Array[String]
+
+    CharacterGetQuotesResponse: Believe::Internal::Type::Converter
+  end
+end

@@ -1,0 +1,80 @@
+module Believe
+  module Resources
+    class Quotes
+      def create: (
+        character_id: String,
+        context: String,
+        moment_type: Believe::Models::quote_moment,
+        text: String,
+        theme: Believe::Models::quote_theme,
+        ?episode_id: String?,
+        ?is_funny: bool,
+        ?is_inspirational: bool,
+        ?popularity_score: Float?,
+        ?secondary_themes: ::Array[Believe::Models::quote_theme],
+        ?times_shared: Integer?,
+        ?request_options: Believe::request_opts
+      ) -> Believe::Quote
+
+      def retrieve: (
+        String quote_id,
+        ?request_options: Believe::request_opts
+      ) -> Believe::Quote
+
+      def update: (
+        String quote_id,
+        ?character_id: String?,
+        ?context: String?,
+        ?episode_id: String?,
+        ?is_funny: bool?,
+        ?is_inspirational: bool?,
+        ?moment_type: Believe::Models::quote_moment?,
+        ?popularity_score: Float?,
+        ?secondary_themes: ::Array[Believe::Models::quote_theme]?,
+        ?text: String?,
+        ?theme: Believe::Models::quote_theme?,
+        ?times_shared: Integer?,
+        ?request_options: Believe::request_opts
+      ) -> Believe::Quote
+
+      def list: (
+        ?character_id: String?,
+        ?funny: bool?,
+        ?inspirational: bool?,
+        ?limit: Integer,
+        ?moment_type: Believe::Models::quote_moment?,
+        ?skip: Integer,
+        ?theme: Believe::Models::quote_theme?,
+        ?request_options: Believe::request_opts
+      ) -> Believe::Internal::SkipLimitPage[Believe::Quote]
+
+      def delete: (
+        String quote_id,
+        ?request_options: Believe::request_opts
+      ) -> nil
+
+      def get_random: (
+        ?character_id: String?,
+        ?inspirational: bool?,
+        ?theme: Believe::Models::quote_theme?,
+        ?request_options: Believe::request_opts
+      ) -> Believe::Quote
+
+      def list_by_character: (
+        String character_id,
+        ?limit: Integer,
+        ?skip: Integer,
+        ?request_options: Believe::request_opts
+      ) -> Believe::Internal::SkipLimitPage[Believe::Quote]
+
+      def list_by_theme: (
+        Believe::Models::quote_theme theme,
+        ?limit: Integer,
+        ?skip: Integer,
+        ?request_options: Believe::request_opts
+      ) -> Believe::Internal::SkipLimitPage[Believe::Quote]
+
+      def initialize: (client: Believe::Client) -> void
+    end
+  end
+end

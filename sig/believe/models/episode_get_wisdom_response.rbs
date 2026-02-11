@@ -1,0 +1,7 @@
+module Believe
+  module Models
+    type episode_get_wisdom_response = ::Hash[Symbol, top]
+
+    EpisodeGetWisdomResponse: Believe::Internal::Type::Converter
+  end
+end

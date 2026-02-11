@@ -1,0 +1,118 @@
+module Believe
+  module Models
+    type team_create_params =
+      {
+        culture_score: Integer,
+        founded_year: Integer,
+        league: Believe::Models::league,
+        name: String,
+        stadium: String,
+        values: Believe::TeamValues,
+        annual_budget_gbp: Believe::Models::TeamCreateParams::annual_budget_gbp?,
+        average_attendance: Float?,
+        contact_email: String?,
+        is_active: bool,
+        nickname: String?,
+        primary_color: String?,
+        rival_teams: ::Array[String],
+        secondary_color: String?,
+        stadium_location: Believe::GeoLocation?,
+        website: String?,
+        win_percentage: Float?
+      }
+      & Believe::Internal::Type::request_parameters
+
+    class TeamCreateParams < Believe::Internal::Type::BaseModel
+      extend Believe::Internal::Type::RequestParameters::Converter
+      include Believe::Internal::Type::RequestParameters
+
+      attr_accessor culture_score: Integer
+
+      attr_accessor founded_year: Integer
+
+      attr_accessor league: Believe::Models::league
+
+      attr_accessor name: String
+
+      attr_accessor stadium: String
+
+      attr_accessor values: Believe::TeamValues
+
+      attr_accessor annual_budget_gbp: Believe::Models::TeamCreateParams::annual_budget_gbp?
+
+      attr_accessor average_attendance: Float?
+
+      attr_accessor contact_email: String?
+
+      attr_reader is_active: bool?
+
+      def is_active=: (bool) -> bool
+
+      attr_accessor nickname: String?
+
+      attr_accessor primary_color: String?
+
+      attr_reader rival_teams: ::Array[String]?
+
+      def rival_teams=: (::Array[String]) -> ::Array[String]
+
+      attr_accessor secondary_color: String?
+
+      attr_accessor stadium_location: Believe::GeoLocation?
+
+      attr_accessor website: String?
+
+      attr_accessor win_percentage: Float?
+
+      def initialize: (
+        culture_score: Integer,
+        founded_year: Integer,
+        league: Believe::Models::league,
+        name: String,
+        stadium: String,
+        values: Believe::TeamValues,
+        ?annual_budget_gbp: Believe::Models::TeamCreateParams::annual_budget_gbp?,
+        ?average_attendance: Float?,
+        ?contact_email: String?,
+        ?is_active: bool,
+        ?nickname: String?,
+        ?primary_color: String?,
+        ?rival_teams: ::Array[String],
+        ?secondary_color: String?,
+        ?stadium_location: Believe::GeoLocation?,
+        ?website: String?,
+        ?win_percentage: Float?,
+        ?request_options: Believe::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        culture_score: Integer,
+        founded_year: Integer,
+        league: Believe::Models::league,
+        name: String,
+        stadium: String,
+        values: Believe::TeamValues,
+        annual_budget_gbp: Believe::Models::TeamCreateParams::annual_budget_gbp?,
+        average_attendance: Float?,
+        contact_email: String?,
+        is_active: bool,
+        nickname: String?,
+        primary_color: String?,
+        rival_teams: ::Array[String],
+        secondary_color: String?,
+        stadium_location: Believe::GeoLocation?,
+        website: String?,
+        win_percentage: Float?,
+        request_options: Believe::RequestOptions
+      }
+
+      type annual_budget_gbp = Float | String
+
+      module AnnualBudgetGbp
+        extend Believe::Internal::Type::Union
+
+        def self?.variants: -> ::Array[Believe::Models::TeamCreateParams::annual_budget_gbp]
+      end
+    end
+  end
+end
