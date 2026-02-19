@@ -3,13 +3,4 @@
 require_relative "../../test_helper"
 
 class Believe::Test::Resources::Client::WsTest < Believe::Test::ResourceTest
-  def test_test_
-    skip("Prism doesn't support callbacks yet")
-
-    response = @believe.client_.ws.test_
-
-    assert_pattern do
-      response => nil
-    end
-  end
 end
