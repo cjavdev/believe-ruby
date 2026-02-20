@@ -171,7 +171,7 @@ class Believe::Test::Resources::MatchesTest < Believe::Test::ResourceTest
   end
 
   def test_stream_live
-    skip("Mock server doesn't support callbacks yet")
+    skip("Mock server tests are disabled")
 
     response = @believe.matches.stream_live
 
