@@ -4,7 +4,7 @@ require_relative "../../test_helper"
 
 class Believe::Test::Resources::Matches::CommentaryTest < Believe::Test::ResourceTest
   def test_stream
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.matches.commentary.stream("match_id")
 

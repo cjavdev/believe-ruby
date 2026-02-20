@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Believe::Test::Resources::ConflictsTest < Believe::Test::ResourceTest
   def test_resolve_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @believe.conflicts.resolve(

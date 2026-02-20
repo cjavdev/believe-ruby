@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Believe::Test::Resources::WebhooksTest < Believe::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.webhooks.create(url: "https://example.com/webhooks")
 
@@ -22,7 +22,7 @@ class Believe::Test::Resources::WebhooksTest < Believe::Test::ResourceTest
   end
 
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.webhooks.retrieve("webhook_id")
 
@@ -43,7 +43,7 @@ class Believe::Test::Resources::WebhooksTest < Believe::Test::ResourceTest
   end
 
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.webhooks.list
 
@@ -53,7 +53,7 @@ class Believe::Test::Resources::WebhooksTest < Believe::Test::ResourceTest
   end
 
   def test_delete
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.webhooks.delete("webhook_id")
 
@@ -63,7 +63,7 @@ class Believe::Test::Resources::WebhooksTest < Believe::Test::ResourceTest
   end
 
   def test_trigger_event_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.webhooks.trigger_event(event_type: :"match.completed")
 

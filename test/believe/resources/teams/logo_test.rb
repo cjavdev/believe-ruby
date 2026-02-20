@@ -4,7 +4,7 @@ require_relative "../../test_helper"
 
 class Believe::Test::Resources::Teams::LogoTest < Believe::Test::ResourceTest
   def test_delete_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.teams.logo.delete("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e", team_id: "team_id")
 
@@ -14,7 +14,7 @@ class Believe::Test::Resources::Teams::LogoTest < Believe::Test::ResourceTest
   end
 
   def test_download_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.teams.logo.download("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e", team_id: "team_id")
 
@@ -24,7 +24,7 @@ class Believe::Test::Resources::Teams::LogoTest < Believe::Test::ResourceTest
   end
 
   def test_upload_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.teams.logo.upload("team_id", file: Pathname(__FILE__))
 
