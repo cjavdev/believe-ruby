@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Believe::Test::Resources::EpisodesTest < Believe::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @believe.episodes.create(
@@ -48,7 +48,7 @@ class Believe::Test::Resources::EpisodesTest < Believe::Test::ResourceTest
   end
 
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.episodes.retrieve("episode_id")
 
@@ -79,7 +79,7 @@ class Believe::Test::Resources::EpisodesTest < Believe::Test::ResourceTest
   end
 
   def test_update
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.episodes.update("episode_id")
 
@@ -110,7 +110,7 @@ class Believe::Test::Resources::EpisodesTest < Believe::Test::ResourceTest
   end
 
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.episodes.list
 
@@ -148,7 +148,7 @@ class Believe::Test::Resources::EpisodesTest < Believe::Test::ResourceTest
   end
 
   def test_delete
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.episodes.delete("episode_id")
 
@@ -158,7 +158,7 @@ class Believe::Test::Resources::EpisodesTest < Believe::Test::ResourceTest
   end
 
   def test_get_wisdom
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.episodes.get_wisdom("episode_id")
 
@@ -168,7 +168,7 @@ class Believe::Test::Resources::EpisodesTest < Believe::Test::ResourceTest
   end
 
   def test_list_by_season
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.episodes.list_by_season(0)
 

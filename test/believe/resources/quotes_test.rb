@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Believe::Test::Resources::QuotesTest < Believe::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @believe.quotes.create(
@@ -38,7 +38,7 @@ class Believe::Test::Resources::QuotesTest < Believe::Test::ResourceTest
   end
 
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.quotes.retrieve("quote_id")
 
@@ -65,7 +65,7 @@ class Believe::Test::Resources::QuotesTest < Believe::Test::ResourceTest
   end
 
   def test_update
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.quotes.update("quote_id")
 
@@ -92,7 +92,7 @@ class Believe::Test::Resources::QuotesTest < Believe::Test::ResourceTest
   end
 
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.quotes.list
 
@@ -126,7 +126,7 @@ class Believe::Test::Resources::QuotesTest < Believe::Test::ResourceTest
   end
 
   def test_delete
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.quotes.delete("quote_id")
 
@@ -136,7 +136,7 @@ class Believe::Test::Resources::QuotesTest < Believe::Test::ResourceTest
   end
 
   def test_get_random
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.quotes.get_random
 
@@ -163,7 +163,7 @@ class Believe::Test::Resources::QuotesTest < Believe::Test::ResourceTest
   end
 
   def test_list_by_character
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.quotes.list_by_character("character_id")
 
@@ -197,7 +197,7 @@ class Believe::Test::Resources::QuotesTest < Believe::Test::ResourceTest
   end
 
   def test_list_by_theme
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.quotes.list_by_theme(:belief)
 

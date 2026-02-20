@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Believe::Test::Resources::PressTest < Believe::Test::ResourceTest
   def test_simulate_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @believe.press.simulate(

@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Believe::Test::Resources::VersionTest < Believe::Test::ResourceTest
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.version.retrieve
 

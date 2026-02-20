@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Believe::Test::Resources::TeamMembersTest < Believe::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @believe.team_members.create(
@@ -79,7 +79,7 @@ class Believe::Test::Resources::TeamMembersTest < Believe::Test::ResourceTest
   end
 
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.team_members.retrieve("member_id")
 
@@ -144,7 +144,7 @@ class Believe::Test::Resources::TeamMembersTest < Believe::Test::ResourceTest
   end
 
   def test_update_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.team_members.update("member_id", updates: {})
 
@@ -209,7 +209,7 @@ class Believe::Test::Resources::TeamMembersTest < Believe::Test::ResourceTest
   end
 
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.team_members.list
 
@@ -281,7 +281,7 @@ class Believe::Test::Resources::TeamMembersTest < Believe::Test::ResourceTest
   end
 
   def test_delete
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.team_members.delete("member_id")
 
@@ -291,7 +291,7 @@ class Believe::Test::Resources::TeamMembersTest < Believe::Test::ResourceTest
   end
 
   def test_list_coaches
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.team_members.list_coaches
 
@@ -321,7 +321,7 @@ class Believe::Test::Resources::TeamMembersTest < Believe::Test::ResourceTest
   end
 
   def test_list_players
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.team_members.list_players
 
@@ -353,7 +353,7 @@ class Believe::Test::Resources::TeamMembersTest < Believe::Test::ResourceTest
   end
 
   def test_list_staff
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.team_members.list_staff
 

@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Believe::Test::Resources::HealthTest < Believe::Test::ResourceTest
   def test_check
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.health.check
 
