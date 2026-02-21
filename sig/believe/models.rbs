@@ -45,8 +45,6 @@ module Believe
 
   class EpisodeGetWisdomParams = Believe::Models::EpisodeGetWisdomParams
 
-  class EpisodeListBySeasonParams = Believe::Models::EpisodeListBySeasonParams
-
   class EpisodeListParams = Believe::Models::EpisodeListParams
 
   class EpisodeRetrieveParams = Believe::Models::EpisodeRetrieveParams

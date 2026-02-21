@@ -176,33 +176,6 @@ module Believe
         )
       end
 
-      # Get a paginated list of episodes from a specific season.
-      #
-      # @overload list_by_season(season_number, limit: nil, skip: nil, request_options: {})
-      #
-      # @param season_number [Integer]
-      #
-      # @param limit [Integer] Maximum number of items to return (max: 100)
-      #
-      # @param skip [Integer] Number of items to skip (offset)
-      #
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
-      #
-      # @return [Believe::Internal::SkipLimitPage<Believe::Models::Episode>]
-      #
-      # @see Believe::Models::EpisodeListBySeasonParams
-      def list_by_season(season_number, params = {})
-        parsed, options = Believe::EpisodeListBySeasonParams.dump_request(params)
-        @client.request(
-          method: :get,
-          path: ["episodes/seasons/%1$s", season_number],
-          query: parsed,
-          page: Believe::Internal::SkipLimitPage,
-          model: Believe::Episode,
-          options: options
-        )
-      end
-
       # @api private
       #
       # @param client [Believe::Client]

@@ -156,25 +156,6 @@ module Believe
       def get_wisdom(episode_id, request_options: {})
       end
 
-      # Get a paginated list of episodes from a specific season.
-      sig do
-        params(
-          season_number: Integer,
-          limit: Integer,
-          skip: Integer,
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::Internal::SkipLimitPage[Believe::Episode])
-      end
-      def list_by_season(
-        season_number,
-        # Maximum number of items to return (max: 100)
-        limit: nil,
-        # Number of items to skip (offset)
-        skip: nil,
-        request_options: {}
-      )
-      end
-
       # @api private
       sig { params(client: Believe::Client).returns(T.attached_class) }
       def self.new(client:)

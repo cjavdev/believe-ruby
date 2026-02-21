@@ -166,42 +166,4 @@ class Believe::Test::Resources::EpisodesTest < Believe::Test::ResourceTest
       response => ^(Believe::Internal::Type::HashOf[Believe::Internal::Type::Unknown])
     end
   end
-
-  def test_list_by_season
-    skip("Mock server tests are disabled")
-
-    response = @believe.episodes.list_by_season(0)
-
-    assert_pattern do
-      response => Believe::Internal::SkipLimitPage
-    end
-
-    row = response.to_enum.first
-    return if row.nil?
-
-    assert_pattern do
-      row => Believe::Episode
-    end
-
-    assert_pattern do
-      row => {
-        id: String,
-        air_date: Date,
-        character_focus: ^(Believe::Internal::Type::ArrayOf[String]),
-        director: String,
-        episode_number: Integer,
-        main_theme: String,
-        runtime_minutes: Integer,
-        season: Integer,
-        synopsis: String,
-        ted_wisdom: String,
-        title: String,
-        writer: String,
-        biscuits_with_boss_moment: String | nil,
-        memorable_moments: ^(Believe::Internal::Type::ArrayOf[String]) | nil,
-        us_viewers_millions: Float | nil,
-        viewer_rating: Float | nil
-      }
-    end
-  end
 end

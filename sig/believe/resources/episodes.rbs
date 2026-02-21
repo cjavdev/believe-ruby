@@ -63,13 +63,6 @@ module Believe
         ?request_options: Believe::request_opts
       ) -> Believe::Models::episode_get_wisdom_response
 
-      def list_by_season: (
-        Integer season_number,
-        ?limit: Integer,
-        ?skip: Integer,
-        ?request_options: Believe::request_opts
-      ) -> Believe::Internal::SkipLimitPage[Believe::Episode]
-
       def initialize: (client: Believe::Client) -> void
     end
   end
