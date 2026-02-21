@@ -2,6 +2,8 @@ module Believe
   module Resources
     class Client
       class Ws
+        def test_: (?request_options: Believe::request_opts) -> nil
+
         def initialize: (client: Believe::Client) -> void
       end
     end
