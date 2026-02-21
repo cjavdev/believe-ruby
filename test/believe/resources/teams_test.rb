@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Believe::Test::Resources::TeamsTest < Believe::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @believe.teams.create(
@@ -49,7 +49,7 @@ class Believe::Test::Resources::TeamsTest < Believe::Test::ResourceTest
   end
 
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.teams.retrieve("team_id")
 
@@ -82,7 +82,7 @@ class Believe::Test::Resources::TeamsTest < Believe::Test::ResourceTest
   end
 
   def test_update
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.teams.update("team_id")
 
@@ -115,7 +115,7 @@ class Believe::Test::Resources::TeamsTest < Believe::Test::ResourceTest
   end
 
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.teams.list
 
@@ -155,7 +155,7 @@ class Believe::Test::Resources::TeamsTest < Believe::Test::ResourceTest
   end
 
   def test_delete
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.teams.delete("team_id")
 
@@ -165,7 +165,7 @@ class Believe::Test::Resources::TeamsTest < Believe::Test::ResourceTest
   end
 
   def test_get_culture
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.teams.get_culture("team_id")
 
@@ -175,7 +175,7 @@ class Believe::Test::Resources::TeamsTest < Believe::Test::ResourceTest
   end
 
   def test_get_rivals
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.teams.get_rivals("team_id")
 
@@ -185,7 +185,7 @@ class Believe::Test::Resources::TeamsTest < Believe::Test::ResourceTest
   end
 
   def test_list_logos
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.teams.list_logos("team_id")
 

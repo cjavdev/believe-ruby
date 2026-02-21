@@ -1,0 +1,138 @@
+module Believe
+  module Models
+    type match_completed_webhook_event =
+      {
+        created_at: Time,
+        data: Believe::MatchCompletedWebhookEvent::Data,
+        event_id: String,
+        event_type: Believe::Models::MatchCompletedWebhookEvent::event_type
+      }
+
+    class MatchCompletedWebhookEvent < Believe::Internal::Type::BaseModel
+      attr_accessor created_at: Time
+
+      attr_accessor data: Believe::MatchCompletedWebhookEvent::Data
+
+      attr_accessor event_id: String
+
+      attr_accessor event_type: Believe::Models::MatchCompletedWebhookEvent::event_type
+
+      def initialize: (
+        created_at: Time,
+        data: Believe::MatchCompletedWebhookEvent::Data,
+        event_id: String,
+        event_type: Believe::Models::MatchCompletedWebhookEvent::event_type
+      ) -> void
+
+      def to_hash: -> {
+        created_at: Time,
+        data: Believe::MatchCompletedWebhookEvent::Data,
+        event_id: String,
+        event_type: Believe::Models::MatchCompletedWebhookEvent::event_type
+      }
+
+      type data =
+        {
+          away_score: Integer,
+          away_team_id: String,
+          completed_at: Time,
+          home_score: Integer,
+          home_team_id: String,
+          match_id: String,
+          match_type: Believe::Models::MatchCompletedWebhookEvent::Data::match_type,
+          result: Believe::Models::MatchCompletedWebhookEvent::Data::result,
+          ted_post_match_quote: String,
+          lesson_learned: String?,
+          man_of_the_match: String?
+        }
+
+      class Data < Believe::Internal::Type::BaseModel
+        attr_accessor away_score: Integer
+
+        attr_accessor away_team_id: String
+
+        attr_accessor completed_at: Time
+
+        attr_accessor home_score: Integer
+
+        attr_accessor home_team_id: String
+
+        attr_accessor match_id: String
+
+        attr_accessor match_type: Believe::Models::MatchCompletedWebhookEvent::Data::match_type
+
+        attr_accessor result: Believe::Models::MatchCompletedWebhookEvent::Data::result
+
+        attr_accessor ted_post_match_quote: String
+
+        attr_accessor lesson_learned: String?
+
+        attr_accessor man_of_the_match: String?
+
+        def initialize: (
+          away_score: Integer,
+          away_team_id: String,
+          completed_at: Time,
+          home_score: Integer,
+          home_team_id: String,
+          match_id: String,
+          match_type: Believe::Models::MatchCompletedWebhookEvent::Data::match_type,
+          result: Believe::Models::MatchCompletedWebhookEvent::Data::result,
+          ted_post_match_quote: String,
+          ?lesson_learned: String?,
+          ?man_of_the_match: String?
+        ) -> void
+
+        def to_hash: -> {
+          away_score: Integer,
+          away_team_id: String,
+          completed_at: Time,
+          home_score: Integer,
+          home_team_id: String,
+          match_id: String,
+          match_type: Believe::Models::MatchCompletedWebhookEvent::Data::match_type,
+          result: Believe::Models::MatchCompletedWebhookEvent::Data::result,
+          ted_post_match_quote: String,
+          lesson_learned: String?,
+          man_of_the_match: String?
+        }
+
+        type match_type = :league | :cup | :friendly | :playoff | :final
+
+        module MatchType
+          extend Believe::Internal::Type::Enum
+
+          LEAGUE: :league
+          CUP: :cup
+          FRIENDLY: :friendly
+          PLAYOFF: :playoff
+          FINAL: :final
+
+          def self?.values: -> ::Array[Believe::Models::MatchCompletedWebhookEvent::Data::match_type]
+        end
+
+        type result = :home_win | :away_win | :draw
+
+        module Result
+          extend Believe::Internal::Type::Enum
+
+          HOME_WIN: :home_win
+          AWAY_WIN: :away_win
+          DRAW: :draw
+
+          def self?.values: -> ::Array[Believe::Models::MatchCompletedWebhookEvent::Data::result]
+        end
+      end
+
+      type event_type = :"match.completed"
+
+      module EventType
+        extend Believe::Internal::Type::Enum
+
+        MATCH_COMPLETED: :"match.completed"
+
+        def self?.values: -> ::Array[Believe::Models::MatchCompletedWebhookEvent::event_type]
+      end
+    end
+  end
+end

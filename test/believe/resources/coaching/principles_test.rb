@@ -4,7 +4,7 @@ require_relative "../../test_helper"
 
 class Believe::Test::Resources::Coaching::PrinciplesTest < Believe::Test::ResourceTest
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.coaching.principles.retrieve("principle_id")
 
@@ -25,7 +25,7 @@ class Believe::Test::Resources::Coaching::PrinciplesTest < Believe::Test::Resour
   end
 
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.coaching.principles.list
 
@@ -53,7 +53,7 @@ class Believe::Test::Resources::Coaching::PrinciplesTest < Believe::Test::Resour
   end
 
   def test_get_random
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.coaching.principles.get_random
 

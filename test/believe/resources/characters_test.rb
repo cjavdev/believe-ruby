@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Believe::Test::Resources::CharactersTest < Believe::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @believe.characters.create(
@@ -40,7 +40,7 @@ class Believe::Test::Resources::CharactersTest < Believe::Test::ResourceTest
   end
 
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.characters.retrieve("character_id")
 
@@ -69,7 +69,7 @@ class Believe::Test::Resources::CharactersTest < Believe::Test::ResourceTest
   end
 
   def test_update
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.characters.update("character_id")
 
@@ -98,7 +98,7 @@ class Believe::Test::Resources::CharactersTest < Believe::Test::ResourceTest
   end
 
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.characters.list
 
@@ -134,7 +134,7 @@ class Believe::Test::Resources::CharactersTest < Believe::Test::ResourceTest
   end
 
   def test_delete
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.characters.delete("character_id")
 
@@ -144,7 +144,7 @@ class Believe::Test::Resources::CharactersTest < Believe::Test::ResourceTest
   end
 
   def test_get_quotes
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.characters.get_quotes("character_id")
 

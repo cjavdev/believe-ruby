@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Believe::Test::Resources::MatchesTest < Believe::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @believe.matches.create(
@@ -41,7 +41,7 @@ class Believe::Test::Resources::MatchesTest < Believe::Test::ResourceTest
   end
 
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.matches.retrieve("match_id")
 
@@ -72,7 +72,7 @@ class Believe::Test::Resources::MatchesTest < Believe::Test::ResourceTest
   end
 
   def test_update
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.matches.update("match_id")
 
@@ -103,7 +103,7 @@ class Believe::Test::Resources::MatchesTest < Believe::Test::ResourceTest
   end
 
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.matches.list
 
@@ -141,7 +141,7 @@ class Believe::Test::Resources::MatchesTest < Believe::Test::ResourceTest
   end
 
   def test_delete
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.matches.delete("match_id")
 
@@ -151,7 +151,7 @@ class Believe::Test::Resources::MatchesTest < Believe::Test::ResourceTest
   end
 
   def test_get_lesson
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.matches.get_lesson("match_id")
 
@@ -161,7 +161,7 @@ class Believe::Test::Resources::MatchesTest < Believe::Test::ResourceTest
   end
 
   def test_get_turning_points
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.matches.get_turning_points("match_id")
 
@@ -171,7 +171,7 @@ class Believe::Test::Resources::MatchesTest < Believe::Test::ResourceTest
   end
 
   def test_stream_live
-    skip("Prism doesn't support callbacks yet")
+    skip("Mock server tests are disabled")
 
     response = @believe.matches.stream_live
 

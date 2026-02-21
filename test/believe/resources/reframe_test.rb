@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Believe::Test::Resources::ReframeTest < Believe::Test::ResourceTest
   def test_transform_negative_thoughts_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @believe.reframe.transform_negative_thoughts(negative_thought: "I'm not good enough for this job.")

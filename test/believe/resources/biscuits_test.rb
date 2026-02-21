@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Believe::Test::Resources::BiscuitsTest < Believe::Test::ResourceTest
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.biscuits.retrieve("biscuit_id")
 
@@ -25,7 +25,7 @@ class Believe::Test::Resources::BiscuitsTest < Believe::Test::ResourceTest
   end
 
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.biscuits.list
 
@@ -53,7 +53,7 @@ class Believe::Test::Resources::BiscuitsTest < Believe::Test::ResourceTest
   end
 
   def test_get_fresh
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @believe.biscuits.get_fresh
 
