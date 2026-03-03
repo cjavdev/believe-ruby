@@ -2,7 +2,9 @@
 
 module Believe
   module Resources
+    # Operations related to football teams
     class Teams
+      # Operations related to football teams
       # @return [Believe::Resources::Teams::Logo]
       attr_reader :logo
 
@@ -149,10 +151,11 @@ module Believe
       # @see Believe::Models::TeamListParams
       def list(params = {})
         parsed, options = Believe::TeamListParams.dump_request(params)
+        query = Believe::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "teams",
-          query: parsed,
+          query: query,
           page: Believe::Internal::SkipLimitPage,
           model: Believe::Team,
           options: options

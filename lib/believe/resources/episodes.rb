@@ -2,6 +2,7 @@
 
 module Believe
   module Resources
+    # Operations related to TV episodes
     class Episodes
       # Add a new episode to the series.
       #
@@ -128,10 +129,11 @@ module Believe
       # @see Believe::Models::EpisodeListParams
       def list(params = {})
         parsed, options = Believe::EpisodeListParams.dump_request(params)
+        query = Believe::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "episodes",
-          query: parsed,
+          query: query,
           page: Believe::Internal::SkipLimitPage,
           model: Believe::Episode,
           options: options

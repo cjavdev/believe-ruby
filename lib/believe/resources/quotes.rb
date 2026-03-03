@@ -2,6 +2,7 @@
 
 module Believe
   module Resources
+    # Memorable quotes from the show
     class Quotes
       # Add a new memorable quote to the collection.
       #
@@ -127,10 +128,11 @@ module Believe
       # @see Believe::Models::QuoteListParams
       def list(params = {})
         parsed, options = Believe::QuoteListParams.dump_request(params)
+        query = Believe::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "quotes",
-          query: parsed,
+          query: query,
           page: Believe::Internal::SkipLimitPage,
           model: Believe::Quote,
           options: options
@@ -173,10 +175,11 @@ module Believe
       # @see Believe::Models::QuoteGetRandomParams
       def get_random(params = {})
         parsed, options = Believe::QuoteGetRandomParams.dump_request(params)
+        query = Believe::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "quotes/random",
-          query: parsed,
+          query: query,
           model: Believe::Quote,
           options: options
         )
@@ -199,10 +202,11 @@ module Believe
       # @see Believe::Models::QuoteListByCharacterParams
       def list_by_character(character_id, params = {})
         parsed, options = Believe::QuoteListByCharacterParams.dump_request(params)
+        query = Believe::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: ["quotes/characters/%1$s", character_id],
-          query: parsed,
+          query: query,
           page: Believe::Internal::SkipLimitPage,
           model: Believe::Quote,
           options: options
@@ -226,10 +230,11 @@ module Believe
       # @see Believe::Models::QuoteListByThemeParams
       def list_by_theme(theme, params = {})
         parsed, options = Believe::QuoteListByThemeParams.dump_request(params)
+        query = Believe::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: ["quotes/themes/%1$s", theme],
-          query: parsed,
+          query: query,
           page: Believe::Internal::SkipLimitPage,
           model: Believe::Quote,
           options: options

@@ -2,6 +2,7 @@
 
 module Believe
   module Resources
+    # Interactive endpoints for motivation and guidance
     class Conflicts
       # Get Ted Lasso-style advice for resolving conflicts.
       #

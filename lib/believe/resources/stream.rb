@@ -2,6 +2,7 @@
 
 module Believe
   module Resources
+    # Server-Sent Events (SSE) streaming endpoints
     class Stream
       # A simple SSE test endpoint that streams numbers 1-5.
       #

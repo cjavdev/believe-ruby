@@ -2,6 +2,8 @@
 
 module Believe
   module Resources
+    # Team members with union types (oneOf) - Players, Coaches, Medical Staff,
+    # Equipment Managers
     class TeamMembers
       # Add a new team member to a team.
       #
@@ -133,10 +135,11 @@ module Believe
       # @see Believe::Models::TeamMemberListParams
       def list(params = {})
         parsed, options = Believe::TeamMemberListParams.dump_request(params)
+        query = Believe::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "team-members",
-          query: parsed,
+          query: query,
           page: Believe::Internal::SkipLimitPage,
           model: Believe::Models::TeamMemberListResponse,
           options: options
@@ -181,10 +184,11 @@ module Believe
       # @see Believe::Models::TeamMemberListCoachesParams
       def list_coaches(params = {})
         parsed, options = Believe::TeamMemberListCoachesParams.dump_request(params)
+        query = Believe::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "team-members/coaches/",
-          query: parsed,
+          query: query,
           page: Believe::Internal::SkipLimitPage,
           model: Believe::Coach,
           options: options
@@ -210,10 +214,11 @@ module Believe
       # @see Believe::Models::TeamMemberListPlayersParams
       def list_players(params = {})
         parsed, options = Believe::TeamMemberListPlayersParams.dump_request(params)
+        query = Believe::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "team-members/players/",
-          query: parsed,
+          query: query,
           page: Believe::Internal::SkipLimitPage,
           model: Believe::Player,
           options: options
@@ -240,10 +245,11 @@ module Believe
       # @see Believe::Models::TeamMemberListStaffParams
       def list_staff(params = {})
         parsed, options = Believe::TeamMemberListStaffParams.dump_request(params)
+        query = Believe::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "team-members/staff/",
-          query: parsed,
+          query: query,
           page: Believe::Internal::SkipLimitPage,
           model: Believe::Models::TeamMemberListStaffResponse,
           options: options

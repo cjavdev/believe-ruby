@@ -3,6 +3,8 @@
 module Believe
   module Resources
     class Client
+      # WebSocket endpoints for real-time bidirectional communication - Live match
+      # simulation
       class Ws
         # Simple WebSocket test endpoint for connectivity testing.
         #

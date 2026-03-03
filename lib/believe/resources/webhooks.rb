@@ -2,6 +2,7 @@
 
 module Believe
   module Resources
+    # Register webhook endpoints and trigger events for testing
     class Webhooks
       # Register a new webhook endpoint to receive event notifications.
       #

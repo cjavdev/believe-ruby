@@ -3,6 +3,7 @@
 module Believe
   module Resources
     class Coaching
+      # Interactive endpoints for motivation and guidance
       class Principles
         # Get details about a specific coaching principle.
         sig do

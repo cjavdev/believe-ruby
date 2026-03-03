@@ -3,6 +3,7 @@
 module Believe
   module Resources
     class Teams
+      # Operations related to football teams
       class Logo
         # Delete a team's logo.
         sig do

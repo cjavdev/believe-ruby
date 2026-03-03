@@ -18,48 +18,62 @@ module Believe
     # @return [String]
     attr_reader :api_key
 
+    # Operations related to Ted Lasso characters
     # @return [Believe::Resources::Characters]
     attr_reader :characters
 
+    # Operations related to football teams
     # @return [Believe::Resources::Teams]
     attr_reader :teams
 
     # @return [Believe::Resources::Matches]
     attr_reader :matches
 
+    # Operations related to TV episodes
     # @return [Believe::Resources::Episodes]
     attr_reader :episodes
 
+    # Memorable quotes from the show
     # @return [Believe::Resources::Quotes]
     attr_reader :quotes
 
+    # Interactive endpoints for motivation and guidance
     # @return [Believe::Resources::Believe]
     attr_reader :believe
 
+    # Interactive endpoints for motivation and guidance
     # @return [Believe::Resources::Conflicts]
     attr_reader :conflicts
 
+    # Interactive endpoints for motivation and guidance
     # @return [Believe::Resources::Reframe]
     attr_reader :reframe
 
+    # Interactive endpoints for motivation and guidance
     # @return [Believe::Resources::Press]
     attr_reader :press
 
     # @return [Believe::Resources::Coaching]
     attr_reader :coaching
 
+    # Interactive endpoints for motivation and guidance
     # @return [Believe::Resources::Biscuits]
     attr_reader :biscuits
 
+    # Server-Sent Events (SSE) streaming endpoints
     # @return [Believe::Resources::PepTalk]
     attr_reader :pep_talk
 
+    # Server-Sent Events (SSE) streaming endpoints
     # @return [Believe::Resources::Stream]
     attr_reader :stream
 
+    # Team members with union types (oneOf) - Players, Coaches, Medical Staff,
+    # Equipment Managers
     # @return [Believe::Resources::TeamMembers]
     attr_reader :team_members
 
+    # Register webhook endpoints and trigger events for testing
     # @return [Believe::Resources::Webhooks]
     attr_reader :webhooks
 

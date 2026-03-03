@@ -3,6 +3,7 @@
 module Believe
   module Resources
     class Matches
+      # Server-Sent Events (SSE) streaming endpoints
       # @return [Believe::Resources::Matches::Commentary]
       attr_reader :commentary
 
@@ -142,10 +143,11 @@ module Believe
       # @see Believe::Models::MatchListParams
       def list(params = {})
         parsed, options = Believe::MatchListParams.dump_request(params)
+        query = Believe::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "matches",
-          query: parsed,
+          query: query,
           page: Believe::Internal::SkipLimitPage,
           model: Believe::Match,
           options: options
@@ -262,7 +264,8 @@ module Believe
       # @see Believe::Models::MatchStreamLiveParams
       def stream_live(params = {})
         parsed, options = Believe::MatchStreamLiveParams.dump_request(params)
-        @client.request(method: :get, path: "matches/live", query: parsed, model: NilClass, options: options)
+        query = Believe::Internal::Util.encode_query_params(parsed)
+        @client.request(method: :get, path: "matches/live", query: query, model: NilClass, options: options)
       end
 
       # @api private

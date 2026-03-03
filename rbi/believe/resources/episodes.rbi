@@ -2,6 +2,7 @@
 
 module Believe
   module Resources
+    # Operations related to TV episodes
     class Episodes
       # Add a new episode to the series.
       sig do

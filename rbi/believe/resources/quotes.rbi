@@ -2,6 +2,7 @@
 
 module Believe
   module Resources
+    # Memorable quotes from the show
     class Quotes
       # Add a new memorable quote to the collection.
       sig do
