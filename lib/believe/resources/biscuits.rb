@@ -2,6 +2,7 @@
 
 module Believe
   module Resources
+    # Interactive endpoints for motivation and guidance
     class Biscuits
       # Get a specific type of biscuit by ID.
       #
@@ -38,10 +39,11 @@ module Believe
       # @see Believe::Models::BiscuitListParams
       def list(params = {})
         parsed, options = Believe::BiscuitListParams.dump_request(params)
+        query = Believe::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "biscuits",
-          query: parsed,
+          query: query,
           page: Believe::Internal::SkipLimitPage,
           model: Believe::Biscuit,
           options: options

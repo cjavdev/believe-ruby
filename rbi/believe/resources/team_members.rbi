@@ -2,6 +2,8 @@
 
 module Believe
   module Resources
+    # Team members with union types (oneOf) - Players, Coaches, Medical Staff,
+    # Equipment Managers
     class TeamMembers
       # Add a new team member to a team.
       #

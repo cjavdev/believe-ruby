@@ -2,6 +2,7 @@
 
 module Believe
   module Resources
+    # Interactive endpoints for motivation and guidance
     class Biscuits
       # Get a specific type of biscuit by ID.
       sig do

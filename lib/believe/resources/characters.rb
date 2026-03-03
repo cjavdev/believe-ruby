@@ -2,6 +2,7 @@
 
 module Believe
   module Resources
+    # Operations related to Ted Lasso characters
     class Characters
       # Add a new character to the Ted Lasso universe.
       #
@@ -137,10 +138,11 @@ module Believe
       # @see Believe::Models::CharacterListParams
       def list(params = {})
         parsed, options = Believe::CharacterListParams.dump_request(params)
+        query = Believe::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "characters",
-          query: parsed,
+          query: query,
           page: Believe::Internal::SkipLimitPage,
           model: Believe::Character,
           options: options

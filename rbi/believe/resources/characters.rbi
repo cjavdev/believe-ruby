@@ -2,6 +2,7 @@
 
 module Believe
   module Resources
+    # Operations related to Ted Lasso characters
     class Characters
       # Add a new character to the Ted Lasso universe.
       sig do

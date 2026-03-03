@@ -3,6 +3,7 @@
 module Believe
   module Resources
     class Coaching
+      # Interactive endpoints for motivation and guidance
       # @return [Believe::Resources::Coaching::Principles]
       attr_reader :principles
 

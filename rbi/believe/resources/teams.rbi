@@ -2,7 +2,9 @@
 
 module Believe
   module Resources
+    # Operations related to football teams
     class Teams
+      # Operations related to football teams
       sig { returns(Believe::Resources::Teams::Logo) }
       attr_reader :logo
 

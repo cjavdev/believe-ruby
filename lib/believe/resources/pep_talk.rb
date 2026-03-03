@@ -2,6 +2,7 @@
 
 module Believe
   module Resources
+    # Server-Sent Events (SSE) streaming endpoints
     class PepTalk
       # Get a motivational pep talk from Ted Lasso himself. By default returns the
       # complete pep talk. Add `?stream=true` to get Server-Sent Events (SSE) streaming
@@ -18,10 +19,11 @@ module Believe
       # @see Believe::Models::PepTalkRetrieveParams
       def retrieve(params = {})
         parsed, options = Believe::PepTalkRetrieveParams.dump_request(params)
+        query = Believe::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "pep-talk",
-          query: parsed,
+          query: query,
           model: Believe::Models::PepTalkRetrieveResponse,
           options: options
         )

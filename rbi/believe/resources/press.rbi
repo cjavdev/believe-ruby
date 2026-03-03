@@ -2,6 +2,7 @@
 
 module Believe
   module Resources
+    # Interactive endpoints for motivation and guidance
     class Press
       # Get Ted's response to press conference questions.
       sig do

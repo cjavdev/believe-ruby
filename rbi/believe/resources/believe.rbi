@@ -2,6 +2,7 @@
 
 module Believe
   module Resources
+    # Interactive endpoints for motivation and guidance
     class Believe
       # Submit your situation and receive Ted Lasso-style motivational guidance.
       sig do

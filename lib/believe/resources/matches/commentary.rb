@@ -3,6 +3,7 @@
 module Believe
   module Resources
     class Matches
+      # Server-Sent Events (SSE) streaming endpoints
       class Commentary
         # Stream live match commentary for a specific match. Uses Server-Sent Events (SSE)
         # to stream commentary events in real-time.

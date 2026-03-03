@@ -3,6 +3,7 @@
 module Believe
   module Resources
     class Coaching
+      # Interactive endpoints for motivation and guidance
       class Principles
         # Get details about a specific coaching principle.
         #
@@ -38,10 +39,11 @@ module Believe
         # @see Believe::Models::Coaching::PrincipleListParams
         def list(params = {})
           parsed, options = Believe::Coaching::PrincipleListParams.dump_request(params)
+          query = Believe::Internal::Util.encode_query_params(parsed)
           @client.request(
             method: :get,
             path: "coaching/principles",
-            query: parsed,
+            query: query,
             page: Believe::Internal::SkipLimitPage,
             model: Believe::Coaching::CoachingPrinciple,
             options: options

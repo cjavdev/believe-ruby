@@ -2,6 +2,7 @@
 
 module Believe
   module Resources
+    # Interactive endpoints for motivation and guidance
     class Reframe
       # Transform negative thoughts into positive perspectives with Ted's help.
       sig do

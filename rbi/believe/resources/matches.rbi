@@ -3,6 +3,7 @@
 module Believe
   module Resources
     class Matches
+      # Server-Sent Events (SSE) streaming endpoints
       sig { returns(Believe::Resources::Matches::Commentary) }
       attr_reader :commentary
 
