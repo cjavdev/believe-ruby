@@ -11,6 +11,9 @@ module Believe
           T.any(Believe::MatchUpdateParams, Believe::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :match_id
+
       sig { returns(T.nilable(Integer)) }
       attr_accessor :attendance
 
@@ -64,6 +67,7 @@ module Believe
 
       sig do
         params(
+          match_id: String,
           attendance: T.nilable(Integer),
           away_score: T.nilable(Integer),
           away_team_id: T.nilable(String),
@@ -84,6 +88,7 @@ module Believe
         ).returns(T.attached_class)
       end
       def self.new(
+        match_id:,
         attendance: nil,
         away_score: nil,
         away_team_id: nil,
@@ -108,6 +113,7 @@ module Believe
       sig do
         override.returns(
           {
+            match_id: String,
             attendance: T.nilable(Integer),
             away_score: T.nilable(Integer),
             away_team_id: T.nilable(String),

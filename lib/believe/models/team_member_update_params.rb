@@ -7,13 +7,20 @@ module Believe
       extend Believe::Internal::Type::RequestParameters::Converter
       include Believe::Internal::Type::RequestParameters
 
+      # @!attribute member_id
+      #
+      #   @return [String]
+      required :member_id, String
+
       # @!attribute updates
       #   Update model for players.
       #
       #   @return [Believe::Models::TeamMemberUpdateParams::Updates::PlayerUpdate, Believe::Models::TeamMemberUpdateParams::Updates::CoachUpdate, Believe::Models::TeamMemberUpdateParams::Updates::MedicalStaffUpdate, Believe::Models::TeamMemberUpdateParams::Updates::EquipmentManagerUpdate]
       required :updates, union: -> { Believe::TeamMemberUpdateParams::Updates }
 
-      # @!method initialize(updates:, request_options: {})
+      # @!method initialize(member_id:, updates:, request_options: {})
+      #   @param member_id [String]
+      #
       #   @param updates [Believe::Models::TeamMemberUpdateParams::Updates::PlayerUpdate, Believe::Models::TeamMemberUpdateParams::Updates::CoachUpdate, Believe::Models::TeamMemberUpdateParams::Updates::MedicalStaffUpdate, Believe::Models::TeamMemberUpdateParams::Updates::EquipmentManagerUpdate] Update model for players.
       #
       #   @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}]

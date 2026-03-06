@@ -11,6 +11,9 @@ module Believe
           T.any(Believe::EpisodeUpdateParams, Believe::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :episode_id
+
       sig { returns(T.nilable(Date)) }
       attr_accessor :air_date
 
@@ -58,6 +61,7 @@ module Believe
 
       sig do
         params(
+          episode_id: String,
           air_date: T.nilable(Date),
           biscuits_with_boss_moment: T.nilable(String),
           character_focus: T.nilable(T::Array[String]),
@@ -77,6 +81,7 @@ module Believe
         ).returns(T.attached_class)
       end
       def self.new(
+        episode_id:,
         air_date: nil,
         biscuits_with_boss_moment: nil,
         character_focus: nil,
@@ -99,6 +104,7 @@ module Believe
       sig do
         override.returns(
           {
+            episode_id: String,
             air_date: T.nilable(Date),
             biscuits_with_boss_moment: T.nilable(String),
             character_focus: T.nilable(T::Array[String]),

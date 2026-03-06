@@ -11,6 +11,10 @@ module Believe
           T.any(Believe::QuoteListByThemeParams, Believe::Internal::AnyHash)
         end
 
+      # Themes that quotes can be categorized under.
+      sig { returns(Believe::QuoteTheme::OrSymbol) }
+      attr_accessor :theme
+
       # Maximum number of items to return (max: 100)
       sig { returns(T.nilable(Integer)) }
       attr_reader :limit
@@ -27,12 +31,15 @@ module Believe
 
       sig do
         params(
+          theme: Believe::QuoteTheme::OrSymbol,
           limit: Integer,
           skip: Integer,
           request_options: Believe::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        # Themes that quotes can be categorized under.
+        theme:,
         # Maximum number of items to return (max: 100)
         limit: nil,
         # Number of items to skip (offset)
@@ -44,6 +51,7 @@ module Believe
       sig do
         override.returns(
           {
+            theme: Believe::QuoteTheme::OrSymbol,
             limit: Integer,
             skip: Integer,
             request_options: Believe::RequestOptions

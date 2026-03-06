@@ -1,21 +1,28 @@
 module Believe
   module Models
     type team_member_update_params =
-      { updates: Believe::Models::TeamMemberUpdateParams::updates }
+      {
+        member_id: String,
+        updates: Believe::Models::TeamMemberUpdateParams::updates
+      }
       & Believe::Internal::Type::request_parameters
 
     class TeamMemberUpdateParams < Believe::Internal::Type::BaseModel
       extend Believe::Internal::Type::RequestParameters::Converter
       include Believe::Internal::Type::RequestParameters
 
+      attr_accessor member_id: String
+
       attr_accessor updates: Believe::Models::TeamMemberUpdateParams::updates
 
       def initialize: (
+        member_id: String,
         updates: Believe::Models::TeamMemberUpdateParams::updates,
         ?request_options: Believe::request_opts
       ) -> void
 
       def to_hash: -> {
+        member_id: String,
         updates: Believe::Models::TeamMemberUpdateParams::updates,
         request_options: Believe::RequestOptions
       }

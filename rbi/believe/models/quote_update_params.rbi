@@ -11,6 +11,9 @@ module Believe
           T.any(Believe::QuoteUpdateParams, Believe::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :quote_id
+
       sig { returns(T.nilable(String)) }
       attr_accessor :character_id
 
@@ -48,6 +51,7 @@ module Believe
 
       sig do
         params(
+          quote_id: String,
           character_id: T.nilable(String),
           context: T.nilable(String),
           episode_id: T.nilable(String),
@@ -63,6 +67,7 @@ module Believe
         ).returns(T.attached_class)
       end
       def self.new(
+        quote_id:,
         character_id: nil,
         context: nil,
         episode_id: nil,
@@ -83,6 +88,7 @@ module Believe
       sig do
         override.returns(
           {
+            quote_id: String,
             character_id: T.nilable(String),
             context: T.nilable(String),
             episode_id: T.nilable(String),

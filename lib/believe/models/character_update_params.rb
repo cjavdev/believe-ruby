@@ -7,6 +7,11 @@ module Believe
       extend Believe::Internal::Type::RequestParameters::Converter
       include Believe::Internal::Type::RequestParameters
 
+      # @!attribute character_id
+      #
+      #   @return [String]
+      required :character_id, String
+
       # @!attribute background
       #
       #   @return [String, nil]
@@ -74,7 +79,9 @@ module Believe
       #   @return [String, nil]
       optional :team_id, String, nil?: true
 
-      # @!method initialize(background: nil, date_of_birth: nil, email: nil, emotional_stats: nil, growth_arcs: nil, height_meters: nil, name: nil, personality_traits: nil, profile_image_url: nil, role: nil, salary_gbp: nil, signature_quotes: nil, team_id: nil, request_options: {})
+      # @!method initialize(character_id:, background: nil, date_of_birth: nil, email: nil, emotional_stats: nil, growth_arcs: nil, height_meters: nil, name: nil, personality_traits: nil, profile_image_url: nil, role: nil, salary_gbp: nil, signature_quotes: nil, team_id: nil, request_options: {})
+      #   @param character_id [String]
+      #
       #   @param background [String, nil]
       #
       #   @param date_of_birth [Date, nil]

@@ -11,6 +11,9 @@ module Believe
           T.any(Believe::TeamMemberUpdateParams, Believe::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :member_id
+
       # Update model for players.
       sig do
         returns(
@@ -26,6 +29,7 @@ module Believe
 
       sig do
         params(
+          member_id: String,
           updates:
             T.any(
               Believe::TeamMemberUpdateParams::Updates::PlayerUpdate::OrHash,
@@ -37,6 +41,7 @@ module Believe
         ).returns(T.attached_class)
       end
       def self.new(
+        member_id:,
         # Update model for players.
         updates:,
         request_options: {}
@@ -46,6 +51,7 @@ module Believe
       sig do
         override.returns(
           {
+            member_id: String,
             updates:
               T.any(
                 Believe::TeamMemberUpdateParams::Updates::PlayerUpdate,

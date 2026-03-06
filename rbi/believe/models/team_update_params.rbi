@@ -11,6 +11,9 @@ module Believe
           T.any(Believe::TeamUpdateParams, Believe::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :team_id
+
       sig do
         returns(T.nilable(Believe::TeamUpdateParams::AnnualBudgetGbp::Variants))
       end
@@ -77,6 +80,7 @@ module Believe
 
       sig do
         params(
+          team_id: String,
           annual_budget_gbp:
             T.nilable(Believe::TeamUpdateParams::AnnualBudgetGbp::Variants),
           average_attendance: T.nilable(Float),
@@ -99,6 +103,7 @@ module Believe
         ).returns(T.attached_class)
       end
       def self.new(
+        team_id:,
         annual_budget_gbp: nil,
         average_attendance: nil,
         contact_email: nil,
@@ -126,6 +131,7 @@ module Believe
       sig do
         override.returns(
           {
+            team_id: String,
             annual_budget_gbp:
               T.nilable(Believe::TeamUpdateParams::AnnualBudgetGbp::Variants),
             average_attendance: T.nilable(Float),

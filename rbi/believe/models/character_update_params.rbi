@@ -11,6 +11,9 @@ module Believe
           T.any(Believe::CharacterUpdateParams, Believe::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :character_id
+
       sig { returns(T.nilable(String)) }
       attr_accessor :background
 
@@ -61,6 +64,7 @@ module Believe
 
       sig do
         params(
+          character_id: String,
           background: T.nilable(String),
           date_of_birth: T.nilable(Date),
           email: T.nilable(String),
@@ -79,6 +83,7 @@ module Believe
         ).returns(T.attached_class)
       end
       def self.new(
+        character_id:,
         background: nil,
         date_of_birth: nil,
         email: nil,
@@ -101,6 +106,7 @@ module Believe
       sig do
         override.returns(
           {
+            character_id: String,
             background: T.nilable(String),
             date_of_birth: T.nilable(Date),
             email: T.nilable(String),

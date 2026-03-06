@@ -7,6 +7,12 @@ module Believe
       extend Believe::Internal::Type::RequestParameters::Converter
       include Believe::Internal::Type::RequestParameters
 
+      # @!attribute theme
+      #   Themes that quotes can be categorized under.
+      #
+      #   @return [Symbol, Believe::Models::QuoteTheme]
+      required :theme, enum: -> { Believe::QuoteTheme }
+
       # @!attribute limit
       #   Maximum number of items to return (max: 100)
       #
@@ -19,7 +25,9 @@ module Believe
       #   @return [Integer, nil]
       optional :skip, Integer
 
-      # @!method initialize(limit: nil, skip: nil, request_options: {})
+      # @!method initialize(theme:, limit: nil, skip: nil, request_options: {})
+      #   @param theme [Symbol, Believe::Models::QuoteTheme] Themes that quotes can be categorized under.
+      #
       #   @param limit [Integer] Maximum number of items to return (max: 100)
       #
       #   @param skip [Integer] Number of items to skip (offset)

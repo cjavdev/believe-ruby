@@ -11,15 +11,23 @@ module Believe
           T.any(Believe::QuoteRetrieveParams, Believe::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :quote_id
+
       sig do
-        params(request_options: Believe::RequestOptions::OrHash).returns(
-          T.attached_class
-        )
+        params(
+          quote_id: String,
+          request_options: Believe::RequestOptions::OrHash
+        ).returns(T.attached_class)
       end
-      def self.new(request_options: {})
+      def self.new(quote_id:, request_options: {})
       end
 
-      sig { override.returns({ request_options: Believe::RequestOptions }) }
+      sig do
+        override.returns(
+          { quote_id: String, request_options: Believe::RequestOptions }
+        )
+      end
       def to_hash
       end
     end

@@ -7,6 +7,11 @@ module Believe
       extend Believe::Internal::Type::RequestParameters::Converter
       include Believe::Internal::Type::RequestParameters
 
+      # @!attribute team_id
+      #
+      #   @return [String]
+      required :team_id, String
+
       # @!attribute annual_budget_gbp
       #
       #   @return [Float, String, nil]
@@ -95,7 +100,9 @@ module Believe
       #   @return [Float, nil]
       optional :win_percentage, Float, nil?: true
 
-      # @!method initialize(annual_budget_gbp: nil, average_attendance: nil, contact_email: nil, culture_score: nil, founded_year: nil, is_active: nil, league: nil, name: nil, nickname: nil, primary_color: nil, rival_teams: nil, secondary_color: nil, stadium: nil, stadium_location: nil, values: nil, website: nil, win_percentage: nil, request_options: {})
+      # @!method initialize(team_id:, annual_budget_gbp: nil, average_attendance: nil, contact_email: nil, culture_score: nil, founded_year: nil, is_active: nil, league: nil, name: nil, nickname: nil, primary_color: nil, rival_teams: nil, secondary_color: nil, stadium: nil, stadium_location: nil, values: nil, website: nil, win_percentage: nil, request_options: {})
+      #   @param team_id [String]
+      #
       #   @param annual_budget_gbp [Float, String, nil]
       #
       #   @param average_attendance [Float, nil]

@@ -2,6 +2,7 @@ module Believe
   module Models
     type quote_update_params =
       {
+        quote_id: String,
         character_id: String?,
         context: String?,
         episode_id: String?,
@@ -19,6 +20,8 @@ module Believe
     class QuoteUpdateParams < Believe::Internal::Type::BaseModel
       extend Believe::Internal::Type::RequestParameters::Converter
       include Believe::Internal::Type::RequestParameters
+
+      attr_accessor quote_id: String
 
       attr_accessor character_id: String?
 
@@ -43,6 +46,7 @@ module Believe
       attr_accessor times_shared: Integer?
 
       def initialize: (
+        quote_id: String,
         ?character_id: String?,
         ?context: String?,
         ?episode_id: String?,
@@ -58,6 +62,7 @@ module Believe
       ) -> void
 
       def to_hash: -> {
+        quote_id: String,
         character_id: String?,
         context: String?,
         episode_id: String?,
