@@ -11,6 +11,9 @@ module Believe
           T.any(Believe::QuoteListByCharacterParams, Believe::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :character_id
+
       # Maximum number of items to return (max: 100)
       sig { returns(T.nilable(Integer)) }
       attr_reader :limit
@@ -27,12 +30,14 @@ module Believe
 
       sig do
         params(
+          character_id: String,
           limit: Integer,
           skip: Integer,
           request_options: Believe::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        character_id:,
         # Maximum number of items to return (max: 100)
         limit: nil,
         # Number of items to skip (offset)
@@ -44,6 +49,7 @@ module Believe
       sig do
         override.returns(
           {
+            character_id: String,
             limit: Integer,
             skip: Integer,
             request_options: Believe::RequestOptions

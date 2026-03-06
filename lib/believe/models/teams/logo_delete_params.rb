@@ -13,8 +13,14 @@ module Believe
         #   @return [String]
         required :team_id, String
 
-        # @!method initialize(team_id:, request_options: {})
+        # @!attribute file_id
+        #
+        #   @return [String]
+        required :file_id, String
+
+        # @!method initialize(team_id:, file_id:, request_options: {})
         #   @param team_id [String]
+        #   @param file_id [String]
         #   @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}]
       end
     end

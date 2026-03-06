@@ -7,6 +7,11 @@ module Believe
       extend Believe::Internal::Type::RequestParameters::Converter
       include Believe::Internal::Type::RequestParameters
 
+      # @!attribute quote_id
+      #
+      #   @return [String]
+      required :quote_id, String
+
       # @!attribute character_id
       #
       #   @return [String, nil]
@@ -68,7 +73,9 @@ module Believe
       #   @return [Integer, nil]
       optional :times_shared, Integer, nil?: true
 
-      # @!method initialize(character_id: nil, context: nil, episode_id: nil, is_funny: nil, is_inspirational: nil, moment_type: nil, popularity_score: nil, secondary_themes: nil, text: nil, theme: nil, times_shared: nil, request_options: {})
+      # @!method initialize(quote_id:, character_id: nil, context: nil, episode_id: nil, is_funny: nil, is_inspirational: nil, moment_type: nil, popularity_score: nil, secondary_themes: nil, text: nil, theme: nil, times_shared: nil, request_options: {})
+      #   @param quote_id [String]
+      #
       #   @param character_id [String, nil]
       #
       #   @param context [String, nil]

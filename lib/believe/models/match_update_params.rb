@@ -7,6 +7,11 @@ module Believe
       extend Believe::Internal::Type::RequestParameters::Converter
       include Believe::Internal::Type::RequestParameters
 
+      # @!attribute match_id
+      #
+      #   @return [String]
+      required :match_id, String
+
       # @!attribute attendance
       #
       #   @return [Integer, nil]
@@ -84,7 +89,9 @@ module Believe
       #   @return [Float, nil]
       optional :weather_temp_celsius, Float, nil?: true
 
-      # @!method initialize(attendance: nil, away_score: nil, away_team_id: nil, date: nil, episode_id: nil, home_score: nil, home_team_id: nil, lesson_learned: nil, match_type: nil, possession_percentage: nil, result: nil, ted_halftime_speech: nil, ticket_revenue_gbp: nil, turning_points: nil, weather_temp_celsius: nil, request_options: {})
+      # @!method initialize(match_id:, attendance: nil, away_score: nil, away_team_id: nil, date: nil, episode_id: nil, home_score: nil, home_team_id: nil, lesson_learned: nil, match_type: nil, possession_percentage: nil, result: nil, ted_halftime_speech: nil, ticket_revenue_gbp: nil, turning_points: nil, weather_temp_celsius: nil, request_options: {})
+      #   @param match_id [String]
+      #
       #   @param attendance [Integer, nil]
       #
       #   @param away_score [Integer, nil]

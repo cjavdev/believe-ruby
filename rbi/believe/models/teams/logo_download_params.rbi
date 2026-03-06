@@ -18,18 +18,26 @@ module Believe
         sig { returns(String) }
         attr_accessor :team_id
 
+        sig { returns(String) }
+        attr_accessor :file_id
+
         sig do
           params(
             team_id: String,
+            file_id: String,
             request_options: Believe::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
-        def self.new(team_id:, request_options: {})
+        def self.new(team_id:, file_id:, request_options: {})
         end
 
         sig do
           override.returns(
-            { team_id: String, request_options: Believe::RequestOptions }
+            {
+              team_id: String,
+              file_id: String,
+              request_options: Believe::RequestOptions
+            }
           )
         end
         def to_hash

@@ -8,13 +8,20 @@ module Believe
         extend Believe::Internal::Type::RequestParameters::Converter
         include Believe::Internal::Type::RequestParameters
 
+        # @!attribute team_id
+        #
+        #   @return [String]
+        required :team_id, String
+
         # @!attribute file
         #   Logo image file
         #
         #   @return [Pathname, StringIO, IO, String, Believe::FilePart]
         required :file, Believe::Internal::Type::FileInput
 
-        # @!method initialize(file:, request_options: {})
+        # @!method initialize(team_id:, file:, request_options: {})
+        #   @param team_id [String]
+        #
         #   @param file [Pathname, StringIO, IO, String, Believe::FilePart] Logo image file
         #
         #   @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}]

@@ -2,6 +2,7 @@ module Believe
   module Models
     type episode_update_params =
       {
+        episode_id: String,
         air_date: Date?,
         biscuits_with_boss_moment: String?,
         character_focus: ::Array[String]?,
@@ -23,6 +24,8 @@ module Believe
     class EpisodeUpdateParams < Believe::Internal::Type::BaseModel
       extend Believe::Internal::Type::RequestParameters::Converter
       include Believe::Internal::Type::RequestParameters
+
+      attr_accessor episode_id: String
 
       attr_accessor air_date: Date?
 
@@ -55,6 +58,7 @@ module Believe
       attr_accessor writer: String?
 
       def initialize: (
+        episode_id: String,
         ?air_date: Date?,
         ?biscuits_with_boss_moment: String?,
         ?character_focus: ::Array[String]?,
@@ -74,6 +78,7 @@ module Believe
       ) -> void
 
       def to_hash: -> {
+        episode_id: String,
         air_date: Date?,
         biscuits_with_boss_moment: String?,
         character_focus: ::Array[String]?,

@@ -7,6 +7,11 @@ module Believe
       extend Believe::Internal::Type::RequestParameters::Converter
       include Believe::Internal::Type::RequestParameters
 
+      # @!attribute episode_id
+      #
+      #   @return [String]
+      required :episode_id, String
+
       # @!attribute air_date
       #
       #   @return [Date, nil]
@@ -82,7 +87,8 @@ module Believe
       #   @return [String, nil]
       optional :writer, String, nil?: true
 
-      # @!method initialize(air_date: nil, biscuits_with_boss_moment: nil, character_focus: nil, director: nil, episode_number: nil, main_theme: nil, memorable_moments: nil, runtime_minutes: nil, season: nil, synopsis: nil, ted_wisdom: nil, title: nil, us_viewers_millions: nil, viewer_rating: nil, writer: nil, request_options: {})
+      # @!method initialize(episode_id:, air_date: nil, biscuits_with_boss_moment: nil, character_focus: nil, director: nil, episode_number: nil, main_theme: nil, memorable_moments: nil, runtime_minutes: nil, season: nil, synopsis: nil, ted_wisdom: nil, title: nil, us_viewers_millions: nil, viewer_rating: nil, writer: nil, request_options: {})
+      #   @param episode_id [String]
       #   @param air_date [Date, nil]
       #   @param biscuits_with_boss_moment [String, nil]
       #   @param character_focus [Array<String>, nil]
