@@ -26,7 +26,7 @@ class Believe::Test::Resources::Teams::LogoTest < Believe::Test::ResourceTest
   def test_upload_required_params
     skip("Mock server tests are disabled")
 
-    response = @believe.teams.logo.upload("team_id", file: Pathname(__FILE__))
+    response = @believe.teams.logo.upload("team_id", file: StringIO.new("Example data"))
 
     assert_pattern do
       response => Believe::Teams::FileUpload
