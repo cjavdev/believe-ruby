@@ -33,6 +33,10 @@ module Believe
       CONFLICT = :conflict
       HONESTY = :honesty
       INTEGRITY = :integrity
+      INTIMIDATION = :intimidation
+      AMBITION = :ambition
+      NARCISSISM = :narcissism
+      MATURITY = :maturity
 
       # @!method self.values
       #   @return [Array<Symbol>]

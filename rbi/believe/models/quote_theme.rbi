@@ -38,6 +38,10 @@ module Believe
       CONFLICT = T.let(:conflict, Believe::QuoteTheme::TaggedSymbol)
       HONESTY = T.let(:honesty, Believe::QuoteTheme::TaggedSymbol)
       INTEGRITY = T.let(:integrity, Believe::QuoteTheme::TaggedSymbol)
+      INTIMIDATION = T.let(:intimidation, Believe::QuoteTheme::TaggedSymbol)
+      AMBITION = T.let(:ambition, Believe::QuoteTheme::TaggedSymbol)
+      NARCISSISM = T.let(:narcissism, Believe::QuoteTheme::TaggedSymbol)
+      MATURITY = T.let(:maturity, Believe::QuoteTheme::TaggedSymbol)
 
       sig { override.returns(T::Array[Believe::QuoteTheme::TaggedSymbol]) }
       def self.values

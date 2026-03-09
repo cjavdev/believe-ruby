@@ -85,6 +85,10 @@ module Believe
           T.let(:chocolate_chip, Believe::Biscuit::Type::TaggedSymbol)
         OATMEAL_RAISIN =
           T.let(:oatmeal_raisin, Believe::Biscuit::Type::TaggedSymbol)
+        SNICKERDOODLE =
+          T.let(:snickerdoodle, Believe::Biscuit::Type::TaggedSymbol)
+        LEMON_DRIZZLE =
+          T.let(:lemon_drizzle, Believe::Biscuit::Type::TaggedSymbol)
 
         sig { override.returns(T::Array[Believe::Biscuit::Type::TaggedSymbol]) }
         def self.values

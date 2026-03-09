@@ -41,7 +41,13 @@ module Believe
         warmth_level: Integer
       }
 
-      type type_ = :classic | :shortbread | :chocolate_chip | :oatmeal_raisin
+      type type_ =
+        :classic
+        | :shortbread
+        | :chocolate_chip
+        | :oatmeal_raisin
+        | :snickerdoodle
+        | :lemon_drizzle
 
       module Type
         extend Believe::Internal::Type::Enum
@@ -50,6 +56,8 @@ module Believe
         SHORTBREAD: :shortbread
         CHOCOLATE_CHIP: :chocolate_chip
         OATMEAL_RAISIN: :oatmeal_raisin
+        SNICKERDOODLE: :snickerdoodle
+        LEMON_DRIZZLE: :lemon_drizzle
 
         def self?.values: -> ::Array[Believe::Models::Biscuit::type_]
       end
