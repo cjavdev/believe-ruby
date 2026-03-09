@@ -1,0 +1,96 @@
+module Believe
+  module Models
+    module Client
+      type ticket_sale_create_params =
+        {
+          buyer_name: String,
+          currency: String,
+          discount: String,
+          match_id: String,
+          purchase_method: Believe::Models::Client::TicketSaleCreateParams::purchase_method,
+          quantity: Integer,
+          subtotal: String,
+          tax: String,
+          total: String,
+          unit_price: String,
+          buyer_email: String?,
+          coupon_code: String?
+        }
+        & Believe::Internal::Type::request_parameters
+
+      class TicketSaleCreateParams < Believe::Internal::Type::BaseModel
+        extend Believe::Internal::Type::RequestParameters::Converter
+        include Believe::Internal::Type::RequestParameters
+
+        attr_accessor buyer_name: String
+
+        attr_accessor currency: String
+
+        attr_accessor discount: String
+
+        attr_accessor match_id: String
+
+        attr_accessor purchase_method: Believe::Models::Client::TicketSaleCreateParams::purchase_method
+
+        attr_accessor quantity: Integer
+
+        attr_accessor subtotal: String
+
+        attr_accessor tax: String
+
+        attr_accessor total: String
+
+        attr_accessor unit_price: String
+
+        attr_accessor buyer_email: String?
+
+        attr_accessor coupon_code: String?
+
+        def initialize: (
+          buyer_name: String,
+          currency: String,
+          discount: String,
+          match_id: String,
+          purchase_method: Believe::Models::Client::TicketSaleCreateParams::purchase_method,
+          quantity: Integer,
+          subtotal: String,
+          tax: String,
+          total: String,
+          unit_price: String,
+          ?buyer_email: String?,
+          ?coupon_code: String?,
+          ?request_options: Believe::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          buyer_name: String,
+          currency: String,
+          discount: String,
+          match_id: String,
+          purchase_method: Believe::Models::Client::TicketSaleCreateParams::purchase_method,
+          quantity: Integer,
+          subtotal: String,
+          tax: String,
+          total: String,
+          unit_price: String,
+          buyer_email: String?,
+          coupon_code: String?,
+          request_options: Believe::RequestOptions
+        }
+
+        type purchase_method = :online | :box_office | :will_call | :phone
+
+        module PurchaseMethod
+          extend Believe::Internal::Type::Enum
+
+          ONLINE: :online
+          BOX_OFFICE: :box_office
+          WILL_CALL: :will_call
+          PHONE: :phone
+
+          def self?.values: -> ::Array[Believe::Models::Client::TicketSaleCreateParams::purchase_method]
+        end
+      end
+    end
+  end
+end

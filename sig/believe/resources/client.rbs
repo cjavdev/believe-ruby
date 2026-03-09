@@ -3,6 +3,8 @@ module Believe
     class Client
       attr_reader ws: Believe::Resources::Client::Ws
 
+      attr_reader ticket_sales: Believe::Resources::Client::TicketSales
+
       def initialize: (client: Believe::Client) -> void
     end
   end

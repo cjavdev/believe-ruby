@@ -1,0 +1,70 @@
+module Believe
+  module Models
+    module Client
+      type ticket_sale_list_params =
+        {
+          coupon_code: String?,
+          currency: String?,
+          limit: Integer,
+          match_id: String?,
+          purchase_method: Believe::Models::Client::TicketSaleListParams::purchase_method?,
+          skip: Integer
+        }
+        & Believe::Internal::Type::request_parameters
+
+      class TicketSaleListParams < Believe::Internal::Type::BaseModel
+        extend Believe::Internal::Type::RequestParameters::Converter
+        include Believe::Internal::Type::RequestParameters
+
+        attr_accessor coupon_code: String?
+
+        attr_accessor currency: String?
+
+        attr_reader limit: Integer?
+
+        def limit=: (Integer) -> Integer
+
+        attr_accessor match_id: String?
+
+        attr_accessor purchase_method: Believe::Models::Client::TicketSaleListParams::purchase_method?
+
+        attr_reader skip: Integer?
+
+        def skip=: (Integer) -> Integer
+
+        def initialize: (
+          ?coupon_code: String?,
+          ?currency: String?,
+          ?limit: Integer,
+          ?match_id: String?,
+          ?purchase_method: Believe::Models::Client::TicketSaleListParams::purchase_method?,
+          ?skip: Integer,
+          ?request_options: Believe::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          coupon_code: String?,
+          currency: String?,
+          limit: Integer,
+          match_id: String?,
+          purchase_method: Believe::Models::Client::TicketSaleListParams::purchase_method?,
+          skip: Integer,
+          request_options: Believe::RequestOptions
+        }
+
+        type purchase_method = :online | :box_office | :will_call | :phone
+
+        module PurchaseMethod
+          extend Believe::Internal::Type::Enum
+
+          ONLINE: :online
+          BOX_OFFICE: :box_office
+          WILL_CALL: :will_call
+          PHONE: :phone
+
+          def self?.values: -> ::Array[Believe::Models::Client::TicketSaleListParams::purchase_method]
+        end
+      end
+    end
+  end
+end

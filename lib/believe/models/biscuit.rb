@@ -65,6 +65,8 @@ module Believe
         SHORTBREAD = :shortbread
         CHOCOLATE_CHIP = :chocolate_chip
         OATMEAL_RAISIN = :oatmeal_raisin
+        SNICKERDOODLE = :snickerdoodle
+        LEMON_DRIZZLE = :lemon_drizzle
 
         # @!method self.values
         #   @return [Array<Symbol>]

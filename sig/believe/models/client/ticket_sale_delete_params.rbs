@@ -1,0 +1,25 @@
+module Believe
+  module Models
+    module Client
+      type ticket_sale_delete_params =
+        { ticket_sale_id: String } & Believe::Internal::Type::request_parameters
+
+      class TicketSaleDeleteParams < Believe::Internal::Type::BaseModel
+        extend Believe::Internal::Type::RequestParameters::Converter
+        include Believe::Internal::Type::RequestParameters
+
+        attr_accessor ticket_sale_id: String
+
+        def initialize: (
+          ticket_sale_id: String,
+          ?request_options: Believe::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          ticket_sale_id: String,
+          request_options: Believe::RequestOptions
+        }
+      end
+    end
+  end
+end
