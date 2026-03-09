@@ -143,6 +143,8 @@ module Believe
 
   PressSimulateParams = Believe::Models::PressSimulateParams
 
+  PurchaseMethod = Believe::Models::PurchaseMethod
+
   Quote = Believe::Models::Quote
 
   QuoteCreateParams = Believe::Models::QuoteCreateParams
@@ -210,6 +212,18 @@ module Believe
   TeamUpdateParams = Believe::Models::TeamUpdateParams
 
   TeamValues = Believe::Models::TeamValues
+
+  TicketSale = Believe::Models::TicketSale
+
+  TicketSaleCreateParams = Believe::Models::TicketSaleCreateParams
+
+  TicketSaleDeleteParams = Believe::Models::TicketSaleDeleteParams
+
+  TicketSaleListParams = Believe::Models::TicketSaleListParams
+
+  TicketSaleRetrieveParams = Believe::Models::TicketSaleRetrieveParams
+
+  TicketSaleUpdateParams = Believe::Models::TicketSaleUpdateParams
 
   TurningPoint = Believe::Models::TurningPoint
 

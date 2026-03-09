@@ -40,6 +40,8 @@ module Believe
 
     attr_reader webhooks: Believe::Resources::Webhooks
 
+    attr_reader ticket_sales: Believe::Resources::TicketSales
+
     attr_reader health: Believe::Resources::Health
 
     attr_reader version: Believe::Resources::Version

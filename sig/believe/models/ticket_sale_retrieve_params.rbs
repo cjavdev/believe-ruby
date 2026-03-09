@@ -1,0 +1,23 @@
+module Believe
+  module Models
+    type ticket_sale_retrieve_params =
+      { ticket_sale_id: String } & Believe::Internal::Type::request_parameters
+
+    class TicketSaleRetrieveParams < Believe::Internal::Type::BaseModel
+      extend Believe::Internal::Type::RequestParameters::Converter
+      include Believe::Internal::Type::RequestParameters
+
+      attr_accessor ticket_sale_id: String
+
+      def initialize: (
+        ticket_sale_id: String,
+        ?request_options: Believe::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        ticket_sale_id: String,
+        request_options: Believe::RequestOptions
+      }
+    end
+  end
+end
