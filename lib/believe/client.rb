@@ -77,6 +77,11 @@ module Believe
     # @return [Believe::Resources::Webhooks]
     attr_reader :webhooks
 
+    # Ticket sales with 300 records for practicing pagination, filtering, and
+    # financial data
+    # @return [Believe::Resources::TicketSales]
+    attr_reader :ticket_sales
+
     # @return [Believe::Resources::Health]
     attr_reader :health
 
@@ -166,6 +171,7 @@ module Believe
       @stream = Believe::Resources::Stream.new(client: self)
       @team_members = Believe::Resources::TeamMembers.new(client: self)
       @webhooks = Believe::Resources::Webhooks.new(client: self)
+      @ticket_sales = Believe::Resources::TicketSales.new(client: self)
       @health = Believe::Resources::Health.new(client: self)
       @version = Believe::Resources::Version.new(client: self)
       @client_ = Believe::Resources::Client.new(client: self)

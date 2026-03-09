@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require_relative "../../test_helper"
+require_relative "../test_helper"
 
-class Believe::Test::Resources::Client::TicketSalesTest < Believe::Test::ResourceTest
+class Believe::Test::Resources::TicketSalesTest < Believe::Test::ResourceTest
   def test_create_required_params
     skip("Mock server tests are disabled")
 
     response =
-      @believe.client_.ticket_sales.create(
+      @believe.ticket_sales.create(
         buyer_name: "Mae Green",
         currency: "GBP",
         discount: "9.00",
@@ -21,7 +21,7 @@ class Believe::Test::Resources::Client::TicketSalesTest < Believe::Test::Resourc
       )
 
     assert_pattern do
-      response => Believe::Models::Client::TicketSaleCreateResponse
+      response => Believe::TicketSale
     end
 
     assert_pattern do
@@ -31,7 +31,7 @@ class Believe::Test::Resources::Client::TicketSalesTest < Believe::Test::Resourc
         currency: String,
         discount: String,
         match_id: String,
-        purchase_method: Believe::Models::Client::TicketSaleCreateResponse::PurchaseMethod,
+        purchase_method: Believe::PurchaseMethod,
         quantity: Integer,
         subtotal: String,
         tax: String,
@@ -46,10 +46,10 @@ class Believe::Test::Resources::Client::TicketSalesTest < Believe::Test::Resourc
   def test_retrieve
     skip("Mock server tests are disabled")
 
-    response = @believe.client_.ticket_sales.retrieve("ticket_sale_id")
+    response = @believe.ticket_sales.retrieve("ticket_sale_id")
 
     assert_pattern do
-      response => Believe::Models::Client::TicketSaleRetrieveResponse
+      response => Believe::TicketSale
     end
 
     assert_pattern do
@@ -59,7 +59,7 @@ class Believe::Test::Resources::Client::TicketSalesTest < Believe::Test::Resourc
         currency: String,
         discount: String,
         match_id: String,
-        purchase_method: Believe::Models::Client::TicketSaleRetrieveResponse::PurchaseMethod,
+        purchase_method: Believe::PurchaseMethod,
         quantity: Integer,
         subtotal: String,
         tax: String,
@@ -74,10 +74,10 @@ class Believe::Test::Resources::Client::TicketSalesTest < Believe::Test::Resourc
   def test_update
     skip("Mock server tests are disabled")
 
-    response = @believe.client_.ticket_sales.update("ticket_sale_id")
+    response = @believe.ticket_sales.update("ticket_sale_id")
 
     assert_pattern do
-      response => Believe::Models::Client::TicketSaleUpdateResponse
+      response => Believe::TicketSale
     end
 
     assert_pattern do
@@ -87,7 +87,7 @@ class Believe::Test::Resources::Client::TicketSalesTest < Believe::Test::Resourc
         currency: String,
         discount: String,
         match_id: String,
-        purchase_method: Believe::Models::Client::TicketSaleUpdateResponse::PurchaseMethod,
+        purchase_method: Believe::PurchaseMethod,
         quantity: Integer,
         subtotal: String,
         tax: String,
@@ -102,7 +102,7 @@ class Believe::Test::Resources::Client::TicketSalesTest < Believe::Test::Resourc
   def test_list
     skip("Mock server tests are disabled")
 
-    response = @believe.client_.ticket_sales.list
+    response = @believe.ticket_sales.list
 
     assert_pattern do
       response => Believe::Internal::SkipLimitPage
@@ -112,7 +112,7 @@ class Believe::Test::Resources::Client::TicketSalesTest < Believe::Test::Resourc
     return if row.nil?
 
     assert_pattern do
-      row => Believe::Models::Client::TicketSaleListResponse
+      row => Believe::TicketSale
     end
 
     assert_pattern do
@@ -122,7 +122,7 @@ class Believe::Test::Resources::Client::TicketSalesTest < Believe::Test::Resourc
         currency: String,
         discount: String,
         match_id: String,
-        purchase_method: Believe::Models::Client::TicketSaleListResponse::PurchaseMethod,
+        purchase_method: Believe::PurchaseMethod,
         quantity: Integer,
         subtotal: String,
         tax: String,
@@ -137,7 +137,7 @@ class Believe::Test::Resources::Client::TicketSalesTest < Believe::Test::Resourc
   def test_delete
     skip("Mock server tests are disabled")
 
-    response = @believe.client_.ticket_sales.delete("ticket_sale_id")
+    response = @believe.ticket_sales.delete("ticket_sale_id")
 
     assert_pattern do
       response => nil

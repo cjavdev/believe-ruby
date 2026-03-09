@@ -25,11 +25,11 @@ TEST_PATHS=(
 	test/believe/resources/stream_test.rb
 	test/believe/resources/team_members_test.rb
 	test/believe/resources/webhooks_test.rb
+	test/believe/resources/ticket_sales_test.rb
 	test/believe/resources/health_test.rb
 	test/believe/resources/version_test.rb
 	test/believe/resources/client_test.rb
 	test/believe/resources/client/ws_test.rb
-	test/believe/resources/client/ticket_sales_test.rb
 	test/believe/client_test.rb
 )
 

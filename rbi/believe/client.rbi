@@ -72,6 +72,11 @@ module Believe
     sig { returns(Believe::Resources::Webhooks) }
     attr_reader :webhooks
 
+    # Ticket sales with 300 records for practicing pagination, filtering, and
+    # financial data
+    sig { returns(Believe::Resources::TicketSales) }
+    attr_reader :ticket_sales
+
     sig { returns(Believe::Resources::Health) }
     attr_reader :health
 
