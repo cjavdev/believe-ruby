@@ -25,8 +25,6 @@ module Believe
 
   class CharacterUpdateParams = Believe::Models::CharacterUpdateParams
 
-  class ClientGetWelcomeParams = Believe::Models::ClientGetWelcomeParams
-
   class Coach = Believe::Models::Coach
 
   module Coaching = Believe::Models::Coaching
@@ -57,13 +55,9 @@ module Believe
 
   class GrowthArc = Believe::Models::GrowthArc
 
-  class HealthCheckParams = Believe::Models::HealthCheckParams
-
   module League = Believe::Models::League
 
   class Match = Believe::Models::Match
-
-  class MatchCompletedWebhookEvent = Believe::Models::MatchCompletedWebhookEvent
 
   class MatchCreateParams = Believe::Models::MatchCreateParams
 
@@ -103,8 +97,6 @@ module Believe
 
   class PressSimulateParams = Believe::Models::PressSimulateParams
 
-  module PurchaseMethod = Believe::Models::PurchaseMethod
-
   class Quote = Believe::Models::Quote
 
   class QuoteCreateParams = Believe::Models::QuoteCreateParams
@@ -128,8 +120,6 @@ module Believe
   class QuoteUpdateParams = Believe::Models::QuoteUpdateParams
 
   class ReframeTransformNegativeThoughtsParams = Believe::Models::ReframeTransformNegativeThoughtsParams
-
-  class RegisteredWebhook = Believe::Models::RegisteredWebhook
 
   class StreamTestConnectionParams = Believe::Models::StreamTestConnectionParams
 
@@ -161,8 +151,6 @@ module Believe
 
   class TeamMemberRetrieveParams = Believe::Models::TeamMemberRetrieveParams
 
-  class TeamMemberTransferredWebhookEvent = Believe::Models::TeamMemberTransferredWebhookEvent
-
   class TeamMemberUpdateParams = Believe::Models::TeamMemberUpdateParams
 
   class TeamRetrieveParams = Believe::Models::TeamRetrieveParams
@@ -173,33 +161,5 @@ module Believe
 
   class TeamValues = Believe::Models::TeamValues
 
-  class TicketSale = Believe::Models::TicketSale
-
-  class TicketSaleCreateParams = Believe::Models::TicketSaleCreateParams
-
-  class TicketSaleDeleteParams = Believe::Models::TicketSaleDeleteParams
-
-  class TicketSaleListParams = Believe::Models::TicketSaleListParams
-
-  class TicketSaleRetrieveParams = Believe::Models::TicketSaleRetrieveParams
-
-  class TicketSaleUpdateParams = Believe::Models::TicketSaleUpdateParams
-
   class TurningPoint = Believe::Models::TurningPoint
-
-  module UnwrapWebhookEvent = Believe::Models::UnwrapWebhookEvent
-
-  class VersionRetrieveParams = Believe::Models::VersionRetrieveParams
-
-  class WebhookCreateParams = Believe::Models::WebhookCreateParams
-
-  class WebhookDeleteParams = Believe::Models::WebhookDeleteParams
-
-  class WebhookListParams = Believe::Models::WebhookListParams
-
-  class WebhookRetrieveParams = Believe::Models::WebhookRetrieveParams
-
-  class WebhookTriggerEventParams = Believe::Models::WebhookTriggerEventParams
-
-  class WebhookUnwrapParams = Believe::Models::WebhookUnwrapParams
 end

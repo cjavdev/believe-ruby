@@ -3,9 +3,6 @@
 module Believe
   module Test
     module Resources
-      module Client
-      end
-
       module Coaching
       end
 

@@ -68,33 +68,6 @@ module Believe
     sig { returns(Believe::Resources::TeamMembers) }
     attr_reader :team_members
 
-    # Register webhook endpoints and trigger events for testing
-    sig { returns(Believe::Resources::Webhooks) }
-    attr_reader :webhooks
-
-    # Ticket sales with 300 records for practicing pagination, filtering, and
-    # financial data
-    sig { returns(Believe::Resources::TicketSales) }
-    attr_reader :ticket_sales
-
-    sig { returns(Believe::Resources::Health) }
-    attr_reader :health
-
-    sig { returns(Believe::Resources::Version) }
-    attr_reader :version
-
-    sig { returns(Believe::Resources::Client) }
-    attr_reader :client_
-
-    # Get a warm welcome and overview of available endpoints.
-    sig do
-      params(request_options: Believe::RequestOptions::OrHash).returns(
-        T.anything
-      )
-    end
-    def get_welcome(request_options: {})
-    end
-
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers

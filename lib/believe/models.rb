@@ -65,8 +65,6 @@ module Believe
 
   CharacterUpdateParams = Believe::Models::CharacterUpdateParams
 
-  ClientGetWelcomeParams = Believe::Models::ClientGetWelcomeParams
-
   Coach = Believe::Models::Coach
 
   Coaching = Believe::Models::Coaching
@@ -97,13 +95,9 @@ module Believe
 
   GrowthArc = Believe::Models::GrowthArc
 
-  HealthCheckParams = Believe::Models::HealthCheckParams
-
   League = Believe::Models::League
 
   Match = Believe::Models::Match
-
-  MatchCompletedWebhookEvent = Believe::Models::MatchCompletedWebhookEvent
 
   MatchCreateParams = Believe::Models::MatchCreateParams
 
@@ -143,8 +137,6 @@ module Believe
 
   PressSimulateParams = Believe::Models::PressSimulateParams
 
-  PurchaseMethod = Believe::Models::PurchaseMethod
-
   Quote = Believe::Models::Quote
 
   QuoteCreateParams = Believe::Models::QuoteCreateParams
@@ -168,8 +160,6 @@ module Believe
   QuoteUpdateParams = Believe::Models::QuoteUpdateParams
 
   ReframeTransformNegativeThoughtsParams = Believe::Models::ReframeTransformNegativeThoughtsParams
-
-  RegisteredWebhook = Believe::Models::RegisteredWebhook
 
   StreamTestConnectionParams = Believe::Models::StreamTestConnectionParams
 
@@ -201,8 +191,6 @@ module Believe
 
   TeamMemberRetrieveParams = Believe::Models::TeamMemberRetrieveParams
 
-  TeamMemberTransferredWebhookEvent = Believe::Models::TeamMemberTransferredWebhookEvent
-
   TeamMemberUpdateParams = Believe::Models::TeamMemberUpdateParams
 
   TeamRetrieveParams = Believe::Models::TeamRetrieveParams
@@ -213,33 +201,5 @@ module Believe
 
   TeamValues = Believe::Models::TeamValues
 
-  TicketSale = Believe::Models::TicketSale
-
-  TicketSaleCreateParams = Believe::Models::TicketSaleCreateParams
-
-  TicketSaleDeleteParams = Believe::Models::TicketSaleDeleteParams
-
-  TicketSaleListParams = Believe::Models::TicketSaleListParams
-
-  TicketSaleRetrieveParams = Believe::Models::TicketSaleRetrieveParams
-
-  TicketSaleUpdateParams = Believe::Models::TicketSaleUpdateParams
-
   TurningPoint = Believe::Models::TurningPoint
-
-  UnwrapWebhookEvent = Believe::Models::UnwrapWebhookEvent
-
-  VersionRetrieveParams = Believe::Models::VersionRetrieveParams
-
-  WebhookCreateParams = Believe::Models::WebhookCreateParams
-
-  WebhookDeleteParams = Believe::Models::WebhookDeleteParams
-
-  WebhookListParams = Believe::Models::WebhookListParams
-
-  WebhookRetrieveParams = Believe::Models::WebhookRetrieveParams
-
-  WebhookTriggerEventParams = Believe::Models::WebhookTriggerEventParams
-
-  WebhookUnwrapParams = Believe::Models::WebhookUnwrapParams
 end

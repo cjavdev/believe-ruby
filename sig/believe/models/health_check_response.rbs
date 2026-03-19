@@ -1,5 +1,0 @@
-module Believe
-  module Models
-    HealthCheckResponse: Believe::Internal::Type::Converter
-  end
-end
