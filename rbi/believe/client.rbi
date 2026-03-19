@@ -77,6 +77,15 @@ module Believe
     sig { returns(Believe::Resources::TicketSales) }
     attr_reader :ticket_sales
 
+    sig { returns(Believe::Resources::Health) }
+    attr_reader :health
+
+    sig { returns(Believe::Resources::Version) }
+    attr_reader :version
+
+    sig { returns(Believe::Resources::Client) }
+    attr_reader :client_
+
     # Get a warm welcome and overview of available endpoints.
     sig do
       params(request_options: Believe::RequestOptions::OrHash).returns(
