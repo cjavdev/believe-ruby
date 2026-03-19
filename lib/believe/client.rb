@@ -73,42 +73,6 @@ module Believe
     # @return [Believe::Resources::TeamMembers]
     attr_reader :team_members
 
-    # Register webhook endpoints and trigger events for testing
-    # @return [Believe::Resources::Webhooks]
-    attr_reader :webhooks
-
-    # Ticket sales with 300 records for practicing pagination, filtering, and
-    # financial data
-    # @return [Believe::Resources::TicketSales]
-    attr_reader :ticket_sales
-
-    # @return [Believe::Resources::Health]
-    attr_reader :health
-
-    # @return [Believe::Resources::Version]
-    attr_reader :version
-
-    # @return [Believe::Resources::Client]
-    attr_reader :client_
-
-    # Get a warm welcome and overview of available endpoints.
-    #
-    # @overload get_welcome(request_options: {})
-    #
-    # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
-    #
-    # @return [Object]
-    #
-    # @see Believe::Models::ClientGetWelcomeParams
-    def get_welcome(params = {})
-      request(
-        method: :get,
-        path: "",
-        model: Believe::Internal::Type::Unknown,
-        options: params[:request_options]
-      )
-    end
-
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -170,11 +134,6 @@ module Believe
       @pep_talk = Believe::Resources::PepTalk.new(client: self)
       @stream = Believe::Resources::Stream.new(client: self)
       @team_members = Believe::Resources::TeamMembers.new(client: self)
-      @webhooks = Believe::Resources::Webhooks.new(client: self)
-      @ticket_sales = Believe::Resources::TicketSales.new(client: self)
-      @health = Believe::Resources::Health.new(client: self)
-      @version = Believe::Resources::Version.new(client: self)
-      @client_ = Believe::Resources::Client.new(client: self)
     end
   end
 end
