@@ -77,6 +77,29 @@ module Believe
     # @return [Believe::Resources::Webhooks]
     attr_reader :webhooks
 
+    # Ticket sales with 300 records for practicing pagination, filtering, and
+    # financial data
+    # @return [Believe::Resources::TicketSales]
+    attr_reader :ticket_sales
+
+    # Get a warm welcome and overview of available endpoints.
+    #
+    # @overload get_welcome(request_options: {})
+    #
+    # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+    #
+    # @return [Object]
+    #
+    # @see Believe::Models::ClientGetWelcomeParams
+    def get_welcome(params = {})
+      request(
+        method: :get,
+        path: "",
+        model: Believe::Internal::Type::Unknown,
+        options: params[:request_options]
+      )
+    end
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -139,6 +162,7 @@ module Believe
       @stream = Believe::Resources::Stream.new(client: self)
       @team_members = Believe::Resources::TeamMembers.new(client: self)
       @webhooks = Believe::Resources::Webhooks.new(client: self)
+      @ticket_sales = Believe::Resources::TicketSales.new(client: self)
     end
   end
 end
