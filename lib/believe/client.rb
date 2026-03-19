@@ -82,6 +82,15 @@ module Believe
     # @return [Believe::Resources::TicketSales]
     attr_reader :ticket_sales
 
+    # @return [Believe::Resources::Health]
+    attr_reader :health
+
+    # @return [Believe::Resources::Version]
+    attr_reader :version
+
+    # @return [Believe::Resources::Client]
+    attr_reader :client_
+
     # Get a warm welcome and overview of available endpoints.
     #
     # @overload get_welcome(request_options: {})
@@ -163,6 +172,9 @@ module Believe
       @team_members = Believe::Resources::TeamMembers.new(client: self)
       @webhooks = Believe::Resources::Webhooks.new(client: self)
       @ticket_sales = Believe::Resources::TicketSales.new(client: self)
+      @health = Believe::Resources::Health.new(client: self)
+      @version = Believe::Resources::Version.new(client: self)
+      @client_ = Believe::Resources::Client.new(client: self)
     end
   end
 end

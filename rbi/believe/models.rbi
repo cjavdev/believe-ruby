@@ -59,6 +59,8 @@ module Believe
 
   GrowthArc = Believe::Models::GrowthArc
 
+  HealthCheckParams = Believe::Models::HealthCheckParams
+
   League = Believe::Models::League
 
   Match = Believe::Models::Match
@@ -183,6 +185,8 @@ module Believe
   TicketSaleUpdateParams = Believe::Models::TicketSaleUpdateParams
 
   TurningPoint = Believe::Models::TurningPoint
+
+  VersionRetrieveParams = Believe::Models::VersionRetrieveParams
 
   WebhookCreateParams = Believe::Models::WebhookCreateParams
 
