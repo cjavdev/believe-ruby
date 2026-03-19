@@ -72,6 +72,20 @@ module Believe
     sig { returns(Believe::Resources::Webhooks) }
     attr_reader :webhooks
 
+    # Ticket sales with 300 records for practicing pagination, filtering, and
+    # financial data
+    sig { returns(Believe::Resources::TicketSales) }
+    attr_reader :ticket_sales
+
+    # Get a warm welcome and overview of available endpoints.
+    sig do
+      params(request_options: Believe::RequestOptions::OrHash).returns(
+        T.anything
+      )
+    end
+    def get_welcome(request_options: {})
+    end
+
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers

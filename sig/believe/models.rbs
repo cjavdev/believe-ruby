@@ -25,6 +25,8 @@ module Believe
 
   class CharacterUpdateParams = Believe::Models::CharacterUpdateParams
 
+  class ClientGetWelcomeParams = Believe::Models::ClientGetWelcomeParams
+
   class Coach = Believe::Models::Coach
 
   module Coaching = Believe::Models::Coaching
@@ -97,6 +99,8 @@ module Believe
 
   class PressSimulateParams = Believe::Models::PressSimulateParams
 
+  module PurchaseMethod = Believe::Models::PurchaseMethod
+
   class Quote = Believe::Models::Quote
 
   class QuoteCreateParams = Believe::Models::QuoteCreateParams
@@ -162,6 +166,18 @@ module Believe
   class TeamUpdateParams = Believe::Models::TeamUpdateParams
 
   class TeamValues = Believe::Models::TeamValues
+
+  class TicketSale = Believe::Models::TicketSale
+
+  class TicketSaleCreateParams = Believe::Models::TicketSaleCreateParams
+
+  class TicketSaleDeleteParams = Believe::Models::TicketSaleDeleteParams
+
+  class TicketSaleListParams = Believe::Models::TicketSaleListParams
+
+  class TicketSaleRetrieveParams = Believe::Models::TicketSaleRetrieveParams
+
+  class TicketSaleUpdateParams = Believe::Models::TicketSaleUpdateParams
 
   class TurningPoint = Believe::Models::TurningPoint
 

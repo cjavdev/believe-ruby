@@ -40,6 +40,10 @@ module Believe
 
     attr_reader webhooks: Believe::Resources::Webhooks
 
+    attr_reader ticket_sales: Believe::Resources::TicketSales
+
+    def get_welcome: (?request_options: Believe::request_opts) -> top
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (
