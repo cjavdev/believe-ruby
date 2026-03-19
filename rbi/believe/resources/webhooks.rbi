@@ -127,6 +127,20 @@ module Believe
       )
       end
 
+      sig do
+        params(payload: String).returns(
+          T.any(
+            Believe::MatchCompletedWebhookEvent,
+            Believe::TeamMemberTransferredWebhookEvent
+          )
+        )
+      end
+      def unwrap(
+        # The raw webhook payload as a string
+        payload
+      )
+      end
+
       # @api private
       sig { params(client: Believe::Client).returns(T.attached_class) }
       def self.new(client:)
