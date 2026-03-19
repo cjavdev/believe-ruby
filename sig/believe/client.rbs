@@ -38,6 +38,8 @@ module Believe
 
     attr_reader team_members: Believe::Resources::TeamMembers
 
+    attr_reader webhooks: Believe::Resources::Webhooks
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (

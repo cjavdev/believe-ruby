@@ -161,6 +161,8 @@ module Believe
 
   ReframeTransformNegativeThoughtsParams = Believe::Models::ReframeTransformNegativeThoughtsParams
 
+  RegisteredWebhook = Believe::Models::RegisteredWebhook
+
   StreamTestConnectionParams = Believe::Models::StreamTestConnectionParams
 
   Team = Believe::Models::Team
@@ -202,4 +204,14 @@ module Believe
   TeamValues = Believe::Models::TeamValues
 
   TurningPoint = Believe::Models::TurningPoint
+
+  WebhookCreateParams = Believe::Models::WebhookCreateParams
+
+  WebhookDeleteParams = Believe::Models::WebhookDeleteParams
+
+  WebhookListParams = Believe::Models::WebhookListParams
+
+  WebhookRetrieveParams = Believe::Models::WebhookRetrieveParams
+
+  WebhookTriggerEventParams = Believe::Models::WebhookTriggerEventParams
 end

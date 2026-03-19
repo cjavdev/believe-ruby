@@ -73,6 +73,10 @@ module Believe
     # @return [Believe::Resources::TeamMembers]
     attr_reader :team_members
 
+    # Register webhook endpoints and trigger events for testing
+    # @return [Believe::Resources::Webhooks]
+    attr_reader :webhooks
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -134,6 +138,7 @@ module Believe
       @pep_talk = Believe::Resources::PepTalk.new(client: self)
       @stream = Believe::Resources::Stream.new(client: self)
       @team_members = Believe::Resources::TeamMembers.new(client: self)
+      @webhooks = Believe::Resources::Webhooks.new(client: self)
     end
   end
 end

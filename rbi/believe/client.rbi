@@ -68,6 +68,10 @@ module Believe
     sig { returns(Believe::Resources::TeamMembers) }
     attr_reader :team_members
 
+    # Register webhook endpoints and trigger events for testing
+    sig { returns(Believe::Resources::Webhooks) }
+    attr_reader :webhooks
+
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers
