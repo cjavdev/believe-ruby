@@ -63,6 +63,8 @@ module Believe
 
   class Match = Believe::Models::Match
 
+  class MatchCompletedWebhookEvent = Believe::Models::MatchCompletedWebhookEvent
+
   class MatchCreateParams = Believe::Models::MatchCreateParams
 
   class MatchDeleteParams = Believe::Models::MatchDeleteParams
@@ -159,6 +161,8 @@ module Believe
 
   class TeamMemberRetrieveParams = Believe::Models::TeamMemberRetrieveParams
 
+  class TeamMemberTransferredWebhookEvent = Believe::Models::TeamMemberTransferredWebhookEvent
+
   class TeamMemberUpdateParams = Believe::Models::TeamMemberUpdateParams
 
   class TeamRetrieveParams = Believe::Models::TeamRetrieveParams
@@ -183,6 +187,8 @@ module Believe
 
   class TurningPoint = Believe::Models::TurningPoint
 
+  module UnwrapWebhookEvent = Believe::Models::UnwrapWebhookEvent
+
   class VersionRetrieveParams = Believe::Models::VersionRetrieveParams
 
   class WebhookCreateParams = Believe::Models::WebhookCreateParams
@@ -194,4 +200,6 @@ module Believe
   class WebhookRetrieveParams = Believe::Models::WebhookRetrieveParams
 
   class WebhookTriggerEventParams = Believe::Models::WebhookTriggerEventParams
+
+  class WebhookUnwrapParams = Believe::Models::WebhookUnwrapParams
 end

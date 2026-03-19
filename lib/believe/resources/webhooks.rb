@@ -158,6 +158,14 @@ module Believe
         )
       end
 
+      # @param payload [String] The raw webhook payload as a string
+      #
+      # @return [Believe::Models::MatchCompletedWebhookEvent, Believe::Models::TeamMemberTransferredWebhookEvent]
+      def unwrap(payload)
+        parsed = JSON.parse(payload, symbolize_names: true)
+        Believe::Internal::Type::Converter.coerce(Believe::Models::UnwrapWebhookEvent, parsed)
+      end
+
       # @api private
       #
       # @param client [Believe::Client]
