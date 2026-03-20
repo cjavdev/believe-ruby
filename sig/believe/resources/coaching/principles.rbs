@@ -4,20 +4,20 @@ module Believe
       class Principles
         def retrieve: (
           String principle_id,
-          ?request_options: Believe::request_opts
-        ) -> Believe::Coaching::CoachingPrinciple
+          ?request_options: ::Believe::request_opts
+        ) -> ::Believe::Coaching::CoachingPrinciple
 
         def list: (
           ?limit: Integer,
           ?skip: Integer,
-          ?request_options: Believe::request_opts
-        ) -> Believe::Internal::SkipLimitPage[Believe::Coaching::CoachingPrinciple]
+          ?request_options: ::Believe::request_opts
+        ) -> ::Believe::Internal::SkipLimitPage[::Believe::Coaching::CoachingPrinciple]
 
         def get_random: (
-          ?request_options: Believe::request_opts
-        ) -> Believe::Coaching::CoachingPrinciple
+          ?request_options: ::Believe::request_opts
+        ) -> ::Believe::Coaching::CoachingPrinciple
 
-        def initialize: (client: Believe::Client) -> void
+        def initialize: (client: ::Believe::Client) -> void
       end
     end
   end

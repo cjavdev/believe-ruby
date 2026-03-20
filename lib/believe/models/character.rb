@@ -2,8 +2,8 @@
 
 module Believe
   module Models
-    # @see Believe::Resources::Characters#create
-    class Character < Believe::Internal::Type::BaseModel
+    # @see ::Believe::Resources::Characters#create
+    class Character < ::Believe::Internal::Type::BaseModel
       # @!attribute id
       #   Unique identifier
       #
@@ -19,8 +19,8 @@ module Believe
       # @!attribute emotional_stats
       #   Emotional intelligence stats
       #
-      #   @return [Believe::Models::EmotionalStats]
-      required :emotional_stats, -> { Believe::EmotionalStats }
+      #   @return [::Believe::Models::EmotionalStats]
+      required :emotional_stats, -> { ::Believe::EmotionalStats }
 
       # @!attribute name
       #   Character's full name
@@ -32,13 +32,13 @@ module Believe
       #   Key personality traits
       #
       #   @return [Array<String>]
-      required :personality_traits, Believe::Internal::Type::ArrayOf[String]
+      required :personality_traits, ::Believe::Internal::Type::ArrayOf[String]
 
       # @!attribute role
       #   Character's role
       #
-      #   @return [Symbol, Believe::Models::CharacterRole]
-      required :role, enum: -> { Believe::CharacterRole }
+      #   @return [Symbol, ::Believe::Models::CharacterRole]
+      required :role, enum: -> { ::Believe::CharacterRole }
 
       # @!attribute date_of_birth
       #   Character's date of birth
@@ -55,8 +55,8 @@ module Believe
       # @!attribute growth_arcs
       #   Character development across seasons
       #
-      #   @return [Array<Believe::Models::GrowthArc>, nil]
-      optional :growth_arcs, -> { Believe::Internal::Type::ArrayOf[Believe::GrowthArc] }
+      #   @return [Array<::Believe::Models::GrowthArc>, nil]
+      optional :growth_arcs, -> { ::Believe::Internal::Type::ArrayOf[::Believe::GrowthArc] }
 
       # @!attribute height_meters
       #   Height in meters
@@ -80,7 +80,7 @@ module Believe
       #   Memorable quotes from this character
       #
       #   @return [Array<String>, nil]
-      optional :signature_quotes, Believe::Internal::Type::ArrayOf[String]
+      optional :signature_quotes, ::Believe::Internal::Type::ArrayOf[String]
 
       # @!attribute team_id
       #   ID of the team they belong to
@@ -95,19 +95,19 @@ module Believe
       #
       #   @param background [String] Character background and history
       #
-      #   @param emotional_stats [Believe::Models::EmotionalStats] Emotional intelligence stats
+      #   @param emotional_stats [::Believe::Models::EmotionalStats] Emotional intelligence stats
       #
       #   @param name [String] Character's full name
       #
       #   @param personality_traits [Array<String>] Key personality traits
       #
-      #   @param role [Symbol, Believe::Models::CharacterRole] Character's role
+      #   @param role [Symbol, ::Believe::Models::CharacterRole] Character's role
       #
       #   @param date_of_birth [Date, nil] Character's date of birth
       #
       #   @param email [String, nil] Character's email address
       #
-      #   @param growth_arcs [Array<Believe::Models::GrowthArc>] Character development across seasons
+      #   @param growth_arcs [Array<::Believe::Models::GrowthArc>] Character development across seasons
       #
       #   @param height_meters [Float, nil] Height in meters
       #

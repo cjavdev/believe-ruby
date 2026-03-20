@@ -7,8 +7,8 @@ module Believe
       #
       # When we don't know what to expect for the value.
       class Unknown
-        extend Believe::Internal::Type::Converter
-        extend Believe::Internal::Util::SorbetRuntimeSupport
+        extend ::Believe::Internal::Type::Converter
+        extend ::Believe::Internal::Util::SorbetRuntimeSupport
 
         abstract!
 
@@ -28,7 +28,7 @@ module Believe
             override
               .params(
                 value: T.anything,
-                state: Believe::Internal::Type::Converter::CoerceState
+                state: ::Believe::Internal::Type::Converter::CoerceState
               )
               .returns(T.anything)
           end
@@ -40,7 +40,7 @@ module Believe
             override
               .params(
                 value: T.anything,
-                state: Believe::Internal::Type::Converter::DumpState
+                state: ::Believe::Internal::Type::Converter::DumpState
               )
               .returns(T.anything)
           end

@@ -10,8 +10,8 @@ module Believe
       sig do
         params(
           stream: T::Boolean,
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::Models::PepTalkRetrieveResponse)
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::Models::PepTalkRetrieveResponse)
       end
       def retrieve(
         # If true, returns SSE stream instead of full response
@@ -21,7 +21,7 @@ module Believe
       end
 
       # @api private
-      sig { params(client: Believe::Client).returns(T.attached_class) }
+      sig { params(client: ::Believe::Client).returns(T.attached_class) }
       def self.new(client:)
       end
     end

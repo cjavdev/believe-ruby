@@ -2,16 +2,16 @@
 
 module Believe
   module Models
-    # @see Believe::Resources::Teams#list
-    class TeamListParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    # @see ::Believe::Resources::Teams#list
+    class TeamListParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       # @!attribute league
       #   Filter by league
       #
-      #   @return [Symbol, Believe::Models::League, nil]
-      optional :league, enum: -> { Believe::League }, nil?: true
+      #   @return [Symbol, ::Believe::Models::League, nil]
+      optional :league, enum: -> { ::Believe::League }, nil?: true
 
       # @!attribute limit
       #   Maximum number of items to return (max: 100)
@@ -32,7 +32,7 @@ module Believe
       optional :skip, Integer
 
       # @!method initialize(league: nil, limit: nil, min_culture_score: nil, skip: nil, request_options: {})
-      #   @param league [Symbol, Believe::Models::League, nil] Filter by league
+      #   @param league [Symbol, ::Believe::Models::League, nil] Filter by league
       #
       #   @param limit [Integer] Maximum number of items to return (max: 100)
       #
@@ -40,7 +40,7 @@ module Believe
       #
       #   @param skip [Integer] Number of items to skip (offset)
       #
-      #   @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}]
+      #   @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}]
     end
   end
 end

@@ -3,13 +3,16 @@
 module Believe
   module Models
     module Teams
-      class LogoDeleteParams < Believe::Internal::Type::BaseModel
-        extend Believe::Internal::Type::RequestParameters::Converter
-        include Believe::Internal::Type::RequestParameters
+      class LogoDeleteParams < ::Believe::Internal::Type::BaseModel
+        extend ::Believe::Internal::Type::RequestParameters::Converter
+        include ::Believe::Internal::Type::RequestParameters
 
         OrHash =
           T.type_alias do
-            T.any(Believe::Teams::LogoDeleteParams, Believe::Internal::AnyHash)
+            T.any(
+              ::Believe::Teams::LogoDeleteParams,
+              ::Believe::Internal::AnyHash
+            )
           end
 
         sig { returns(String) }
@@ -22,7 +25,7 @@ module Believe
           params(
             team_id: String,
             file_id: String,
-            request_options: Believe::RequestOptions::OrHash
+            request_options: ::Believe::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
         def self.new(team_id:, file_id:, request_options: {})
@@ -33,7 +36,7 @@ module Believe
             {
               team_id: String,
               file_id: String,
-              request_options: Believe::RequestOptions
+              request_options: ::Believe::RequestOptions
             }
           )
         end

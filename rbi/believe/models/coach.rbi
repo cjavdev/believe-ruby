@@ -2,9 +2,9 @@
 
 module Believe
   module Models
-    class Coach < Believe::Internal::Type::BaseModel
+    class Coach < ::Believe::Internal::Type::BaseModel
       OrHash =
-        T.type_alias { T.any(Believe::Coach, Believe::Internal::AnyHash) }
+        T.type_alias { T.any(::Believe::Coach, ::Believe::Internal::AnyHash) }
 
       # Unique identifier for this team membership
       sig { returns(String) }
@@ -15,7 +15,7 @@ module Believe
       attr_accessor :character_id
 
       # Coaching specialty/role
-      sig { returns(Believe::CoachSpecialty::TaggedSymbol) }
+      sig { returns(::Believe::CoachSpecialty::TaggedSymbol) }
       attr_accessor :specialty
 
       # ID of the team they belong to
@@ -34,10 +34,10 @@ module Believe
       attr_writer :certifications
 
       # Discriminator field indicating this is a coach
-      sig { returns(T.nilable(Believe::Coach::MemberType::TaggedSymbol)) }
+      sig { returns(T.nilable(::Believe::Coach::MemberType::TaggedSymbol)) }
       attr_reader :member_type
 
-      sig { params(member_type: Believe::Coach::MemberType::OrSymbol).void }
+      sig { params(member_type: ::Believe::Coach::MemberType::OrSymbol).void }
       attr_writer :member_type
 
       # Career win rate (0.0 to 1.0)
@@ -49,11 +49,11 @@ module Believe
         params(
           id: String,
           character_id: String,
-          specialty: Believe::CoachSpecialty::OrSymbol,
+          specialty: ::Believe::CoachSpecialty::OrSymbol,
           team_id: String,
           years_with_team: Integer,
           certifications: T::Array[String],
-          member_type: Believe::Coach::MemberType::OrSymbol,
+          member_type: ::Believe::Coach::MemberType::OrSymbol,
           win_rate: T.nilable(Float)
         ).returns(T.attached_class)
       end
@@ -82,11 +82,11 @@ module Believe
           {
             id: String,
             character_id: String,
-            specialty: Believe::CoachSpecialty::TaggedSymbol,
+            specialty: ::Believe::CoachSpecialty::TaggedSymbol,
             team_id: String,
             years_with_team: Integer,
             certifications: T::Array[String],
-            member_type: Believe::Coach::MemberType::TaggedSymbol,
+            member_type: ::Believe::Coach::MemberType::TaggedSymbol,
             win_rate: T.nilable(Float)
           }
         )
@@ -96,16 +96,16 @@ module Believe
 
       # Discriminator field indicating this is a coach
       module MemberType
-        extend Believe::Internal::Type::Enum
+        extend ::Believe::Internal::Type::Enum
 
         TaggedSymbol =
-          T.type_alias { T.all(Symbol, Believe::Coach::MemberType) }
+          T.type_alias { T.all(Symbol, ::Believe::Coach::MemberType) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        COACH = T.let(:coach, Believe::Coach::MemberType::TaggedSymbol)
+        COACH = T.let(:coach, ::Believe::Coach::MemberType::TaggedSymbol)
 
         sig do
-          override.returns(T::Array[Believe::Coach::MemberType::TaggedSymbol])
+          override.returns(T::Array[::Believe::Coach::MemberType::TaggedSymbol])
         end
         def self.values
         end

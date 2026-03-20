@@ -5,10 +5,10 @@ module Believe
         id: String,
         culture_score: Integer,
         founded_year: Integer,
-        league: Believe::Models::league,
+        league: ::Believe::Models::league,
         name: String,
         stadium: String,
-        values: Believe::TeamValues,
+        values: ::Believe::TeamValues,
         annual_budget_gbp: String?,
         average_attendance: Float?,
         contact_email: String?,
@@ -17,25 +17,25 @@ module Believe
         primary_color: String?,
         rival_teams: ::Array[String],
         secondary_color: String?,
-        stadium_location: Believe::GeoLocation?,
+        stadium_location: ::Believe::GeoLocation?,
         website: String?,
         win_percentage: Float?
       }
 
-    class Team < Believe::Internal::Type::BaseModel
+    class Team < ::Believe::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor culture_score: Integer
 
       attr_accessor founded_year: Integer
 
-      attr_accessor league: Believe::Models::league
+      attr_accessor league: ::Believe::Models::league
 
       attr_accessor name: String
 
       attr_accessor stadium: String
 
-      attr_accessor values: Believe::TeamValues
+      attr_accessor values: ::Believe::TeamValues
 
       attr_accessor annual_budget_gbp: String?
 
@@ -57,7 +57,7 @@ module Believe
 
       attr_accessor secondary_color: String?
 
-      attr_accessor stadium_location: Believe::GeoLocation?
+      attr_accessor stadium_location: ::Believe::GeoLocation?
 
       attr_accessor website: String?
 
@@ -67,10 +67,10 @@ module Believe
         id: String,
         culture_score: Integer,
         founded_year: Integer,
-        league: Believe::Models::league,
+        league: ::Believe::Models::league,
         name: String,
         stadium: String,
-        values: Believe::TeamValues,
+        values: ::Believe::TeamValues,
         ?annual_budget_gbp: String?,
         ?average_attendance: Float?,
         ?contact_email: String?,
@@ -79,7 +79,7 @@ module Believe
         ?primary_color: String?,
         ?rival_teams: ::Array[String],
         ?secondary_color: String?,
-        ?stadium_location: Believe::GeoLocation?,
+        ?stadium_location: ::Believe::GeoLocation?,
         ?website: String?,
         ?win_percentage: Float?
       ) -> void
@@ -88,10 +88,10 @@ module Believe
         id: String,
         culture_score: Integer,
         founded_year: Integer,
-        league: Believe::Models::league,
+        league: ::Believe::Models::league,
         name: String,
         stadium: String,
-        values: Believe::TeamValues,
+        values: ::Believe::TeamValues,
         annual_budget_gbp: String?,
         average_attendance: Float?,
         contact_email: String?,
@@ -100,7 +100,7 @@ module Believe
         primary_color: String?,
         rival_teams: ::Array[String],
         secondary_color: String?,
-        stadium_location: Believe::GeoLocation?,
+        stadium_location: ::Believe::GeoLocation?,
         website: String?,
         win_percentage: Float?
       }

@@ -2,13 +2,13 @@
 
 module Believe
   module Models
-    class MatchListParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class MatchListParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(Believe::MatchListParams, Believe::Internal::AnyHash)
+          T.any(::Believe::MatchListParams, ::Believe::Internal::AnyHash)
         end
 
       # Maximum number of items to return (max: 100)
@@ -19,11 +19,11 @@ module Believe
       attr_writer :limit
 
       # Filter by match type
-      sig { returns(T.nilable(Believe::MatchType::OrSymbol)) }
+      sig { returns(T.nilable(::Believe::MatchType::OrSymbol)) }
       attr_accessor :match_type
 
       # Filter by result
-      sig { returns(T.nilable(Believe::MatchResult::OrSymbol)) }
+      sig { returns(T.nilable(::Believe::MatchResult::OrSymbol)) }
       attr_accessor :result
 
       # Number of items to skip (offset)
@@ -40,11 +40,11 @@ module Believe
       sig do
         params(
           limit: Integer,
-          match_type: T.nilable(Believe::MatchType::OrSymbol),
-          result: T.nilable(Believe::MatchResult::OrSymbol),
+          match_type: T.nilable(::Believe::MatchType::OrSymbol),
+          result: T.nilable(::Believe::MatchResult::OrSymbol),
           skip: Integer,
           team_id: T.nilable(String),
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
@@ -66,11 +66,11 @@ module Believe
         override.returns(
           {
             limit: Integer,
-            match_type: T.nilable(Believe::MatchType::OrSymbol),
-            result: T.nilable(Believe::MatchResult::OrSymbol),
+            match_type: T.nilable(::Believe::MatchType::OrSymbol),
+            result: T.nilable(::Believe::MatchResult::OrSymbol),
             skip: Integer,
             team_id: T.nilable(String),
-            request_options: Believe::RequestOptions
+            request_options: ::Believe::RequestOptions
           }
         )
       end

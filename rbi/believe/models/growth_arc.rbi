@@ -2,9 +2,11 @@
 
 module Believe
   module Models
-    class GrowthArc < Believe::Internal::Type::BaseModel
+    class GrowthArc < ::Believe::Internal::Type::BaseModel
       OrHash =
-        T.type_alias { T.any(Believe::GrowthArc, Believe::Internal::AnyHash) }
+        T.type_alias do
+          T.any(::Believe::GrowthArc, ::Believe::Internal::AnyHash)
+        end
 
       # Key breakthrough moment
       sig { returns(String) }

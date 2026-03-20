@@ -2,8 +2,8 @@
 
 module Believe
   module Models
-    # @see Believe::Resources::Press#simulate
-    class PressSimulateResponse < Believe::Internal::Type::BaseModel
+    # @see ::Believe::Resources::Press#simulate
+    class PressSimulateResponse < ::Believe::Internal::Type::BaseModel
       # @!attribute actual_wisdom
       #   The actual wisdom beneath the humor
       #

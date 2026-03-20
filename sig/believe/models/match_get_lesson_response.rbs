@@ -2,6 +2,6 @@ module Believe
   module Models
     type match_get_lesson_response = ::Hash[Symbol, top]
 
-    MatchGetLessonResponse: Believe::Internal::Type::Converter
+    MatchGetLessonResponse: ::Believe::Internal::Type::Converter
   end
 end

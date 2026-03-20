@@ -2,7 +2,7 @@
 
 module Believe
   module Models
-    class MatchCompletedWebhookEvent < Believe::Internal::Type::BaseModel
+    class MatchCompletedWebhookEvent < ::Believe::Internal::Type::BaseModel
       # @!attribute created_at
       #   When the event was created
       #
@@ -12,8 +12,8 @@ module Believe
       # @!attribute data
       #   Data payload for a match completed event.
       #
-      #   @return [Believe::Models::MatchCompletedWebhookEvent::Data]
-      required :data, -> { Believe::MatchCompletedWebhookEvent::Data }
+      #   @return [::Believe::Models::MatchCompletedWebhookEvent::Data]
+      required :data, -> { ::Believe::MatchCompletedWebhookEvent::Data }
 
       # @!attribute event_id
       #   Unique identifier for this event
@@ -24,22 +24,22 @@ module Believe
       # @!attribute event_type
       #   The type of webhook event
       #
-      #   @return [Symbol, Believe::Models::MatchCompletedWebhookEvent::EventType]
-      required :event_type, enum: -> { Believe::MatchCompletedWebhookEvent::EventType }
+      #   @return [Symbol, ::Believe::Models::MatchCompletedWebhookEvent::EventType]
+      required :event_type, enum: -> { ::Believe::MatchCompletedWebhookEvent::EventType }
 
       # @!method initialize(created_at:, data:, event_id:, event_type:)
       #   Webhook event sent when a match completes.
       #
       #   @param created_at [Time] When the event was created
       #
-      #   @param data [Believe::Models::MatchCompletedWebhookEvent::Data] Data payload for a match completed event.
+      #   @param data [::Believe::Models::MatchCompletedWebhookEvent::Data] Data payload for a match completed event.
       #
       #   @param event_id [String] Unique identifier for this event
       #
-      #   @param event_type [Symbol, Believe::Models::MatchCompletedWebhookEvent::EventType] The type of webhook event
+      #   @param event_type [Symbol, ::Believe::Models::MatchCompletedWebhookEvent::EventType] The type of webhook event
 
-      # @see Believe::Models::MatchCompletedWebhookEvent#data
-      class Data < Believe::Internal::Type::BaseModel
+      # @see ::Believe::Models::MatchCompletedWebhookEvent#data
+      class Data < ::Believe::Internal::Type::BaseModel
         # @!attribute away_score
         #   Final away team score
         #
@@ -79,14 +79,14 @@ module Believe
         # @!attribute match_type
         #   Type of match
         #
-        #   @return [Symbol, Believe::Models::MatchCompletedWebhookEvent::Data::MatchType]
-        required :match_type, enum: -> { Believe::MatchCompletedWebhookEvent::Data::MatchType }
+        #   @return [Symbol, ::Believe::Models::MatchCompletedWebhookEvent::Data::MatchType]
+        required :match_type, enum: -> { ::Believe::MatchCompletedWebhookEvent::Data::MatchType }
 
         # @!attribute result
         #   Match result from home team perspective
         #
-        #   @return [Symbol, Believe::Models::MatchCompletedWebhookEvent::Data::Result]
-        required :result, enum: -> { Believe::MatchCompletedWebhookEvent::Data::Result }
+        #   @return [Symbol, ::Believe::Models::MatchCompletedWebhookEvent::Data::Result]
+        required :result, enum: -> { ::Believe::MatchCompletedWebhookEvent::Data::Result }
 
         # @!attribute ted_post_match_quote
         #   Ted's post-match wisdom
@@ -121,9 +121,9 @@ module Believe
         #
         #   @param match_id [String] Unique match identifier
         #
-        #   @param match_type [Symbol, Believe::Models::MatchCompletedWebhookEvent::Data::MatchType] Type of match
+        #   @param match_type [Symbol, ::Believe::Models::MatchCompletedWebhookEvent::Data::MatchType] Type of match
         #
-        #   @param result [Symbol, Believe::Models::MatchCompletedWebhookEvent::Data::Result] Match result from home team perspective
+        #   @param result [Symbol, ::Believe::Models::MatchCompletedWebhookEvent::Data::Result] Match result from home team perspective
         #
         #   @param ted_post_match_quote [String] Ted's post-match wisdom
         #
@@ -133,9 +133,9 @@ module Believe
 
         # Type of match
         #
-        # @see Believe::Models::MatchCompletedWebhookEvent::Data#match_type
+        # @see ::Believe::Models::MatchCompletedWebhookEvent::Data#match_type
         module MatchType
-          extend Believe::Internal::Type::Enum
+          extend ::Believe::Internal::Type::Enum
 
           LEAGUE = :league
           CUP = :cup
@@ -149,9 +149,9 @@ module Believe
 
         # Match result from home team perspective
         #
-        # @see Believe::Models::MatchCompletedWebhookEvent::Data#result
+        # @see ::Believe::Models::MatchCompletedWebhookEvent::Data#result
         module Result
-          extend Believe::Internal::Type::Enum
+          extend ::Believe::Internal::Type::Enum
 
           HOME_WIN = :home_win
           AWAY_WIN = :away_win
@@ -164,9 +164,9 @@ module Believe
 
       # The type of webhook event
       #
-      # @see Believe::Models::MatchCompletedWebhookEvent#event_type
+      # @see ::Believe::Models::MatchCompletedWebhookEvent#event_type
       module EventType
-        extend Believe::Internal::Type::Enum
+        extend ::Believe::Internal::Type::Enum
 
         MATCH_COMPLETED = :"match.completed"
 

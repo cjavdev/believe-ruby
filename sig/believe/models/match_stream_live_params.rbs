@@ -7,11 +7,11 @@ module Believe
         home_team: String,
         speed: Float
       }
-      & Believe::Internal::Type::request_parameters
+      & ::Believe::Internal::Type::request_parameters
 
-    class MatchStreamLiveParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class MatchStreamLiveParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       attr_reader away_team: String?
 
@@ -34,7 +34,7 @@ module Believe
         ?excitement_level: Integer,
         ?home_team: String,
         ?speed: Float,
-        ?request_options: Believe::request_opts
+        ?request_options: ::Believe::request_opts
       ) -> void
 
       def to_hash: -> {
@@ -42,7 +42,7 @@ module Believe
         excitement_level: Integer,
         home_team: String,
         speed: Float,
-        request_options: Believe::RequestOptions
+        request_options: ::Believe::RequestOptions
       }
     end
   end

@@ -13,7 +13,7 @@ module Believe
       | :other
 
     module CharacterRole
-      extend Believe::Internal::Type::Enum
+      extend ::Believe::Internal::Type::Enum
 
       COACH: :coach
       PLAYER: :player
@@ -26,7 +26,7 @@ module Believe
       FAN: :fan
       OTHER: :other
 
-      def self?.values: -> ::Array[Believe::Models::character_role]
+      def self?.values: -> ::Array[::Believe::Models::character_role]
     end
   end
 end

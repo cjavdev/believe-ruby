@@ -4,7 +4,7 @@ module Believe
   module Internal
     # @api private
     module Util
-      extend Believe::Internal::Util::SorbetRuntimeSupport
+      extend ::Believe::Internal::Util::SorbetRuntimeSupport
 
       # @api private
       sig { returns(Float) }
@@ -128,7 +128,7 @@ module Believe
           params(
             data:
               T.any(
-                Believe::Internal::AnyHash,
+                ::Believe::Internal::AnyHash,
                 T::Array[T.anything],
                 T.anything
               ),
@@ -198,7 +198,7 @@ module Believe
         # @api private
         sig do
           params(url: T.any(URI::Generic, String)).returns(
-            Believe::Internal::Util::ParsedUri
+            ::Believe::Internal::Util::ParsedUri
           )
         end
         def parse_uri(url)
@@ -206,7 +206,7 @@ module Believe
 
         # @api private
         sig do
-          params(parsed: Believe::Internal::Util::ParsedUri).returns(
+          params(parsed: ::Believe::Internal::Util::ParsedUri).returns(
             URI::Generic
           )
         end
@@ -216,8 +216,8 @@ module Believe
         # @api private
         sig do
           params(
-            lhs: Believe::Internal::Util::ParsedUri,
-            rhs: Believe::Internal::Util::ParsedUri
+            lhs: ::Believe::Internal::Util::ParsedUri,
+            rhs: ::Believe::Internal::Util::ParsedUri
           ).returns(URI::Generic)
         end
         def join_parsed_uri(lhs, rhs)
@@ -303,8 +303,8 @@ module Believe
       class << self
         # @api private
         sig do
-          params(query: Believe::Internal::AnyHash).returns(
-            Believe::Internal::AnyHash
+          params(query: ::Believe::Internal::AnyHash).returns(
+            ::Believe::Internal::AnyHash
           )
         end
         def encode_query_params(query)
@@ -313,7 +313,7 @@ module Believe
         # @api private
         sig do
           params(
-            collection: Believe::Internal::AnyHash,
+            collection: ::Believe::Internal::AnyHash,
             key: String,
             element: T.anything
           ).void
@@ -450,7 +450,7 @@ module Believe
         # Assumes that `lines` has been decoded with `#decode_lines`.
         sig do
           params(lines: T::Enumerable[String]).returns(
-            T::Enumerable[Believe::Internal::Util::ServerSentEvent]
+            T::Enumerable[::Believe::Internal::Util::ServerSentEvent]
           )
         end
         def decode_sse(lines)
@@ -492,7 +492,10 @@ module Believe
           sig do
             params(
               type:
-                T.any(Believe::Internal::Util::SorbetRuntimeSupport, T.anything)
+                T.any(
+                  ::Believe::Internal::Util::SorbetRuntimeSupport,
+                  T.anything
+                )
             ).returns(T.anything)
           end
           def to_sorbet_type(type)

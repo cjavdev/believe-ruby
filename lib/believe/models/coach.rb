@@ -2,8 +2,8 @@
 
 module Believe
   module Models
-    # @see Believe::Resources::TeamMembers#list_coaches
-    class Coach < Believe::Internal::Type::BaseModel
+    # @see ::Believe::Resources::TeamMembers#list_coaches
+    class Coach < ::Believe::Internal::Type::BaseModel
       # @!attribute id
       #   Unique identifier for this team membership
       #
@@ -19,8 +19,8 @@ module Believe
       # @!attribute specialty
       #   Coaching specialty/role
       #
-      #   @return [Symbol, Believe::Models::CoachSpecialty]
-      required :specialty, enum: -> { Believe::CoachSpecialty }
+      #   @return [Symbol, ::Believe::Models::CoachSpecialty]
+      required :specialty, enum: -> { ::Believe::CoachSpecialty }
 
       # @!attribute team_id
       #   ID of the team they belong to
@@ -38,13 +38,13 @@ module Believe
       #   Coaching certifications and licenses
       #
       #   @return [Array<String>, nil]
-      optional :certifications, Believe::Internal::Type::ArrayOf[String]
+      optional :certifications, ::Believe::Internal::Type::ArrayOf[String]
 
       # @!attribute member_type
       #   Discriminator field indicating this is a coach
       #
-      #   @return [Symbol, Believe::Models::Coach::MemberType, nil]
-      optional :member_type, enum: -> { Believe::Coach::MemberType }
+      #   @return [Symbol, ::Believe::Models::Coach::MemberType, nil]
+      optional :member_type, enum: -> { ::Believe::Coach::MemberType }
 
       # @!attribute win_rate
       #   Career win rate (0.0 to 1.0)
@@ -59,7 +59,7 @@ module Believe
       #
       #   @param character_id [String] ID of the character (references /characters/{id})
       #
-      #   @param specialty [Symbol, Believe::Models::CoachSpecialty] Coaching specialty/role
+      #   @param specialty [Symbol, ::Believe::Models::CoachSpecialty] Coaching specialty/role
       #
       #   @param team_id [String] ID of the team they belong to
       #
@@ -67,15 +67,15 @@ module Believe
       #
       #   @param certifications [Array<String>] Coaching certifications and licenses
       #
-      #   @param member_type [Symbol, Believe::Models::Coach::MemberType] Discriminator field indicating this is a coach
+      #   @param member_type [Symbol, ::Believe::Models::Coach::MemberType] Discriminator field indicating this is a coach
       #
       #   @param win_rate [Float, nil] Career win rate (0.0 to 1.0)
 
       # Discriminator field indicating this is a coach
       #
-      # @see Believe::Models::Coach#member_type
+      # @see ::Believe::Models::Coach#member_type
       module MemberType
-        extend Believe::Internal::Type::Enum
+        extend ::Believe::Internal::Type::Enum
 
         COACH = :coach
 

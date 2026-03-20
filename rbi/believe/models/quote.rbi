@@ -2,9 +2,9 @@
 
 module Believe
   module Models
-    class Quote < Believe::Internal::Type::BaseModel
+    class Quote < ::Believe::Internal::Type::BaseModel
       OrHash =
-        T.type_alias { T.any(Believe::Quote, Believe::Internal::AnyHash) }
+        T.type_alias { T.any(::Believe::Quote, ::Believe::Internal::AnyHash) }
 
       # Unique identifier
       sig { returns(String) }
@@ -19,7 +19,7 @@ module Believe
       attr_accessor :context
 
       # Type of moment when the quote was said
-      sig { returns(Believe::QuoteMoment::TaggedSymbol) }
+      sig { returns(::Believe::QuoteMoment::TaggedSymbol) }
       attr_accessor :moment_type
 
       # The quote text
@@ -27,7 +27,7 @@ module Believe
       attr_accessor :text
 
       # Primary theme of the quote
-      sig { returns(Believe::QuoteTheme::TaggedSymbol) }
+      sig { returns(::Believe::QuoteTheme::TaggedSymbol) }
       attr_accessor :theme
 
       # Episode where the quote appears
@@ -53,11 +53,11 @@ module Believe
       attr_accessor :popularity_score
 
       # Additional themes
-      sig { returns(T.nilable(T::Array[Believe::QuoteTheme::TaggedSymbol])) }
+      sig { returns(T.nilable(T::Array[::Believe::QuoteTheme::TaggedSymbol])) }
       attr_reader :secondary_themes
 
       sig do
-        params(secondary_themes: T::Array[Believe::QuoteTheme::OrSymbol]).void
+        params(secondary_themes: T::Array[::Believe::QuoteTheme::OrSymbol]).void
       end
       attr_writer :secondary_themes
 
@@ -71,14 +71,14 @@ module Believe
           id: String,
           character_id: String,
           context: String,
-          moment_type: Believe::QuoteMoment::OrSymbol,
+          moment_type: ::Believe::QuoteMoment::OrSymbol,
           text: String,
-          theme: Believe::QuoteTheme::OrSymbol,
+          theme: ::Believe::QuoteTheme::OrSymbol,
           episode_id: T.nilable(String),
           is_funny: T::Boolean,
           is_inspirational: T::Boolean,
           popularity_score: T.nilable(Float),
-          secondary_themes: T::Array[Believe::QuoteTheme::OrSymbol],
+          secondary_themes: T::Array[::Believe::QuoteTheme::OrSymbol],
           times_shared: T.nilable(Integer)
         ).returns(T.attached_class)
       end
@@ -116,14 +116,14 @@ module Believe
             id: String,
             character_id: String,
             context: String,
-            moment_type: Believe::QuoteMoment::TaggedSymbol,
+            moment_type: ::Believe::QuoteMoment::TaggedSymbol,
             text: String,
-            theme: Believe::QuoteTheme::TaggedSymbol,
+            theme: ::Believe::QuoteTheme::TaggedSymbol,
             episode_id: T.nilable(String),
             is_funny: T::Boolean,
             is_inspirational: T::Boolean,
             popularity_score: T.nilable(Float),
-            secondary_themes: T::Array[Believe::QuoteTheme::TaggedSymbol],
+            secondary_themes: T::Array[::Believe::QuoteTheme::TaggedSymbol],
             times_shared: T.nilable(Integer)
           }
         )

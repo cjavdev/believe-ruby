@@ -8,21 +8,21 @@ module Believe
       sig do
         params(
           background: String,
-          emotional_stats: Believe::EmotionalStats::OrHash,
+          emotional_stats: ::Believe::EmotionalStats::OrHash,
           name: String,
           personality_traits: T::Array[String],
-          role: Believe::CharacterRole::OrSymbol,
+          role: ::Believe::CharacterRole::OrSymbol,
           date_of_birth: T.nilable(Date),
           email: T.nilable(String),
-          growth_arcs: T::Array[Believe::GrowthArc::OrHash],
+          growth_arcs: T::Array[::Believe::GrowthArc::OrHash],
           height_meters: T.nilable(Float),
           profile_image_url: T.nilable(String),
           salary_gbp:
-            T.nilable(Believe::CharacterCreateParams::SalaryGbp::Variants),
+            T.nilable(::Believe::CharacterCreateParams::SalaryGbp::Variants),
           signature_quotes: T::Array[String],
           team_id: T.nilable(String),
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::Character)
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::Character)
       end
       def create(
         # Character background and history
@@ -59,8 +59,8 @@ module Believe
       sig do
         params(
           character_id: String,
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::Character)
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::Character)
       end
       def retrieve(character_id, request_options: {})
       end
@@ -72,19 +72,19 @@ module Believe
           background: T.nilable(String),
           date_of_birth: T.nilable(Date),
           email: T.nilable(String),
-          emotional_stats: T.nilable(Believe::EmotionalStats::OrHash),
-          growth_arcs: T.nilable(T::Array[Believe::GrowthArc::OrHash]),
+          emotional_stats: T.nilable(::Believe::EmotionalStats::OrHash),
+          growth_arcs: T.nilable(T::Array[::Believe::GrowthArc::OrHash]),
           height_meters: T.nilable(Float),
           name: T.nilable(String),
           personality_traits: T.nilable(T::Array[String]),
           profile_image_url: T.nilable(String),
-          role: T.nilable(Believe::CharacterRole::OrSymbol),
+          role: T.nilable(::Believe::CharacterRole::OrSymbol),
           salary_gbp:
-            T.nilable(Believe::CharacterUpdateParams::SalaryGbp::Variants),
+            T.nilable(::Believe::CharacterUpdateParams::SalaryGbp::Variants),
           signature_quotes: T.nilable(T::Array[String]),
           team_id: T.nilable(String),
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::Character)
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::Character)
       end
       def update(
         character_id,
@@ -112,11 +112,11 @@ module Believe
         params(
           limit: Integer,
           min_optimism: T.nilable(Integer),
-          role: T.nilable(Believe::CharacterRole::OrSymbol),
+          role: T.nilable(::Believe::CharacterRole::OrSymbol),
           skip: Integer,
           team_id: T.nilable(String),
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::Internal::SkipLimitPage[Believe::Character])
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::Internal::SkipLimitPage[::Believe::Character])
       end
       def list(
         # Maximum number of items to return (max: 100)
@@ -137,7 +137,7 @@ module Believe
       sig do
         params(
           character_id: String,
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).void
       end
       def delete(character_id, request_options: {})
@@ -147,14 +147,14 @@ module Believe
       sig do
         params(
           character_id: String,
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).returns(T::Array[String])
       end
       def get_quotes(character_id, request_options: {})
       end
 
       # @api private
-      sig { params(client: Believe::Client).returns(T.attached_class) }
+      sig { params(client: ::Believe::Client).returns(T.attached_class) }
       def self.new(client:)
       end
     end

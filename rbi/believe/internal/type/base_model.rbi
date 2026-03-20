@@ -4,8 +4,8 @@ module Believe
   module Internal
     module Type
       class BaseModel
-        extend Believe::Internal::Type::Converter
-        extend Believe::Internal::Util::SorbetRuntimeSupport
+        extend ::Believe::Internal::Type::Converter
+        extend ::Believe::Internal::Util::SorbetRuntimeSupport
 
         abstract!
 
@@ -21,8 +21,8 @@ module Believe
         OrHash =
           T.type_alias do
             T.any(
-              Believe::Internal::Type::BaseModel,
-              Believe::Internal::AnyHash
+              ::Believe::Internal::Type::BaseModel,
+              ::Believe::Internal::AnyHash
             )
           end
 
@@ -31,7 +31,7 @@ module Believe
           #
           # Assumes superclass fields are totally defined before fields are accessed /
           # defined on subclasses.
-          sig { params(child: Believe::Internal::Type::BaseModel).void }
+          sig { params(child: ::Believe::Internal::Type::BaseModel).void }
           def inherited(child)
           end
 
@@ -41,10 +41,12 @@ module Believe
               T::Hash[
                 Symbol,
                 T.all(
-                  Believe::Internal::Type::BaseModel::KnownField,
+                  ::Believe::Internal::Type::BaseModel::KnownField,
                   {
                     type_fn:
-                      T.proc.returns(Believe::Internal::Type::Converter::Input)
+                      T.proc.returns(
+                        ::Believe::Internal::Type::Converter::Input
+                      )
                   }
                 )
               ]
@@ -59,8 +61,8 @@ module Believe
               T::Hash[
                 Symbol,
                 T.all(
-                  Believe::Internal::Type::BaseModel::KnownField,
-                  { type: Believe::Internal::Type::Converter::Input }
+                  ::Believe::Internal::Type::BaseModel::KnownField,
+                  { type: ::Believe::Internal::Type::Converter::Input }
                 )
               ]
             )
@@ -83,22 +85,22 @@ module Believe
                     enum:
                       T.nilable(
                         T.proc.returns(
-                          Believe::Internal::Type::Converter::Input
+                          ::Believe::Internal::Type::Converter::Input
                         )
                       ),
                     union:
                       T.nilable(
                         T.proc.returns(
-                          Believe::Internal::Type::Converter::Input
+                          ::Believe::Internal::Type::Converter::Input
                         )
                       ),
                     api_name: Symbol,
                     nil?: T::Boolean
                   },
-                  T.proc.returns(Believe::Internal::Type::Converter::Input),
-                  Believe::Internal::Type::Converter::Input
+                  T.proc.returns(::Believe::Internal::Type::Converter::Input),
+                  ::Believe::Internal::Type::Converter::Input
                 ),
-              spec: Believe::Internal::AnyHash
+              spec: ::Believe::Internal::AnyHash
             ).void
           end
           private def add_field(name_sym, required:, type_info:, spec:)
@@ -110,11 +112,11 @@ module Believe
               name_sym: Symbol,
               type_info:
                 T.any(
-                  Believe::Internal::AnyHash,
-                  T.proc.returns(Believe::Internal::Type::Converter::Input),
-                  Believe::Internal::Type::Converter::Input
+                  ::Believe::Internal::AnyHash,
+                  T.proc.returns(::Believe::Internal::Type::Converter::Input),
+                  ::Believe::Internal::Type::Converter::Input
                 ),
-              spec: Believe::Internal::AnyHash
+              spec: ::Believe::Internal::AnyHash
             ).void
           end
           def required(name_sym, type_info, spec = {})
@@ -126,11 +128,11 @@ module Believe
               name_sym: Symbol,
               type_info:
                 T.any(
-                  Believe::Internal::AnyHash,
-                  T.proc.returns(Believe::Internal::Type::Converter::Input),
-                  Believe::Internal::Type::Converter::Input
+                  ::Believe::Internal::AnyHash,
+                  T.proc.returns(::Believe::Internal::Type::Converter::Input),
+                  ::Believe::Internal::Type::Converter::Input
                 ),
-              spec: Believe::Internal::AnyHash
+              spec: ::Believe::Internal::AnyHash
             ).void
           end
           def optional(name_sym, type_info, spec = {})
@@ -175,11 +177,11 @@ module Believe
               .params(
                 value:
                   T.any(
-                    Believe::Internal::Type::BaseModel,
+                    ::Believe::Internal::Type::BaseModel,
                     T::Hash[T.anything, T.anything],
                     T.anything
                   ),
-                state: Believe::Internal::Type::Converter::CoerceState
+                state: ::Believe::Internal::Type::Converter::CoerceState
               )
               .returns(T.any(T.attached_class, T.anything))
           end
@@ -191,7 +193,7 @@ module Believe
             override
               .params(
                 value: T.any(T.attached_class, T.anything),
-                state: Believe::Internal::Type::Converter::DumpState
+                state: ::Believe::Internal::Type::Converter::DumpState
               )
               .returns(T.any(T::Hash[T.anything, T.anything], T.anything))
           end
@@ -208,9 +210,9 @@ module Believe
           # @api private
           sig do
             params(
-              model: Believe::Internal::Type::BaseModel,
+              model: ::Believe::Internal::Type::BaseModel,
               convert: T::Boolean
-            ).returns(Believe::Internal::AnyHash)
+            ).returns(::Believe::Internal::AnyHash)
           end
           def recursively_to_h(model, convert:)
           end
@@ -234,7 +236,7 @@ module Believe
         #
         # This method is not recursive. The returned value is shared by the object, so it
         # should not be mutated.
-        sig { overridable.returns(Believe::Internal::AnyHash) }
+        sig { overridable.returns(::Believe::Internal::AnyHash) }
         def to_h
         end
 
@@ -246,19 +248,19 @@ module Believe
         #
         # This method is not recursive. The returned value is shared by the object, so it
         # should not be mutated.
-        sig { overridable.returns(Believe::Internal::AnyHash) }
+        sig { overridable.returns(::Believe::Internal::AnyHash) }
         def to_hash
         end
 
         # In addition to the behaviour of `#to_h`, this method will recursively call
         # `#to_h` on nested models.
-        sig { overridable.returns(Believe::Internal::AnyHash) }
+        sig { overridable.returns(::Believe::Internal::AnyHash) }
         def deep_to_h
         end
 
         sig do
           params(keys: T.nilable(T::Array[Symbol])).returns(
-            Believe::Internal::AnyHash
+            ::Believe::Internal::AnyHash
           )
         end
         def deconstruct_keys(keys)
@@ -278,7 +280,7 @@ module Believe
             data:
               T.any(
                 T::Hash[Symbol, T.anything],
-                Believe::Internal::Type::BaseModel
+                ::Believe::Internal::Type::BaseModel
               )
           ).returns(T.attached_class)
         end

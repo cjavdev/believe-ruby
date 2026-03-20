@@ -5,7 +5,7 @@ module Believe
     # Operations related to football teams
     class Teams
       # Operations related to football teams
-      # @return [Believe::Resources::Teams::Logo]
+      # @return [::Believe::Resources::Teams::Logo]
       attr_reader :logo
 
       # Add a new team to the league.
@@ -16,13 +16,13 @@ module Believe
       #
       # @param founded_year [Integer] Year the club was founded
       #
-      # @param league [Symbol, Believe::Models::League] Current league
+      # @param league [Symbol, ::Believe::Models::League] Current league
       #
       # @param name [String] Team name
       #
       # @param stadium [String] Home stadium name
       #
-      # @param values [Believe::Models::TeamValues] Team's core values
+      # @param values [::Believe::Models::TeamValues] Team's core values
       #
       # @param annual_budget_gbp [Float, String, nil] Annual budget in GBP
       #
@@ -40,20 +40,20 @@ module Believe
       #
       # @param secondary_color [String, nil] Secondary team color (hex)
       #
-      # @param stadium_location [Believe::Models::GeoLocation, nil] Geographic coordinates for a location.
+      # @param stadium_location [::Believe::Models::GeoLocation, nil] Geographic coordinates for a location.
       #
       # @param website [String, nil] Official team website
       #
       # @param win_percentage [Float, nil] Season win percentage
       #
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Models::Team]
+      # @return [::Believe::Models::Team]
       #
-      # @see Believe::Models::TeamCreateParams
+      # @see ::Believe::Models::TeamCreateParams
       def create(params)
-        parsed, options = Believe::TeamCreateParams.dump_request(params)
-        @client.request(method: :post, path: "teams", body: parsed, model: Believe::Team, options: options)
+        parsed, options = ::Believe::TeamCreateParams.dump_request(params)
+        @client.request(method: :post, path: "teams", body: parsed, model: ::Believe::Team, options: options)
       end
 
       # Retrieve detailed information about a specific team.
@@ -61,16 +61,16 @@ module Believe
       # @overload retrieve(team_id, request_options: {})
       #
       # @param team_id [String]
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Models::Team]
+      # @return [::Believe::Models::Team]
       #
-      # @see Believe::Models::TeamRetrieveParams
+      # @see ::Believe::Models::TeamRetrieveParams
       def retrieve(team_id, params = {})
         @client.request(
           method: :get,
           path: ["teams/%1$s", team_id],
-          model: Believe::Team,
+          model: ::Believe::Team,
           options: params[:request_options]
         )
       end
@@ -93,7 +93,7 @@ module Believe
       #
       # @param is_active [Boolean, nil]
       #
-      # @param league [Symbol, Believe::Models::League, nil] Football leagues.
+      # @param league [Symbol, ::Believe::Models::League, nil] Football leagues.
       #
       # @param name [String, nil]
       #
@@ -107,26 +107,26 @@ module Believe
       #
       # @param stadium [String, nil]
       #
-      # @param stadium_location [Believe::Models::GeoLocation, nil] Geographic coordinates for a location.
+      # @param stadium_location [::Believe::Models::GeoLocation, nil] Geographic coordinates for a location.
       #
-      # @param values [Believe::Models::TeamValues, nil] Core values that define a team's culture.
+      # @param values [::Believe::Models::TeamValues, nil] Core values that define a team's culture.
       #
       # @param website [String, nil]
       #
       # @param win_percentage [Float, nil]
       #
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Models::Team]
+      # @return [::Believe::Models::Team]
       #
-      # @see Believe::Models::TeamUpdateParams
+      # @see ::Believe::Models::TeamUpdateParams
       def update(team_id, params = {})
-        parsed, options = Believe::TeamUpdateParams.dump_request(params)
+        parsed, options = ::Believe::TeamUpdateParams.dump_request(params)
         @client.request(
           method: :patch,
           path: ["teams/%1$s", team_id],
           body: parsed,
-          model: Believe::Team,
+          model: ::Believe::Team,
           options: options
         )
       end
@@ -136,7 +136,7 @@ module Believe
       #
       # @overload list(league: nil, limit: nil, min_culture_score: nil, skip: nil, request_options: {})
       #
-      # @param league [Symbol, Believe::Models::League, nil] Filter by league
+      # @param league [Symbol, ::Believe::Models::League, nil] Filter by league
       #
       # @param limit [Integer] Maximum number of items to return (max: 100)
       #
@@ -144,20 +144,20 @@ module Believe
       #
       # @param skip [Integer] Number of items to skip (offset)
       #
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Internal::SkipLimitPage<Believe::Models::Team>]
+      # @return [::Believe::Internal::SkipLimitPage<::Believe::Models::Team>]
       #
-      # @see Believe::Models::TeamListParams
+      # @see ::Believe::Models::TeamListParams
       def list(params = {})
-        parsed, options = Believe::TeamListParams.dump_request(params)
-        query = Believe::Internal::Util.encode_query_params(parsed)
+        parsed, options = ::Believe::TeamListParams.dump_request(params)
+        query = ::Believe::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "teams",
           query: query,
-          page: Believe::Internal::SkipLimitPage,
-          model: Believe::Team,
+          page: ::Believe::Internal::SkipLimitPage,
+          model: ::Believe::Team,
           options: options
         )
       end
@@ -167,11 +167,11 @@ module Believe
       # @overload delete(team_id, request_options: {})
       #
       # @param team_id [String]
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [nil]
       #
-      # @see Believe::Models::TeamDeleteParams
+      # @see ::Believe::Models::TeamDeleteParams
       def delete(team_id, params = {})
         @client.request(
           method: :delete,
@@ -186,16 +186,16 @@ module Believe
       # @overload get_culture(team_id, request_options: {})
       #
       # @param team_id [String]
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [Hash{Symbol=>Object}]
       #
-      # @see Believe::Models::TeamGetCultureParams
+      # @see ::Believe::Models::TeamGetCultureParams
       def get_culture(team_id, params = {})
         @client.request(
           method: :get,
           path: ["teams/%1$s/culture", team_id],
-          model: Believe::Internal::Type::HashOf[Believe::Internal::Type::Unknown],
+          model: ::Believe::Internal::Type::HashOf[::Believe::Internal::Type::Unknown],
           options: params[:request_options]
         )
       end
@@ -205,16 +205,16 @@ module Believe
       # @overload get_rivals(team_id, request_options: {})
       #
       # @param team_id [String]
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Array<Believe::Models::Team>]
+      # @return [Array<::Believe::Models::Team>]
       #
-      # @see Believe::Models::TeamGetRivalsParams
+      # @see ::Believe::Models::TeamGetRivalsParams
       def get_rivals(team_id, params = {})
         @client.request(
           method: :get,
           path: ["teams/%1$s/rivals", team_id],
-          model: Believe::Internal::Type::ArrayOf[Believe::Team],
+          model: ::Believe::Internal::Type::ArrayOf[::Believe::Team],
           options: params[:request_options]
         )
       end
@@ -224,26 +224,26 @@ module Believe
       # @overload list_logos(team_id, request_options: {})
       #
       # @param team_id [String]
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Array<Believe::Models::Teams::FileUpload>]
+      # @return [Array<::Believe::Models::Teams::FileUpload>]
       #
-      # @see Believe::Models::TeamListLogosParams
+      # @see ::Believe::Models::TeamListLogosParams
       def list_logos(team_id, params = {})
         @client.request(
           method: :get,
           path: ["teams/%1$s/logos", team_id],
-          model: Believe::Internal::Type::ArrayOf[Believe::Teams::FileUpload],
+          model: ::Believe::Internal::Type::ArrayOf[::Believe::Teams::FileUpload],
           options: params[:request_options]
         )
       end
 
       # @api private
       #
-      # @param client [Believe::Client]
+      # @param client [::Believe::Client]
       def initialize(client:)
         @client = client
-        @logo = Believe::Resources::Teams::Logo.new(client: client)
+        @logo = ::Believe::Resources::Teams::Logo.new(client: client)
       end
     end
   end

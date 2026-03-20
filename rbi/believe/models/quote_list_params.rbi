@@ -2,13 +2,13 @@
 
 module Believe
   module Models
-    class QuoteListParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class QuoteListParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(Believe::QuoteListParams, Believe::Internal::AnyHash)
+          T.any(::Believe::QuoteListParams, ::Believe::Internal::AnyHash)
         end
 
       # Filter by character
@@ -31,7 +31,7 @@ module Believe
       attr_writer :limit
 
       # Filter by moment type
-      sig { returns(T.nilable(Believe::QuoteMoment::OrSymbol)) }
+      sig { returns(T.nilable(::Believe::QuoteMoment::OrSymbol)) }
       attr_accessor :moment_type
 
       # Number of items to skip (offset)
@@ -42,7 +42,7 @@ module Believe
       attr_writer :skip
 
       # Filter by theme
-      sig { returns(T.nilable(Believe::QuoteTheme::OrSymbol)) }
+      sig { returns(T.nilable(::Believe::QuoteTheme::OrSymbol)) }
       attr_accessor :theme
 
       sig do
@@ -51,10 +51,10 @@ module Believe
           funny: T.nilable(T::Boolean),
           inspirational: T.nilable(T::Boolean),
           limit: Integer,
-          moment_type: T.nilable(Believe::QuoteMoment::OrSymbol),
+          moment_type: T.nilable(::Believe::QuoteMoment::OrSymbol),
           skip: Integer,
-          theme: T.nilable(Believe::QuoteTheme::OrSymbol),
-          request_options: Believe::RequestOptions::OrHash
+          theme: T.nilable(::Believe::QuoteTheme::OrSymbol),
+          request_options: ::Believe::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
@@ -83,10 +83,10 @@ module Believe
             funny: T.nilable(T::Boolean),
             inspirational: T.nilable(T::Boolean),
             limit: Integer,
-            moment_type: T.nilable(Believe::QuoteMoment::OrSymbol),
+            moment_type: T.nilable(::Believe::QuoteMoment::OrSymbol),
             skip: Integer,
-            theme: T.nilable(Believe::QuoteTheme::OrSymbol),
-            request_options: Believe::RequestOptions
+            theme: T.nilable(::Believe::QuoteTheme::OrSymbol),
+            request_options: ::Believe::RequestOptions
           }
         )
       end

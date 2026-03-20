@@ -2,15 +2,15 @@
 
 module Believe
   module Models
-    class ReframeTransformNegativeThoughtsParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class ReframeTransformNegativeThoughtsParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
           T.any(
-            Believe::ReframeTransformNegativeThoughtsParams,
-            Believe::Internal::AnyHash
+            ::Believe::ReframeTransformNegativeThoughtsParams,
+            ::Believe::Internal::AnyHash
           )
         end
 
@@ -29,7 +29,7 @@ module Believe
         params(
           negative_thought: String,
           recurring: T::Boolean,
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
@@ -46,7 +46,7 @@ module Believe
           {
             negative_thought: String,
             recurring: T::Boolean,
-            request_options: Believe::RequestOptions
+            request_options: ::Believe::RequestOptions
           }
         )
       end

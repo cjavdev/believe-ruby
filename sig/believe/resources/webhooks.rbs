@@ -4,36 +4,36 @@ module Believe
       def create: (
         url: String,
         ?description: String?,
-        ?event_types: ::Array[Believe::Models::WebhookCreateParams::event_type]?,
-        ?request_options: Believe::request_opts
-      ) -> Believe::Models::WebhookCreateResponse
+        ?event_types: ::Array[::Believe::Models::WebhookCreateParams::event_type]?,
+        ?request_options: ::Believe::request_opts
+      ) -> ::Believe::Models::WebhookCreateResponse
 
       def retrieve: (
         String webhook_id,
-        ?request_options: Believe::request_opts
-      ) -> Believe::RegisteredWebhook
+        ?request_options: ::Believe::request_opts
+      ) -> ::Believe::RegisteredWebhook
 
       def list: (
-        ?request_options: Believe::request_opts
-      ) -> Believe::Models::webhook_list_response
+        ?request_options: ::Believe::request_opts
+      ) -> ::Believe::Models::webhook_list_response
 
       def delete: (
         String webhook_id,
-        ?request_options: Believe::request_opts
-      ) -> Believe::Models::webhook_delete_response
+        ?request_options: ::Believe::request_opts
+      ) -> ::Believe::Models::webhook_delete_response
 
       def trigger_event: (
-        event_type: Believe::Models::WebhookTriggerEventParams::event_type,
-        ?payload: Believe::Models::WebhookTriggerEventParams::payload?,
-        ?request_options: Believe::request_opts
-      ) -> Believe::Models::WebhookTriggerEventResponse
+        event_type: ::Believe::Models::WebhookTriggerEventParams::event_type,
+        ?payload: ::Believe::Models::WebhookTriggerEventParams::payload?,
+        ?request_options: ::Believe::request_opts
+      ) -> ::Believe::Models::WebhookTriggerEventResponse
 
       def unwrap: (
         String payload
-      ) -> (Believe::MatchCompletedWebhookEvent
-      | Believe::TeamMemberTransferredWebhookEvent)
+      ) -> (::Believe::MatchCompletedWebhookEvent
+      | ::Believe::TeamMemberTransferredWebhookEvent)
 
-      def initialize: (client: Believe::Client) -> void
+      def initialize: (client: ::Believe::Client) -> void
     end
   end
 end

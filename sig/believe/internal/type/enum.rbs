@@ -2,8 +2,8 @@ module Believe
   module Internal
     module Type
       module Enum
-        include Believe::Internal::Type::Converter
-        include Believe::Internal::Util::SorbetRuntimeSupport
+        include ::Believe::Internal::Type::Converter
+        include ::Believe::Internal::Util::SorbetRuntimeSupport
 
         def self.values: -> ::Array[(nil | bool | Integer | Float | Symbol)]
 
@@ -15,12 +15,12 @@ module Believe
 
         def coerce: (
           String | Symbol | top value,
-          state: Believe::Internal::Type::Converter::coerce_state
+          state: ::Believe::Internal::Type::Converter::coerce_state
         ) -> (Symbol | top)
 
         def dump: (
           Symbol | top value,
-          state: Believe::Internal::Type::Converter::dump_state
+          state: ::Believe::Internal::Type::Converter::dump_state
         ) -> (Symbol | top)
 
         def to_sorbet_type: -> top

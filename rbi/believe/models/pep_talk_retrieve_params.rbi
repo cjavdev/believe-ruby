@@ -2,13 +2,13 @@
 
 module Believe
   module Models
-    class PepTalkRetrieveParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class PepTalkRetrieveParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(Believe::PepTalkRetrieveParams, Believe::Internal::AnyHash)
+          T.any(::Believe::PepTalkRetrieveParams, ::Believe::Internal::AnyHash)
         end
 
       # If true, returns SSE stream instead of full response
@@ -21,7 +21,7 @@ module Believe
       sig do
         params(
           stream: T::Boolean,
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
@@ -33,7 +33,7 @@ module Believe
 
       sig do
         override.returns(
-          { stream: T::Boolean, request_options: Believe::RequestOptions }
+          { stream: T::Boolean, request_options: ::Believe::RequestOptions }
         )
       end
       def to_hash

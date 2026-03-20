@@ -1,14 +1,14 @@
 module Believe
   module Models
     type quote_list_by_theme_params =
-      { theme: Believe::Models::quote_theme, limit: Integer, skip: Integer }
-      & Believe::Internal::Type::request_parameters
+      { theme: ::Believe::Models::quote_theme, limit: Integer, skip: Integer }
+      & ::Believe::Internal::Type::request_parameters
 
-    class QuoteListByThemeParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class QuoteListByThemeParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
-      attr_accessor theme: Believe::Models::quote_theme
+      attr_accessor theme: ::Believe::Models::quote_theme
 
       attr_reader limit: Integer?
 
@@ -19,17 +19,17 @@ module Believe
       def skip=: (Integer) -> Integer
 
       def initialize: (
-        theme: Believe::Models::quote_theme,
+        theme: ::Believe::Models::quote_theme,
         ?limit: Integer,
         ?skip: Integer,
-        ?request_options: Believe::request_opts
+        ?request_options: ::Believe::request_opts
       ) -> void
 
       def to_hash: -> {
-        theme: Believe::Models::quote_theme,
+        theme: ::Believe::Models::quote_theme,
         limit: Integer,
         skip: Integer,
-        request_options: Believe::RequestOptions
+        request_options: ::Believe::RequestOptions
       }
     end
   end

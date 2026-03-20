@@ -2,8 +2,8 @@
 
 module Believe
   module Models
-    # @see Believe::Resources::Matches#create
-    class Match < Believe::Internal::Type::BaseModel
+    # @see ::Believe::Resources::Matches#create
+    class Match < ::Believe::Internal::Type::BaseModel
       # @!attribute id
       #   Unique identifier
       #
@@ -31,8 +31,8 @@ module Believe
       # @!attribute match_type
       #   Type of match
       #
-      #   @return [Symbol, Believe::Models::MatchType]
-      required :match_type, enum: -> { Believe::MatchType }
+      #   @return [Symbol, ::Believe::Models::MatchType]
+      required :match_type, enum: -> { ::Believe::MatchType }
 
       # @!attribute attendance
       #   Match attendance
@@ -73,8 +73,8 @@ module Believe
       # @!attribute result
       #   Match result from home team perspective
       #
-      #   @return [Symbol, Believe::Models::MatchResult, nil]
-      optional :result, enum: -> { Believe::MatchResult }
+      #   @return [Symbol, ::Believe::Models::MatchResult, nil]
+      optional :result, enum: -> { ::Believe::MatchResult }
 
       # @!attribute ted_halftime_speech
       #   Ted's inspirational halftime speech
@@ -91,8 +91,8 @@ module Believe
       # @!attribute turning_points
       #   Key moments that changed the match
       #
-      #   @return [Array<Believe::Models::TurningPoint>, nil]
-      optional :turning_points, -> { Believe::Internal::Type::ArrayOf[Believe::TurningPoint] }
+      #   @return [Array<::Believe::Models::TurningPoint>, nil]
+      optional :turning_points, -> { ::Believe::Internal::Type::ArrayOf[::Believe::TurningPoint] }
 
       # @!attribute weather_temp_celsius
       #   Temperature at kickoff in Celsius
@@ -111,7 +111,7 @@ module Believe
       #
       #   @param home_team_id [String] Home team ID
       #
-      #   @param match_type [Symbol, Believe::Models::MatchType] Type of match
+      #   @param match_type [Symbol, ::Believe::Models::MatchType] Type of match
       #
       #   @param attendance [Integer, nil] Match attendance
       #
@@ -125,13 +125,13 @@ module Believe
       #
       #   @param possession_percentage [Float, nil] Home team possession percentage
       #
-      #   @param result [Symbol, Believe::Models::MatchResult] Match result from home team perspective
+      #   @param result [Symbol, ::Believe::Models::MatchResult] Match result from home team perspective
       #
       #   @param ted_halftime_speech [String, nil] Ted's inspirational halftime speech
       #
       #   @param ticket_revenue_gbp [String, nil] Total ticket revenue in GBP
       #
-      #   @param turning_points [Array<Believe::Models::TurningPoint>] Key moments that changed the match
+      #   @param turning_points [Array<::Believe::Models::TurningPoint>] Key moments that changed the match
       #
       #   @param weather_temp_celsius [Float, nil] Temperature at kickoff in Celsius
     end

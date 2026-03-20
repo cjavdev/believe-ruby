@@ -9,7 +9,7 @@ module Believe
         vulnerability: Integer
       }
 
-    class EmotionalStats < Believe::Internal::Type::BaseModel
+    class EmotionalStats < ::Believe::Internal::Type::BaseModel
       attr_accessor curiosity: Integer
 
       attr_accessor empathy: Integer

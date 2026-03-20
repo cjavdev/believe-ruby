@@ -2,10 +2,10 @@
 
 module Believe
   module Models
-    # @see Believe::Resources::Biscuits#list
-    class BiscuitListParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    # @see ::Believe::Resources::Biscuits#list
+    class BiscuitListParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       # @!attribute limit
       #   Maximum number of items to return (max: 100)
@@ -24,7 +24,7 @@ module Believe
       #
       #   @param skip [Integer] Number of items to skip (offset)
       #
-      #   @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}]
+      #   @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}]
     end
   end
 end

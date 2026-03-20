@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Believe
-  class Client < Believe::Internal::Transport::BaseClient
+  class Client < ::Believe::Internal::Transport::BaseClient
     # Default max number of retries to attempt after a failed retryable request.
     DEFAULT_MAX_RETRIES = 2
 
@@ -19,92 +19,92 @@ module Believe
     attr_reader :api_key
 
     # Operations related to Ted Lasso characters
-    # @return [Believe::Resources::Characters]
+    # @return [::Believe::Resources::Characters]
     attr_reader :characters
 
     # Operations related to football teams
-    # @return [Believe::Resources::Teams]
+    # @return [::Believe::Resources::Teams]
     attr_reader :teams
 
-    # @return [Believe::Resources::Matches]
+    # @return [::Believe::Resources::Matches]
     attr_reader :matches
 
     # Operations related to TV episodes
-    # @return [Believe::Resources::Episodes]
+    # @return [::Believe::Resources::Episodes]
     attr_reader :episodes
 
     # Memorable quotes from the show
-    # @return [Believe::Resources::Quotes]
+    # @return [::Believe::Resources::Quotes]
     attr_reader :quotes
 
     # Interactive endpoints for motivation and guidance
-    # @return [Believe::Resources::Believe]
+    # @return [::Believe::Resources::Believe]
     attr_reader :believe
 
     # Interactive endpoints for motivation and guidance
-    # @return [Believe::Resources::Conflicts]
+    # @return [::Believe::Resources::Conflicts]
     attr_reader :conflicts
 
     # Interactive endpoints for motivation and guidance
-    # @return [Believe::Resources::Reframe]
+    # @return [::Believe::Resources::Reframe]
     attr_reader :reframe
 
     # Interactive endpoints for motivation and guidance
-    # @return [Believe::Resources::Press]
+    # @return [::Believe::Resources::Press]
     attr_reader :press
 
-    # @return [Believe::Resources::Coaching]
+    # @return [::Believe::Resources::Coaching]
     attr_reader :coaching
 
     # Interactive endpoints for motivation and guidance
-    # @return [Believe::Resources::Biscuits]
+    # @return [::Believe::Resources::Biscuits]
     attr_reader :biscuits
 
     # Server-Sent Events (SSE) streaming endpoints
-    # @return [Believe::Resources::PepTalk]
+    # @return [::Believe::Resources::PepTalk]
     attr_reader :pep_talk
 
     # Server-Sent Events (SSE) streaming endpoints
-    # @return [Believe::Resources::Stream]
+    # @return [::Believe::Resources::Stream]
     attr_reader :stream
 
     # Team members with union types (oneOf) - Players, Coaches, Medical Staff,
     # Equipment Managers
-    # @return [Believe::Resources::TeamMembers]
+    # @return [::Believe::Resources::TeamMembers]
     attr_reader :team_members
 
     # Register webhook endpoints and trigger events for testing
-    # @return [Believe::Resources::Webhooks]
+    # @return [::Believe::Resources::Webhooks]
     attr_reader :webhooks
 
     # Ticket sales with 300 records for practicing pagination, filtering, and
     # financial data
-    # @return [Believe::Resources::TicketSales]
+    # @return [::Believe::Resources::TicketSales]
     attr_reader :ticket_sales
 
-    # @return [Believe::Resources::Health]
+    # @return [::Believe::Resources::Health]
     attr_reader :health
 
-    # @return [Believe::Resources::Version]
+    # @return [::Believe::Resources::Version]
     attr_reader :version
 
-    # @return [Believe::Resources::Client]
+    # @return [::Believe::Resources::Client]
     attr_reader :client_
 
     # Get a warm welcome and overview of available endpoints.
     #
     # @overload get_welcome(request_options: {})
     #
-    # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+    # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
     #
     # @return [Object]
     #
-    # @see Believe::Models::ClientGetWelcomeParams
+    # @see ::Believe::Models::ClientGetWelcomeParams
     def get_welcome(params = {})
       request(
         method: :get,
         path: "",
-        model: Believe::Internal::Type::Unknown,
+        model: ::Believe::Internal::Type::Unknown,
         options: params[:request_options]
       )
     end
@@ -156,25 +156,25 @@ module Believe
         max_retry_delay: max_retry_delay
       )
 
-      @characters = Believe::Resources::Characters.new(client: self)
-      @teams = Believe::Resources::Teams.new(client: self)
-      @matches = Believe::Resources::Matches.new(client: self)
-      @episodes = Believe::Resources::Episodes.new(client: self)
-      @quotes = Believe::Resources::Quotes.new(client: self)
-      @believe = Believe::Resources::Believe.new(client: self)
-      @conflicts = Believe::Resources::Conflicts.new(client: self)
-      @reframe = Believe::Resources::Reframe.new(client: self)
-      @press = Believe::Resources::Press.new(client: self)
-      @coaching = Believe::Resources::Coaching.new(client: self)
-      @biscuits = Believe::Resources::Biscuits.new(client: self)
-      @pep_talk = Believe::Resources::PepTalk.new(client: self)
-      @stream = Believe::Resources::Stream.new(client: self)
-      @team_members = Believe::Resources::TeamMembers.new(client: self)
-      @webhooks = Believe::Resources::Webhooks.new(client: self)
-      @ticket_sales = Believe::Resources::TicketSales.new(client: self)
-      @health = Believe::Resources::Health.new(client: self)
-      @version = Believe::Resources::Version.new(client: self)
-      @client_ = Believe::Resources::Client.new(client: self)
+      @characters = ::Believe::Resources::Characters.new(client: self)
+      @teams = ::Believe::Resources::Teams.new(client: self)
+      @matches = ::Believe::Resources::Matches.new(client: self)
+      @episodes = ::Believe::Resources::Episodes.new(client: self)
+      @quotes = ::Believe::Resources::Quotes.new(client: self)
+      @believe = ::Believe::Resources::Believe.new(client: self)
+      @conflicts = ::Believe::Resources::Conflicts.new(client: self)
+      @reframe = ::Believe::Resources::Reframe.new(client: self)
+      @press = ::Believe::Resources::Press.new(client: self)
+      @coaching = ::Believe::Resources::Coaching.new(client: self)
+      @biscuits = ::Believe::Resources::Biscuits.new(client: self)
+      @pep_talk = ::Believe::Resources::PepTalk.new(client: self)
+      @stream = ::Believe::Resources::Stream.new(client: self)
+      @team_members = ::Believe::Resources::TeamMembers.new(client: self)
+      @webhooks = ::Believe::Resources::Webhooks.new(client: self)
+      @ticket_sales = ::Believe::Resources::TicketSales.new(client: self)
+      @health = ::Believe::Resources::Health.new(client: self)
+      @version = ::Believe::Resources::Version.new(client: self)
+      @client_ = ::Believe::Resources::Client.new(client: self)
     end
   end
 end

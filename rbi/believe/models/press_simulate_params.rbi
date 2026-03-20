@@ -2,13 +2,13 @@
 
 module Believe
   module Models
-    class PressSimulateParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class PressSimulateParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(Believe::PressSimulateParams, Believe::Internal::AnyHash)
+          T.any(::Believe::PressSimulateParams, ::Believe::Internal::AnyHash)
         end
 
       # The press question to answer
@@ -31,7 +31,7 @@ module Believe
           question: String,
           hostile: T::Boolean,
           topic: T.nilable(String),
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
@@ -51,7 +51,7 @@ module Believe
             question: String,
             hostile: T::Boolean,
             topic: T.nilable(String),
-            request_options: Believe::RequestOptions
+            request_options: ::Believe::RequestOptions
           }
         )
       end

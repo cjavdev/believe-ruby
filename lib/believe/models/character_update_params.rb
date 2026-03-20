@@ -2,10 +2,10 @@
 
 module Believe
   module Models
-    # @see Believe::Resources::Characters#update
-    class CharacterUpdateParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    # @see ::Believe::Resources::Characters#update
+    class CharacterUpdateParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       # @!attribute character_id
       #
@@ -30,13 +30,13 @@ module Believe
       # @!attribute emotional_stats
       #   Emotional intelligence statistics for a character.
       #
-      #   @return [Believe::Models::EmotionalStats, nil]
-      optional :emotional_stats, -> { Believe::EmotionalStats }, nil?: true
+      #   @return [::Believe::Models::EmotionalStats, nil]
+      optional :emotional_stats, -> { ::Believe::EmotionalStats }, nil?: true
 
       # @!attribute growth_arcs
       #
-      #   @return [Array<Believe::Models::GrowthArc>, nil]
-      optional :growth_arcs, -> { Believe::Internal::Type::ArrayOf[Believe::GrowthArc] }, nil?: true
+      #   @return [Array<::Believe::Models::GrowthArc>, nil]
+      optional :growth_arcs, -> { ::Believe::Internal::Type::ArrayOf[::Believe::GrowthArc] }, nil?: true
 
       # @!attribute height_meters
       #
@@ -51,7 +51,7 @@ module Believe
       # @!attribute personality_traits
       #
       #   @return [Array<String>, nil]
-      optional :personality_traits, Believe::Internal::Type::ArrayOf[String], nil?: true
+      optional :personality_traits, ::Believe::Internal::Type::ArrayOf[String], nil?: true
 
       # @!attribute profile_image_url
       #
@@ -61,18 +61,18 @@ module Believe
       # @!attribute role
       #   Roles characters can have.
       #
-      #   @return [Symbol, Believe::Models::CharacterRole, nil]
-      optional :role, enum: -> { Believe::CharacterRole }, nil?: true
+      #   @return [Symbol, ::Believe::Models::CharacterRole, nil]
+      optional :role, enum: -> { ::Believe::CharacterRole }, nil?: true
 
       # @!attribute salary_gbp
       #
       #   @return [Float, String, nil]
-      optional :salary_gbp, union: -> { Believe::CharacterUpdateParams::SalaryGbp }, nil?: true
+      optional :salary_gbp, union: -> { ::Believe::CharacterUpdateParams::SalaryGbp }, nil?: true
 
       # @!attribute signature_quotes
       #
       #   @return [Array<String>, nil]
-      optional :signature_quotes, Believe::Internal::Type::ArrayOf[String], nil?: true
+      optional :signature_quotes, ::Believe::Internal::Type::ArrayOf[String], nil?: true
 
       # @!attribute team_id
       #
@@ -88,9 +88,9 @@ module Believe
       #
       #   @param email [String, nil]
       #
-      #   @param emotional_stats [Believe::Models::EmotionalStats, nil] Emotional intelligence statistics for a character.
+      #   @param emotional_stats [::Believe::Models::EmotionalStats, nil] Emotional intelligence statistics for a character.
       #
-      #   @param growth_arcs [Array<Believe::Models::GrowthArc>, nil]
+      #   @param growth_arcs [Array<::Believe::Models::GrowthArc>, nil]
       #
       #   @param height_meters [Float, nil]
       #
@@ -100,7 +100,7 @@ module Believe
       #
       #   @param profile_image_url [String, nil]
       #
-      #   @param role [Symbol, Believe::Models::CharacterRole, nil] Roles characters can have.
+      #   @param role [Symbol, ::Believe::Models::CharacterRole, nil] Roles characters can have.
       #
       #   @param salary_gbp [Float, String, nil]
       #
@@ -108,10 +108,10 @@ module Believe
       #
       #   @param team_id [String, nil]
       #
-      #   @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}]
+      #   @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}]
 
       module SalaryGbp
-        extend Believe::Internal::Type::Union
+        extend ::Believe::Internal::Type::Union
 
         variant Float
 

@@ -2,13 +2,13 @@
 
 module Believe
   module Models
-    class MatchStreamLiveParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class MatchStreamLiveParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(Believe::MatchStreamLiveParams, Believe::Internal::AnyHash)
+          T.any(::Believe::MatchStreamLiveParams, ::Believe::Internal::AnyHash)
         end
 
       # Away team name
@@ -45,7 +45,7 @@ module Believe
           excitement_level: Integer,
           home_team: String,
           speed: Float,
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
@@ -68,7 +68,7 @@ module Believe
             excitement_level: Integer,
             home_team: String,
             speed: Float,
-            request_options: Believe::RequestOptions
+            request_options: ::Believe::RequestOptions
           }
         )
       end

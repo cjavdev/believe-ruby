@@ -8,12 +8,12 @@ module Believe
       # @abstract
       #
       # Either `Pathname` or `StringIO`, or `IO`, or
-      # `Believe::Internal::Type::FileInput`.
+      # `::Believe::Internal::Type::FileInput`.
       #
       # Note: when `IO` is used, all retries are disabled, since many IO` streams are
       # not rewindable.
       class FileInput
-        extend Believe::Internal::Type::Converter
+        extend ::Believe::Internal::Type::Converter
 
         private_class_method :new
 
@@ -24,7 +24,7 @@ module Believe
         # @return [Boolean]
         def self.===(other)
           case other
-          in Pathname | StringIO | IO | String | Believe::FilePart
+          in Pathname | StringIO | IO | String | ::Believe::FilePart
             true
           else
             false
@@ -36,7 +36,7 @@ module Believe
         # @param other [Object]
         #
         # @return [Boolean]
-        def self.==(other) = other.is_a?(Class) && other <= Believe::Internal::Type::FileInput
+        def self.==(other) = other.is_a?(Class) && other <= ::Believe::Internal::Type::FileInput
 
         class << self
           # @api private
@@ -86,11 +86,11 @@ module Believe
             in StringIO | String
               # https://datatracker.ietf.org/doc/html/rfc7578#section-4.2
               # while not required, a filename is recommended, and in practice many servers do expect this
-              Believe::FilePart.new(value, filename: "upload")
+              ::Believe::FilePart.new(value, filename: "upload")
             in IO
               state[:can_retry] = false
-              value.to_path.nil? ? Believe::FilePart.new(value, filename: "upload") : value
-            in Believe::FilePart if value.content.is_a?(IO)
+              value.to_path.nil? ? ::Believe::FilePart.new(value, filename: "upload") : value
+            in ::Believe::FilePart if value.content.is_a?(IO)
               state[:can_retry] = false
               value
             else
@@ -102,7 +102,7 @@ module Believe
           #
           # @return [Object]
           def to_sorbet_type
-            T.any(Pathname, StringIO, IO, String, Believe::FilePart)
+            T.any(Pathname, StringIO, IO, String, ::Believe::FilePart)
           end
         end
       end

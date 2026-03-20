@@ -2,10 +2,10 @@
 
 module Believe
   module Models
-    # @see Believe::Resources::TicketSales#list
-    class TicketSaleListParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    # @see ::Believe::Resources::TicketSales#list
+    class TicketSaleListParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       # @!attribute coupon_code
       #   Filter by coupon code (use 'none' for sales without coupons)
@@ -34,8 +34,8 @@ module Believe
       # @!attribute purchase_method
       #   Filter by purchase method
       #
-      #   @return [Symbol, Believe::Models::PurchaseMethod, nil]
-      optional :purchase_method, enum: -> { Believe::PurchaseMethod }, nil?: true
+      #   @return [Symbol, ::Believe::Models::PurchaseMethod, nil]
+      optional :purchase_method, enum: -> { ::Believe::PurchaseMethod }, nil?: true
 
       # @!attribute skip
       #   Number of items to skip (offset)
@@ -52,11 +52,11 @@ module Believe
       #
       #   @param match_id [String, nil] Filter by match ID
       #
-      #   @param purchase_method [Symbol, Believe::Models::PurchaseMethod, nil] Filter by purchase method
+      #   @param purchase_method [Symbol, ::Believe::Models::PurchaseMethod, nil] Filter by purchase method
       #
       #   @param skip [Integer] Number of items to skip (offset)
       #
-      #   @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}]
+      #   @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}]
     end
   end
 end

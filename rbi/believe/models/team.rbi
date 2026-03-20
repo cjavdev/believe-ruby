@@ -2,8 +2,9 @@
 
 module Believe
   module Models
-    class Team < Believe::Internal::Type::BaseModel
-      OrHash = T.type_alias { T.any(Believe::Team, Believe::Internal::AnyHash) }
+    class Team < ::Believe::Internal::Type::BaseModel
+      OrHash =
+        T.type_alias { T.any(::Believe::Team, ::Believe::Internal::AnyHash) }
 
       # Unique identifier
       sig { returns(String) }
@@ -18,7 +19,7 @@ module Believe
       attr_accessor :founded_year
 
       # Current league
-      sig { returns(Believe::League::TaggedSymbol) }
+      sig { returns(::Believe::League::TaggedSymbol) }
       attr_accessor :league
 
       # Team name
@@ -30,10 +31,10 @@ module Believe
       attr_accessor :stadium
 
       # Team's core values
-      sig { returns(Believe::TeamValues) }
+      sig { returns(::Believe::TeamValues) }
       attr_reader :values
 
-      sig { params(values: Believe::TeamValues::OrHash).void }
+      sig { params(values: ::Believe::TeamValues::OrHash).void }
       attr_writer :values
 
       # Annual budget in GBP
@@ -75,11 +76,11 @@ module Believe
       attr_accessor :secondary_color
 
       # Geographic coordinates for a location.
-      sig { returns(T.nilable(Believe::GeoLocation)) }
+      sig { returns(T.nilable(::Believe::GeoLocation)) }
       attr_reader :stadium_location
 
       sig do
-        params(stadium_location: T.nilable(Believe::GeoLocation::OrHash)).void
+        params(stadium_location: T.nilable(::Believe::GeoLocation::OrHash)).void
       end
       attr_writer :stadium_location
 
@@ -97,10 +98,10 @@ module Believe
           id: String,
           culture_score: Integer,
           founded_year: Integer,
-          league: Believe::League::OrSymbol,
+          league: ::Believe::League::OrSymbol,
           name: String,
           stadium: String,
-          values: Believe::TeamValues::OrHash,
+          values: ::Believe::TeamValues::OrHash,
           annual_budget_gbp: T.nilable(String),
           average_attendance: T.nilable(Float),
           contact_email: T.nilable(String),
@@ -109,7 +110,7 @@ module Believe
           primary_color: T.nilable(String),
           rival_teams: T::Array[String],
           secondary_color: T.nilable(String),
-          stadium_location: T.nilable(Believe::GeoLocation::OrHash),
+          stadium_location: T.nilable(::Believe::GeoLocation::OrHash),
           website: T.nilable(String),
           win_percentage: T.nilable(Float)
         ).returns(T.attached_class)
@@ -160,10 +161,10 @@ module Believe
             id: String,
             culture_score: Integer,
             founded_year: Integer,
-            league: Believe::League::TaggedSymbol,
+            league: ::Believe::League::TaggedSymbol,
             name: String,
             stadium: String,
-            values: Believe::TeamValues,
+            values: ::Believe::TeamValues,
             annual_budget_gbp: T.nilable(String),
             average_attendance: T.nilable(Float),
             contact_email: T.nilable(String),
@@ -172,7 +173,7 @@ module Believe
             primary_color: T.nilable(String),
             rival_teams: T::Array[String],
             secondary_color: T.nilable(String),
-            stadium_location: T.nilable(Believe::GeoLocation),
+            stadium_location: T.nilable(::Believe::GeoLocation),
             website: T.nilable(String),
             win_percentage: T.nilable(Float)
           }

@@ -2,7 +2,7 @@
 
 module Believe
   module Models
-    class TeamValues < Believe::Internal::Type::BaseModel
+    class TeamValues < ::Believe::Internal::Type::BaseModel
       # @!attribute primary_value
       #   The team's primary guiding value
       #
@@ -13,7 +13,7 @@ module Believe
       #   Supporting values
       #
       #   @return [Array<String>]
-      required :secondary_values, Believe::Internal::Type::ArrayOf[String]
+      required :secondary_values, ::Believe::Internal::Type::ArrayOf[String]
 
       # @!attribute team_motto
       #   Team's motivational motto

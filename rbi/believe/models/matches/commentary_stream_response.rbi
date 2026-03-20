@@ -4,7 +4,7 @@ module Believe
   module Models
     module Matches
       CommentaryStreamResponse =
-        T.let(T.anything, Believe::Internal::Type::Converter)
+        T.let(T.anything, ::Believe::Internal::Type::Converter)
     end
   end
 end

@@ -1,6 +1,6 @@
 module Believe
   type request_opts =
-    Believe::RequestOptions | Believe::request_options | ::Hash[Symbol, top]
+    ::Believe::RequestOptions | ::Believe::request_options | ::Hash[Symbol, top]
 
   type request_options =
     {
@@ -12,8 +12,8 @@ module Believe
       timeout: Float?
     }
 
-  class RequestOptions < Believe::Internal::Type::BaseModel
-    def self.validate!: (Believe::request_opts opts) -> void
+  class RequestOptions < ::Believe::Internal::Type::BaseModel
+    def self.validate!: (::Believe::request_opts opts) -> void
 
     attr_accessor idempotency_key: String?
 
@@ -28,7 +28,7 @@ module Believe
     attr_accessor timeout: Float?
 
     def initialize: (
-      ?Believe::request_options | ::Hash[Symbol, top] values
+      ?::Believe::request_options | ::Hash[Symbol, top] values
     ) -> void
   end
 end

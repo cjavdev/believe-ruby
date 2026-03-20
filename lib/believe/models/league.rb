@@ -4,7 +4,7 @@ module Believe
   module Models
     # Football leagues.
     module League
-      extend Believe::Internal::Type::Enum
+      extend ::Believe::Internal::Type::Enum
 
       PREMIER_LEAGUE = :"Premier League"
       CHAMPIONSHIP = :Championship

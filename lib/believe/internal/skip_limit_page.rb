@@ -14,7 +14,7 @@ module Believe
     #     puts(character)
     #   end
     class SkipLimitPage
-      include Believe::Internal::Type::BasePage
+      include ::Believe::Internal::Type::BasePage
 
       # @return [Array<generic<Elem>>, nil]
       attr_accessor :data
@@ -30,7 +30,7 @@ module Believe
         !data.to_a.empty? && (skip.to_i + data.to_a.size < total.to_i)
       end
 
-      # @raise [Believe::HTTP::Error]
+      # @raise [::Believe::HTTP::Error]
       # @return [self]
       def next_page
         unless next_page?
@@ -38,7 +38,7 @@ module Believe
           raise RuntimeError.new(message)
         end
 
-        req = Believe::Internal::Util.deep_merge(@req, {query: {skip: skip.to_i + data.to_a.size}})
+        req = ::Believe::Internal::Util.deep_merge(@req, {query: {skip: skip.to_i + data.to_a.size}})
         @client.request(req)
       end
 
@@ -61,7 +61,7 @@ module Believe
 
       # @api private
       #
-      # @param client [Believe::Internal::Transport::BaseClient]
+      # @param client [::Believe::Internal::Transport::BaseClient]
       # @param req [Hash{Symbol=>Object}]
       # @param headers [Hash{String=>String}]
       # @param page_data [Hash{Symbol=>Object}]
@@ -70,7 +70,7 @@ module Believe
 
         case page_data
         in {data: Array => data}
-          @data = data.map { Believe::Internal::Type::Converter.coerce(@model, _1) }
+          @data = data.map { ::Believe::Internal::Type::Converter.coerce(@model, _1) }
         else
         end
         @total = page_data[:total]
@@ -81,7 +81,7 @@ module Believe
       #
       # @return [String]
       def inspect
-        model = Believe::Internal::Type::Converter.inspect(@model, depth: 1)
+        model = ::Believe::Internal::Type::Converter.inspect(@model, depth: 1)
 
         "#<#{self.class}[#{model}]:0x#{object_id.to_s(16)} total=#{total.inspect} skip=#{skip.inspect}>"
       end

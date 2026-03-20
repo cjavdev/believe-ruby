@@ -2,7 +2,7 @@
 
 module Believe
   module Models
-    class TeamMemberTransferredWebhookEvent < Believe::Internal::Type::BaseModel
+    class TeamMemberTransferredWebhookEvent < ::Believe::Internal::Type::BaseModel
       # @!attribute created_at
       #   When the event was created
       #
@@ -12,8 +12,8 @@ module Believe
       # @!attribute data
       #   Data payload for a team member transfer event.
       #
-      #   @return [Believe::Models::TeamMemberTransferredWebhookEvent::Data]
-      required :data, -> { Believe::TeamMemberTransferredWebhookEvent::Data }
+      #   @return [::Believe::Models::TeamMemberTransferredWebhookEvent::Data]
+      required :data, -> { ::Believe::TeamMemberTransferredWebhookEvent::Data }
 
       # @!attribute event_id
       #   Unique identifier for this event
@@ -24,8 +24,8 @@ module Believe
       # @!attribute event_type
       #   The type of webhook event
       #
-      #   @return [Symbol, Believe::Models::TeamMemberTransferredWebhookEvent::EventType]
-      required :event_type, enum: -> { Believe::TeamMemberTransferredWebhookEvent::EventType }
+      #   @return [Symbol, ::Believe::Models::TeamMemberTransferredWebhookEvent::EventType]
+      required :event_type, enum: -> { ::Believe::TeamMemberTransferredWebhookEvent::EventType }
 
       # @!method initialize(created_at:, data:, event_id:, event_type:)
       #   Webhook event sent when a team member (player, coach, staff) transfers between
@@ -33,14 +33,14 @@ module Believe
       #
       #   @param created_at [Time] When the event was created
       #
-      #   @param data [Believe::Models::TeamMemberTransferredWebhookEvent::Data] Data payload for a team member transfer event.
+      #   @param data [::Believe::Models::TeamMemberTransferredWebhookEvent::Data] Data payload for a team member transfer event.
       #
       #   @param event_id [String] Unique identifier for this event
       #
-      #   @param event_type [Symbol, Believe::Models::TeamMemberTransferredWebhookEvent::EventType] The type of webhook event
+      #   @param event_type [Symbol, ::Believe::Models::TeamMemberTransferredWebhookEvent::EventType] The type of webhook event
 
-      # @see Believe::Models::TeamMemberTransferredWebhookEvent#data
-      class Data < Believe::Internal::Type::BaseModel
+      # @see ::Believe::Models::TeamMemberTransferredWebhookEvent#data
+      class Data < ::Believe::Internal::Type::BaseModel
         # @!attribute character_id
         #   ID of the character (links to /characters)
         #
@@ -56,8 +56,8 @@ module Believe
         # @!attribute member_type
         #   Type of team member
         #
-        #   @return [Symbol, Believe::Models::TeamMemberTransferredWebhookEvent::Data::MemberType]
-        required :member_type, enum: -> { Believe::TeamMemberTransferredWebhookEvent::Data::MemberType }
+        #   @return [Symbol, ::Believe::Models::TeamMemberTransferredWebhookEvent::Data::MemberType]
+        required :member_type, enum: -> { ::Believe::TeamMemberTransferredWebhookEvent::Data::MemberType }
 
         # @!attribute team_id
         #   ID of the team involved
@@ -86,8 +86,8 @@ module Believe
         # @!attribute transfer_type
         #   Whether the member joined or departed
         #
-        #   @return [Symbol, Believe::Models::TeamMemberTransferredWebhookEvent::Data::TransferType]
-        required :transfer_type, enum: -> { Believe::TeamMemberTransferredWebhookEvent::Data::TransferType }
+        #   @return [Symbol, ::Believe::Models::TeamMemberTransferredWebhookEvent::Data::TransferType]
+        required :transfer_type, enum: -> { ::Believe::TeamMemberTransferredWebhookEvent::Data::TransferType }
 
         # @!attribute previous_team_id
         #   Previous team ID (for joins from another team)
@@ -120,7 +120,7 @@ module Believe
         #
         #   @param character_name [String] Name of the character
         #
-        #   @param member_type [Symbol, Believe::Models::TeamMemberTransferredWebhookEvent::Data::MemberType] Type of team member
+        #   @param member_type [Symbol, ::Believe::Models::TeamMemberTransferredWebhookEvent::Data::MemberType] Type of team member
         #
         #   @param team_id [String] ID of the team involved
         #
@@ -130,7 +130,7 @@ module Believe
         #
         #   @param ted_reaction [String] Ted's reaction to the transfer
         #
-        #   @param transfer_type [Symbol, Believe::Models::TeamMemberTransferredWebhookEvent::Data::TransferType] Whether the member joined or departed
+        #   @param transfer_type [Symbol, ::Believe::Models::TeamMemberTransferredWebhookEvent::Data::TransferType] Whether the member joined or departed
         #
         #   @param previous_team_id [String, nil] Previous team ID (for joins from another team)
         #
@@ -142,9 +142,9 @@ module Believe
 
         # Type of team member
         #
-        # @see Believe::Models::TeamMemberTransferredWebhookEvent::Data#member_type
+        # @see ::Believe::Models::TeamMemberTransferredWebhookEvent::Data#member_type
         module MemberType
-          extend Believe::Internal::Type::Enum
+          extend ::Believe::Internal::Type::Enum
 
           PLAYER = :player
           COACH = :coach
@@ -157,9 +157,9 @@ module Believe
 
         # Whether the member joined or departed
         #
-        # @see Believe::Models::TeamMemberTransferredWebhookEvent::Data#transfer_type
+        # @see ::Believe::Models::TeamMemberTransferredWebhookEvent::Data#transfer_type
         module TransferType
-          extend Believe::Internal::Type::Enum
+          extend ::Believe::Internal::Type::Enum
 
           JOINED = :joined
           DEPARTED = :departed
@@ -171,9 +171,9 @@ module Believe
 
       # The type of webhook event
       #
-      # @see Believe::Models::TeamMemberTransferredWebhookEvent#event_type
+      # @see ::Believe::Models::TeamMemberTransferredWebhookEvent#event_type
       module EventType
-        extend Believe::Internal::Type::Enum
+        extend ::Believe::Internal::Type::Enum
 
         TEAM_MEMBER_TRANSFERRED = :"team_member.transferred"
 

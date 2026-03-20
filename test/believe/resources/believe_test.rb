@@ -13,7 +13,7 @@ class Believe::Test::Resources::BelieveTest < Believe::Test::ResourceTest
       )
 
     assert_pattern do
-      response => Believe::Models::BelieveSubmitResponse
+      response => ::Believe::Models::BelieveSubmitResponse
     end
 
     assert_pattern do

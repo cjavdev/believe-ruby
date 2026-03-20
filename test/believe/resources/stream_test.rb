@@ -9,7 +9,7 @@ class Believe::Test::Resources::StreamTest < Believe::Test::ResourceTest
     response = @believe.stream.test_connection
 
     assert_pattern do
-      response => Believe::Internal::Type::Unknown
+      response => ::Believe::Internal::Type::Unknown
     end
   end
 end

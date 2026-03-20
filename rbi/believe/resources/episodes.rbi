@@ -22,8 +22,8 @@ module Believe
           memorable_moments: T::Array[String],
           us_viewers_millions: T.nilable(Float),
           viewer_rating: T.nilable(Float),
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::Episode)
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::Episode)
       end
       def create(
         # Original air date
@@ -64,8 +64,8 @@ module Believe
       sig do
         params(
           episode_id: String,
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::Episode)
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::Episode)
       end
       def retrieve(episode_id, request_options: {})
       end
@@ -89,8 +89,8 @@ module Believe
           us_viewers_millions: T.nilable(Float),
           viewer_rating: T.nilable(Float),
           writer: T.nilable(String),
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::Episode)
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::Episode)
       end
       def update(
         episode_id,
@@ -121,8 +121,8 @@ module Believe
           limit: Integer,
           season: T.nilable(Integer),
           skip: Integer,
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::Internal::SkipLimitPage[Believe::Episode])
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::Internal::SkipLimitPage[::Believe::Episode])
       end
       def list(
         # Filter by character focus (character ID)
@@ -141,7 +141,7 @@ module Believe
       sig do
         params(
           episode_id: String,
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).void
       end
       def delete(episode_id, request_options: {})
@@ -151,14 +151,14 @@ module Believe
       sig do
         params(
           episode_id: String,
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).returns(T::Hash[Symbol, T.anything])
       end
       def get_wisdom(episode_id, request_options: {})
       end
 
       # @api private
-      sig { params(client: Believe::Client).returns(T.attached_class) }
+      sig { params(client: ::Believe::Client).returns(T.attached_class) }
       def self.new(client:)
       end
     end

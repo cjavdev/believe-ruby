@@ -1,22 +1,22 @@
 module Believe
   module Models
     type team_list_logos_params =
-      { team_id: String } & Believe::Internal::Type::request_parameters
+      { team_id: String } & ::Believe::Internal::Type::request_parameters
 
-    class TeamListLogosParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class TeamListLogosParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       attr_accessor team_id: String
 
       def initialize: (
         team_id: String,
-        ?request_options: Believe::request_opts
+        ?request_options: ::Believe::request_opts
       ) -> void
 
       def to_hash: -> {
         team_id: String,
-        request_options: Believe::RequestOptions
+        request_options: ::Believe::RequestOptions
       }
     end
   end

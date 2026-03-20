@@ -3,10 +3,10 @@
 module Believe
   module Models
     module Teams
-      # @see Believe::Resources::Teams::Logo#upload
-      class LogoUploadParams < Believe::Internal::Type::BaseModel
-        extend Believe::Internal::Type::RequestParameters::Converter
-        include Believe::Internal::Type::RequestParameters
+      # @see ::Believe::Resources::Teams::Logo#upload
+      class LogoUploadParams < ::Believe::Internal::Type::BaseModel
+        extend ::Believe::Internal::Type::RequestParameters::Converter
+        include ::Believe::Internal::Type::RequestParameters
 
         # @!attribute team_id
         #
@@ -16,15 +16,15 @@ module Believe
         # @!attribute file
         #   Logo image file
         #
-        #   @return [Pathname, StringIO, IO, String, Believe::FilePart]
-        required :file, Believe::Internal::Type::FileInput
+        #   @return [Pathname, StringIO, IO, String, ::Believe::FilePart]
+        required :file, ::Believe::Internal::Type::FileInput
 
         # @!method initialize(team_id:, file:, request_options: {})
         #   @param team_id [String]
         #
-        #   @param file [Pathname, StringIO, IO, String, Believe::FilePart] Logo image file
+        #   @param file [Pathname, StringIO, IO, String, ::Believe::FilePart] Logo image file
         #
-        #   @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}]
+        #   @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}]
       end
     end
   end

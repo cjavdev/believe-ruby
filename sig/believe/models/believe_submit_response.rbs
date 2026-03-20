@@ -9,7 +9,7 @@ module Believe
         ted_response: String
       }
 
-    class BelieveSubmitResponse < Believe::Internal::Type::BaseModel
+    class BelieveSubmitResponse < ::Believe::Internal::Type::BaseModel
       attr_accessor action_suggestion: String
 
       attr_accessor believe_score: Integer

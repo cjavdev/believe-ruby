@@ -1,5 +1,5 @@
 module Believe
   module Models
-    VersionRetrieveResponse: Believe::Internal::Type::Converter
+    VersionRetrieveResponse: ::Believe::Internal::Type::Converter
   end
 end

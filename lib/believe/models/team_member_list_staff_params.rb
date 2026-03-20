@@ -2,10 +2,10 @@
 
 module Believe
   module Models
-    # @see Believe::Resources::TeamMembers#list_staff
-    class TeamMemberListStaffParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    # @see ::Believe::Resources::TeamMembers#list_staff
+    class TeamMemberListStaffParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       # @!attribute limit
       #   Maximum number of items to return (max: 100)
@@ -32,7 +32,7 @@ module Believe
       #
       #   @param team_id [String, nil] Filter by team ID
       #
-      #   @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}]
+      #   @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}]
     end
   end
 end

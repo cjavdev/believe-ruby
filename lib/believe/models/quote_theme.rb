@@ -4,7 +4,7 @@ module Believe
   module Models
     # Themes that quotes can be categorized under.
     module QuoteTheme
-      extend Believe::Internal::Type::Enum
+      extend ::Believe::Internal::Type::Enum
 
       BELIEF = :belief
       TEAMWORK = :teamwork

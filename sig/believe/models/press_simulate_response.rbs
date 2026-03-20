@@ -9,7 +9,7 @@ module Believe
         deflection_humor: String?
       }
 
-    class PressSimulateResponse < Believe::Internal::Type::BaseModel
+    class PressSimulateResponse < ::Believe::Internal::Type::BaseModel
       attr_accessor actual_wisdom: String
 
       attr_accessor follow_up_dodge: String

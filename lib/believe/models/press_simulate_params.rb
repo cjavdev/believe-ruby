@@ -2,10 +2,10 @@
 
 module Believe
   module Models
-    # @see Believe::Resources::Press#simulate
-    class PressSimulateParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    # @see ::Believe::Resources::Press#simulate
+    class PressSimulateParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       # @!attribute question
       #   The press question to answer
@@ -17,7 +17,7 @@ module Believe
       #   Is this a hostile question from Trent Crimm?
       #
       #   @return [Boolean, nil]
-      optional :hostile, Believe::Internal::Type::Boolean
+      optional :hostile, ::Believe::Internal::Type::Boolean
 
       # @!attribute topic
       #   Topic category
@@ -32,7 +32,7 @@ module Believe
       #
       #   @param topic [String, nil] Topic category
       #
-      #   @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}]
+      #   @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}]
     end
   end
 end

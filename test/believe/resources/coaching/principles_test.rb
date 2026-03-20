@@ -9,7 +9,7 @@ class Believe::Test::Resources::Coaching::PrinciplesTest < Believe::Test::Resour
     response = @believe.coaching.principles.retrieve("principle_id")
 
     assert_pattern do
-      response => Believe::Coaching::CoachingPrinciple
+      response => ::Believe::Coaching::CoachingPrinciple
     end
 
     assert_pattern do
@@ -30,14 +30,14 @@ class Believe::Test::Resources::Coaching::PrinciplesTest < Believe::Test::Resour
     response = @believe.coaching.principles.list
 
     assert_pattern do
-      response => Believe::Internal::SkipLimitPage
+      response => ::Believe::Internal::SkipLimitPage
     end
 
     row = response.to_enum.first
     return if row.nil?
 
     assert_pattern do
-      row => Believe::Coaching::CoachingPrinciple
+      row => ::Believe::Coaching::CoachingPrinciple
     end
 
     assert_pattern do
@@ -58,7 +58,7 @@ class Believe::Test::Resources::Coaching::PrinciplesTest < Believe::Test::Resour
     response = @believe.coaching.principles.get_random
 
     assert_pattern do
-      response => Believe::Coaching::CoachingPrinciple
+      response => ::Believe::Coaching::CoachingPrinciple
     end
 
     assert_pattern do

@@ -4,7 +4,7 @@ require_relative "lib/believe/version"
 
 Gem::Specification.new do |s|
   s.name = "believe"
-  s.version = Believe::VERSION
+  s.version = ::Believe::VERSION
   s.summary = "Ruby library to access the Believe API"
   s.authors = ["Believe"]
   s.email = "wave@cjav.dev"

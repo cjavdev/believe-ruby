@@ -2,27 +2,27 @@
 
 require_relative "../../test_helper"
 
-class Believe::Test::PrimitiveModelTest < Minitest::Test
-  A = Believe::Internal::Type::ArrayOf[-> { Integer }]
-  H = Believe::Internal::Type::HashOf[-> { Integer }, nil?: true]
+class ::Believe::Test::PrimitiveModelTest < Minitest::Test
+  A = ::Believe::Internal::Type::ArrayOf[-> { Integer }]
+  H = ::Believe::Internal::Type::HashOf[-> { Integer }, nil?: true]
 
   module E
-    extend Believe::Internal::Type::Enum
+    extend ::Believe::Internal::Type::Enum
   end
 
   module U
-    extend Believe::Internal::Type::Union
+    extend ::Believe::Internal::Type::Union
   end
 
-  class B < Believe::Internal::Type::BaseModel
+  class B < ::Believe::Internal::Type::BaseModel
     optional :a, Integer
     optional :b, B
   end
 
   def test_typing
     converters = [
-      Believe::Internal::Type::Unknown,
-      Believe::Internal::Type::Boolean,
+      ::Believe::Internal::Type::Unknown,
+      ::Believe::Internal::Type::Boolean,
       A,
       H,
       E,
@@ -32,18 +32,18 @@ class Believe::Test::PrimitiveModelTest < Minitest::Test
 
     converters.each do |conv|
       assert_pattern do
-        conv => Believe::Internal::Type::Converter
+        conv => ::Believe::Internal::Type::Converter
       end
     end
   end
 
   def test_coerce
     cases = {
-      [Believe::Internal::Type::Unknown, :a] => [{yes: 1}, :a],
+      [::Believe::Internal::Type::Unknown, :a] => [{yes: 1}, :a],
       [NilClass, :a] => [{maybe: 1}, nil],
       [NilClass, nil] => [{yes: 1}, nil],
-      [Believe::Internal::Type::Boolean, true] => [{yes: 1}, true],
-      [Believe::Internal::Type::Boolean, "true"] => [{no: 1}, "true"],
+      [::Believe::Internal::Type::Boolean, true] => [{yes: 1}, true],
+      [::Believe::Internal::Type::Boolean, "true"] => [{no: 1}, "true"],
       [Integer, 1] => [{yes: 1}, 1],
       [Integer, 1.0] => [{maybe: 1}, 1],
       [Integer, "1"] => [{maybe: 1}, 1],
@@ -66,9 +66,9 @@ class Believe::Test::PrimitiveModelTest < Minitest::Test
     cases.each do |lhs, rhs|
       target, input = lhs
       exactness, expect = rhs
-      state = Believe::Internal::Type::Converter.new_coerce_state
+      state = ::Believe::Internal::Type::Converter.new_coerce_state
       assert_pattern do
-        Believe::Internal::Type::Converter.coerce(target, input, state: state) => ^expect
+        ::Believe::Internal::Type::Converter.coerce(target, input, state: state) => ^expect
         state.fetch(:exactness).filter { _2.nonzero? }.to_h => ^exactness
       end
     end
@@ -76,7 +76,7 @@ class Believe::Test::PrimitiveModelTest < Minitest::Test
 
   def test_dump
     cases = {
-      [Believe::Internal::Type::Unknown, B.new(a: "one", b: B.new(a: 1.0))] => {a: "one", b: {a: 1}},
+      [::Believe::Internal::Type::Unknown, B.new(a: "one", b: B.new(a: 1.0))] => {a: "one", b: {a: 1}},
       [A, B.new(a: "one", b: B.new(a: 1.0))] => {a: "one", b: {a: 1}},
       [H, B.new(a: "one", b: B.new(a: 1.0))] => {a: "one", b: {a: 1}},
       [E, B.new(a: "one", b: B.new(a: 1.0))] => {a: "one", b: {a: 1}},
@@ -85,8 +85,8 @@ class Believe::Test::PrimitiveModelTest < Minitest::Test
       [String, B.new(a: "one", b: B.new(a: 1.0))] => {a: "one", b: {a: 1}},
       [:b, B.new(a: "one", b: B.new(a: 1.0))] => {a: "one", b: {a: 1}},
       [nil, B.new(a: "one", b: B.new(a: 1.0))] => {a: "one", b: {a: 1}},
-      [Believe::Internal::Type::Boolean, true] => true,
-      [Believe::Internal::Type::Boolean, "true"] => "true",
+      [::Believe::Internal::Type::Boolean, true] => true,
+      [::Believe::Internal::Type::Boolean, "true"] => "true",
       [Integer, "1"] => "1",
       [Float, 1] => 1,
       [String, "one"] => "one",
@@ -94,14 +94,14 @@ class Believe::Test::PrimitiveModelTest < Minitest::Test
       [:a, :b] => :b,
       [:a, "a"] => "a",
       [String, StringIO.new("one")] => "one",
-      [String, Pathname(__FILE__)] => Believe::FilePart
+      [String, Pathname(__FILE__)] => ::Believe::FilePart
     }
 
     cases.each do
       target, input = _1
       expect = _2
       assert_pattern do
-        Believe::Internal::Type::Converter.dump(target, input) => ^expect
+        ::Believe::Internal::Type::Converter.dump(target, input) => ^expect
       end
     end
   end
@@ -117,8 +117,8 @@ class Believe::Test::PrimitiveModelTest < Minitest::Test
 
     cases.each do |testcase, expect|
       target, input = testcase
-      state = Believe::Internal::Type::Converter.new_coerce_state
-      Believe::Internal::Type::Converter.coerce(target, input, state: state)
+      state = ::Believe::Internal::Type::Converter.new_coerce_state
+      ::Believe::Internal::Type::Converter.coerce(target, input, state: state)
       assert_pattern do
         state => {error: ^expect}
       end
@@ -127,8 +127,8 @@ class Believe::Test::PrimitiveModelTest < Minitest::Test
 
   def test_dump_retry
     types = [
-      Believe::Internal::Type::Unknown,
-      Believe::Internal::Type::Boolean,
+      ::Believe::Internal::Type::Unknown,
+      ::Believe::Internal::Type::Boolean,
       A,
       H,
       E,
@@ -144,7 +144,7 @@ class Believe::Test::PrimitiveModelTest < Minitest::Test
       ]
       types.product(cases).each do |target, input|
         state = {can_retry: true}
-        Believe::Internal::Type::Converter.dump(target, input, state: state)
+        ::Believe::Internal::Type::Converter.dump(target, input, state: state)
 
         assert_pattern do
           state => {can_retry: false}
@@ -154,9 +154,9 @@ class Believe::Test::PrimitiveModelTest < Minitest::Test
   end
 end
 
-class Believe::Test::EnumModelTest < Minitest::Test
+class ::Believe::Test::EnumModelTest < Minitest::Test
   class E0
-    include Believe::Internal::Type::Enum
+    include ::Believe::Internal::Type::Enum
 
     attr_reader :values
 
@@ -164,27 +164,27 @@ class Believe::Test::EnumModelTest < Minitest::Test
   end
 
   module E1
-    extend Believe::Internal::Type::Enum
+    extend ::Believe::Internal::Type::Enum
 
     TRUE = true
   end
 
   module E2
-    extend Believe::Internal::Type::Enum
+    extend ::Believe::Internal::Type::Enum
 
     ONE = 1
     TWO = 2
   end
 
   module E3
-    extend Believe::Internal::Type::Enum
+    extend ::Believe::Internal::Type::Enum
 
     ONE = 1.0
     TWO = 2.0
   end
 
   module E4
-    extend Believe::Internal::Type::Enum
+    extend ::Believe::Internal::Type::Enum
 
     ONE = :one
     TWO = :two
@@ -219,9 +219,9 @@ class Believe::Test::EnumModelTest < Minitest::Test
     cases.each do |lhs, rhs|
       target, input = lhs
       exactness, expect = rhs
-      state = Believe::Internal::Type::Converter.new_coerce_state
+      state = ::Believe::Internal::Type::Converter.new_coerce_state
       assert_pattern do
-        Believe::Internal::Type::Converter.coerce(target, input, state: state) => ^expect
+        ::Believe::Internal::Type::Converter.coerce(target, input, state: state) => ^expect
         state.fetch(:exactness).filter { _2.nonzero? }.to_h => ^exactness
       end
     end
@@ -249,21 +249,21 @@ class Believe::Test::EnumModelTest < Minitest::Test
       target, input = _1
       expect = _2
       assert_pattern do
-        Believe::Internal::Type::Converter.dump(target, input) => ^expect
+        ::Believe::Internal::Type::Converter.dump(target, input) => ^expect
       end
     end
   end
 end
 
-class Believe::Test::CollectionModelTest < Minitest::Test
-  A1 = Believe::Internal::Type::ArrayOf[-> { Integer }]
-  H1 = Believe::Internal::Type::HashOf[Integer]
+class ::Believe::Test::CollectionModelTest < Minitest::Test
+  A1 = ::Believe::Internal::Type::ArrayOf[-> { Integer }]
+  H1 = ::Believe::Internal::Type::HashOf[Integer]
 
-  A2 = Believe::Internal::Type::ArrayOf[H1]
-  H2 = Believe::Internal::Type::HashOf[-> { A1 }]
+  A2 = ::Believe::Internal::Type::ArrayOf[H1]
+  H2 = ::Believe::Internal::Type::HashOf[-> { A1 }]
 
-  A3 = Believe::Internal::Type::ArrayOf[Integer, nil?: true]
-  H3 = Believe::Internal::Type::HashOf[Integer, nil?: true]
+  A3 = ::Believe::Internal::Type::ArrayOf[Integer, nil?: true]
+  H3 = ::Believe::Internal::Type::HashOf[Integer, nil?: true]
 
   def test_coerce
     cases = {
@@ -293,17 +293,17 @@ class Believe::Test::CollectionModelTest < Minitest::Test
     cases.each do |lhs, rhs|
       target, input = lhs
       exactness, expect = rhs
-      state = Believe::Internal::Type::Converter.new_coerce_state
+      state = ::Believe::Internal::Type::Converter.new_coerce_state
       assert_pattern do
-        Believe::Internal::Type::Converter.coerce(target, input, state: state) => ^expect
+        ::Believe::Internal::Type::Converter.coerce(target, input, state: state) => ^expect
         state.fetch(:exactness).filter { _2.nonzero? }.to_h => ^exactness
       end
     end
   end
 end
 
-class Believe::Test::BaseModelTest < Minitest::Test
-  class M1 < Believe::Internal::Type::BaseModel
+class ::Believe::Test::BaseModelTest < Minitest::Test
+  class M1 < ::Believe::Internal::Type::BaseModel
     required :a, Integer
   end
 
@@ -313,7 +313,7 @@ class Believe::Test::BaseModelTest < Minitest::Test
     optional :c, String
   end
 
-  class M3 < Believe::Internal::Type::BaseModel
+  class M3 < ::Believe::Internal::Type::BaseModel
     optional :c, const: :c
     required :d, const: :d
   end
@@ -330,7 +330,7 @@ class Believe::Test::BaseModelTest < Minitest::Test
     end
   end
 
-  class M5 < Believe::Internal::Type::BaseModel
+  class M5 < ::Believe::Internal::Type::BaseModel
     request_only do
       required :c, const: :c
     end
@@ -341,7 +341,7 @@ class Believe::Test::BaseModelTest < Minitest::Test
   end
 
   class M6 < M1
-    required :a, Believe::Internal::Type::ArrayOf[M6]
+    required :a, ::Believe::Internal::Type::ArrayOf[M6]
     optional :b, M6
   end
 
@@ -375,11 +375,11 @@ class Believe::Test::BaseModelTest < Minitest::Test
     cases.each do |lhs, rhs|
       target, input = lhs
       exactness, expect = rhs
-      state = Believe::Internal::Type::Converter.new_coerce_state
+      state = ::Believe::Internal::Type::Converter.new_coerce_state
       assert_pattern do
-        coerced = Believe::Internal::Type::Converter.coerce(target, input, state: state)
+        coerced = ::Believe::Internal::Type::Converter.coerce(target, input, state: state)
         assert_equal(coerced, coerced)
-        if coerced.is_a?(Believe::Internal::Type::BaseModel)
+        if coerced.is_a?(::Believe::Internal::Type::BaseModel)
           coerced.to_h => ^expect
         else
           coerced => ^expect
@@ -407,7 +407,7 @@ class Believe::Test::BaseModelTest < Minitest::Test
       target, input = _1
       expect = _2
       assert_pattern do
-        Believe::Internal::Type::Converter.dump(target, input) => ^expect
+        ::Believe::Internal::Type::Converter.dump(target, input) => ^expect
       end
     end
   end
@@ -439,7 +439,7 @@ class Believe::Test::BaseModelTest < Minitest::Test
           tap do
             target.public_send(accessor)
             flunk
-          rescue Believe::Errors::ConversionError => e
+          rescue ::Believe::Errors::ConversionError => e
             assert_kind_of(expect, e.cause)
           end
         else
@@ -468,32 +468,32 @@ class Believe::Test::BaseModelTest < Minitest::Test
   end
 end
 
-class Believe::Test::UnionTest < Minitest::Test
+class ::Believe::Test::UnionTest < Minitest::Test
   class U0
-    include Believe::Internal::Type::Union
+    include ::Believe::Internal::Type::Union
 
     def initialize(*variants) = variants.each { variant(_1) }
   end
 
   module U1
-    extend Believe::Internal::Type::Union
+    extend ::Believe::Internal::Type::Union
 
     variant const: :a
     variant const: 2
   end
 
-  class M1 < Believe::Internal::Type::BaseModel
+  class M1 < ::Believe::Internal::Type::BaseModel
     required :t, const: :a, api_name: :type
     optional :c, String
   end
 
-  class M2 < Believe::Internal::Type::BaseModel
+  class M2 < ::Believe::Internal::Type::BaseModel
     required :type, const: :b
     optional :c, String
   end
 
   module U2
-    extend Believe::Internal::Type::Union
+    extend ::Believe::Internal::Type::Union
 
     discriminator :type
 
@@ -502,7 +502,7 @@ class Believe::Test::UnionTest < Minitest::Test
   end
 
   module U3
-    extend Believe::Internal::Type::Union
+    extend ::Believe::Internal::Type::Union
 
     discriminator :type
 
@@ -511,7 +511,7 @@ class Believe::Test::UnionTest < Minitest::Test
   end
 
   module U4
-    extend Believe::Internal::Type::Union
+    extend ::Believe::Internal::Type::Union
 
     discriminator :type
 
@@ -519,30 +519,30 @@ class Believe::Test::UnionTest < Minitest::Test
     variant :a, M1
   end
 
-  class M3 < Believe::Internal::Type::BaseModel
+  class M3 < ::Believe::Internal::Type::BaseModel
     optional :recur, -> { U5 }
     required :a, Integer
   end
 
-  class M4 < Believe::Internal::Type::BaseModel
+  class M4 < ::Believe::Internal::Type::BaseModel
     optional :recur, -> { U5 }
-    required :a, Believe::Internal::Type::ArrayOf[-> { U5 }]
+    required :a, ::Believe::Internal::Type::ArrayOf[-> { U5 }]
   end
 
-  class M5 < Believe::Internal::Type::BaseModel
+  class M5 < ::Believe::Internal::Type::BaseModel
     optional :recur, -> { U5 }
-    required :b, Believe::Internal::Type::ArrayOf[-> { U5 }]
+    required :b, ::Believe::Internal::Type::ArrayOf[-> { U5 }]
   end
 
   module U5
-    extend Believe::Internal::Type::Union
+    extend ::Believe::Internal::Type::Union
 
     variant -> { M3 }
     variant -> { M4 }
   end
 
   module U6
-    extend Believe::Internal::Type::Union
+    extend ::Believe::Internal::Type::Union
 
     variant -> { M3 }
     variant -> { M5 }
@@ -553,7 +553,7 @@ class Believe::Test::UnionTest < Minitest::Test
     tap do
       model.recur
       flunk
-    rescue Believe::Errors::ConversionError => e
+    rescue ::Believe::Errors::ConversionError => e
       assert_kind_of(ArgumentError, e.cause)
     end
   end
@@ -587,11 +587,11 @@ class Believe::Test::UnionTest < Minitest::Test
     cases.each do |lhs, rhs|
       target, input = lhs
       exactness, branched, expect = rhs
-      state = Believe::Internal::Type::Converter.new_coerce_state
+      state = ::Believe::Internal::Type::Converter.new_coerce_state
       assert_pattern do
-        coerced = Believe::Internal::Type::Converter.coerce(target, input, state: state)
+        coerced = ::Believe::Internal::Type::Converter.coerce(target, input, state: state)
         assert_equal(coerced, coerced)
-        if coerced.is_a?(Believe::Internal::Type::BaseModel)
+        if coerced.is_a?(::Believe::Internal::Type::BaseModel)
           coerced.to_h => ^expect
         else
           coerced => ^expect
@@ -603,9 +603,9 @@ class Believe::Test::UnionTest < Minitest::Test
   end
 end
 
-class Believe::Test::BaseModelQoLTest < Minitest::Test
+class ::Believe::Test::BaseModelQoLTest < Minitest::Test
   class E0
-    include Believe::Internal::Type::Enum
+    include ::Believe::Internal::Type::Enum
 
     attr_reader :values
 
@@ -613,49 +613,49 @@ class Believe::Test::BaseModelQoLTest < Minitest::Test
   end
 
   module E1
-    extend Believe::Internal::Type::Enum
+    extend ::Believe::Internal::Type::Enum
 
     A = 1
   end
 
   module E2
-    extend Believe::Internal::Type::Enum
+    extend ::Believe::Internal::Type::Enum
 
     A = 1
   end
 
   module E3
-    extend Believe::Internal::Type::Enum
+    extend ::Believe::Internal::Type::Enum
 
     A = 2
     B = 3
   end
 
   class U0
-    include Believe::Internal::Type::Union
+    include ::Believe::Internal::Type::Union
 
     def initialize(*variants) = variants.each { variant(_1) }
   end
 
   module U1
-    extend Believe::Internal::Type::Union
+    extend ::Believe::Internal::Type::Union
 
     variant String
     variant Integer
   end
 
   module U2
-    extend Believe::Internal::Type::Union
+    extend ::Believe::Internal::Type::Union
 
     variant String
     variant Integer
   end
 
-  class M1 < Believe::Internal::Type::BaseModel
+  class M1 < ::Believe::Internal::Type::BaseModel
     required :a, Integer
   end
 
-  class M2 < Believe::Internal::Type::BaseModel
+  class M2 < ::Believe::Internal::Type::BaseModel
     required :a, Integer, nil?: true
   end
 
@@ -665,9 +665,9 @@ class Believe::Test::BaseModelQoLTest < Minitest::Test
 
   def test_equality
     cases = {
-      [Believe::Internal::Type::Unknown, Believe::Internal::Type::Unknown] => true,
-      [Believe::Internal::Type::Boolean, Believe::Internal::Type::Boolean] => true,
-      [Believe::Internal::Type::Unknown, Believe::Internal::Type::Boolean] => false,
+      [::Believe::Internal::Type::Unknown, ::Believe::Internal::Type::Unknown] => true,
+      [::Believe::Internal::Type::Boolean, ::Believe::Internal::Type::Boolean] => true,
+      [::Believe::Internal::Type::Unknown, ::Believe::Internal::Type::Boolean] => false,
       [E0.new(:a, :b), E0.new(:a, :b)] => true,
       [E0.new(:a, :b), E0.new(:b, :a)] => true,
       [E0.new(:a, :b), E0.new(:b, :c)] => false,
@@ -694,17 +694,17 @@ class Believe::Test::BaseModelQoLTest < Minitest::Test
   end
 end
 
-class Believe::Test::MetaInfoTest < Minitest::Test
-  A1 = Believe::Internal::Type::ArrayOf[Integer, nil?: true, doc: "dog"]
-  H1 = Believe::Internal::Type::HashOf[-> { String }, nil?: true, doc: "dawg"]
+class ::Believe::Test::MetaInfoTest < Minitest::Test
+  A1 = ::Believe::Internal::Type::ArrayOf[Integer, nil?: true, doc: "dog"]
+  H1 = ::Believe::Internal::Type::HashOf[-> { String }, nil?: true, doc: "dawg"]
 
-  class M1 < Believe::Internal::Type::BaseModel
+  class M1 < ::Believe::Internal::Type::BaseModel
     required :a, Integer, doc: "dog"
     optional :b, -> { String }, nil?: true, doc: "dawg"
   end
 
   module U1
-    extend Believe::Internal::Type::Union
+    extend ::Believe::Internal::Type::Union
 
     variant -> { Integer }, const: 2, doc: "dog"
     variant -> { String }, doc: "dawg"

@@ -2,7 +2,7 @@
 
 module Believe
   module Models
-    class MedicalStaff < Believe::Internal::Type::BaseModel
+    class MedicalStaff < ::Believe::Internal::Type::BaseModel
       # @!attribute id
       #   Unique identifier for this team membership
       #
@@ -18,8 +18,8 @@ module Believe
       # @!attribute specialty
       #   Medical specialty
       #
-      #   @return [Symbol, Believe::Models::MedicalSpecialty]
-      required :specialty, enum: -> { Believe::MedicalSpecialty }
+      #   @return [Symbol, ::Believe::Models::MedicalSpecialty]
+      required :specialty, enum: -> { ::Believe::MedicalSpecialty }
 
       # @!attribute team_id
       #   ID of the team they belong to
@@ -42,14 +42,14 @@ module Believe
       # @!attribute member_type
       #   Discriminator field indicating this is medical staff
       #
-      #   @return [Symbol, Believe::Models::MedicalStaff::MemberType, nil]
-      optional :member_type, enum: -> { Believe::MedicalStaff::MemberType }
+      #   @return [Symbol, ::Believe::Models::MedicalStaff::MemberType, nil]
+      optional :member_type, enum: -> { ::Believe::MedicalStaff::MemberType }
 
       # @!attribute qualifications
       #   Medical qualifications and degrees
       #
       #   @return [Array<String>, nil]
-      optional :qualifications, Believe::Internal::Type::ArrayOf[String]
+      optional :qualifications, ::Believe::Internal::Type::ArrayOf[String]
 
       # @!method initialize(id:, character_id:, specialty:, team_id:, years_with_team:, license_number: nil, member_type: nil, qualifications: nil)
       #   Full medical staff model with ID.
@@ -58,7 +58,7 @@ module Believe
       #
       #   @param character_id [String] ID of the character (references /characters/{id})
       #
-      #   @param specialty [Symbol, Believe::Models::MedicalSpecialty] Medical specialty
+      #   @param specialty [Symbol, ::Believe::Models::MedicalSpecialty] Medical specialty
       #
       #   @param team_id [String] ID of the team they belong to
       #
@@ -66,15 +66,15 @@ module Believe
       #
       #   @param license_number [String, nil] Professional license number
       #
-      #   @param member_type [Symbol, Believe::Models::MedicalStaff::MemberType] Discriminator field indicating this is medical staff
+      #   @param member_type [Symbol, ::Believe::Models::MedicalStaff::MemberType] Discriminator field indicating this is medical staff
       #
       #   @param qualifications [Array<String>] Medical qualifications and degrees
 
       # Discriminator field indicating this is medical staff
       #
-      # @see Believe::Models::MedicalStaff#member_type
+      # @see ::Believe::Models::MedicalStaff#member_type
       module MemberType
-        extend Believe::Internal::Type::Enum
+        extend ::Believe::Internal::Type::Enum
 
         MEDICAL_STAFF = :medical_staff
 

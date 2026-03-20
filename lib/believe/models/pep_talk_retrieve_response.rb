@@ -2,13 +2,14 @@
 
 module Believe
   module Models
-    # @see Believe::Resources::PepTalk#retrieve
-    class PepTalkRetrieveResponse < Believe::Internal::Type::BaseModel
+    # @see ::Believe::Resources::PepTalk#retrieve
+    class PepTalkRetrieveResponse < ::Believe::Internal::Type::BaseModel
       # @!attribute chunks
       #   Individual chunks of the pep talk
       #
-      #   @return [Array<Believe::Models::PepTalkRetrieveResponse::Chunk>]
-      required :chunks, -> { Believe::Internal::Type::ArrayOf[Believe::Models::PepTalkRetrieveResponse::Chunk] }
+      #   @return [Array<::Believe::Models::PepTalkRetrieveResponse::Chunk>]
+      required :chunks,
+               -> { ::Believe::Internal::Type::ArrayOf[::Believe::Models::PepTalkRetrieveResponse::Chunk] }
 
       # @!attribute text
       #   The full pep talk text
@@ -19,11 +20,11 @@ module Believe
       # @!method initialize(chunks:, text:)
       #   A complete pep talk response.
       #
-      #   @param chunks [Array<Believe::Models::PepTalkRetrieveResponse::Chunk>] Individual chunks of the pep talk
+      #   @param chunks [Array<::Believe::Models::PepTalkRetrieveResponse::Chunk>] Individual chunks of the pep talk
       #
       #   @param text [String] The full pep talk text
 
-      class Chunk < Believe::Internal::Type::BaseModel
+      class Chunk < ::Believe::Internal::Type::BaseModel
         # @!attribute chunk_id
         #   Chunk sequence number
         #
@@ -34,7 +35,7 @@ module Believe
         #   Is this the final chunk
         #
         #   @return [Boolean]
-        required :is_final, Believe::Internal::Type::Boolean
+        required :is_final, ::Believe::Internal::Type::Boolean
 
         # @!attribute text
         #   The text of this chunk
@@ -51,7 +52,7 @@ module Believe
 
         # @!method initialize(chunk_id:, is_final:, text:, emotional_beat: nil)
         #   Some parameter documentations has been truncated, see
-        #   {Believe::Models::PepTalkRetrieveResponse::Chunk} for more details.
+        #   {::Believe::Models::PepTalkRetrieveResponse::Chunk} for more details.
         #
         #   A chunk of a streaming pep talk from Ted.
         #

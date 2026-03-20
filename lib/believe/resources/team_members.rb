@@ -38,20 +38,20 @@ module Believe
       #
       # @overload create(member:, request_options: {})
       #
-      # @param member [Believe::Models::TeamMemberCreateParams::Member::Player, Believe::Models::TeamMemberCreateParams::Member::Coach, Believe::Models::TeamMemberCreateParams::Member::MedicalStaff, Believe::Models::TeamMemberCreateParams::Member::EquipmentManager] A football player on the team.
+      # @param member [::Believe::Models::TeamMemberCreateParams::Member::Player, ::Believe::Models::TeamMemberCreateParams::Member::Coach, ::Believe::Models::TeamMemberCreateParams::Member::MedicalStaff, ::Believe::Models::TeamMemberCreateParams::Member::EquipmentManager] A football player on the team.
       #
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Models::Player, Believe::Models::Coach, Believe::Models::MedicalStaff, Believe::Models::EquipmentManager]
+      # @return [::Believe::Models::Player, ::Believe::Models::Coach, ::Believe::Models::MedicalStaff, ::Believe::Models::EquipmentManager]
       #
-      # @see Believe::Models::TeamMemberCreateParams
+      # @see ::Believe::Models::TeamMemberCreateParams
       def create(params)
-        parsed, options = Believe::TeamMemberCreateParams.dump_request(params)
+        parsed, options = ::Believe::TeamMemberCreateParams.dump_request(params)
         @client.request(
           method: :post,
           path: "team-members",
           body: parsed[:member],
-          model: Believe::Models::TeamMemberCreateResponse,
+          model: ::Believe::Models::TeamMemberCreateResponse,
           options: options
         )
       end
@@ -73,16 +73,16 @@ module Believe
       # @overload retrieve(member_id, request_options: {})
       #
       # @param member_id [String]
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Models::Player, Believe::Models::Coach, Believe::Models::MedicalStaff, Believe::Models::EquipmentManager]
+      # @return [::Believe::Models::Player, ::Believe::Models::Coach, ::Believe::Models::MedicalStaff, ::Believe::Models::EquipmentManager]
       #
-      # @see Believe::Models::TeamMemberRetrieveParams
+      # @see ::Believe::Models::TeamMemberRetrieveParams
       def retrieve(member_id, params = {})
         @client.request(
           method: :get,
           path: ["team-members/%1$s", member_id],
-          model: Believe::Models::TeamMemberRetrieveResponse,
+          model: ::Believe::Models::TeamMemberRetrieveResponse,
           options: params[:request_options]
         )
       end
@@ -93,20 +93,20 @@ module Believe
       #
       # @param member_id [String]
       #
-      # @param updates [Believe::Models::TeamMemberUpdateParams::Updates::PlayerUpdate, Believe::Models::TeamMemberUpdateParams::Updates::CoachUpdate, Believe::Models::TeamMemberUpdateParams::Updates::MedicalStaffUpdate, Believe::Models::TeamMemberUpdateParams::Updates::EquipmentManagerUpdate] Update model for players.
+      # @param updates [::Believe::Models::TeamMemberUpdateParams::Updates::PlayerUpdate, ::Believe::Models::TeamMemberUpdateParams::Updates::CoachUpdate, ::Believe::Models::TeamMemberUpdateParams::Updates::MedicalStaffUpdate, ::Believe::Models::TeamMemberUpdateParams::Updates::EquipmentManagerUpdate] Update model for players.
       #
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Models::Player, Believe::Models::Coach, Believe::Models::MedicalStaff, Believe::Models::EquipmentManager]
+      # @return [::Believe::Models::Player, ::Believe::Models::Coach, ::Believe::Models::MedicalStaff, ::Believe::Models::EquipmentManager]
       #
-      # @see Believe::Models::TeamMemberUpdateParams
+      # @see ::Believe::Models::TeamMemberUpdateParams
       def update(member_id, params)
-        parsed, options = Believe::TeamMemberUpdateParams.dump_request(params)
+        parsed, options = ::Believe::TeamMemberUpdateParams.dump_request(params)
         @client.request(
           method: :patch,
           path: ["team-members/%1$s", member_id],
           body: parsed[:updates],
-          model: Believe::Models::TeamMemberUpdateResponse,
+          model: ::Believe::Models::TeamMemberUpdateResponse,
           options: options
         )
       end
@@ -122,26 +122,26 @@ module Believe
       #
       # @param limit [Integer] Maximum number of items to return (max: 100)
       #
-      # @param member_type [Symbol, Believe::Models::TeamMemberListParams::MemberType, nil] Filter by member type
+      # @param member_type [Symbol, ::Believe::Models::TeamMemberListParams::MemberType, nil] Filter by member type
       #
       # @param skip [Integer] Number of items to skip (offset)
       #
       # @param team_id [String, nil] Filter by team ID
       #
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Internal::SkipLimitPage<Believe::Models::Player, Believe::Models::Coach, Believe::Models::MedicalStaff, Believe::Models::EquipmentManager>]
+      # @return [::Believe::Internal::SkipLimitPage<::Believe::Models::Player, ::Believe::Models::Coach, ::Believe::Models::MedicalStaff, ::Believe::Models::EquipmentManager>]
       #
-      # @see Believe::Models::TeamMemberListParams
+      # @see ::Believe::Models::TeamMemberListParams
       def list(params = {})
-        parsed, options = Believe::TeamMemberListParams.dump_request(params)
-        query = Believe::Internal::Util.encode_query_params(parsed)
+        parsed, options = ::Believe::TeamMemberListParams.dump_request(params)
+        query = ::Believe::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "team-members",
           query: query,
-          page: Believe::Internal::SkipLimitPage,
-          model: Believe::Models::TeamMemberListResponse,
+          page: ::Believe::Internal::SkipLimitPage,
+          model: ::Believe::Models::TeamMemberListResponse,
           options: options
         )
       end
@@ -151,11 +151,11 @@ module Believe
       # @overload delete(member_id, request_options: {})
       #
       # @param member_id [String]
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [nil]
       #
-      # @see Believe::Models::TeamMemberDeleteParams
+      # @see ::Believe::Models::TeamMemberDeleteParams
       def delete(member_id, params = {})
         @client.request(
           method: :delete,
@@ -173,24 +173,24 @@ module Believe
       #
       # @param skip [Integer] Number of items to skip (offset)
       #
-      # @param specialty [Symbol, Believe::Models::CoachSpecialty, nil] Filter by specialty
+      # @param specialty [Symbol, ::Believe::Models::CoachSpecialty, nil] Filter by specialty
       #
       # @param team_id [String, nil] Filter by team ID
       #
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Internal::SkipLimitPage<Believe::Models::Coach>]
+      # @return [::Believe::Internal::SkipLimitPage<::Believe::Models::Coach>]
       #
-      # @see Believe::Models::TeamMemberListCoachesParams
+      # @see ::Believe::Models::TeamMemberListCoachesParams
       def list_coaches(params = {})
-        parsed, options = Believe::TeamMemberListCoachesParams.dump_request(params)
-        query = Believe::Internal::Util.encode_query_params(parsed)
+        parsed, options = ::Believe::TeamMemberListCoachesParams.dump_request(params)
+        query = ::Believe::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "team-members/coaches/",
           query: query,
-          page: Believe::Internal::SkipLimitPage,
-          model: Believe::Coach,
+          page: ::Believe::Internal::SkipLimitPage,
+          model: ::Believe::Coach,
           options: options
         )
       end
@@ -201,26 +201,26 @@ module Believe
       #
       # @param limit [Integer] Maximum number of items to return (max: 100)
       #
-      # @param position [Symbol, Believe::Models::Position, nil] Filter by position
+      # @param position [Symbol, ::Believe::Models::Position, nil] Filter by position
       #
       # @param skip [Integer] Number of items to skip (offset)
       #
       # @param team_id [String, nil] Filter by team ID
       #
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Internal::SkipLimitPage<Believe::Models::Player>]
+      # @return [::Believe::Internal::SkipLimitPage<::Believe::Models::Player>]
       #
-      # @see Believe::Models::TeamMemberListPlayersParams
+      # @see ::Believe::Models::TeamMemberListPlayersParams
       def list_players(params = {})
-        parsed, options = Believe::TeamMemberListPlayersParams.dump_request(params)
-        query = Believe::Internal::Util.encode_query_params(parsed)
+        parsed, options = ::Believe::TeamMemberListPlayersParams.dump_request(params)
+        query = ::Believe::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "team-members/players/",
           query: query,
-          page: Believe::Internal::SkipLimitPage,
-          model: Believe::Player,
+          page: ::Believe::Internal::SkipLimitPage,
+          model: ::Believe::Player,
           options: options
         )
       end
@@ -238,27 +238,27 @@ module Believe
       #
       # @param team_id [String, nil] Filter by team ID
       #
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Internal::SkipLimitPage<Believe::Models::MedicalStaff, Believe::Models::EquipmentManager>]
+      # @return [::Believe::Internal::SkipLimitPage<::Believe::Models::MedicalStaff, ::Believe::Models::EquipmentManager>]
       #
-      # @see Believe::Models::TeamMemberListStaffParams
+      # @see ::Believe::Models::TeamMemberListStaffParams
       def list_staff(params = {})
-        parsed, options = Believe::TeamMemberListStaffParams.dump_request(params)
-        query = Believe::Internal::Util.encode_query_params(parsed)
+        parsed, options = ::Believe::TeamMemberListStaffParams.dump_request(params)
+        query = ::Believe::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "team-members/staff/",
           query: query,
-          page: Believe::Internal::SkipLimitPage,
-          model: Believe::Models::TeamMemberListStaffResponse,
+          page: ::Believe::Internal::SkipLimitPage,
+          model: ::Believe::Models::TeamMemberListStaffResponse,
           options: options
         )
       end
 
       # @api private
       #
-      # @param client [Believe::Client]
+      # @param client [::Believe::Client]
       def initialize(client:)
         @client = client
       end

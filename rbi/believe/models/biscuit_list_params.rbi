@@ -2,13 +2,13 @@
 
 module Believe
   module Models
-    class BiscuitListParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class BiscuitListParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(Believe::BiscuitListParams, Believe::Internal::AnyHash)
+          T.any(::Believe::BiscuitListParams, ::Believe::Internal::AnyHash)
         end
 
       # Maximum number of items to return (max: 100)
@@ -29,7 +29,7 @@ module Believe
         params(
           limit: Integer,
           skip: Integer,
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
@@ -46,7 +46,7 @@ module Believe
           {
             limit: Integer,
             skip: Integer,
-            request_options: Believe::RequestOptions
+            request_options: ::Believe::RequestOptions
           }
         )
       end

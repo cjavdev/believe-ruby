@@ -2,23 +2,23 @@
 
 module Believe
   module Models
-    class TeamMemberCreateParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class TeamMemberCreateParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(Believe::TeamMemberCreateParams, Believe::Internal::AnyHash)
+          T.any(::Believe::TeamMemberCreateParams, ::Believe::Internal::AnyHash)
         end
 
       # A football player on the team.
       sig do
         returns(
           T.any(
-            Believe::TeamMemberCreateParams::Member::Player,
-            Believe::TeamMemberCreateParams::Member::Coach,
-            Believe::TeamMemberCreateParams::Member::MedicalStaff,
-            Believe::TeamMemberCreateParams::Member::EquipmentManager
+            ::Believe::TeamMemberCreateParams::Member::Player,
+            ::Believe::TeamMemberCreateParams::Member::Coach,
+            ::Believe::TeamMemberCreateParams::Member::MedicalStaff,
+            ::Believe::TeamMemberCreateParams::Member::EquipmentManager
           )
         )
       end
@@ -28,12 +28,12 @@ module Believe
         params(
           member:
             T.any(
-              Believe::TeamMemberCreateParams::Member::Player::OrHash,
-              Believe::TeamMemberCreateParams::Member::Coach::OrHash,
-              Believe::TeamMemberCreateParams::Member::MedicalStaff::OrHash,
-              Believe::TeamMemberCreateParams::Member::EquipmentManager::OrHash
+              ::Believe::TeamMemberCreateParams::Member::Player::OrHash,
+              ::Believe::TeamMemberCreateParams::Member::Coach::OrHash,
+              ::Believe::TeamMemberCreateParams::Member::MedicalStaff::OrHash,
+              ::Believe::TeamMemberCreateParams::Member::EquipmentManager::OrHash
             ),
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
@@ -48,12 +48,12 @@ module Believe
           {
             member:
               T.any(
-                Believe::TeamMemberCreateParams::Member::Player,
-                Believe::TeamMemberCreateParams::Member::Coach,
-                Believe::TeamMemberCreateParams::Member::MedicalStaff,
-                Believe::TeamMemberCreateParams::Member::EquipmentManager
+                ::Believe::TeamMemberCreateParams::Member::Player,
+                ::Believe::TeamMemberCreateParams::Member::Coach,
+                ::Believe::TeamMemberCreateParams::Member::MedicalStaff,
+                ::Believe::TeamMemberCreateParams::Member::EquipmentManager
               ),
-            request_options: Believe::RequestOptions
+            request_options: ::Believe::RequestOptions
           }
         )
       end
@@ -62,24 +62,24 @@ module Believe
 
       # A football player on the team.
       module Member
-        extend Believe::Internal::Type::Union
+        extend ::Believe::Internal::Type::Union
 
         Variants =
           T.type_alias do
             T.any(
-              Believe::TeamMemberCreateParams::Member::Player,
-              Believe::TeamMemberCreateParams::Member::Coach,
-              Believe::TeamMemberCreateParams::Member::MedicalStaff,
-              Believe::TeamMemberCreateParams::Member::EquipmentManager
+              ::Believe::TeamMemberCreateParams::Member::Player,
+              ::Believe::TeamMemberCreateParams::Member::Coach,
+              ::Believe::TeamMemberCreateParams::Member::MedicalStaff,
+              ::Believe::TeamMemberCreateParams::Member::EquipmentManager
             )
           end
 
-        class Player < Believe::Internal::Type::BaseModel
+        class Player < ::Believe::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                Believe::TeamMemberCreateParams::Member::Player,
-                Believe::Internal::AnyHash
+                ::Believe::TeamMemberCreateParams::Member::Player,
+                ::Believe::Internal::AnyHash
               )
             end
 
@@ -92,7 +92,7 @@ module Believe
           attr_accessor :jersey_number
 
           # Playing position on the field
-          sig { returns(Believe::Position::OrSymbol) }
+          sig { returns(::Believe::Position::OrSymbol) }
           attr_accessor :position
 
           # ID of the team they belong to
@@ -128,7 +128,7 @@ module Believe
           sig do
             returns(
               T.nilable(
-                Believe::TeamMemberCreateParams::Member::Player::MemberType::OrSymbol
+                ::Believe::TeamMemberCreateParams::Member::Player::MemberType::OrSymbol
               )
             )
           end
@@ -137,7 +137,7 @@ module Believe
           sig do
             params(
               member_type:
-                Believe::TeamMemberCreateParams::Member::Player::MemberType::OrSymbol
+                ::Believe::TeamMemberCreateParams::Member::Player::MemberType::OrSymbol
             ).void
           end
           attr_writer :member_type
@@ -147,14 +147,14 @@ module Believe
             params(
               character_id: String,
               jersey_number: Integer,
-              position: Believe::Position::OrSymbol,
+              position: ::Believe::Position::OrSymbol,
               team_id: String,
               years_with_team: Integer,
               assists: Integer,
               goals_scored: Integer,
               is_captain: T::Boolean,
               member_type:
-                Believe::TeamMemberCreateParams::Member::Player::MemberType::OrSymbol
+                ::Believe::TeamMemberCreateParams::Member::Player::MemberType::OrSymbol
             ).returns(T.attached_class)
           end
           def self.new(
@@ -184,14 +184,14 @@ module Believe
               {
                 character_id: String,
                 jersey_number: Integer,
-                position: Believe::Position::OrSymbol,
+                position: ::Believe::Position::OrSymbol,
                 team_id: String,
                 years_with_team: Integer,
                 assists: Integer,
                 goals_scored: Integer,
                 is_captain: T::Boolean,
                 member_type:
-                  Believe::TeamMemberCreateParams::Member::Player::MemberType::OrSymbol
+                  ::Believe::TeamMemberCreateParams::Member::Player::MemberType::OrSymbol
               }
             )
           end
@@ -200,13 +200,13 @@ module Believe
 
           # Discriminator field indicating this is a player
           module MemberType
-            extend Believe::Internal::Type::Enum
+            extend ::Believe::Internal::Type::Enum
 
             TaggedSymbol =
               T.type_alias do
                 T.all(
                   Symbol,
-                  Believe::TeamMemberCreateParams::Member::Player::MemberType
+                  ::Believe::TeamMemberCreateParams::Member::Player::MemberType
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -214,13 +214,13 @@ module Believe
             PLAYER =
               T.let(
                 :player,
-                Believe::TeamMemberCreateParams::Member::Player::MemberType::TaggedSymbol
+                ::Believe::TeamMemberCreateParams::Member::Player::MemberType::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  Believe::TeamMemberCreateParams::Member::Player::MemberType::TaggedSymbol
+                  ::Believe::TeamMemberCreateParams::Member::Player::MemberType::TaggedSymbol
                 ]
               )
             end
@@ -229,12 +229,12 @@ module Believe
           end
         end
 
-        class Coach < Believe::Internal::Type::BaseModel
+        class Coach < ::Believe::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                Believe::TeamMemberCreateParams::Member::Coach,
-                Believe::Internal::AnyHash
+                ::Believe::TeamMemberCreateParams::Member::Coach,
+                ::Believe::Internal::AnyHash
               )
             end
 
@@ -243,7 +243,7 @@ module Believe
           attr_accessor :character_id
 
           # Coaching specialty/role
-          sig { returns(Believe::CoachSpecialty::OrSymbol) }
+          sig { returns(::Believe::CoachSpecialty::OrSymbol) }
           attr_accessor :specialty
 
           # ID of the team they belong to
@@ -265,7 +265,7 @@ module Believe
           sig do
             returns(
               T.nilable(
-                Believe::TeamMemberCreateParams::Member::Coach::MemberType::OrSymbol
+                ::Believe::TeamMemberCreateParams::Member::Coach::MemberType::OrSymbol
               )
             )
           end
@@ -274,7 +274,7 @@ module Believe
           sig do
             params(
               member_type:
-                Believe::TeamMemberCreateParams::Member::Coach::MemberType::OrSymbol
+                ::Believe::TeamMemberCreateParams::Member::Coach::MemberType::OrSymbol
             ).void
           end
           attr_writer :member_type
@@ -287,12 +287,12 @@ module Believe
           sig do
             params(
               character_id: String,
-              specialty: Believe::CoachSpecialty::OrSymbol,
+              specialty: ::Believe::CoachSpecialty::OrSymbol,
               team_id: String,
               years_with_team: Integer,
               certifications: T::Array[String],
               member_type:
-                Believe::TeamMemberCreateParams::Member::Coach::MemberType::OrSymbol,
+                ::Believe::TeamMemberCreateParams::Member::Coach::MemberType::OrSymbol,
               win_rate: T.nilable(Float)
             ).returns(T.attached_class)
           end
@@ -318,12 +318,12 @@ module Believe
             override.returns(
               {
                 character_id: String,
-                specialty: Believe::CoachSpecialty::OrSymbol,
+                specialty: ::Believe::CoachSpecialty::OrSymbol,
                 team_id: String,
                 years_with_team: Integer,
                 certifications: T::Array[String],
                 member_type:
-                  Believe::TeamMemberCreateParams::Member::Coach::MemberType::OrSymbol,
+                  ::Believe::TeamMemberCreateParams::Member::Coach::MemberType::OrSymbol,
                 win_rate: T.nilable(Float)
               }
             )
@@ -333,13 +333,13 @@ module Believe
 
           # Discriminator field indicating this is a coach
           module MemberType
-            extend Believe::Internal::Type::Enum
+            extend ::Believe::Internal::Type::Enum
 
             TaggedSymbol =
               T.type_alias do
                 T.all(
                   Symbol,
-                  Believe::TeamMemberCreateParams::Member::Coach::MemberType
+                  ::Believe::TeamMemberCreateParams::Member::Coach::MemberType
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -347,13 +347,13 @@ module Believe
             COACH =
               T.let(
                 :coach,
-                Believe::TeamMemberCreateParams::Member::Coach::MemberType::TaggedSymbol
+                ::Believe::TeamMemberCreateParams::Member::Coach::MemberType::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  Believe::TeamMemberCreateParams::Member::Coach::MemberType::TaggedSymbol
+                  ::Believe::TeamMemberCreateParams::Member::Coach::MemberType::TaggedSymbol
                 ]
               )
             end
@@ -362,12 +362,12 @@ module Believe
           end
         end
 
-        class MedicalStaff < Believe::Internal::Type::BaseModel
+        class MedicalStaff < ::Believe::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                Believe::TeamMemberCreateParams::Member::MedicalStaff,
-                Believe::Internal::AnyHash
+                ::Believe::TeamMemberCreateParams::Member::MedicalStaff,
+                ::Believe::Internal::AnyHash
               )
             end
 
@@ -376,7 +376,7 @@ module Believe
           attr_accessor :character_id
 
           # Medical specialty
-          sig { returns(Believe::MedicalSpecialty::OrSymbol) }
+          sig { returns(::Believe::MedicalSpecialty::OrSymbol) }
           attr_accessor :specialty
 
           # ID of the team they belong to
@@ -395,7 +395,7 @@ module Believe
           sig do
             returns(
               T.nilable(
-                Believe::TeamMemberCreateParams::Member::MedicalStaff::MemberType::OrSymbol
+                ::Believe::TeamMemberCreateParams::Member::MedicalStaff::MemberType::OrSymbol
               )
             )
           end
@@ -404,7 +404,7 @@ module Believe
           sig do
             params(
               member_type:
-                Believe::TeamMemberCreateParams::Member::MedicalStaff::MemberType::OrSymbol
+                ::Believe::TeamMemberCreateParams::Member::MedicalStaff::MemberType::OrSymbol
             ).void
           end
           attr_writer :member_type
@@ -420,12 +420,12 @@ module Believe
           sig do
             params(
               character_id: String,
-              specialty: Believe::MedicalSpecialty::OrSymbol,
+              specialty: ::Believe::MedicalSpecialty::OrSymbol,
               team_id: String,
               years_with_team: Integer,
               license_number: T.nilable(String),
               member_type:
-                Believe::TeamMemberCreateParams::Member::MedicalStaff::MemberType::OrSymbol,
+                ::Believe::TeamMemberCreateParams::Member::MedicalStaff::MemberType::OrSymbol,
               qualifications: T::Array[String]
             ).returns(T.attached_class)
           end
@@ -451,12 +451,12 @@ module Believe
             override.returns(
               {
                 character_id: String,
-                specialty: Believe::MedicalSpecialty::OrSymbol,
+                specialty: ::Believe::MedicalSpecialty::OrSymbol,
                 team_id: String,
                 years_with_team: Integer,
                 license_number: T.nilable(String),
                 member_type:
-                  Believe::TeamMemberCreateParams::Member::MedicalStaff::MemberType::OrSymbol,
+                  ::Believe::TeamMemberCreateParams::Member::MedicalStaff::MemberType::OrSymbol,
                 qualifications: T::Array[String]
               }
             )
@@ -466,13 +466,13 @@ module Believe
 
           # Discriminator field indicating this is medical staff
           module MemberType
-            extend Believe::Internal::Type::Enum
+            extend ::Believe::Internal::Type::Enum
 
             TaggedSymbol =
               T.type_alias do
                 T.all(
                   Symbol,
-                  Believe::TeamMemberCreateParams::Member::MedicalStaff::MemberType
+                  ::Believe::TeamMemberCreateParams::Member::MedicalStaff::MemberType
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -480,13 +480,13 @@ module Believe
             MEDICAL_STAFF =
               T.let(
                 :medical_staff,
-                Believe::TeamMemberCreateParams::Member::MedicalStaff::MemberType::TaggedSymbol
+                ::Believe::TeamMemberCreateParams::Member::MedicalStaff::MemberType::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  Believe::TeamMemberCreateParams::Member::MedicalStaff::MemberType::TaggedSymbol
+                  ::Believe::TeamMemberCreateParams::Member::MedicalStaff::MemberType::TaggedSymbol
                 ]
               )
             end
@@ -495,12 +495,12 @@ module Believe
           end
         end
 
-        class EquipmentManager < Believe::Internal::Type::BaseModel
+        class EquipmentManager < ::Believe::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                Believe::TeamMemberCreateParams::Member::EquipmentManager,
-                Believe::Internal::AnyHash
+                ::Believe::TeamMemberCreateParams::Member::EquipmentManager,
+                ::Believe::Internal::AnyHash
               )
             end
 
@@ -527,7 +527,7 @@ module Believe
           sig do
             returns(
               T.nilable(
-                Believe::TeamMemberCreateParams::Member::EquipmentManager::MemberType::OrSymbol
+                ::Believe::TeamMemberCreateParams::Member::EquipmentManager::MemberType::OrSymbol
               )
             )
           end
@@ -536,7 +536,7 @@ module Believe
           sig do
             params(
               member_type:
-                Believe::TeamMemberCreateParams::Member::EquipmentManager::MemberType::OrSymbol
+                ::Believe::TeamMemberCreateParams::Member::EquipmentManager::MemberType::OrSymbol
             ).void
           end
           attr_writer :member_type
@@ -556,7 +556,7 @@ module Believe
               years_with_team: Integer,
               is_head_kitman: T::Boolean,
               member_type:
-                Believe::TeamMemberCreateParams::Member::EquipmentManager::MemberType::OrSymbol,
+                ::Believe::TeamMemberCreateParams::Member::EquipmentManager::MemberType::OrSymbol,
               responsibilities: T::Array[String]
             ).returns(T.attached_class)
           end
@@ -584,7 +584,7 @@ module Believe
                 years_with_team: Integer,
                 is_head_kitman: T::Boolean,
                 member_type:
-                  Believe::TeamMemberCreateParams::Member::EquipmentManager::MemberType::OrSymbol,
+                  ::Believe::TeamMemberCreateParams::Member::EquipmentManager::MemberType::OrSymbol,
                 responsibilities: T::Array[String]
               }
             )
@@ -594,13 +594,13 @@ module Believe
 
           # Discriminator field indicating this is an equipment manager
           module MemberType
-            extend Believe::Internal::Type::Enum
+            extend ::Believe::Internal::Type::Enum
 
             TaggedSymbol =
               T.type_alias do
                 T.all(
                   Symbol,
-                  Believe::TeamMemberCreateParams::Member::EquipmentManager::MemberType
+                  ::Believe::TeamMemberCreateParams::Member::EquipmentManager::MemberType
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -608,13 +608,13 @@ module Believe
             EQUIPMENT_MANAGER =
               T.let(
                 :equipment_manager,
-                Believe::TeamMemberCreateParams::Member::EquipmentManager::MemberType::TaggedSymbol
+                ::Believe::TeamMemberCreateParams::Member::EquipmentManager::MemberType::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  Believe::TeamMemberCreateParams::Member::EquipmentManager::MemberType::TaggedSymbol
+                  ::Believe::TeamMemberCreateParams::Member::EquipmentManager::MemberType::TaggedSymbol
                 ]
               )
             end
@@ -625,7 +625,7 @@ module Believe
 
         sig do
           override.returns(
-            T::Array[Believe::TeamMemberCreateParams::Member::Variants]
+            T::Array[::Believe::TeamMemberCreateParams::Member::Variants]
           )
         end
         def self.variants

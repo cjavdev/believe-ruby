@@ -2,10 +2,10 @@
 
 module Believe
   module Models
-    # @see Believe::Resources::Teams#update
-    class TeamUpdateParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    # @see ::Believe::Resources::Teams#update
+    class TeamUpdateParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       # @!attribute team_id
       #
@@ -15,7 +15,7 @@ module Believe
       # @!attribute annual_budget_gbp
       #
       #   @return [Float, String, nil]
-      optional :annual_budget_gbp, union: -> { Believe::TeamUpdateParams::AnnualBudgetGbp }, nil?: true
+      optional :annual_budget_gbp, union: -> { ::Believe::TeamUpdateParams::AnnualBudgetGbp }, nil?: true
 
       # @!attribute average_attendance
       #
@@ -40,13 +40,13 @@ module Believe
       # @!attribute is_active
       #
       #   @return [Boolean, nil]
-      optional :is_active, Believe::Internal::Type::Boolean, nil?: true
+      optional :is_active, ::Believe::Internal::Type::Boolean, nil?: true
 
       # @!attribute league
       #   Football leagues.
       #
-      #   @return [Symbol, Believe::Models::League, nil]
-      optional :league, enum: -> { Believe::League }, nil?: true
+      #   @return [Symbol, ::Believe::Models::League, nil]
+      optional :league, enum: -> { ::Believe::League }, nil?: true
 
       # @!attribute name
       #
@@ -66,7 +66,7 @@ module Believe
       # @!attribute rival_teams
       #
       #   @return [Array<String>, nil]
-      optional :rival_teams, Believe::Internal::Type::ArrayOf[String], nil?: true
+      optional :rival_teams, ::Believe::Internal::Type::ArrayOf[String], nil?: true
 
       # @!attribute secondary_color
       #
@@ -81,14 +81,14 @@ module Believe
       # @!attribute stadium_location
       #   Geographic coordinates for a location.
       #
-      #   @return [Believe::Models::GeoLocation, nil]
-      optional :stadium_location, -> { Believe::GeoLocation }, nil?: true
+      #   @return [::Believe::Models::GeoLocation, nil]
+      optional :stadium_location, -> { ::Believe::GeoLocation }, nil?: true
 
       # @!attribute values
       #   Core values that define a team's culture.
       #
-      #   @return [Believe::Models::TeamValues, nil]
-      optional :values, -> { Believe::TeamValues }, nil?: true
+      #   @return [::Believe::Models::TeamValues, nil]
+      optional :values, -> { ::Believe::TeamValues }, nil?: true
 
       # @!attribute website
       #
@@ -115,7 +115,7 @@ module Believe
       #
       #   @param is_active [Boolean, nil]
       #
-      #   @param league [Symbol, Believe::Models::League, nil] Football leagues.
+      #   @param league [Symbol, ::Believe::Models::League, nil] Football leagues.
       #
       #   @param name [String, nil]
       #
@@ -129,18 +129,18 @@ module Believe
       #
       #   @param stadium [String, nil]
       #
-      #   @param stadium_location [Believe::Models::GeoLocation, nil] Geographic coordinates for a location.
+      #   @param stadium_location [::Believe::Models::GeoLocation, nil] Geographic coordinates for a location.
       #
-      #   @param values [Believe::Models::TeamValues, nil] Core values that define a team's culture.
+      #   @param values [::Believe::Models::TeamValues, nil] Core values that define a team's culture.
       #
       #   @param website [String, nil]
       #
       #   @param win_percentage [Float, nil]
       #
-      #   @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}]
+      #   @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}]
 
       module AnnualBudgetGbp
-        extend Believe::Internal::Type::Union
+        extend ::Believe::Internal::Type::Union
 
         variant Float
 

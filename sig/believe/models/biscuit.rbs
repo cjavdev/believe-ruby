@@ -6,11 +6,11 @@ module Believe
         message: String,
         pairs_well_with: String,
         ted_note: String,
-        type: Believe::Models::Biscuit::type_,
+        type: ::Believe::Models::Biscuit::type_,
         warmth_level: Integer
       }
 
-    class Biscuit < Believe::Internal::Type::BaseModel
+    class Biscuit < ::Believe::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor message: String
@@ -19,7 +19,7 @@ module Believe
 
       attr_accessor ted_note: String
 
-      attr_accessor type: Believe::Models::Biscuit::type_
+      attr_accessor type: ::Believe::Models::Biscuit::type_
 
       attr_accessor warmth_level: Integer
 
@@ -28,7 +28,7 @@ module Believe
         message: String,
         pairs_well_with: String,
         ted_note: String,
-        type: Believe::Models::Biscuit::type_,
+        type: ::Believe::Models::Biscuit::type_,
         warmth_level: Integer
       ) -> void
 
@@ -37,7 +37,7 @@ module Believe
         message: String,
         pairs_well_with: String,
         ted_note: String,
-        type: Believe::Models::Biscuit::type_,
+        type: ::Believe::Models::Biscuit::type_,
         warmth_level: Integer
       }
 
@@ -50,7 +50,7 @@ module Believe
         | :lemon_drizzle
 
       module Type
-        extend Believe::Internal::Type::Enum
+        extend ::Believe::Internal::Type::Enum
 
         CLASSIC: :classic
         SHORTBREAD: :shortbread
@@ -59,7 +59,7 @@ module Believe
         SNICKERDOODLE: :snickerdoodle
         LEMON_DRIZZLE: :lemon_drizzle
 
-        def self?.values: -> ::Array[Believe::Models::Biscuit::type_]
+        def self?.values: -> ::Array[::Believe::Models::Biscuit::type_]
       end
     end
   end

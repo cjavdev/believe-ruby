@@ -6,14 +6,14 @@ module Believe
         currency: String?,
         limit: Integer,
         match_id: String?,
-        purchase_method: Believe::Models::purchase_method?,
+        purchase_method: ::Believe::Models::purchase_method?,
         skip: Integer
       }
-      & Believe::Internal::Type::request_parameters
+      & ::Believe::Internal::Type::request_parameters
 
-    class TicketSaleListParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class TicketSaleListParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       attr_accessor coupon_code: String?
 
@@ -25,7 +25,7 @@ module Believe
 
       attr_accessor match_id: String?
 
-      attr_accessor purchase_method: Believe::Models::purchase_method?
+      attr_accessor purchase_method: ::Believe::Models::purchase_method?
 
       attr_reader skip: Integer?
 
@@ -36,9 +36,9 @@ module Believe
         ?currency: String?,
         ?limit: Integer,
         ?match_id: String?,
-        ?purchase_method: Believe::Models::purchase_method?,
+        ?purchase_method: ::Believe::Models::purchase_method?,
         ?skip: Integer,
-        ?request_options: Believe::request_opts
+        ?request_options: ::Believe::request_opts
       ) -> void
 
       def to_hash: -> {
@@ -46,9 +46,9 @@ module Believe
         currency: String?,
         limit: Integer,
         match_id: String?,
-        purchase_method: Believe::Models::purchase_method?,
+        purchase_method: ::Believe::Models::purchase_method?,
         skip: Integer,
-        request_options: Believe::RequestOptions
+        request_options: ::Believe::RequestOptions
       }
     end
   end

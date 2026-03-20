@@ -2,13 +2,13 @@
 
 module Believe
   module Models
-    # @see Believe::Resources::Webhooks#create
-    class WebhookCreateResponse < Believe::Internal::Type::BaseModel
+    # @see ::Believe::Resources::Webhooks#create
+    class WebhookCreateResponse < ::Believe::Internal::Type::BaseModel
       # @!attribute webhook
       #   The registered webhook details
       #
-      #   @return [Believe::Models::RegisteredWebhook]
-      required :webhook, -> { Believe::RegisteredWebhook }
+      #   @return [::Believe::Models::RegisteredWebhook]
+      required :webhook, -> { ::Believe::RegisteredWebhook }
 
       # @!attribute message
       #   Status message
@@ -25,7 +25,7 @@ module Believe
       # @!method initialize(webhook:, message: nil, ted_says: nil)
       #   Response after registering a webhook.
       #
-      #   @param webhook [Believe::Models::RegisteredWebhook] The registered webhook details
+      #   @param webhook [::Believe::Models::RegisteredWebhook] The registered webhook details
       #
       #   @param message [String] Status message
       #

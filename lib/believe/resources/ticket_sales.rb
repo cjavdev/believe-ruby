@@ -17,7 +17,7 @@ module Believe
       #
       # @param match_id [String] ID of the match
       #
-      # @param purchase_method [Symbol, Believe::Models::PurchaseMethod] How the ticket was purchased
+      # @param purchase_method [Symbol, ::Believe::Models::PurchaseMethod] How the ticket was purchased
       #
       # @param quantity [Integer] Number of tickets purchased
       #
@@ -33,18 +33,18 @@ module Believe
       #
       # @param coupon_code [String, nil] Coupon code applied, if any
       #
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Models::TicketSale]
+      # @return [::Believe::Models::TicketSale]
       #
-      # @see Believe::Models::TicketSaleCreateParams
+      # @see ::Believe::Models::TicketSaleCreateParams
       def create(params)
-        parsed, options = Believe::TicketSaleCreateParams.dump_request(params)
+        parsed, options = ::Believe::TicketSaleCreateParams.dump_request(params)
         @client.request(
           method: :post,
           path: "ticket-sales",
           body: parsed,
-          model: Believe::TicketSale,
+          model: ::Believe::TicketSale,
           options: options
         )
       end
@@ -54,16 +54,16 @@ module Believe
       # @overload retrieve(ticket_sale_id, request_options: {})
       #
       # @param ticket_sale_id [String]
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Models::TicketSale]
+      # @return [::Believe::Models::TicketSale]
       #
-      # @see Believe::Models::TicketSaleRetrieveParams
+      # @see ::Believe::Models::TicketSaleRetrieveParams
       def retrieve(ticket_sale_id, params = {})
         @client.request(
           method: :get,
           path: ["ticket-sales/%1$s", ticket_sale_id],
-          model: Believe::TicketSale,
+          model: ::Believe::TicketSale,
           options: params[:request_options]
         )
       end
@@ -86,7 +86,7 @@ module Believe
       #
       # @param match_id [String, nil]
       #
-      # @param purchase_method [Symbol, Believe::Models::PurchaseMethod, nil] How the ticket was purchased.
+      # @param purchase_method [Symbol, ::Believe::Models::PurchaseMethod, nil] How the ticket was purchased.
       #
       # @param quantity [Integer, nil]
       #
@@ -98,18 +98,18 @@ module Believe
       #
       # @param unit_price [String, nil]
       #
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Models::TicketSale]
+      # @return [::Believe::Models::TicketSale]
       #
-      # @see Believe::Models::TicketSaleUpdateParams
+      # @see ::Believe::Models::TicketSaleUpdateParams
       def update(ticket_sale_id, params = {})
-        parsed, options = Believe::TicketSaleUpdateParams.dump_request(params)
+        parsed, options = ::Believe::TicketSaleUpdateParams.dump_request(params)
         @client.request(
           method: :patch,
           path: ["ticket-sales/%1$s", ticket_sale_id],
           body: parsed,
-          model: Believe::TicketSale,
+          model: ::Believe::TicketSale,
           options: options
         )
       end
@@ -127,24 +127,24 @@ module Believe
       #
       # @param match_id [String, nil] Filter by match ID
       #
-      # @param purchase_method [Symbol, Believe::Models::PurchaseMethod, nil] Filter by purchase method
+      # @param purchase_method [Symbol, ::Believe::Models::PurchaseMethod, nil] Filter by purchase method
       #
       # @param skip [Integer] Number of items to skip (offset)
       #
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Internal::SkipLimitPage<Believe::Models::TicketSale>]
+      # @return [::Believe::Internal::SkipLimitPage<::Believe::Models::TicketSale>]
       #
-      # @see Believe::Models::TicketSaleListParams
+      # @see ::Believe::Models::TicketSaleListParams
       def list(params = {})
-        parsed, options = Believe::TicketSaleListParams.dump_request(params)
-        query = Believe::Internal::Util.encode_query_params(parsed)
+        parsed, options = ::Believe::TicketSaleListParams.dump_request(params)
+        query = ::Believe::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "ticket-sales",
           query: query,
-          page: Believe::Internal::SkipLimitPage,
-          model: Believe::TicketSale,
+          page: ::Believe::Internal::SkipLimitPage,
+          model: ::Believe::TicketSale,
           options: options
         )
       end
@@ -154,11 +154,11 @@ module Believe
       # @overload delete(ticket_sale_id, request_options: {})
       #
       # @param ticket_sale_id [String]
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [nil]
       #
-      # @see Believe::Models::TicketSaleDeleteParams
+      # @see ::Believe::Models::TicketSaleDeleteParams
       def delete(ticket_sale_id, params = {})
         @client.request(
           method: :delete,
@@ -170,7 +170,7 @@ module Believe
 
       # @api private
       #
-      # @param client [Believe::Client]
+      # @param client [::Believe::Client]
       def initialize(client:)
         @client = client
       end

@@ -2,20 +2,20 @@
 
 module Believe
   module Models
-    class WebhookCreateResponse < Believe::Internal::Type::BaseModel
+    class WebhookCreateResponse < ::Believe::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
           T.any(
-            Believe::Models::WebhookCreateResponse,
-            Believe::Internal::AnyHash
+            ::Believe::Models::WebhookCreateResponse,
+            ::Believe::Internal::AnyHash
           )
         end
 
       # The registered webhook details
-      sig { returns(Believe::RegisteredWebhook) }
+      sig { returns(::Believe::RegisteredWebhook) }
       attr_reader :webhook
 
-      sig { params(webhook: Believe::RegisteredWebhook::OrHash).void }
+      sig { params(webhook: ::Believe::RegisteredWebhook::OrHash).void }
       attr_writer :webhook
 
       # Status message
@@ -35,7 +35,7 @@ module Believe
       # Response after registering a webhook.
       sig do
         params(
-          webhook: Believe::RegisteredWebhook::OrHash,
+          webhook: ::Believe::RegisteredWebhook::OrHash,
           message: String,
           ted_says: String
         ).returns(T.attached_class)
@@ -53,7 +53,7 @@ module Believe
       sig do
         override.returns(
           {
-            webhook: Believe::RegisteredWebhook,
+            webhook: ::Believe::RegisteredWebhook,
             message: String,
             ted_says: String
           }

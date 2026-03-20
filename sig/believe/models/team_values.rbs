@@ -7,7 +7,7 @@ module Believe
         team_motto: String
       }
 
-    class TeamValues < Believe::Internal::Type::BaseModel
+    class TeamValues < ::Believe::Internal::Type::BaseModel
       attr_accessor primary_value: String
 
       attr_accessor secondary_values: ::Array[String]

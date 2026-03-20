@@ -5,7 +5,7 @@ module Believe
     # Operations related to football teams
     class Teams
       # Operations related to football teams
-      sig { returns(Believe::Resources::Teams::Logo) }
+      sig { returns(::Believe::Resources::Teams::Logo) }
       attr_reader :logo
 
       # Add a new team to the league.
@@ -13,12 +13,12 @@ module Believe
         params(
           culture_score: Integer,
           founded_year: Integer,
-          league: Believe::League::OrSymbol,
+          league: ::Believe::League::OrSymbol,
           name: String,
           stadium: String,
-          values: Believe::TeamValues::OrHash,
+          values: ::Believe::TeamValues::OrHash,
           annual_budget_gbp:
-            T.nilable(Believe::TeamCreateParams::AnnualBudgetGbp::Variants),
+            T.nilable(::Believe::TeamCreateParams::AnnualBudgetGbp::Variants),
           average_attendance: T.nilable(Float),
           contact_email: T.nilable(String),
           is_active: T::Boolean,
@@ -26,11 +26,11 @@ module Believe
           primary_color: T.nilable(String),
           rival_teams: T::Array[String],
           secondary_color: T.nilable(String),
-          stadium_location: T.nilable(Believe::GeoLocation::OrHash),
+          stadium_location: T.nilable(::Believe::GeoLocation::OrHash),
           website: T.nilable(String),
           win_percentage: T.nilable(Float),
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::Team)
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::Team)
       end
       def create(
         # Team culture/morale score (0-100)
@@ -75,8 +75,8 @@ module Believe
       sig do
         params(
           team_id: String,
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::Team)
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::Team)
       end
       def retrieve(team_id, request_options: {})
       end
@@ -86,25 +86,25 @@ module Believe
         params(
           team_id: String,
           annual_budget_gbp:
-            T.nilable(Believe::TeamUpdateParams::AnnualBudgetGbp::Variants),
+            T.nilable(::Believe::TeamUpdateParams::AnnualBudgetGbp::Variants),
           average_attendance: T.nilable(Float),
           contact_email: T.nilable(String),
           culture_score: T.nilable(Integer),
           founded_year: T.nilable(Integer),
           is_active: T.nilable(T::Boolean),
-          league: T.nilable(Believe::League::OrSymbol),
+          league: T.nilable(::Believe::League::OrSymbol),
           name: T.nilable(String),
           nickname: T.nilable(String),
           primary_color: T.nilable(String),
           rival_teams: T.nilable(T::Array[String]),
           secondary_color: T.nilable(String),
           stadium: T.nilable(String),
-          stadium_location: T.nilable(Believe::GeoLocation::OrHash),
-          values: T.nilable(Believe::TeamValues::OrHash),
+          stadium_location: T.nilable(::Believe::GeoLocation::OrHash),
+          values: T.nilable(::Believe::TeamValues::OrHash),
           website: T.nilable(String),
           win_percentage: T.nilable(Float),
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::Team)
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::Team)
       end
       def update(
         team_id,
@@ -136,12 +136,12 @@ module Believe
       # score.
       sig do
         params(
-          league: T.nilable(Believe::League::OrSymbol),
+          league: T.nilable(::Believe::League::OrSymbol),
           limit: Integer,
           min_culture_score: T.nilable(Integer),
           skip: Integer,
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::Internal::SkipLimitPage[Believe::Team])
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::Internal::SkipLimitPage[::Believe::Team])
       end
       def list(
         # Filter by league
@@ -160,7 +160,7 @@ module Believe
       sig do
         params(
           team_id: String,
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).void
       end
       def delete(team_id, request_options: {})
@@ -170,7 +170,7 @@ module Believe
       sig do
         params(
           team_id: String,
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).returns(T::Hash[Symbol, T.anything])
       end
       def get_culture(team_id, request_options: {})
@@ -180,8 +180,8 @@ module Believe
       sig do
         params(
           team_id: String,
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(T::Array[Believe::Team])
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(T::Array[::Believe::Team])
       end
       def get_rivals(team_id, request_options: {})
       end
@@ -190,14 +190,14 @@ module Believe
       sig do
         params(
           team_id: String,
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(T::Array[Believe::Teams::FileUpload])
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(T::Array[::Believe::Teams::FileUpload])
       end
       def list_logos(team_id, request_options: {})
       end
 
       # @api private
-      sig { params(client: Believe::Client).returns(T.attached_class) }
+      sig { params(client: ::Believe::Client).returns(T.attached_class) }
       def self.new(client:)
       end
     end

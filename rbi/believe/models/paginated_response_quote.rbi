@@ -2,13 +2,13 @@
 
 module Believe
   module Models
-    class PaginatedResponseQuote < Believe::Internal::Type::BaseModel
+    class PaginatedResponseQuote < ::Believe::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
-          T.any(Believe::PaginatedResponseQuote, Believe::Internal::AnyHash)
+          T.any(::Believe::PaginatedResponseQuote, ::Believe::Internal::AnyHash)
         end
 
-      sig { returns(T::Array[Believe::Quote]) }
+      sig { returns(T::Array[::Believe::Quote]) }
       attr_accessor :data
 
       sig { returns(Integer) }
@@ -34,7 +34,7 @@ module Believe
 
       sig do
         params(
-          data: T::Array[Believe::Quote::OrHash],
+          data: T::Array[::Believe::Quote::OrHash],
           has_more: T::Boolean,
           limit: Integer,
           page: Integer,
@@ -60,7 +60,7 @@ module Believe
       sig do
         override.returns(
           {
-            data: T::Array[Believe::Quote],
+            data: T::Array[::Believe::Quote],
             has_more: T::Boolean,
             limit: Integer,
             page: Integer,

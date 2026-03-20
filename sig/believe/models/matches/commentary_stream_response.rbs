@@ -1,7 +1,7 @@
 module Believe
   module Models
     module Matches
-      CommentaryStreamResponse: Believe::Internal::Type::Converter
+      CommentaryStreamResponse: ::Believe::Internal::Type::Converter
     end
   end
 end

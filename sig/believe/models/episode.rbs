@@ -20,7 +20,7 @@ module Believe
         viewer_rating: Float?
       }
 
-    class Episode < Believe::Internal::Type::BaseModel
+    class Episode < ::Believe::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor air_date: Date

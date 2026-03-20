@@ -2,12 +2,12 @@
 
 module Believe
   module Models
-    class ConflictResolveResponse < Believe::Internal::Type::BaseModel
+    class ConflictResolveResponse < ::Believe::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
           T.any(
-            Believe::Models::ConflictResolveResponse,
-            Believe::Internal::AnyHash
+            ::Believe::Models::ConflictResolveResponse,
+            ::Believe::Internal::AnyHash
           )
         end
 

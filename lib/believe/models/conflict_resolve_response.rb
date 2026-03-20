@@ -2,8 +2,8 @@
 
 module Believe
   module Models
-    # @see Believe::Resources::Conflicts#resolve
-    class ConflictResolveResponse < Believe::Internal::Type::BaseModel
+    # @see ::Believe::Resources::Conflicts#resolve
+    class ConflictResolveResponse < ::Believe::Internal::Type::BaseModel
       # @!attribute barbecue_sauce_wisdom
       #   A folksy metaphor to remember
       #
@@ -32,7 +32,7 @@ module Believe
       #   Concrete steps to resolve the conflict
       #
       #   @return [Array<String>]
-      required :steps_to_resolution, Believe::Internal::Type::ArrayOf[String]
+      required :steps_to_resolution, ::Believe::Internal::Type::ArrayOf[String]
 
       # @!attribute ted_approach
       #   How Ted would handle this

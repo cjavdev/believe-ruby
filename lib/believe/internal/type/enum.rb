@@ -17,13 +17,13 @@ module Believe
       # values safely.
       #
       # @example
-      #   # `character_role` is a `Believe::CharacterRole`
+      #   # `character_role` is a `::Believe::CharacterRole`
       #   case character_role
-      #   when Believe::CharacterRole::COACH
+      #   when ::Believe::CharacterRole::COACH
       #     # ...
-      #   when Believe::CharacterRole::PLAYER
+      #   when ::Believe::CharacterRole::PLAYER
       #     # ...
-      #   when Believe::CharacterRole::OWNER
+      #   when ::Believe::CharacterRole::OWNER
       #     # ...
       #   else
       #     puts(character_role)
@@ -41,8 +41,8 @@ module Believe
       #     puts(character_role)
       #   end
       module Enum
-        include Believe::Internal::Type::Converter
-        include Believe::Internal::Util::SorbetRuntimeSupport
+        include ::Believe::Internal::Type::Converter
+        include ::Believe::Internal::Util::SorbetRuntimeSupport
 
         # All of the valid Symbol values for this enum.
         #
@@ -63,7 +63,7 @@ module Believe
         # @return [Boolean]
         def ==(other)
           # rubocop:disable Style/CaseEquality
-          Believe::Internal::Type::Enum === other && other.values.to_set == values.to_set
+          ::Believe::Internal::Type::Enum === other && other.values.to_set == values.to_set
           # rubocop:enable Style/CaseEquality
         end
 
@@ -124,7 +124,7 @@ module Believe
         #
         # @return [Object]
         def to_sorbet_type
-          types = values.map { Believe::Internal::Util::SorbetRuntimeSupport.to_sorbet_type(_1) }.uniq
+          types = values.map { ::Believe::Internal::Util::SorbetRuntimeSupport.to_sorbet_type(_1) }.uniq
           case types
           in []
             T.noreturn
@@ -145,7 +145,7 @@ module Believe
             return is_a?(Module) ? super() : self.class.name
           end
 
-          members = values.map { Believe::Internal::Type::Converter.inspect(_1, depth: depth.succ) }
+          members = values.map { ::Believe::Internal::Type::Converter.inspect(_1, depth: depth.succ) }
           prefix = is_a?(Module) ? name : self.class.name
 
           "#{prefix}[#{members.join(' | ')}]"

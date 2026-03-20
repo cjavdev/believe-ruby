@@ -2,8 +2,8 @@ module Believe
   module Internal
     module Type
       class Unknown
-        extend Believe::Internal::Type::Converter
-        extend Believe::Internal::Util::SorbetRuntimeSupport
+        extend ::Believe::Internal::Type::Converter
+        extend ::Believe::Internal::Util::SorbetRuntimeSupport
 
         def self.===: (top other) -> bool
 
@@ -11,12 +11,12 @@ module Believe
 
         def self.coerce: (
           top value,
-          state: Believe::Internal::Type::Converter::coerce_state
+          state: ::Believe::Internal::Type::Converter::coerce_state
         ) -> top
 
         def self.dump: (
           top value,
-          state: Believe::Internal::Type::Converter::dump_state
+          state: ::Believe::Internal::Type::Converter::dump_state
         ) -> top
 
         def self.to_sorbet_type: -> top

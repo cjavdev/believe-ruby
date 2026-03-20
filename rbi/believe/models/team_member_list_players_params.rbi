@@ -2,15 +2,15 @@
 
 module Believe
   module Models
-    class TeamMemberListPlayersParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class TeamMemberListPlayersParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
           T.any(
-            Believe::TeamMemberListPlayersParams,
-            Believe::Internal::AnyHash
+            ::Believe::TeamMemberListPlayersParams,
+            ::Believe::Internal::AnyHash
           )
         end
 
@@ -22,7 +22,7 @@ module Believe
       attr_writer :limit
 
       # Filter by position
-      sig { returns(T.nilable(Believe::Position::OrSymbol)) }
+      sig { returns(T.nilable(::Believe::Position::OrSymbol)) }
       attr_accessor :position
 
       # Number of items to skip (offset)
@@ -39,10 +39,10 @@ module Believe
       sig do
         params(
           limit: Integer,
-          position: T.nilable(Believe::Position::OrSymbol),
+          position: T.nilable(::Believe::Position::OrSymbol),
           skip: Integer,
           team_id: T.nilable(String),
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
@@ -62,10 +62,10 @@ module Believe
         override.returns(
           {
             limit: Integer,
-            position: T.nilable(Believe::Position::OrSymbol),
+            position: T.nilable(::Believe::Position::OrSymbol),
             skip: Integer,
             team_id: T.nilable(String),
-            request_options: Believe::RequestOptions
+            request_options: ::Believe::RequestOptions
           }
         )
       end

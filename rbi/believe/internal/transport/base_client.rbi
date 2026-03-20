@@ -5,7 +5,7 @@ module Believe
     module Transport
       # @api private
       class BaseClient
-        extend Believe::Internal::Util::SorbetRuntimeSupport
+        extend ::Believe::Internal::Util::SorbetRuntimeSupport
 
         abstract!
 
@@ -44,14 +44,14 @@ module Believe
               page:
                 T.nilable(
                   T::Class[
-                    Believe::Internal::Type::BasePage[
-                      Believe::Internal::Type::BaseModel
+                    ::Believe::Internal::Type::BasePage[
+                      ::Believe::Internal::Type::BaseModel
                     ]
                   ]
                 ),
               stream: T.nilable(T::Class[T.anything]),
-              model: T.nilable(Believe::Internal::Type::Converter::Input),
-              options: T.nilable(Believe::RequestOptions::OrHash)
+              model: T.nilable(::Believe::Internal::Type::Converter::Input),
+              options: T.nilable(::Believe::RequestOptions::OrHash)
             }
           end
 
@@ -76,7 +76,7 @@ module Believe
           # @api private
           sig do
             params(
-              req: Believe::Internal::Transport::BaseClient::RequestComponents
+              req: ::Believe::Internal::Transport::BaseClient::RequestComponents
             ).void
           end
           def validate!(req)
@@ -94,10 +94,10 @@ module Believe
           # @api private
           sig do
             params(
-              request: Believe::Internal::Transport::BaseClient::RequestInput,
+              request: ::Believe::Internal::Transport::BaseClient::RequestInput,
               status: Integer,
               response_headers: T::Hash[String, String]
-            ).returns(Believe::Internal::Transport::BaseClient::RequestInput)
+            ).returns(::Believe::Internal::Transport::BaseClient::RequestInput)
           end
           def follow_redirect(request, status:, response_headers:)
           end
@@ -105,7 +105,7 @@ module Believe
           # @api private
           sig do
             params(
-              status: T.any(Integer, Believe::Errors::APIConnectionError),
+              status: T.any(Integer, ::Believe::Errors::APIConnectionError),
               stream: T.nilable(T::Enumerable[String])
             ).void
           end
@@ -135,7 +135,7 @@ module Believe
         attr_reader :idempotency_header
 
         # @api private
-        sig { returns(Believe::Internal::Transport::PooledNetRequester) }
+        sig { returns(::Believe::Internal::Transport::PooledNetRequester) }
         attr_reader :requester
 
         # @api private
@@ -190,10 +190,11 @@ module Believe
         sig do
           overridable
             .params(
-              req: Believe::Internal::Transport::BaseClient::RequestComponents,
-              opts: Believe::Internal::AnyHash
+              req:
+                ::Believe::Internal::Transport::BaseClient::RequestComponents,
+              opts: ::Believe::Internal::AnyHash
             )
-            .returns(Believe::Internal::Transport::BaseClient::RequestInput)
+            .returns(::Believe::Internal::Transport::BaseClient::RequestInput)
         end
         private def build_request(req, opts)
         end
@@ -211,7 +212,7 @@ module Believe
         # @api private
         sig do
           params(
-            request: Believe::Internal::Transport::BaseClient::RequestInput,
+            request: ::Believe::Internal::Transport::BaseClient::RequestInput,
             redirect_count: Integer,
             retry_count: Integer,
             send_retry_header: T::Boolean
@@ -228,7 +229,7 @@ module Believe
         # Execute the request specified by `req`. This is the method that all resource
         # methods call into.
         #
-        # @overload request(method, path, query: {}, headers: {}, body: nil, unwrap: nil, page: nil, stream: nil, model: Believe::Internal::Type::Unknown, options: {})
+        # @overload request(method, path, query: {}, headers: {}, body: nil, unwrap: nil, page: nil, stream: nil, model: ::Believe::Internal::Type::Unknown, options: {})
         sig do
           params(
             method: Symbol,
@@ -263,14 +264,14 @@ module Believe
             page:
               T.nilable(
                 T::Class[
-                  Believe::Internal::Type::BasePage[
-                    Believe::Internal::Type::BaseModel
+                  ::Believe::Internal::Type::BasePage[
+                    ::Believe::Internal::Type::BaseModel
                   ]
                 ]
               ),
             stream: T.nilable(T::Class[T.anything]),
-            model: T.nilable(Believe::Internal::Type::Converter::Input),
-            options: T.nilable(Believe::RequestOptions::OrHash)
+            model: T.nilable(::Believe::Internal::Type::Converter::Input),
+            options: T.nilable(::Believe::RequestOptions::OrHash)
           ).returns(T.anything)
         end
         def request(
@@ -282,7 +283,7 @@ module Believe
           unwrap: nil,
           page: nil,
           stream: nil,
-          model: Believe::Internal::Type::Unknown,
+          model: ::Believe::Internal::Type::Unknown,
           options: {}
         )
         end

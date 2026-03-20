@@ -1,10 +1,14 @@
 module Believe
   module Models
     type webhook_create_response =
-      { webhook: Believe::RegisteredWebhook, message: String, ted_says: String }
+      {
+        webhook: ::Believe::RegisteredWebhook,
+        message: String,
+        ted_says: String
+      }
 
-    class WebhookCreateResponse < Believe::Internal::Type::BaseModel
-      attr_accessor webhook: Believe::RegisteredWebhook
+    class WebhookCreateResponse < ::Believe::Internal::Type::BaseModel
+      attr_accessor webhook: ::Believe::RegisteredWebhook
 
       attr_reader message: String?
 
@@ -15,13 +19,13 @@ module Believe
       def ted_says=: (String) -> String
 
       def initialize: (
-        webhook: Believe::RegisteredWebhook,
+        webhook: ::Believe::RegisteredWebhook,
         ?message: String,
         ?ted_says: String
       ) -> void
 
       def to_hash: -> {
-        webhook: Believe::RegisteredWebhook,
+        webhook: ::Believe::RegisteredWebhook,
         message: String,
         ted_says: String
       }

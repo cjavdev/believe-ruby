@@ -2,6 +2,6 @@ module Believe
   module Models
     type team_get_culture_response = ::Hash[Symbol, top]
 
-    TeamGetCultureResponse: Believe::Internal::Type::Converter
+    TeamGetCultureResponse: ::Believe::Internal::Type::Converter
   end
 end

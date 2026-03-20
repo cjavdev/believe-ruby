@@ -2,13 +2,16 @@
 
 module Believe
   module Models
-    class CharacterRetrieveParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class CharacterRetrieveParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(Believe::CharacterRetrieveParams, Believe::Internal::AnyHash)
+          T.any(
+            ::Believe::CharacterRetrieveParams,
+            ::Believe::Internal::AnyHash
+          )
         end
 
       sig { returns(String) }
@@ -17,7 +20,7 @@ module Believe
       sig do
         params(
           character_id: String,
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(character_id:, request_options: {})
@@ -25,7 +28,7 @@ module Believe
 
       sig do
         override.returns(
-          { character_id: String, request_options: Believe::RequestOptions }
+          { character_id: String, request_options: ::Believe::RequestOptions }
         )
       end
       def to_hash

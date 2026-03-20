@@ -2,7 +2,7 @@
 
 module Believe
   module Models
-    # @type [Believe::Internal::Type::Converter]
-    GetWelcomeResponse = Believe::Internal::Type::Unknown
+    # @type [::Believe::Internal::Type::Converter]
+    GetWelcomeResponse = ::Believe::Internal::Type::Unknown
   end
 end

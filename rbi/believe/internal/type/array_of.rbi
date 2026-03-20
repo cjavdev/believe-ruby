@@ -7,8 +7,8 @@ module Believe
       #
       # Array of items of a given type.
       class ArrayOf
-        include Believe::Internal::Type::Converter
-        include Believe::Internal::Util::SorbetRuntimeSupport
+        include ::Believe::Internal::Type::Converter
+        include ::Believe::Internal::Util::SorbetRuntimeSupport
 
         abstract!
 
@@ -18,11 +18,11 @@ module Believe
           params(
             type_info:
               T.any(
-                Believe::Internal::AnyHash,
-                T.proc.returns(Believe::Internal::Type::Converter::Input),
-                Believe::Internal::Type::Converter::Input
+                ::Believe::Internal::AnyHash,
+                T.proc.returns(::Believe::Internal::Type::Converter::Input),
+                ::Believe::Internal::Type::Converter::Input
               ),
-            spec: Believe::Internal::AnyHash
+            spec: ::Believe::Internal::AnyHash
           ).returns(T.attached_class)
         end
         def self.[](type_info, spec = {})
@@ -45,7 +45,7 @@ module Believe
           override
             .params(
               value: T.any(T::Array[T.anything], T.anything),
-              state: Believe::Internal::Type::Converter::CoerceState
+              state: ::Believe::Internal::Type::Converter::CoerceState
             )
             .returns(T.any(T::Array[T.anything], T.anything))
         end
@@ -57,7 +57,7 @@ module Believe
           override
             .params(
               value: T.any(T::Array[T.anything], T.anything),
-              state: Believe::Internal::Type::Converter::DumpState
+              state: ::Believe::Internal::Type::Converter::DumpState
             )
             .returns(T.any(T::Array[T.anything], T.anything))
         end
@@ -84,11 +84,11 @@ module Believe
           params(
             type_info:
               T.any(
-                Believe::Internal::AnyHash,
-                T.proc.returns(Believe::Internal::Type::Converter::Input),
-                Believe::Internal::Type::Converter::Input
+                ::Believe::Internal::AnyHash,
+                T.proc.returns(::Believe::Internal::Type::Converter::Input),
+                ::Believe::Internal::Type::Converter::Input
               ),
-            spec: Believe::Internal::AnyHash
+            spec: ::Believe::Internal::AnyHash
           ).void
         end
         def initialize(type_info, spec = {})

@@ -4,7 +4,7 @@ module Believe
   module Resources
     class Matches
       # Server-Sent Events (SSE) streaming endpoints
-      # @return [Believe::Resources::Matches::Commentary]
+      # @return [::Believe::Resources::Matches::Commentary]
       attr_reader :commentary
 
       # Schedule a new match.
@@ -17,7 +17,7 @@ module Believe
       #
       # @param home_team_id [String] Home team ID
       #
-      # @param match_type [Symbol, Believe::Models::MatchType] Type of match
+      # @param match_type [Symbol, ::Believe::Models::MatchType] Type of match
       #
       # @param attendance [Integer, nil] Match attendance
       #
@@ -31,24 +31,30 @@ module Believe
       #
       # @param possession_percentage [Float, nil] Home team possession percentage
       #
-      # @param result [Symbol, Believe::Models::MatchResult] Match result from home team perspective
+      # @param result [Symbol, ::Believe::Models::MatchResult] Match result from home team perspective
       #
       # @param ted_halftime_speech [String, nil] Ted's inspirational halftime speech
       #
       # @param ticket_revenue_gbp [Float, String, nil] Total ticket revenue in GBP
       #
-      # @param turning_points [Array<Believe::Models::TurningPoint>] Key moments that changed the match
+      # @param turning_points [Array<::Believe::Models::TurningPoint>] Key moments that changed the match
       #
       # @param weather_temp_celsius [Float, nil] Temperature at kickoff in Celsius
       #
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Models::Match]
+      # @return [::Believe::Models::Match]
       #
-      # @see Believe::Models::MatchCreateParams
+      # @see ::Believe::Models::MatchCreateParams
       def create(params)
-        parsed, options = Believe::MatchCreateParams.dump_request(params)
-        @client.request(method: :post, path: "matches", body: parsed, model: Believe::Match, options: options)
+        parsed, options = ::Believe::MatchCreateParams.dump_request(params)
+        @client.request(
+          method: :post,
+          path: "matches",
+          body: parsed,
+          model: ::Believe::Match,
+          options: options
+        )
       end
 
       # Retrieve detailed information about a specific match.
@@ -56,16 +62,16 @@ module Believe
       # @overload retrieve(match_id, request_options: {})
       #
       # @param match_id [String]
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Models::Match]
+      # @return [::Believe::Models::Match]
       #
-      # @see Believe::Models::MatchRetrieveParams
+      # @see ::Believe::Models::MatchRetrieveParams
       def retrieve(match_id, params = {})
         @client.request(
           method: :get,
           path: ["matches/%1$s", match_id],
-          model: Believe::Match,
+          model: ::Believe::Match,
           options: params[:request_options]
         )
       end
@@ -92,32 +98,32 @@ module Believe
       #
       # @param lesson_learned [String, nil]
       #
-      # @param match_type [Symbol, Believe::Models::MatchType, nil] Types of matches.
+      # @param match_type [Symbol, ::Believe::Models::MatchType, nil] Types of matches.
       #
       # @param possession_percentage [Float, nil]
       #
-      # @param result [Symbol, Believe::Models::MatchResult, nil] Match result types.
+      # @param result [Symbol, ::Believe::Models::MatchResult, nil] Match result types.
       #
       # @param ted_halftime_speech [String, nil]
       #
       # @param ticket_revenue_gbp [Float, String, nil]
       #
-      # @param turning_points [Array<Believe::Models::TurningPoint>, nil]
+      # @param turning_points [Array<::Believe::Models::TurningPoint>, nil]
       #
       # @param weather_temp_celsius [Float, nil]
       #
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Models::Match]
+      # @return [::Believe::Models::Match]
       #
-      # @see Believe::Models::MatchUpdateParams
+      # @see ::Believe::Models::MatchUpdateParams
       def update(match_id, params = {})
-        parsed, options = Believe::MatchUpdateParams.dump_request(params)
+        parsed, options = ::Believe::MatchUpdateParams.dump_request(params)
         @client.request(
           method: :patch,
           path: ["matches/%1$s", match_id],
           body: parsed,
-          model: Believe::Match,
+          model: ::Believe::Match,
           options: options
         )
       end
@@ -128,28 +134,28 @@ module Believe
       #
       # @param limit [Integer] Maximum number of items to return (max: 100)
       #
-      # @param match_type [Symbol, Believe::Models::MatchType, nil] Filter by match type
+      # @param match_type [Symbol, ::Believe::Models::MatchType, nil] Filter by match type
       #
-      # @param result [Symbol, Believe::Models::MatchResult, nil] Filter by result
+      # @param result [Symbol, ::Believe::Models::MatchResult, nil] Filter by result
       #
       # @param skip [Integer] Number of items to skip (offset)
       #
       # @param team_id [String, nil] Filter by team (home or away)
       #
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Internal::SkipLimitPage<Believe::Models::Match>]
+      # @return [::Believe::Internal::SkipLimitPage<::Believe::Models::Match>]
       #
-      # @see Believe::Models::MatchListParams
+      # @see ::Believe::Models::MatchListParams
       def list(params = {})
-        parsed, options = Believe::MatchListParams.dump_request(params)
-        query = Believe::Internal::Util.encode_query_params(parsed)
+        parsed, options = ::Believe::MatchListParams.dump_request(params)
+        query = ::Believe::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "matches",
           query: query,
-          page: Believe::Internal::SkipLimitPage,
-          model: Believe::Match,
+          page: ::Believe::Internal::SkipLimitPage,
+          model: ::Believe::Match,
           options: options
         )
       end
@@ -159,11 +165,11 @@ module Believe
       # @overload delete(match_id, request_options: {})
       #
       # @param match_id [String]
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [nil]
       #
-      # @see Believe::Models::MatchDeleteParams
+      # @see ::Believe::Models::MatchDeleteParams
       def delete(match_id, params = {})
         @client.request(
           method: :delete,
@@ -178,16 +184,16 @@ module Believe
       # @overload get_lesson(match_id, request_options: {})
       #
       # @param match_id [String]
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [Hash{Symbol=>Object}]
       #
-      # @see Believe::Models::MatchGetLessonParams
+      # @see ::Believe::Models::MatchGetLessonParams
       def get_lesson(match_id, params = {})
         @client.request(
           method: :get,
           path: ["matches/%1$s/lesson", match_id],
-          model: Believe::Internal::Type::HashOf[Believe::Internal::Type::Unknown],
+          model: ::Believe::Internal::Type::HashOf[::Believe::Internal::Type::Unknown],
           options: params[:request_options]
         )
       end
@@ -197,16 +203,16 @@ module Believe
       # @overload get_turning_points(match_id, request_options: {})
       #
       # @param match_id [String]
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [Array<Hash{Symbol=>Object}>]
       #
-      # @see Believe::Models::MatchGetTurningPointsParams
+      # @see ::Believe::Models::MatchGetTurningPointsParams
       def get_turning_points(match_id, params = {})
         @client.request(
           method: :get,
           path: ["matches/%1$s/turning-points", match_id],
-          model: Believe::Internal::Type::ArrayOf[Believe::Internal::Type::HashOf[Believe::Internal::Type::Unknown]],
+          model: ::Believe::Internal::Type::ArrayOf[::Believe::Internal::Type::HashOf[::Believe::Internal::Type::Unknown]],
           options: params[:request_options]
         )
       end
@@ -257,23 +263,23 @@ module Believe
       #
       # @param speed [Float] Simulation speed multiplier (1.0 = real-time)
       #
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [nil]
       #
-      # @see Believe::Models::MatchStreamLiveParams
+      # @see ::Believe::Models::MatchStreamLiveParams
       def stream_live(params = {})
-        parsed, options = Believe::MatchStreamLiveParams.dump_request(params)
-        query = Believe::Internal::Util.encode_query_params(parsed)
+        parsed, options = ::Believe::MatchStreamLiveParams.dump_request(params)
+        query = ::Believe::Internal::Util.encode_query_params(parsed)
         @client.request(method: :get, path: "matches/live", query: query, model: NilClass, options: options)
       end
 
       # @api private
       #
-      # @param client [Believe::Client]
+      # @param client [::Believe::Client]
       def initialize(client:)
         @client = client
-        @commentary = Believe::Resources::Matches::Commentary.new(client: client)
+        @commentary = ::Believe::Resources::Matches::Commentary.new(client: client)
       end
     end
   end

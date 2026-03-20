@@ -2,10 +2,10 @@
 
 module Believe
   module Models
-    # @see Believe::Resources::TeamMembers#update
-    class TeamMemberUpdateParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    # @see ::Believe::Resources::TeamMembers#update
+    class TeamMemberUpdateParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       # @!attribute member_id
       #
@@ -15,33 +15,33 @@ module Believe
       # @!attribute updates
       #   Update model for players.
       #
-      #   @return [Believe::Models::TeamMemberUpdateParams::Updates::PlayerUpdate, Believe::Models::TeamMemberUpdateParams::Updates::CoachUpdate, Believe::Models::TeamMemberUpdateParams::Updates::MedicalStaffUpdate, Believe::Models::TeamMemberUpdateParams::Updates::EquipmentManagerUpdate]
-      required :updates, union: -> { Believe::TeamMemberUpdateParams::Updates }
+      #   @return [::Believe::Models::TeamMemberUpdateParams::Updates::PlayerUpdate, ::Believe::Models::TeamMemberUpdateParams::Updates::CoachUpdate, ::Believe::Models::TeamMemberUpdateParams::Updates::MedicalStaffUpdate, ::Believe::Models::TeamMemberUpdateParams::Updates::EquipmentManagerUpdate]
+      required :updates, union: -> { ::Believe::TeamMemberUpdateParams::Updates }
 
       # @!method initialize(member_id:, updates:, request_options: {})
       #   @param member_id [String]
       #
-      #   @param updates [Believe::Models::TeamMemberUpdateParams::Updates::PlayerUpdate, Believe::Models::TeamMemberUpdateParams::Updates::CoachUpdate, Believe::Models::TeamMemberUpdateParams::Updates::MedicalStaffUpdate, Believe::Models::TeamMemberUpdateParams::Updates::EquipmentManagerUpdate] Update model for players.
+      #   @param updates [::Believe::Models::TeamMemberUpdateParams::Updates::PlayerUpdate, ::Believe::Models::TeamMemberUpdateParams::Updates::CoachUpdate, ::Believe::Models::TeamMemberUpdateParams::Updates::MedicalStaffUpdate, ::Believe::Models::TeamMemberUpdateParams::Updates::EquipmentManagerUpdate] Update model for players.
       #
-      #   @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}]
+      #   @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}]
 
       # Update model for players.
       module Updates
-        extend Believe::Internal::Type::Union
+        extend ::Believe::Internal::Type::Union
 
         # Update model for players.
-        variant -> { Believe::TeamMemberUpdateParams::Updates::PlayerUpdate }
+        variant -> { ::Believe::TeamMemberUpdateParams::Updates::PlayerUpdate }
 
         # Update model for coaches.
-        variant -> { Believe::TeamMemberUpdateParams::Updates::CoachUpdate }
+        variant -> { ::Believe::TeamMemberUpdateParams::Updates::CoachUpdate }
 
         # Update model for medical staff.
-        variant -> { Believe::TeamMemberUpdateParams::Updates::MedicalStaffUpdate }
+        variant -> { ::Believe::TeamMemberUpdateParams::Updates::MedicalStaffUpdate }
 
         # Update model for equipment managers.
-        variant -> { Believe::TeamMemberUpdateParams::Updates::EquipmentManagerUpdate }
+        variant -> { ::Believe::TeamMemberUpdateParams::Updates::EquipmentManagerUpdate }
 
-        class PlayerUpdate < Believe::Internal::Type::BaseModel
+        class PlayerUpdate < ::Believe::Internal::Type::BaseModel
           # @!attribute assists
           #
           #   @return [Integer, nil]
@@ -55,7 +55,7 @@ module Believe
           # @!attribute is_captain
           #
           #   @return [Boolean, nil]
-          optional :is_captain, Believe::Internal::Type::Boolean, nil?: true
+          optional :is_captain, ::Believe::Internal::Type::Boolean, nil?: true
 
           # @!attribute jersey_number
           #
@@ -65,8 +65,8 @@ module Believe
           # @!attribute position
           #   Football positions for players.
           #
-          #   @return [Symbol, Believe::Models::Position, nil]
-          optional :position, enum: -> { Believe::Position }, nil?: true
+          #   @return [Symbol, ::Believe::Models::Position, nil]
+          optional :position, enum: -> { ::Believe::Position }, nil?: true
 
           # @!attribute team_id
           #
@@ -89,24 +89,24 @@ module Believe
           #
           #   @param jersey_number [Integer, nil]
           #
-          #   @param position [Symbol, Believe::Models::Position, nil] Football positions for players.
+          #   @param position [Symbol, ::Believe::Models::Position, nil] Football positions for players.
           #
           #   @param team_id [String, nil]
           #
           #   @param years_with_team [Integer, nil]
         end
 
-        class CoachUpdate < Believe::Internal::Type::BaseModel
+        class CoachUpdate < ::Believe::Internal::Type::BaseModel
           # @!attribute certifications
           #
           #   @return [Array<String>, nil]
-          optional :certifications, Believe::Internal::Type::ArrayOf[String], nil?: true
+          optional :certifications, ::Believe::Internal::Type::ArrayOf[String], nil?: true
 
           # @!attribute specialty
           #   Coaching specialties.
           #
-          #   @return [Symbol, Believe::Models::CoachSpecialty, nil]
-          optional :specialty, enum: -> { Believe::CoachSpecialty }, nil?: true
+          #   @return [Symbol, ::Believe::Models::CoachSpecialty, nil]
+          optional :specialty, enum: -> { ::Believe::CoachSpecialty }, nil?: true
 
           # @!attribute team_id
           #
@@ -128,7 +128,7 @@ module Believe
           #
           #   @param certifications [Array<String>, nil]
           #
-          #   @param specialty [Symbol, Believe::Models::CoachSpecialty, nil] Coaching specialties.
+          #   @param specialty [Symbol, ::Believe::Models::CoachSpecialty, nil] Coaching specialties.
           #
           #   @param team_id [String, nil]
           #
@@ -137,7 +137,7 @@ module Believe
           #   @param years_with_team [Integer, nil]
         end
 
-        class MedicalStaffUpdate < Believe::Internal::Type::BaseModel
+        class MedicalStaffUpdate < ::Believe::Internal::Type::BaseModel
           # @!attribute license_number
           #
           #   @return [String, nil]
@@ -146,13 +146,13 @@ module Believe
           # @!attribute qualifications
           #
           #   @return [Array<String>, nil]
-          optional :qualifications, Believe::Internal::Type::ArrayOf[String], nil?: true
+          optional :qualifications, ::Believe::Internal::Type::ArrayOf[String], nil?: true
 
           # @!attribute specialty
           #   Medical staff specialties.
           #
-          #   @return [Symbol, Believe::Models::MedicalSpecialty, nil]
-          optional :specialty, enum: -> { Believe::MedicalSpecialty }, nil?: true
+          #   @return [Symbol, ::Believe::Models::MedicalSpecialty, nil]
+          optional :specialty, enum: -> { ::Believe::MedicalSpecialty }, nil?: true
 
           # @!attribute team_id
           #
@@ -171,23 +171,23 @@ module Believe
           #
           #   @param qualifications [Array<String>, nil]
           #
-          #   @param specialty [Symbol, Believe::Models::MedicalSpecialty, nil] Medical staff specialties.
+          #   @param specialty [Symbol, ::Believe::Models::MedicalSpecialty, nil] Medical staff specialties.
           #
           #   @param team_id [String, nil]
           #
           #   @param years_with_team [Integer, nil]
         end
 
-        class EquipmentManagerUpdate < Believe::Internal::Type::BaseModel
+        class EquipmentManagerUpdate < ::Believe::Internal::Type::BaseModel
           # @!attribute is_head_kitman
           #
           #   @return [Boolean, nil]
-          optional :is_head_kitman, Believe::Internal::Type::Boolean, nil?: true
+          optional :is_head_kitman, ::Believe::Internal::Type::Boolean, nil?: true
 
           # @!attribute responsibilities
           #
           #   @return [Array<String>, nil]
-          optional :responsibilities, Believe::Internal::Type::ArrayOf[String], nil?: true
+          optional :responsibilities, ::Believe::Internal::Type::ArrayOf[String], nil?: true
 
           # @!attribute team_id
           #
@@ -209,7 +209,7 @@ module Believe
         end
 
         # @!method self.variants
-        #   @return [Array(Believe::Models::TeamMemberUpdateParams::Updates::PlayerUpdate, Believe::Models::TeamMemberUpdateParams::Updates::CoachUpdate, Believe::Models::TeamMemberUpdateParams::Updates::MedicalStaffUpdate, Believe::Models::TeamMemberUpdateParams::Updates::EquipmentManagerUpdate)]
+        #   @return [Array(::Believe::Models::TeamMemberUpdateParams::Updates::PlayerUpdate, ::Believe::Models::TeamMemberUpdateParams::Updates::CoachUpdate, ::Believe::Models::TeamMemberUpdateParams::Updates::MedicalStaffUpdate, ::Believe::Models::TeamMemberUpdateParams::Updates::EquipmentManagerUpdate)]
       end
     end
   end

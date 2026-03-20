@@ -40,9 +40,9 @@ Layout/LineLength:
   AllowedPatterns:
     - "^\\s*#.*$"
     - ^require(_relative)?
-    - "Believe::Internal::Type::BaseModel$"
+    - "::Believe::Internal::Type::BaseModel$"
     - "^\\s*[A-Z0-9_]+ = :"
-    - "Believe::(Models|Resources|Test)::"
+    - "::Believe::(Models|Resources|Test)::"
   Max: 110
 
 Layout/MultilineArrayLineBreaks:

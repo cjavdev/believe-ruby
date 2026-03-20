@@ -2,13 +2,13 @@
 
 module Believe
   module Models
-    class TicketSaleCreateParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class TicketSaleCreateParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(Believe::TicketSaleCreateParams, Believe::Internal::AnyHash)
+          T.any(::Believe::TicketSaleCreateParams, ::Believe::Internal::AnyHash)
         end
 
       # Name of the ticket buyer
@@ -28,7 +28,7 @@ module Believe
       attr_accessor :match_id
 
       # How the ticket was purchased
-      sig { returns(Believe::PurchaseMethod::OrSymbol) }
+      sig { returns(::Believe::PurchaseMethod::OrSymbol) }
       attr_accessor :purchase_method
 
       # Number of tickets purchased
@@ -65,7 +65,7 @@ module Believe
           currency: String,
           discount: String,
           match_id: String,
-          purchase_method: Believe::PurchaseMethod::OrSymbol,
+          purchase_method: ::Believe::PurchaseMethod::OrSymbol,
           quantity: Integer,
           subtotal: String,
           tax: String,
@@ -73,7 +73,7 @@ module Believe
           unit_price: String,
           buyer_email: T.nilable(String),
           coupon_code: T.nilable(String),
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
@@ -112,7 +112,7 @@ module Believe
             currency: String,
             discount: String,
             match_id: String,
-            purchase_method: Believe::PurchaseMethod::OrSymbol,
+            purchase_method: ::Believe::PurchaseMethod::OrSymbol,
             quantity: Integer,
             subtotal: String,
             tax: String,
@@ -120,7 +120,7 @@ module Believe
             unit_price: String,
             buyer_email: T.nilable(String),
             coupon_code: T.nilable(String),
-            request_options: Believe::RequestOptions
+            request_options: ::Believe::RequestOptions
           }
         )
       end
