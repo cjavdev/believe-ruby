@@ -2,6 +2,6 @@ module Believe
   module Models
     type webhook_delete_response = ::Hash[Symbol, top]
 
-    WebhookDeleteResponse: Believe::Internal::Type::Converter
+    WebhookDeleteResponse: ::Believe::Internal::Type::Converter
   end
 end

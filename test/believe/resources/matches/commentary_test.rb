@@ -9,7 +9,7 @@ class Believe::Test::Resources::Matches::CommentaryTest < Believe::Test::Resourc
     response = @believe.matches.commentary.stream("match_id")
 
     assert_pattern do
-      response => Believe::Internal::Type::Unknown
+      response => ::Believe::Internal::Type::Unknown
     end
   end
 end

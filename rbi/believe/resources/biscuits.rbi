@@ -8,8 +8,8 @@ module Believe
       sig do
         params(
           biscuit_id: String,
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::Biscuit)
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::Biscuit)
       end
       def retrieve(biscuit_id, request_options: {})
       end
@@ -20,8 +20,8 @@ module Believe
         params(
           limit: Integer,
           skip: Integer,
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::Internal::SkipLimitPage[Believe::Biscuit])
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::Internal::SkipLimitPage[::Believe::Biscuit])
       end
       def list(
         # Maximum number of items to return (max: 100)
@@ -34,15 +34,15 @@ module Believe
 
       # Get a single fresh biscuit with a personalized message from Ted.
       sig do
-        params(request_options: Believe::RequestOptions::OrHash).returns(
-          Believe::Biscuit
+        params(request_options: ::Believe::RequestOptions::OrHash).returns(
+          ::Believe::Biscuit
         )
       end
       def get_fresh(request_options: {})
       end
 
       # @api private
-      sig { params(client: Believe::Client).returns(T.attached_class) }
+      sig { params(client: ::Believe::Client).returns(T.attached_class) }
       def self.new(client:)
       end
     end

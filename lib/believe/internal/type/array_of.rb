@@ -11,14 +11,14 @@ module Believe
       #
       # Array of items of a given type.
       class ArrayOf
-        include Believe::Internal::Type::Converter
-        include Believe::Internal::Util::SorbetRuntimeSupport
+        include ::Believe::Internal::Type::Converter
+        include ::Believe::Internal::Util::SorbetRuntimeSupport
 
         private_class_method :new
 
         # @overload [](type_info, spec = {})
         #
-        # @param type_info [Hash{Symbol=>Object}, Proc, Believe::Internal::Type::Converter, Class]
+        # @param type_info [Hash{Symbol=>Object}, Proc, ::Believe::Internal::Type::Converter, Class]
         #
         # @param spec [Hash{Symbol=>Object}] .
         #
@@ -47,7 +47,7 @@ module Believe
         # @return [Boolean]
         def ==(other)
           # rubocop:disable Layout/LineLength
-          other.is_a?(Believe::Internal::Type::ArrayOf) && other.nilable? == nilable? && other.item_type == item_type
+          other.is_a?(::Believe::Internal::Type::ArrayOf) && other.nilable? == nilable? && other.item_type == item_type
           # rubocop:enable Layout/LineLength
         end
 
@@ -91,7 +91,7 @@ module Believe
                 exactness[:yes] += 1
                 nil
               else
-                Believe::Internal::Type::Converter.coerce(target, item, state: state)
+                ::Believe::Internal::Type::Converter.coerce(target, item, state: state)
               end
             end
         end
@@ -109,7 +109,7 @@ module Believe
           target = item_type
           if value.is_a?(Array)
             value.map do
-              Believe::Internal::Type::Converter.dump(target, _1, state: state)
+              ::Believe::Internal::Type::Converter.dump(target, _1, state: state)
             end
           else
             super
@@ -120,7 +120,7 @@ module Believe
         #
         # @return [Object]
         def to_sorbet_type
-          T::Array[Believe::Internal::Util::SorbetRuntimeSupport.to_sorbet_type(item_type)]
+          T::Array[::Believe::Internal::Util::SorbetRuntimeSupport.to_sorbet_type(item_type)]
         end
 
         # @api private
@@ -135,7 +135,7 @@ module Believe
 
         # @api private
         #
-        # @param type_info [Hash{Symbol=>Object}, Proc, Believe::Internal::Type::Converter, Class]
+        # @param type_info [Hash{Symbol=>Object}, Proc, ::Believe::Internal::Type::Converter, Class]
         #
         # @param spec [Hash{Symbol=>Object}] .
         #
@@ -147,8 +147,8 @@ module Believe
         #
         #   @option spec [Boolean] :"nil?"
         def initialize(type_info, spec = {})
-          @item_type_fn = Believe::Internal::Type::Converter.type_info(type_info || spec)
-          @meta = Believe::Internal::Type::Converter.meta_info(type_info, spec)
+          @item_type_fn = ::Believe::Internal::Type::Converter.type_info(type_info || spec)
+          @meta = ::Believe::Internal::Type::Converter.meta_info(type_info, spec)
           @nilable = spec.fetch(:nil?, false)
         end
 
@@ -158,7 +158,7 @@ module Believe
         #
         # @return [String]
         def inspect(depth: 0)
-          items = Believe::Internal::Type::Converter.inspect(item_type, depth: depth.succ)
+          items = ::Believe::Internal::Type::Converter.inspect(item_type, depth: depth.succ)
 
           "#{self.class}[#{[items, nilable? ? 'nil' : nil].compact.join(' | ')}]"
         end

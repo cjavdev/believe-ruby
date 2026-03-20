@@ -1,7 +1,7 @@
 module Believe
   module Models
-    type webhook_list_response = ::Array[Believe::RegisteredWebhook]
+    type webhook_list_response = ::Array[::Believe::RegisteredWebhook]
 
-    WebhookListResponse: Believe::Internal::Type::Converter
+    WebhookListResponse: ::Believe::Internal::Type::Converter
   end
 end

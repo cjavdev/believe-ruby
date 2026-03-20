@@ -2,17 +2,20 @@
 
 module Believe
   module Models
-    class WebhookTriggerEventParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class WebhookTriggerEventParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(Believe::WebhookTriggerEventParams, Believe::Internal::AnyHash)
+          T.any(
+            ::Believe::WebhookTriggerEventParams,
+            ::Believe::Internal::AnyHash
+          )
         end
 
       # The type of event to trigger
-      sig { returns(Believe::WebhookTriggerEventParams::EventType::OrSymbol) }
+      sig { returns(::Believe::WebhookTriggerEventParams::EventType::OrSymbol) }
       attr_accessor :event_type
 
       # Optional event payload. If not provided, a sample payload will be generated.
@@ -20,8 +23,8 @@ module Believe
         returns(
           T.nilable(
             T.any(
-              Believe::WebhookTriggerEventParams::Payload::MatchCompleted,
-              Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred
+              ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted,
+              ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred
             )
           )
         )
@@ -30,15 +33,15 @@ module Believe
 
       sig do
         params(
-          event_type: Believe::WebhookTriggerEventParams::EventType::OrSymbol,
+          event_type: ::Believe::WebhookTriggerEventParams::EventType::OrSymbol,
           payload:
             T.nilable(
               T.any(
-                Believe::WebhookTriggerEventParams::Payload::MatchCompleted::OrHash,
-                Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::OrHash
+                ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::OrHash,
+                ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::OrHash
               )
             ),
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
@@ -53,15 +56,16 @@ module Believe
       sig do
         override.returns(
           {
-            event_type: Believe::WebhookTriggerEventParams::EventType::OrSymbol,
+            event_type:
+              ::Believe::WebhookTriggerEventParams::EventType::OrSymbol,
             payload:
               T.nilable(
                 T.any(
-                  Believe::WebhookTriggerEventParams::Payload::MatchCompleted,
-                  Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred
+                  ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted,
+                  ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred
                 )
               ),
-            request_options: Believe::RequestOptions
+            request_options: ::Believe::RequestOptions
           }
         )
       end
@@ -70,29 +74,29 @@ module Believe
 
       # The type of event to trigger
       module EventType
-        extend Believe::Internal::Type::Enum
+        extend ::Believe::Internal::Type::Enum
 
         TaggedSymbol =
           T.type_alias do
-            T.all(Symbol, Believe::WebhookTriggerEventParams::EventType)
+            T.all(Symbol, ::Believe::WebhookTriggerEventParams::EventType)
           end
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         MATCH_COMPLETED =
           T.let(
             :"match.completed",
-            Believe::WebhookTriggerEventParams::EventType::TaggedSymbol
+            ::Believe::WebhookTriggerEventParams::EventType::TaggedSymbol
           )
         TEAM_MEMBER_TRANSFERRED =
           T.let(
             :"team_member.transferred",
-            Believe::WebhookTriggerEventParams::EventType::TaggedSymbol
+            ::Believe::WebhookTriggerEventParams::EventType::TaggedSymbol
           )
 
         sig do
           override.returns(
             T::Array[
-              Believe::WebhookTriggerEventParams::EventType::TaggedSymbol
+              ::Believe::WebhookTriggerEventParams::EventType::TaggedSymbol
             ]
           )
         end
@@ -102,29 +106,29 @@ module Believe
 
       # Optional event payload. If not provided, a sample payload will be generated.
       module Payload
-        extend Believe::Internal::Type::Union
+        extend ::Believe::Internal::Type::Union
 
         Variants =
           T.type_alias do
             T.any(
-              Believe::WebhookTriggerEventParams::Payload::MatchCompleted,
-              Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred
+              ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted,
+              ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred
             )
           end
 
-        class MatchCompleted < Believe::Internal::Type::BaseModel
+        class MatchCompleted < ::Believe::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                Believe::WebhookTriggerEventParams::Payload::MatchCompleted,
-                Believe::Internal::AnyHash
+                ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted,
+                ::Believe::Internal::AnyHash
               )
             end
 
           # Event data
           sig do
             returns(
-              Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data
+              ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data
             )
           end
           attr_reader :data
@@ -132,7 +136,7 @@ module Believe
           sig do
             params(
               data:
-                Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::OrHash
+                ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::OrHash
             ).void
           end
           attr_writer :data
@@ -141,7 +145,7 @@ module Believe
           sig do
             returns(
               T.nilable(
-                Believe::WebhookTriggerEventParams::Payload::MatchCompleted::EventType::OrSymbol
+                ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::EventType::OrSymbol
               )
             )
           end
@@ -150,7 +154,7 @@ module Believe
           sig do
             params(
               event_type:
-                Believe::WebhookTriggerEventParams::Payload::MatchCompleted::EventType::OrSymbol
+                ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::EventType::OrSymbol
             ).void
           end
           attr_writer :event_type
@@ -159,9 +163,9 @@ module Believe
           sig do
             params(
               data:
-                Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::OrHash,
+                ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::OrHash,
               event_type:
-                Believe::WebhookTriggerEventParams::Payload::MatchCompleted::EventType::OrSymbol
+                ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::EventType::OrSymbol
             ).returns(T.attached_class)
           end
           def self.new(
@@ -176,21 +180,21 @@ module Believe
             override.returns(
               {
                 data:
-                  Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data,
+                  ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data,
                 event_type:
-                  Believe::WebhookTriggerEventParams::Payload::MatchCompleted::EventType::OrSymbol
+                  ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::EventType::OrSymbol
               }
             )
           end
           def to_hash
           end
 
-          class Data < Believe::Internal::Type::BaseModel
+          class Data < ::Believe::Internal::Type::BaseModel
             OrHash =
               T.type_alias do
                 T.any(
-                  Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data,
-                  Believe::Internal::AnyHash
+                  ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data,
+                  ::Believe::Internal::AnyHash
                 )
               end
 
@@ -221,7 +225,7 @@ module Believe
             # Type of match
             sig do
               returns(
-                Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::MatchType::OrSymbol
+                ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::MatchType::OrSymbol
               )
             end
             attr_accessor :match_type
@@ -229,7 +233,7 @@ module Believe
             # Match result from home team perspective
             sig do
               returns(
-                Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::Result::OrSymbol
+                ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::Result::OrSymbol
               )
             end
             attr_accessor :result
@@ -256,9 +260,9 @@ module Believe
                 home_team_id: String,
                 match_id: String,
                 match_type:
-                  Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::MatchType::OrSymbol,
+                  ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::MatchType::OrSymbol,
                 result:
-                  Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::Result::OrSymbol,
+                  ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::Result::OrSymbol,
                 ted_post_match_quote: String,
                 lesson_learned: T.nilable(String),
                 man_of_the_match: T.nilable(String)
@@ -300,9 +304,9 @@ module Believe
                   home_team_id: String,
                   match_id: String,
                   match_type:
-                    Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::MatchType::OrSymbol,
+                    ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::MatchType::OrSymbol,
                   result:
-                    Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::Result::OrSymbol,
+                    ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::Result::OrSymbol,
                   ted_post_match_quote: String,
                   lesson_learned: T.nilable(String),
                   man_of_the_match: T.nilable(String)
@@ -314,13 +318,13 @@ module Believe
 
             # Type of match
             module MatchType
-              extend Believe::Internal::Type::Enum
+              extend ::Believe::Internal::Type::Enum
 
               TaggedSymbol =
                 T.type_alias do
                   T.all(
                     Symbol,
-                    Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::MatchType
+                    ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::MatchType
                   )
                 end
               OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -328,33 +332,33 @@ module Believe
               LEAGUE =
                 T.let(
                   :league,
-                  Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::MatchType::TaggedSymbol
+                  ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::MatchType::TaggedSymbol
                 )
               CUP =
                 T.let(
                   :cup,
-                  Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::MatchType::TaggedSymbol
+                  ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::MatchType::TaggedSymbol
                 )
               FRIENDLY =
                 T.let(
                   :friendly,
-                  Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::MatchType::TaggedSymbol
+                  ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::MatchType::TaggedSymbol
                 )
               PLAYOFF =
                 T.let(
                   :playoff,
-                  Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::MatchType::TaggedSymbol
+                  ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::MatchType::TaggedSymbol
                 )
               FINAL =
                 T.let(
                   :final,
-                  Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::MatchType::TaggedSymbol
+                  ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::MatchType::TaggedSymbol
                 )
 
               sig do
                 override.returns(
                   T::Array[
-                    Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::MatchType::TaggedSymbol
+                    ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::MatchType::TaggedSymbol
                   ]
                 )
               end
@@ -364,13 +368,13 @@ module Believe
 
             # Match result from home team perspective
             module Result
-              extend Believe::Internal::Type::Enum
+              extend ::Believe::Internal::Type::Enum
 
               TaggedSymbol =
                 T.type_alias do
                   T.all(
                     Symbol,
-                    Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::Result
+                    ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::Result
                   )
                 end
               OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -378,23 +382,23 @@ module Believe
               HOME_WIN =
                 T.let(
                   :home_win,
-                  Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::Result::TaggedSymbol
+                  ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::Result::TaggedSymbol
                 )
               AWAY_WIN =
                 T.let(
                   :away_win,
-                  Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::Result::TaggedSymbol
+                  ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::Result::TaggedSymbol
                 )
               DRAW =
                 T.let(
                   :draw,
-                  Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::Result::TaggedSymbol
+                  ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::Result::TaggedSymbol
                 )
 
               sig do
                 override.returns(
                   T::Array[
-                    Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::Result::TaggedSymbol
+                    ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::Result::TaggedSymbol
                   ]
                 )
               end
@@ -405,13 +409,13 @@ module Believe
 
           # The type of webhook event
           module EventType
-            extend Believe::Internal::Type::Enum
+            extend ::Believe::Internal::Type::Enum
 
             TaggedSymbol =
               T.type_alias do
                 T.all(
                   Symbol,
-                  Believe::WebhookTriggerEventParams::Payload::MatchCompleted::EventType
+                  ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::EventType
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -419,13 +423,13 @@ module Believe
             MATCH_COMPLETED =
               T.let(
                 :"match.completed",
-                Believe::WebhookTriggerEventParams::Payload::MatchCompleted::EventType::TaggedSymbol
+                ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::EventType::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  Believe::WebhookTriggerEventParams::Payload::MatchCompleted::EventType::TaggedSymbol
+                  ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::EventType::TaggedSymbol
                 ]
               )
             end
@@ -434,19 +438,19 @@ module Believe
           end
         end
 
-        class TeamMemberTransferred < Believe::Internal::Type::BaseModel
+        class TeamMemberTransferred < ::Believe::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred,
-                Believe::Internal::AnyHash
+                ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred,
+                ::Believe::Internal::AnyHash
               )
             end
 
           # Event data
           sig do
             returns(
-              Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data
+              ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data
             )
           end
           attr_reader :data
@@ -454,7 +458,7 @@ module Believe
           sig do
             params(
               data:
-                Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::OrHash
+                ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::OrHash
             ).void
           end
           attr_writer :data
@@ -463,7 +467,7 @@ module Believe
           sig do
             returns(
               T.nilable(
-                Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::EventType::OrSymbol
+                ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::EventType::OrSymbol
               )
             )
           end
@@ -472,7 +476,7 @@ module Believe
           sig do
             params(
               event_type:
-                Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::EventType::OrSymbol
+                ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::EventType::OrSymbol
             ).void
           end
           attr_writer :event_type
@@ -481,9 +485,9 @@ module Believe
           sig do
             params(
               data:
-                Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::OrHash,
+                ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::OrHash,
               event_type:
-                Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::EventType::OrSymbol
+                ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::EventType::OrSymbol
             ).returns(T.attached_class)
           end
           def self.new(
@@ -498,21 +502,21 @@ module Believe
             override.returns(
               {
                 data:
-                  Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data,
+                  ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data,
                 event_type:
-                  Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::EventType::OrSymbol
+                  ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::EventType::OrSymbol
               }
             )
           end
           def to_hash
           end
 
-          class Data < Believe::Internal::Type::BaseModel
+          class Data < ::Believe::Internal::Type::BaseModel
             OrHash =
               T.type_alias do
                 T.any(
-                  Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data,
-                  Believe::Internal::AnyHash
+                  ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data,
+                  ::Believe::Internal::AnyHash
                 )
               end
 
@@ -527,7 +531,7 @@ module Believe
             # Type of team member
             sig do
               returns(
-                Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::MemberType::OrSymbol
+                ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::MemberType::OrSymbol
               )
             end
             attr_accessor :member_type
@@ -551,7 +555,7 @@ module Believe
             # Whether the member joined or departed
             sig do
               returns(
-                Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::TransferType::OrSymbol
+                ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::TransferType::OrSymbol
               )
             end
             attr_accessor :transfer_type
@@ -578,13 +582,13 @@ module Believe
                 character_id: String,
                 character_name: String,
                 member_type:
-                  Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::MemberType::OrSymbol,
+                  ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::MemberType::OrSymbol,
                 team_id: String,
                 team_member_id: String,
                 team_name: String,
                 ted_reaction: String,
                 transfer_type:
-                  Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::TransferType::OrSymbol,
+                  ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::TransferType::OrSymbol,
                 previous_team_id: T.nilable(String),
                 previous_team_name: T.nilable(String),
                 transfer_fee_gbp: T.nilable(String),
@@ -625,13 +629,13 @@ module Believe
                   character_id: String,
                   character_name: String,
                   member_type:
-                    Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::MemberType::OrSymbol,
+                    ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::MemberType::OrSymbol,
                   team_id: String,
                   team_member_id: String,
                   team_name: String,
                   ted_reaction: String,
                   transfer_type:
-                    Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::TransferType::OrSymbol,
+                    ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::TransferType::OrSymbol,
                   previous_team_id: T.nilable(String),
                   previous_team_name: T.nilable(String),
                   transfer_fee_gbp: T.nilable(String),
@@ -644,13 +648,13 @@ module Believe
 
             # Type of team member
             module MemberType
-              extend Believe::Internal::Type::Enum
+              extend ::Believe::Internal::Type::Enum
 
               TaggedSymbol =
                 T.type_alias do
                   T.all(
                     Symbol,
-                    Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::MemberType
+                    ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::MemberType
                   )
                 end
               OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -658,28 +662,28 @@ module Believe
               PLAYER =
                 T.let(
                   :player,
-                  Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::MemberType::TaggedSymbol
+                  ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::MemberType::TaggedSymbol
                 )
               COACH =
                 T.let(
                   :coach,
-                  Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::MemberType::TaggedSymbol
+                  ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::MemberType::TaggedSymbol
                 )
               MEDICAL_STAFF =
                 T.let(
                   :medical_staff,
-                  Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::MemberType::TaggedSymbol
+                  ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::MemberType::TaggedSymbol
                 )
               EQUIPMENT_MANAGER =
                 T.let(
                   :equipment_manager,
-                  Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::MemberType::TaggedSymbol
+                  ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::MemberType::TaggedSymbol
                 )
 
               sig do
                 override.returns(
                   T::Array[
-                    Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::MemberType::TaggedSymbol
+                    ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::MemberType::TaggedSymbol
                   ]
                 )
               end
@@ -689,13 +693,13 @@ module Believe
 
             # Whether the member joined or departed
             module TransferType
-              extend Believe::Internal::Type::Enum
+              extend ::Believe::Internal::Type::Enum
 
               TaggedSymbol =
                 T.type_alias do
                   T.all(
                     Symbol,
-                    Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::TransferType
+                    ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::TransferType
                   )
                 end
               OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -703,18 +707,18 @@ module Believe
               JOINED =
                 T.let(
                   :joined,
-                  Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::TransferType::TaggedSymbol
+                  ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::TransferType::TaggedSymbol
                 )
               DEPARTED =
                 T.let(
                   :departed,
-                  Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::TransferType::TaggedSymbol
+                  ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::TransferType::TaggedSymbol
                 )
 
               sig do
                 override.returns(
                   T::Array[
-                    Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::TransferType::TaggedSymbol
+                    ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::TransferType::TaggedSymbol
                   ]
                 )
               end
@@ -725,13 +729,13 @@ module Believe
 
           # The type of webhook event
           module EventType
-            extend Believe::Internal::Type::Enum
+            extend ::Believe::Internal::Type::Enum
 
             TaggedSymbol =
               T.type_alias do
                 T.all(
                   Symbol,
-                  Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::EventType
+                  ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::EventType
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -739,13 +743,13 @@ module Believe
             TEAM_MEMBER_TRANSFERRED =
               T.let(
                 :"team_member.transferred",
-                Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::EventType::TaggedSymbol
+                ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::EventType::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::EventType::TaggedSymbol
+                  ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::EventType::TaggedSymbol
                 ]
               )
             end
@@ -756,7 +760,7 @@ module Believe
 
         sig do
           override.returns(
-            T::Array[Believe::WebhookTriggerEventParams::Payload::Variants]
+            T::Array[::Believe::WebhookTriggerEventParams::Payload::Variants]
           )
         end
         def self.variants

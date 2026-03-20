@@ -3,15 +3,15 @@
 module Believe
   module Models
     module Coaching
-      class PrincipleRetrieveParams < Believe::Internal::Type::BaseModel
-        extend Believe::Internal::Type::RequestParameters::Converter
-        include Believe::Internal::Type::RequestParameters
+      class PrincipleRetrieveParams < ::Believe::Internal::Type::BaseModel
+        extend ::Believe::Internal::Type::RequestParameters::Converter
+        include ::Believe::Internal::Type::RequestParameters
 
         OrHash =
           T.type_alias do
             T.any(
-              Believe::Coaching::PrincipleRetrieveParams,
-              Believe::Internal::AnyHash
+              ::Believe::Coaching::PrincipleRetrieveParams,
+              ::Believe::Internal::AnyHash
             )
           end
 
@@ -21,7 +21,7 @@ module Believe
         sig do
           params(
             principle_id: String,
-            request_options: Believe::RequestOptions::OrHash
+            request_options: ::Believe::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
         def self.new(principle_id:, request_options: {})
@@ -29,7 +29,7 @@ module Believe
 
         sig do
           override.returns(
-            { principle_id: String, request_options: Believe::RequestOptions }
+            { principle_id: String, request_options: ::Believe::RequestOptions }
           )
         end
         def to_hash

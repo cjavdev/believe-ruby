@@ -2,10 +2,10 @@
 
 module Believe
   module Models
-    # @see Believe::Resources::Webhooks#delete
-    class WebhookDeleteParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    # @see ::Believe::Resources::Webhooks#delete
+    class WebhookDeleteParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       # @!attribute webhook_id
       #
@@ -14,7 +14,7 @@ module Believe
 
       # @!method initialize(webhook_id:, request_options: {})
       #   @param webhook_id [String]
-      #   @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}]
+      #   @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}]
     end
   end
 end

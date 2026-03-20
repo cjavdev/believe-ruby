@@ -1,31 +1,31 @@
 module Believe
   module Resources
     class Matches
-      attr_reader commentary: Believe::Resources::Matches::Commentary
+      attr_reader commentary: ::Believe::Resources::Matches::Commentary
 
       def create: (
         away_team_id: String,
         date: Time,
         home_team_id: String,
-        match_type: Believe::Models::match_type,
+        match_type: ::Believe::Models::match_type,
         ?attendance: Integer?,
         ?away_score: Integer,
         ?episode_id: String?,
         ?home_score: Integer,
         ?lesson_learned: String?,
         ?possession_percentage: Float?,
-        ?result: Believe::Models::match_result,
+        ?result: ::Believe::Models::match_result,
         ?ted_halftime_speech: String?,
-        ?ticket_revenue_gbp: Believe::Models::MatchCreateParams::ticket_revenue_gbp?,
-        ?turning_points: ::Array[Believe::TurningPoint],
+        ?ticket_revenue_gbp: ::Believe::Models::MatchCreateParams::ticket_revenue_gbp?,
+        ?turning_points: ::Array[::Believe::TurningPoint],
         ?weather_temp_celsius: Float?,
-        ?request_options: Believe::request_opts
-      ) -> Believe::Match
+        ?request_options: ::Believe::request_opts
+      ) -> ::Believe::Match
 
       def retrieve: (
         String match_id,
-        ?request_options: Believe::request_opts
-      ) -> Believe::Match
+        ?request_options: ::Believe::request_opts
+      ) -> ::Believe::Match
 
       def update: (
         String match_id,
@@ -37,49 +37,49 @@ module Believe
         ?home_score: Integer?,
         ?home_team_id: String?,
         ?lesson_learned: String?,
-        ?match_type: Believe::Models::match_type?,
+        ?match_type: ::Believe::Models::match_type?,
         ?possession_percentage: Float?,
-        ?result: Believe::Models::match_result?,
+        ?result: ::Believe::Models::match_result?,
         ?ted_halftime_speech: String?,
-        ?ticket_revenue_gbp: Believe::Models::MatchUpdateParams::ticket_revenue_gbp?,
-        ?turning_points: ::Array[Believe::TurningPoint]?,
+        ?ticket_revenue_gbp: ::Believe::Models::MatchUpdateParams::ticket_revenue_gbp?,
+        ?turning_points: ::Array[::Believe::TurningPoint]?,
         ?weather_temp_celsius: Float?,
-        ?request_options: Believe::request_opts
-      ) -> Believe::Match
+        ?request_options: ::Believe::request_opts
+      ) -> ::Believe::Match
 
       def list: (
         ?limit: Integer,
-        ?match_type: Believe::Models::match_type?,
-        ?result: Believe::Models::match_result?,
+        ?match_type: ::Believe::Models::match_type?,
+        ?result: ::Believe::Models::match_result?,
         ?skip: Integer,
         ?team_id: String?,
-        ?request_options: Believe::request_opts
-      ) -> Believe::Internal::SkipLimitPage[Believe::Match]
+        ?request_options: ::Believe::request_opts
+      ) -> ::Believe::Internal::SkipLimitPage[::Believe::Match]
 
       def delete: (
         String match_id,
-        ?request_options: Believe::request_opts
+        ?request_options: ::Believe::request_opts
       ) -> nil
 
       def get_lesson: (
         String match_id,
-        ?request_options: Believe::request_opts
-      ) -> Believe::Models::match_get_lesson_response
+        ?request_options: ::Believe::request_opts
+      ) -> ::Believe::Models::match_get_lesson_response
 
       def get_turning_points: (
         String match_id,
-        ?request_options: Believe::request_opts
-      ) -> Believe::Models::match_get_turning_points_response
+        ?request_options: ::Believe::request_opts
+      ) -> ::Believe::Models::match_get_turning_points_response
 
       def stream_live: (
         ?away_team: String,
         ?excitement_level: Integer,
         ?home_team: String,
         ?speed: Float,
-        ?request_options: Believe::request_opts
+        ?request_options: ::Believe::request_opts
       ) -> nil
 
-      def initialize: (client: Believe::Client) -> void
+      def initialize: (client: ::Believe::Client) -> void
     end
   end
 end

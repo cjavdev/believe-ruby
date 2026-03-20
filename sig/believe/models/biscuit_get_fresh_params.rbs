@@ -1,15 +1,15 @@
 module Believe
   module Models
     type biscuit_get_fresh_params =
-      {  } & Believe::Internal::Type::request_parameters
+      {  } & ::Believe::Internal::Type::request_parameters
 
-    class BiscuitGetFreshParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class BiscuitGetFreshParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
-      def initialize: (?request_options: Believe::request_opts) -> void
+      def initialize: (?request_options: ::Believe::request_opts) -> void
 
-      def to_hash: -> { request_options: Believe::RequestOptions }
+      def to_hash: -> { request_options: ::Believe::RequestOptions }
     end
   end
 end

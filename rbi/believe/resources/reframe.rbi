@@ -9,8 +9,8 @@ module Believe
         params(
           negative_thought: String,
           recurring: T::Boolean,
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::Models::ReframeTransformNegativeThoughtsResponse)
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::Models::ReframeTransformNegativeThoughtsResponse)
       end
       def transform_negative_thoughts(
         # The negative thought to reframe
@@ -22,7 +22,7 @@ module Believe
       end
 
       # @api private
-      sig { params(client: Believe::Client).returns(T.attached_class) }
+      sig { params(client: ::Believe::Client).returns(T.attached_class) }
       def self.new(client:)
       end
     end

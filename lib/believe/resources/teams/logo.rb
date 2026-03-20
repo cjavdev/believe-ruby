@@ -11,13 +11,13 @@ module Believe
         #
         # @param file_id [String]
         # @param team_id [String]
-        # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+        # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
         #
         # @return [nil]
         #
-        # @see Believe::Models::Teams::LogoDeleteParams
+        # @see ::Believe::Models::Teams::LogoDeleteParams
         def delete(file_id, params)
-          parsed, options = Believe::Teams::LogoDeleteParams.dump_request(params)
+          parsed, options = ::Believe::Teams::LogoDeleteParams.dump_request(params)
           team_id =
             parsed.delete(:team_id) do
               raise ArgumentError.new("missing required path argument #{_1}")
@@ -36,13 +36,13 @@ module Believe
         #
         # @param file_id [String]
         # @param team_id [String]
-        # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+        # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
         #
         # @return [Object]
         #
-        # @see Believe::Models::Teams::LogoDownloadParams
+        # @see ::Believe::Models::Teams::LogoDownloadParams
         def download(file_id, params)
-          parsed, options = Believe::Teams::LogoDownloadParams.dump_request(params)
+          parsed, options = ::Believe::Teams::LogoDownloadParams.dump_request(params)
           team_id =
             parsed.delete(:team_id) do
               raise ArgumentError.new("missing required path argument #{_1}")
@@ -50,7 +50,7 @@ module Believe
           @client.request(
             method: :get,
             path: ["teams/%1$s/logo/%2$s", team_id, file_id],
-            model: Believe::Internal::Type::Unknown,
+            model: ::Believe::Internal::Type::Unknown,
             options: options
           )
         end
@@ -61,28 +61,28 @@ module Believe
         #
         # @param team_id [String]
         #
-        # @param file [Pathname, StringIO, IO, String, Believe::FilePart] Logo image file
+        # @param file [Pathname, StringIO, IO, String, ::Believe::FilePart] Logo image file
         #
-        # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+        # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Believe::Models::Teams::FileUpload]
+        # @return [::Believe::Models::Teams::FileUpload]
         #
-        # @see Believe::Models::Teams::LogoUploadParams
+        # @see ::Believe::Models::Teams::LogoUploadParams
         def upload(team_id, params)
-          parsed, options = Believe::Teams::LogoUploadParams.dump_request(params)
+          parsed, options = ::Believe::Teams::LogoUploadParams.dump_request(params)
           @client.request(
             method: :post,
             path: ["teams/%1$s/logo", team_id],
             headers: {"content-type" => "multipart/form-data"},
             body: parsed,
-            model: Believe::Teams::FileUpload,
+            model: ::Believe::Teams::FileUpload,
             options: options
           )
         end
 
         # @api private
         #
-        # @param client [Believe::Client]
+        # @param client [::Believe::Client]
         def initialize(client:)
           @client = client
         end

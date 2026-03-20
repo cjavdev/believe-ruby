@@ -5,29 +5,29 @@ module Believe
         id: String,
         character_id: String,
         context: String,
-        moment_type: Believe::Models::quote_moment,
+        moment_type: ::Believe::Models::quote_moment,
         text: String,
-        theme: Believe::Models::quote_theme,
+        theme: ::Believe::Models::quote_theme,
         episode_id: String?,
         is_funny: bool,
         is_inspirational: bool,
         popularity_score: Float?,
-        secondary_themes: ::Array[Believe::Models::quote_theme],
+        secondary_themes: ::Array[::Believe::Models::quote_theme],
         times_shared: Integer?
       }
 
-    class Quote < Believe::Internal::Type::BaseModel
+    class Quote < ::Believe::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor character_id: String
 
       attr_accessor context: String
 
-      attr_accessor moment_type: Believe::Models::quote_moment
+      attr_accessor moment_type: ::Believe::Models::quote_moment
 
       attr_accessor text: String
 
-      attr_accessor theme: Believe::Models::quote_theme
+      attr_accessor theme: ::Believe::Models::quote_theme
 
       attr_accessor episode_id: String?
 
@@ -41,11 +41,11 @@ module Believe
 
       attr_accessor popularity_score: Float?
 
-      attr_reader secondary_themes: ::Array[Believe::Models::quote_theme]?
+      attr_reader secondary_themes: ::Array[::Believe::Models::quote_theme]?
 
       def secondary_themes=: (
-        ::Array[Believe::Models::quote_theme]
-      ) -> ::Array[Believe::Models::quote_theme]
+        ::Array[::Believe::Models::quote_theme]
+      ) -> ::Array[::Believe::Models::quote_theme]
 
       attr_accessor times_shared: Integer?
 
@@ -53,14 +53,14 @@ module Believe
         id: String,
         character_id: String,
         context: String,
-        moment_type: Believe::Models::quote_moment,
+        moment_type: ::Believe::Models::quote_moment,
         text: String,
-        theme: Believe::Models::quote_theme,
+        theme: ::Believe::Models::quote_theme,
         ?episode_id: String?,
         ?is_funny: bool,
         ?is_inspirational: bool,
         ?popularity_score: Float?,
-        ?secondary_themes: ::Array[Believe::Models::quote_theme],
+        ?secondary_themes: ::Array[::Believe::Models::quote_theme],
         ?times_shared: Integer?
       ) -> void
 
@@ -68,14 +68,14 @@ module Believe
         id: String,
         character_id: String,
         context: String,
-        moment_type: Believe::Models::quote_moment,
+        moment_type: ::Believe::Models::quote_moment,
         text: String,
-        theme: Believe::Models::quote_theme,
+        theme: ::Believe::Models::quote_theme,
         episode_id: String?,
         is_funny: bool,
         is_inspirational: bool,
         popularity_score: Float?,
-        secondary_themes: ::Array[Believe::Models::quote_theme],
+        secondary_themes: ::Array[::Believe::Models::quote_theme],
         times_shared: Integer?
       }
     end

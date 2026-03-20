@@ -2,8 +2,8 @@
 
 module Believe
   module Models
-    # @see Believe::Resources::Biscuits#retrieve
-    class Biscuit < Believe::Internal::Type::BaseModel
+    # @see ::Believe::Resources::Biscuits#retrieve
+    class Biscuit < ::Believe::Internal::Type::BaseModel
       # @!attribute id
       #   Biscuit identifier
       #
@@ -31,8 +31,8 @@ module Believe
       # @!attribute type
       #   Type of biscuit
       #
-      #   @return [Symbol, Believe::Models::Biscuit::Type]
-      required :type, enum: -> { Believe::Biscuit::Type }
+      #   @return [Symbol, ::Believe::Models::Biscuit::Type]
+      required :type, enum: -> { ::Believe::Biscuit::Type }
 
       # @!attribute warmth_level
       #   How warm and fresh (1-10)
@@ -51,15 +51,15 @@ module Believe
       #
       #   @param ted_note [String] A handwritten note from Ted
       #
-      #   @param type [Symbol, Believe::Models::Biscuit::Type] Type of biscuit
+      #   @param type [Symbol, ::Believe::Models::Biscuit::Type] Type of biscuit
       #
       #   @param warmth_level [Integer] How warm and fresh (1-10)
 
       # Type of biscuit
       #
-      # @see Believe::Models::Biscuit#type
+      # @see ::Believe::Models::Biscuit#type
       module Type
-        extend Believe::Internal::Type::Enum
+        extend ::Believe::Internal::Type::Enum
 
         CLASSIC = :classic
         SHORTBREAD = :shortbread

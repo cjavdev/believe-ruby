@@ -19,11 +19,11 @@ module Believe
         viewer_rating: Float?,
         writer: String?
       }
-      & Believe::Internal::Type::request_parameters
+      & ::Believe::Internal::Type::request_parameters
 
-    class EpisodeUpdateParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class EpisodeUpdateParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       attr_accessor episode_id: String
 
@@ -74,7 +74,7 @@ module Believe
         ?us_viewers_millions: Float?,
         ?viewer_rating: Float?,
         ?writer: String?,
-        ?request_options: Believe::request_opts
+        ?request_options: ::Believe::request_opts
       ) -> void
 
       def to_hash: -> {
@@ -94,7 +94,7 @@ module Believe
         us_viewers_millions: Float?,
         viewer_rating: Float?,
         writer: String?,
-        request_options: Believe::RequestOptions
+        request_options: ::Believe::RequestOptions
       }
     end
   end

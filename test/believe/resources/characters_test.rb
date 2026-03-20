@@ -16,24 +16,24 @@ class Believe::Test::Resources::CharactersTest < Believe::Test::ResourceTest
       )
 
     assert_pattern do
-      response => Believe::Character
+      response => ::Believe::Character
     end
 
     assert_pattern do
       response => {
         id: String,
         background: String,
-        emotional_stats: Believe::EmotionalStats,
+        emotional_stats: ::Believe::EmotionalStats,
         name: String,
-        personality_traits: ^(Believe::Internal::Type::ArrayOf[String]),
-        role: Believe::CharacterRole,
+        personality_traits: ^(::Believe::Internal::Type::ArrayOf[String]),
+        role: ::Believe::CharacterRole,
         date_of_birth: Date | nil,
         email: String | nil,
-        growth_arcs: ^(Believe::Internal::Type::ArrayOf[Believe::GrowthArc]) | nil,
+        growth_arcs: ^(::Believe::Internal::Type::ArrayOf[::Believe::GrowthArc]) | nil,
         height_meters: Float | nil,
         profile_image_url: String | nil,
         salary_gbp: String | nil,
-        signature_quotes: ^(Believe::Internal::Type::ArrayOf[String]) | nil,
+        signature_quotes: ^(::Believe::Internal::Type::ArrayOf[String]) | nil,
         team_id: String | nil
       }
     end
@@ -45,24 +45,24 @@ class Believe::Test::Resources::CharactersTest < Believe::Test::ResourceTest
     response = @believe.characters.retrieve("character_id")
 
     assert_pattern do
-      response => Believe::Character
+      response => ::Believe::Character
     end
 
     assert_pattern do
       response => {
         id: String,
         background: String,
-        emotional_stats: Believe::EmotionalStats,
+        emotional_stats: ::Believe::EmotionalStats,
         name: String,
-        personality_traits: ^(Believe::Internal::Type::ArrayOf[String]),
-        role: Believe::CharacterRole,
+        personality_traits: ^(::Believe::Internal::Type::ArrayOf[String]),
+        role: ::Believe::CharacterRole,
         date_of_birth: Date | nil,
         email: String | nil,
-        growth_arcs: ^(Believe::Internal::Type::ArrayOf[Believe::GrowthArc]) | nil,
+        growth_arcs: ^(::Believe::Internal::Type::ArrayOf[::Believe::GrowthArc]) | nil,
         height_meters: Float | nil,
         profile_image_url: String | nil,
         salary_gbp: String | nil,
-        signature_quotes: ^(Believe::Internal::Type::ArrayOf[String]) | nil,
+        signature_quotes: ^(::Believe::Internal::Type::ArrayOf[String]) | nil,
         team_id: String | nil
       }
     end
@@ -74,24 +74,24 @@ class Believe::Test::Resources::CharactersTest < Believe::Test::ResourceTest
     response = @believe.characters.update("character_id")
 
     assert_pattern do
-      response => Believe::Character
+      response => ::Believe::Character
     end
 
     assert_pattern do
       response => {
         id: String,
         background: String,
-        emotional_stats: Believe::EmotionalStats,
+        emotional_stats: ::Believe::EmotionalStats,
         name: String,
-        personality_traits: ^(Believe::Internal::Type::ArrayOf[String]),
-        role: Believe::CharacterRole,
+        personality_traits: ^(::Believe::Internal::Type::ArrayOf[String]),
+        role: ::Believe::CharacterRole,
         date_of_birth: Date | nil,
         email: String | nil,
-        growth_arcs: ^(Believe::Internal::Type::ArrayOf[Believe::GrowthArc]) | nil,
+        growth_arcs: ^(::Believe::Internal::Type::ArrayOf[::Believe::GrowthArc]) | nil,
         height_meters: Float | nil,
         profile_image_url: String | nil,
         salary_gbp: String | nil,
-        signature_quotes: ^(Believe::Internal::Type::ArrayOf[String]) | nil,
+        signature_quotes: ^(::Believe::Internal::Type::ArrayOf[String]) | nil,
         team_id: String | nil
       }
     end
@@ -103,31 +103,31 @@ class Believe::Test::Resources::CharactersTest < Believe::Test::ResourceTest
     response = @believe.characters.list
 
     assert_pattern do
-      response => Believe::Internal::SkipLimitPage
+      response => ::Believe::Internal::SkipLimitPage
     end
 
     row = response.to_enum.first
     return if row.nil?
 
     assert_pattern do
-      row => Believe::Character
+      row => ::Believe::Character
     end
 
     assert_pattern do
       row => {
         id: String,
         background: String,
-        emotional_stats: Believe::EmotionalStats,
+        emotional_stats: ::Believe::EmotionalStats,
         name: String,
-        personality_traits: ^(Believe::Internal::Type::ArrayOf[String]),
-        role: Believe::CharacterRole,
+        personality_traits: ^(::Believe::Internal::Type::ArrayOf[String]),
+        role: ::Believe::CharacterRole,
         date_of_birth: Date | nil,
         email: String | nil,
-        growth_arcs: ^(Believe::Internal::Type::ArrayOf[Believe::GrowthArc]) | nil,
+        growth_arcs: ^(::Believe::Internal::Type::ArrayOf[::Believe::GrowthArc]) | nil,
         height_meters: Float | nil,
         profile_image_url: String | nil,
         salary_gbp: String | nil,
-        signature_quotes: ^(Believe::Internal::Type::ArrayOf[String]) | nil,
+        signature_quotes: ^(::Believe::Internal::Type::ArrayOf[String]) | nil,
         team_id: String | nil
       }
     end
@@ -149,7 +149,7 @@ class Believe::Test::Resources::CharactersTest < Believe::Test::ResourceTest
     response = @believe.characters.get_quotes("character_id")
 
     assert_pattern do
-      response => ^(Believe::Internal::Type::ArrayOf[String])
+      response => ^(::Believe::Internal::Type::ArrayOf[String])
     end
   end
 end

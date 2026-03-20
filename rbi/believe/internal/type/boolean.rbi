@@ -7,8 +7,8 @@ module Believe
       #
       # Ruby has no Boolean class; this is something for models to refer to.
       class Boolean
-        extend Believe::Internal::Type::Converter
-        extend Believe::Internal::Util::SorbetRuntimeSupport
+        extend ::Believe::Internal::Type::Converter
+        extend ::Believe::Internal::Util::SorbetRuntimeSupport
 
         abstract!
 
@@ -28,7 +28,7 @@ module Believe
             override
               .params(
                 value: T.any(T::Boolean, T.anything),
-                state: Believe::Internal::Type::Converter::CoerceState
+                state: ::Believe::Internal::Type::Converter::CoerceState
               )
               .returns(T.any(T::Boolean, T.anything))
           end
@@ -40,7 +40,7 @@ module Believe
             override
               .params(
                 value: T.any(T::Boolean, T.anything),
-                state: Believe::Internal::Type::Converter::DumpState
+                state: ::Believe::Internal::Type::Converter::DumpState
               )
               .returns(T.any(T::Boolean, T.anything))
           end

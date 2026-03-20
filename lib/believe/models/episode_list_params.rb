@@ -2,10 +2,10 @@
 
 module Believe
   module Models
-    # @see Believe::Resources::Episodes#list
-    class EpisodeListParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    # @see ::Believe::Resources::Episodes#list
+    class EpisodeListParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       # @!attribute character_focus
       #   Filter by character focus (character ID)
@@ -40,7 +40,7 @@ module Believe
       #
       #   @param skip [Integer] Number of items to skip (offset)
       #
-      #   @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}]
+      #   @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}]
     end
   end
 end

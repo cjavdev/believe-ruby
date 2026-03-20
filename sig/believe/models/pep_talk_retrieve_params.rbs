@@ -1,11 +1,11 @@
 module Believe
   module Models
     type pep_talk_retrieve_params =
-      { stream: bool } & Believe::Internal::Type::request_parameters
+      { stream: bool } & ::Believe::Internal::Type::request_parameters
 
-    class PepTalkRetrieveParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class PepTalkRetrieveParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       attr_reader stream: bool?
 
@@ -13,10 +13,13 @@ module Believe
 
       def initialize: (
         ?stream: bool,
-        ?request_options: Believe::request_opts
+        ?request_options: ::Believe::request_opts
       ) -> void
 
-      def to_hash: -> { stream: bool, request_options: Believe::RequestOptions }
+      def to_hash: -> {
+        stream: bool,
+        request_options: ::Believe::RequestOptions
+      }
     end
   end
 end

@@ -2,12 +2,12 @@
 
 module Believe
   module Models
-    class ReframeTransformNegativeThoughtsResponse < Believe::Internal::Type::BaseModel
+    class ReframeTransformNegativeThoughtsResponse < ::Believe::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
           T.any(
-            Believe::Models::ReframeTransformNegativeThoughtsResponse,
-            Believe::Internal::AnyHash
+            ::Believe::Models::ReframeTransformNegativeThoughtsResponse,
+            ::Believe::Internal::AnyHash
           )
         end
 

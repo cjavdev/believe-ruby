@@ -2,8 +2,8 @@
 
 module Believe
   module Models
-    # @see Believe::Resources::Quotes#create
-    class Quote < Believe::Internal::Type::BaseModel
+    # @see ::Believe::Resources::Quotes#create
+    class Quote < ::Believe::Internal::Type::BaseModel
       # @!attribute id
       #   Unique identifier
       #
@@ -25,8 +25,8 @@ module Believe
       # @!attribute moment_type
       #   Type of moment when the quote was said
       #
-      #   @return [Symbol, Believe::Models::QuoteMoment]
-      required :moment_type, enum: -> { Believe::QuoteMoment }
+      #   @return [Symbol, ::Believe::Models::QuoteMoment]
+      required :moment_type, enum: -> { ::Believe::QuoteMoment }
 
       # @!attribute text
       #   The quote text
@@ -37,8 +37,8 @@ module Believe
       # @!attribute theme
       #   Primary theme of the quote
       #
-      #   @return [Symbol, Believe::Models::QuoteTheme]
-      required :theme, enum: -> { Believe::QuoteTheme }
+      #   @return [Symbol, ::Believe::Models::QuoteTheme]
+      required :theme, enum: -> { ::Believe::QuoteTheme }
 
       # @!attribute episode_id
       #   Episode where the quote appears
@@ -50,13 +50,13 @@ module Believe
       #   Whether this quote is humorous
       #
       #   @return [Boolean, nil]
-      optional :is_funny, Believe::Internal::Type::Boolean
+      optional :is_funny, ::Believe::Internal::Type::Boolean
 
       # @!attribute is_inspirational
       #   Whether this quote is inspirational
       #
       #   @return [Boolean, nil]
-      optional :is_inspirational, Believe::Internal::Type::Boolean
+      optional :is_inspirational, ::Believe::Internal::Type::Boolean
 
       # @!attribute popularity_score
       #   Popularity/virality score (0-100)
@@ -67,8 +67,8 @@ module Believe
       # @!attribute secondary_themes
       #   Additional themes
       #
-      #   @return [Array<Symbol, Believe::Models::QuoteTheme>, nil]
-      optional :secondary_themes, -> { Believe::Internal::Type::ArrayOf[enum: Believe::QuoteTheme] }
+      #   @return [Array<Symbol, ::Believe::Models::QuoteTheme>, nil]
+      optional :secondary_themes, -> { ::Believe::Internal::Type::ArrayOf[enum: ::Believe::QuoteTheme] }
 
       # @!attribute times_shared
       #   Number of times shared on social media
@@ -85,11 +85,11 @@ module Believe
       #
       #   @param context [String] Context in which the quote was said
       #
-      #   @param moment_type [Symbol, Believe::Models::QuoteMoment] Type of moment when the quote was said
+      #   @param moment_type [Symbol, ::Believe::Models::QuoteMoment] Type of moment when the quote was said
       #
       #   @param text [String] The quote text
       #
-      #   @param theme [Symbol, Believe::Models::QuoteTheme] Primary theme of the quote
+      #   @param theme [Symbol, ::Believe::Models::QuoteTheme] Primary theme of the quote
       #
       #   @param episode_id [String, nil] Episode where the quote appears
       #
@@ -99,7 +99,7 @@ module Believe
       #
       #   @param popularity_score [Float, nil] Popularity/virality score (0-100)
       #
-      #   @param secondary_themes [Array<Symbol, Believe::Models::QuoteTheme>] Additional themes
+      #   @param secondary_themes [Array<Symbol, ::Believe::Models::QuoteTheme>] Additional themes
       #
       #   @param times_shared [Integer, nil] Number of times shared on social media
     end

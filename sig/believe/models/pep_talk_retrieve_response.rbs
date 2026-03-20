@@ -2,22 +2,22 @@ module Believe
   module Models
     type pep_talk_retrieve_response =
       {
-        chunks: ::Array[Believe::Models::PepTalkRetrieveResponse::Chunk],
+        chunks: ::Array[::Believe::Models::PepTalkRetrieveResponse::Chunk],
         text: String
       }
 
-    class PepTalkRetrieveResponse < Believe::Internal::Type::BaseModel
-      attr_accessor chunks: ::Array[Believe::Models::PepTalkRetrieveResponse::Chunk]
+    class PepTalkRetrieveResponse < ::Believe::Internal::Type::BaseModel
+      attr_accessor chunks: ::Array[::Believe::Models::PepTalkRetrieveResponse::Chunk]
 
       attr_accessor text: String
 
       def initialize: (
-        chunks: ::Array[Believe::Models::PepTalkRetrieveResponse::Chunk],
+        chunks: ::Array[::Believe::Models::PepTalkRetrieveResponse::Chunk],
         text: String
       ) -> void
 
       def to_hash: -> {
-        chunks: ::Array[Believe::Models::PepTalkRetrieveResponse::Chunk],
+        chunks: ::Array[::Believe::Models::PepTalkRetrieveResponse::Chunk],
         text: String
       }
 
@@ -29,7 +29,7 @@ module Believe
           emotional_beat: String?
         }
 
-      class Chunk < Believe::Internal::Type::BaseModel
+      class Chunk < ::Believe::Internal::Type::BaseModel
         attr_accessor chunk_id: Integer
 
         attr_accessor is_final: bool

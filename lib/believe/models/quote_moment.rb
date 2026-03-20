@@ -4,7 +4,7 @@ module Believe
   module Models
     # Types of moments when quotes occur.
     module QuoteMoment
-      extend Believe::Internal::Type::Enum
+      extend ::Believe::Internal::Type::Enum
 
       HALFTIME_SPEECH = :halftime_speech
       PRESS_CONFERENCE = :press_conference

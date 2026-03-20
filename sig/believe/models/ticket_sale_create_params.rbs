@@ -6,7 +6,7 @@ module Believe
         currency: String,
         discount: String,
         match_id: String,
-        purchase_method: Believe::Models::purchase_method,
+        purchase_method: ::Believe::Models::purchase_method,
         quantity: Integer,
         subtotal: String,
         tax: String,
@@ -15,11 +15,11 @@ module Believe
         buyer_email: String?,
         coupon_code: String?
       }
-      & Believe::Internal::Type::request_parameters
+      & ::Believe::Internal::Type::request_parameters
 
-    class TicketSaleCreateParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class TicketSaleCreateParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       attr_accessor buyer_name: String
 
@@ -29,7 +29,7 @@ module Believe
 
       attr_accessor match_id: String
 
-      attr_accessor purchase_method: Believe::Models::purchase_method
+      attr_accessor purchase_method: ::Believe::Models::purchase_method
 
       attr_accessor quantity: Integer
 
@@ -50,7 +50,7 @@ module Believe
         currency: String,
         discount: String,
         match_id: String,
-        purchase_method: Believe::Models::purchase_method,
+        purchase_method: ::Believe::Models::purchase_method,
         quantity: Integer,
         subtotal: String,
         tax: String,
@@ -58,7 +58,7 @@ module Believe
         unit_price: String,
         ?buyer_email: String?,
         ?coupon_code: String?,
-        ?request_options: Believe::request_opts
+        ?request_options: ::Believe::request_opts
       ) -> void
 
       def to_hash: -> {
@@ -66,7 +66,7 @@ module Believe
         currency: String,
         discount: String,
         match_id: String,
-        purchase_method: Believe::Models::purchase_method,
+        purchase_method: ::Believe::Models::purchase_method,
         quantity: Integer,
         subtotal: String,
         tax: String,
@@ -74,7 +74,7 @@ module Believe
         unit_price: String,
         buyer_email: String?,
         coupon_code: String?,
-        request_options: Believe::RequestOptions
+        request_options: ::Believe::RequestOptions
       }
     end
   end

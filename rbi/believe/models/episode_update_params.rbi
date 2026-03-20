@@ -2,13 +2,13 @@
 
 module Believe
   module Models
-    class EpisodeUpdateParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class EpisodeUpdateParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(Believe::EpisodeUpdateParams, Believe::Internal::AnyHash)
+          T.any(::Believe::EpisodeUpdateParams, ::Believe::Internal::AnyHash)
         end
 
       sig { returns(String) }
@@ -77,7 +77,7 @@ module Believe
           us_viewers_millions: T.nilable(Float),
           viewer_rating: T.nilable(Float),
           writer: T.nilable(String),
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
@@ -120,7 +120,7 @@ module Believe
             us_viewers_millions: T.nilable(Float),
             viewer_rating: T.nilable(Float),
             writer: T.nilable(String),
-            request_options: Believe::RequestOptions
+            request_options: ::Believe::RequestOptions
           }
         )
       end

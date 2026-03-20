@@ -9,8 +9,8 @@ module Believe
       #
       # Ruby has no Boolean class; this is something for models to refer to.
       class Boolean
-        extend Believe::Internal::Type::Converter
-        extend Believe::Internal::Util::SorbetRuntimeSupport
+        extend ::Believe::Internal::Type::Converter
+        extend ::Believe::Internal::Util::SorbetRuntimeSupport
 
         private_class_method :new
 
@@ -26,7 +26,7 @@ module Believe
         # @param other [Object]
         #
         # @return [Boolean]
-        def self.==(other) = other.is_a?(Class) && other <= Believe::Internal::Type::Boolean
+        def self.==(other) = other.is_a?(Class) && other <= ::Believe::Internal::Type::Boolean
 
         class << self
           # @api private

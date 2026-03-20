@@ -9,16 +9,16 @@ module Believe
       # @overload retrieve(biscuit_id, request_options: {})
       #
       # @param biscuit_id [String]
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Models::Biscuit]
+      # @return [::Believe::Models::Biscuit]
       #
-      # @see Believe::Models::BiscuitRetrieveParams
+      # @see ::Believe::Models::BiscuitRetrieveParams
       def retrieve(biscuit_id, params = {})
         @client.request(
           method: :get,
           path: ["biscuits/%1$s", biscuit_id],
-          model: Believe::Biscuit,
+          model: ::Believe::Biscuit,
           options: params[:request_options]
         )
       end
@@ -32,20 +32,20 @@ module Believe
       #
       # @param skip [Integer] Number of items to skip (offset)
       #
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Internal::SkipLimitPage<Believe::Models::Biscuit>]
+      # @return [::Believe::Internal::SkipLimitPage<::Believe::Models::Biscuit>]
       #
-      # @see Believe::Models::BiscuitListParams
+      # @see ::Believe::Models::BiscuitListParams
       def list(params = {})
-        parsed, options = Believe::BiscuitListParams.dump_request(params)
-        query = Believe::Internal::Util.encode_query_params(parsed)
+        parsed, options = ::Believe::BiscuitListParams.dump_request(params)
+        query = ::Believe::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "biscuits",
           query: query,
-          page: Believe::Internal::SkipLimitPage,
-          model: Believe::Biscuit,
+          page: ::Believe::Internal::SkipLimitPage,
+          model: ::Believe::Biscuit,
           options: options
         )
       end
@@ -54,23 +54,23 @@ module Believe
       #
       # @overload get_fresh(request_options: {})
       #
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Models::Biscuit]
+      # @return [::Believe::Models::Biscuit]
       #
-      # @see Believe::Models::BiscuitGetFreshParams
+      # @see ::Believe::Models::BiscuitGetFreshParams
       def get_fresh(params = {})
         @client.request(
           method: :get,
           path: "biscuits/fresh",
-          model: Believe::Biscuit,
+          model: ::Believe::Biscuit,
           options: params[:request_options]
         )
       end
 
       # @api private
       #
-      # @param client [Believe::Client]
+      # @param client [::Believe::Client]
       def initialize(client:)
         @client = client
       end

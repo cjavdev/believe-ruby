@@ -6,12 +6,12 @@ module Believe
       # @api private
       #
       # Either `Pathname` or `StringIO`, or `IO`, or
-      # `Believe::Internal::Type::FileInput`.
+      # `::Believe::Internal::Type::FileInput`.
       #
       # Note: when `IO` is used, all retries are disabled, since many IO` streams are
       # not rewindable.
       class FileInput
-        extend Believe::Internal::Type::Converter
+        extend ::Believe::Internal::Type::Converter
 
         abstract!
 
@@ -29,7 +29,7 @@ module Believe
             override
               .params(
                 value: T.any(StringIO, String, T.anything),
-                state: Believe::Internal::Type::Converter::CoerceState
+                state: ::Believe::Internal::Type::Converter::CoerceState
               )
               .returns(T.any(StringIO, T.anything))
           end
@@ -41,7 +41,7 @@ module Believe
             override
               .params(
                 value: T.any(Pathname, StringIO, IO, String, T.anything),
-                state: Believe::Internal::Type::Converter::DumpState
+                state: ::Believe::Internal::Type::Converter::DumpState
               )
               .returns(T.any(Pathname, StringIO, IO, String, T.anything))
           end

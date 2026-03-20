@@ -2,9 +2,11 @@
 
 module Believe
   module Models
-    class TeamValues < Believe::Internal::Type::BaseModel
+    class TeamValues < ::Believe::Internal::Type::BaseModel
       OrHash =
-        T.type_alias { T.any(Believe::TeamValues, Believe::Internal::AnyHash) }
+        T.type_alias do
+          T.any(::Believe::TeamValues, ::Believe::Internal::AnyHash)
+        end
 
       # The team's primary guiding value
       sig { returns(String) }

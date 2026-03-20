@@ -2,9 +2,11 @@
 
 module Believe
   module Models
-    class TicketSale < Believe::Internal::Type::BaseModel
+    class TicketSale < ::Believe::Internal::Type::BaseModel
       OrHash =
-        T.type_alias { T.any(Believe::TicketSale, Believe::Internal::AnyHash) }
+        T.type_alias do
+          T.any(::Believe::TicketSale, ::Believe::Internal::AnyHash)
+        end
 
       # Unique identifier
       sig { returns(String) }
@@ -27,7 +29,7 @@ module Believe
       attr_accessor :match_id
 
       # How the ticket was purchased
-      sig { returns(Believe::PurchaseMethod::TaggedSymbol) }
+      sig { returns(::Believe::PurchaseMethod::TaggedSymbol) }
       attr_accessor :purchase_method
 
       # Number of tickets purchased
@@ -66,7 +68,7 @@ module Believe
           currency: String,
           discount: String,
           match_id: String,
-          purchase_method: Believe::PurchaseMethod::OrSymbol,
+          purchase_method: ::Believe::PurchaseMethod::OrSymbol,
           quantity: Integer,
           subtotal: String,
           tax: String,
@@ -114,7 +116,7 @@ module Believe
             currency: String,
             discount: String,
             match_id: String,
-            purchase_method: Believe::PurchaseMethod::TaggedSymbol,
+            purchase_method: ::Believe::PurchaseMethod::TaggedSymbol,
             quantity: Integer,
             subtotal: String,
             tax: String,

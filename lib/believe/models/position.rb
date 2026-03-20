@@ -4,7 +4,7 @@ module Believe
   module Models
     # Football positions for players.
     module Position
-      extend Believe::Internal::Type::Enum
+      extend ::Believe::Internal::Type::Enum
 
       GOALKEEPER = :goalkeeper
       DEFENDER = :defender

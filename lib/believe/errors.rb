@@ -8,7 +8,7 @@ module Believe
       #   @return [StandardError, nil]
     end
 
-    class ConversionError < Believe::Errors::Error
+    class ConversionError < ::Believe::Errors::Error
       # @return [StandardError, nil]
       def cause = @cause.nil? ? super : @cause
 
@@ -33,7 +33,7 @@ module Believe
       end
     end
 
-    class APIError < Believe::Errors::Error
+    class APIError < ::Believe::Errors::Error
       # @return [URI::Generic]
       attr_accessor :url
 
@@ -66,7 +66,7 @@ module Believe
       end
     end
 
-    class APIConnectionError < Believe::Errors::APIError
+    class APIConnectionError < ::Believe::Errors::APIError
       # @!attribute status
       #
       #   @return [nil]
@@ -97,7 +97,7 @@ module Believe
       end
     end
 
-    class APITimeoutError < Believe::Errors::APIConnectionError
+    class APITimeoutError < ::Believe::Errors::APIConnectionError
       # @api private
       #
       # @param url [URI::Generic]
@@ -120,7 +120,7 @@ module Believe
       end
     end
 
-    class APIStatusError < Believe::Errors::APIError
+    class APIStatusError < ::Believe::Errors::APIError
       # @api private
       #
       # @param url [URI::Generic]
@@ -146,23 +146,23 @@ module Believe
 
         case status
         in 400
-          Believe::Errors::BadRequestError.new(**kwargs)
+          ::Believe::Errors::BadRequestError.new(**kwargs)
         in 401
-          Believe::Errors::AuthenticationError.new(**kwargs)
+          ::Believe::Errors::AuthenticationError.new(**kwargs)
         in 403
-          Believe::Errors::PermissionDeniedError.new(**kwargs)
+          ::Believe::Errors::PermissionDeniedError.new(**kwargs)
         in 404
-          Believe::Errors::NotFoundError.new(**kwargs)
+          ::Believe::Errors::NotFoundError.new(**kwargs)
         in 409
-          Believe::Errors::ConflictError.new(**kwargs)
+          ::Believe::Errors::ConflictError.new(**kwargs)
         in 422
-          Believe::Errors::UnprocessableEntityError.new(**kwargs)
+          ::Believe::Errors::UnprocessableEntityError.new(**kwargs)
         in 429
-          Believe::Errors::RateLimitError.new(**kwargs)
+          ::Believe::Errors::RateLimitError.new(**kwargs)
         in (500..)
-          Believe::Errors::InternalServerError.new(**kwargs)
+          ::Believe::Errors::InternalServerError.new(**kwargs)
         else
-          Believe::Errors::APIStatusError.new(**kwargs)
+          ::Believe::Errors::APIStatusError.new(**kwargs)
         end
       end
 
@@ -193,35 +193,35 @@ module Believe
       end
     end
 
-    class BadRequestError < Believe::Errors::APIStatusError
+    class BadRequestError < ::Believe::Errors::APIStatusError
       HTTP_STATUS = 400
     end
 
-    class AuthenticationError < Believe::Errors::APIStatusError
+    class AuthenticationError < ::Believe::Errors::APIStatusError
       HTTP_STATUS = 401
     end
 
-    class PermissionDeniedError < Believe::Errors::APIStatusError
+    class PermissionDeniedError < ::Believe::Errors::APIStatusError
       HTTP_STATUS = 403
     end
 
-    class NotFoundError < Believe::Errors::APIStatusError
+    class NotFoundError < ::Believe::Errors::APIStatusError
       HTTP_STATUS = 404
     end
 
-    class ConflictError < Believe::Errors::APIStatusError
+    class ConflictError < ::Believe::Errors::APIStatusError
       HTTP_STATUS = 409
     end
 
-    class UnprocessableEntityError < Believe::Errors::APIStatusError
+    class UnprocessableEntityError < ::Believe::Errors::APIStatusError
       HTTP_STATUS = 422
     end
 
-    class RateLimitError < Believe::Errors::APIStatusError
+    class RateLimitError < ::Believe::Errors::APIStatusError
       HTTP_STATUS = 429
     end
 
-    class InternalServerError < Believe::Errors::APIStatusError
+    class InternalServerError < ::Believe::Errors::APIStatusError
       HTTP_STATUS = (500..)
     end
   end

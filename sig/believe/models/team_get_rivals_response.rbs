@@ -1,7 +1,7 @@
 module Believe
   module Models
-    type team_get_rivals_response = ::Array[Believe::Team]
+    type team_get_rivals_response = ::Array[::Believe::Team]
 
-    TeamGetRivalsResponse: Believe::Internal::Type::Converter
+    TeamGetRivalsResponse: ::Believe::Internal::Type::Converter
   end
 end

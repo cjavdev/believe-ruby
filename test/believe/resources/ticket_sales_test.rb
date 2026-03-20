@@ -21,7 +21,7 @@ class Believe::Test::Resources::TicketSalesTest < Believe::Test::ResourceTest
       )
 
     assert_pattern do
-      response => Believe::TicketSale
+      response => ::Believe::TicketSale
     end
 
     assert_pattern do
@@ -31,7 +31,7 @@ class Believe::Test::Resources::TicketSalesTest < Believe::Test::ResourceTest
         currency: String,
         discount: String,
         match_id: String,
-        purchase_method: Believe::PurchaseMethod,
+        purchase_method: ::Believe::PurchaseMethod,
         quantity: Integer,
         subtotal: String,
         tax: String,
@@ -49,7 +49,7 @@ class Believe::Test::Resources::TicketSalesTest < Believe::Test::ResourceTest
     response = @believe.ticket_sales.retrieve("ticket_sale_id")
 
     assert_pattern do
-      response => Believe::TicketSale
+      response => ::Believe::TicketSale
     end
 
     assert_pattern do
@@ -59,7 +59,7 @@ class Believe::Test::Resources::TicketSalesTest < Believe::Test::ResourceTest
         currency: String,
         discount: String,
         match_id: String,
-        purchase_method: Believe::PurchaseMethod,
+        purchase_method: ::Believe::PurchaseMethod,
         quantity: Integer,
         subtotal: String,
         tax: String,
@@ -77,7 +77,7 @@ class Believe::Test::Resources::TicketSalesTest < Believe::Test::ResourceTest
     response = @believe.ticket_sales.update("ticket_sale_id")
 
     assert_pattern do
-      response => Believe::TicketSale
+      response => ::Believe::TicketSale
     end
 
     assert_pattern do
@@ -87,7 +87,7 @@ class Believe::Test::Resources::TicketSalesTest < Believe::Test::ResourceTest
         currency: String,
         discount: String,
         match_id: String,
-        purchase_method: Believe::PurchaseMethod,
+        purchase_method: ::Believe::PurchaseMethod,
         quantity: Integer,
         subtotal: String,
         tax: String,
@@ -105,14 +105,14 @@ class Believe::Test::Resources::TicketSalesTest < Believe::Test::ResourceTest
     response = @believe.ticket_sales.list
 
     assert_pattern do
-      response => Believe::Internal::SkipLimitPage
+      response => ::Believe::Internal::SkipLimitPage
     end
 
     row = response.to_enum.first
     return if row.nil?
 
     assert_pattern do
-      row => Believe::TicketSale
+      row => ::Believe::TicketSale
     end
 
     assert_pattern do
@@ -122,7 +122,7 @@ class Believe::Test::Resources::TicketSalesTest < Believe::Test::ResourceTest
         currency: String,
         discount: String,
         match_id: String,
-        purchase_method: Believe::PurchaseMethod,
+        purchase_method: ::Believe::PurchaseMethod,
         quantity: Integer,
         subtotal: String,
         tax: String,

@@ -2,47 +2,47 @@
 
 require_relative "../test_helper"
 
-class Believe::Test::UtilDataHandlingTest < Minitest::Test
+class ::Believe::Test::UtilDataHandlingTest < Minitest::Test
   def test_left_map
     assert_pattern do
-      Believe::Internal::Util.deep_merge({a: 1}, nil) => nil
+      ::Believe::Internal::Util.deep_merge({a: 1}, nil) => nil
     end
   end
 
   def test_right_map
     assert_pattern do
-      Believe::Internal::Util.deep_merge(nil, {a: 1}) => {a: 1}
+      ::Believe::Internal::Util.deep_merge(nil, {a: 1}) => {a: 1}
     end
   end
 
   def test_disjoint_maps
     assert_pattern do
-      Believe::Internal::Util.deep_merge({b: 2}, {a: 1}) => {a: 1, b: 2}
+      ::Believe::Internal::Util.deep_merge({b: 2}, {a: 1}) => {a: 1, b: 2}
     end
   end
 
   def test_overlapping_maps
     assert_pattern do
-      Believe::Internal::Util.deep_merge({b: 2, c: 3}, {a: 1, c: 4}) => {a: 1, b: 2, c: 4}
+      ::Believe::Internal::Util.deep_merge({b: 2, c: 3}, {a: 1, c: 4}) => {a: 1, b: 2, c: 4}
     end
   end
 
   def test_nested
     assert_pattern do
-      Believe::Internal::Util.deep_merge({b: {b2: 1}}, {b: {b2: 2}}) => {b: {b2: 2}}
+      ::Believe::Internal::Util.deep_merge({b: {b2: 1}}, {b: {b2: 2}}) => {b: {b2: 2}}
     end
   end
 
   def test_nested_left_map
     assert_pattern do
-      Believe::Internal::Util.deep_merge({b: {b2: 1}}, {b: 6}) => {b: 6}
+      ::Believe::Internal::Util.deep_merge({b: {b2: 1}}, {b: 6}) => {b: 6}
     end
   end
 
   def test_omission
-    merged = Believe::Internal::Util.deep_merge(
+    merged = ::Believe::Internal::Util.deep_merge(
       {b: {b2: 1, b3: {c: 4, d: 5}}},
-      {b: {b2: 1, b3: {c: Believe::Internal::OMIT, d: 5}}}
+      {b: {b2: 1, b3: {c: ::Believe::Internal::OMIT, d: 5}}}
     )
 
     assert_pattern do
@@ -51,7 +51,7 @@ class Believe::Test::UtilDataHandlingTest < Minitest::Test
   end
 
   def test_concat
-    merged = Believe::Internal::Util.deep_merge(
+    merged = ::Believe::Internal::Util.deep_merge(
       {a: {b: [1, 2]}},
       {a: {b: [3, 4]}},
       concat: true
@@ -63,7 +63,7 @@ class Believe::Test::UtilDataHandlingTest < Minitest::Test
   end
 
   def test_concat_false
-    merged = Believe::Internal::Util.deep_merge(
+    merged = ::Believe::Internal::Util.deep_merge(
       {a: {b: [1, 2]}},
       {a: {b: [3, 4]}},
       concat: false
@@ -76,36 +76,36 @@ class Believe::Test::UtilDataHandlingTest < Minitest::Test
 
   def test_dig
     assert_pattern do
-      Believe::Internal::Util.dig(1, nil) => 1
-      Believe::Internal::Util.dig({a: 1}, :b) => nil
-      Believe::Internal::Util.dig({a: 1}, :a) => 1
-      Believe::Internal::Util.dig({a: {b: 1}}, [:a, :b]) => 1
+      ::Believe::Internal::Util.dig(1, nil) => 1
+      ::Believe::Internal::Util.dig({a: 1}, :b) => nil
+      ::Believe::Internal::Util.dig({a: 1}, :a) => 1
+      ::Believe::Internal::Util.dig({a: {b: 1}}, [:a, :b]) => 1
 
-      Believe::Internal::Util.dig([], 1) => nil
-      Believe::Internal::Util.dig([nil, [nil, 1]], [1, 1]) => 1
-      Believe::Internal::Util.dig({a: [nil, 1]}, [:a, 1]) => 1
-      Believe::Internal::Util.dig([], 1.0) => nil
+      ::Believe::Internal::Util.dig([], 1) => nil
+      ::Believe::Internal::Util.dig([nil, [nil, 1]], [1, 1]) => 1
+      ::Believe::Internal::Util.dig({a: [nil, 1]}, [:a, 1]) => 1
+      ::Believe::Internal::Util.dig([], 1.0) => nil
 
-      Believe::Internal::Util.dig(Object, 1) => nil
-      Believe::Internal::Util.dig([], 1.0) { 2 } => 2
-      Believe::Internal::Util.dig([], ->(_) { 2 }) => 2
-      Believe::Internal::Util.dig([1], -> { _1 in [1] }) => true
+      ::Believe::Internal::Util.dig(Object, 1) => nil
+      ::Believe::Internal::Util.dig([], 1.0) { 2 } => 2
+      ::Believe::Internal::Util.dig([], ->(_) { 2 }) => 2
+      ::Believe::Internal::Util.dig([1], -> { _1 in [1] }) => true
     end
   end
 end
 
-class Believe::Test::UtilUriHandlingTest < Minitest::Test
+class ::Believe::Test::UtilUriHandlingTest < Minitest::Test
   def test_parsing
     %w[
       http://example.com
       https://example.com/
       https://example.com:443/example?e1=e1&e2=e2&e=
     ].each do |url|
-      parsed = Believe::Internal::Util.parse_uri(url)
-      unparsed = Believe::Internal::Util.unparse_uri(parsed).to_s
+      parsed = ::Believe::Internal::Util.parse_uri(url)
+      unparsed = ::Believe::Internal::Util.unparse_uri(parsed).to_s
 
       assert_equal(url, unparsed)
-      assert_equal(parsed, Believe::Internal::Util.parse_uri(unparsed))
+      assert_equal(parsed, ::Believe::Internal::Util.parse_uri(unparsed))
     end
   end
 
@@ -114,7 +114,7 @@ class Believe::Test::UtilUriHandlingTest < Minitest::Test
       [
         "h://a.b/c?d=e",
         "h://nope/ignored",
-        Believe::Internal::Util.parse_uri("h://a.b/c?d=e")
+        ::Believe::Internal::Util.parse_uri("h://a.b/c?d=e")
       ],
       [
         "h://a.b/c?d=e",
@@ -138,8 +138,8 @@ class Believe::Test::UtilUriHandlingTest < Minitest::Test
     cases.each do |expect, lhs, rhs|
       assert_equal(
         URI.parse(expect),
-        Believe::Internal::Util.join_parsed_uri(
-          Believe::Internal::Util.parse_uri(lhs),
+        ::Believe::Internal::Util.join_parsed_uri(
+          ::Believe::Internal::Util.parse_uri(lhs),
           rhs
         )
       )
@@ -157,8 +157,8 @@ class Believe::Test::UtilUriHandlingTest < Minitest::Test
     cases.each do |path, expected|
       assert_equal(
         URI.parse(expected),
-        Believe::Internal::Util.join_parsed_uri(
-          Believe::Internal::Util.parse_uri(base_url),
+        ::Believe::Internal::Util.join_parsed_uri(
+          ::Believe::Internal::Util.parse_uri(base_url),
           {path: path}
         )
       )
@@ -166,7 +166,7 @@ class Believe::Test::UtilUriHandlingTest < Minitest::Test
   end
 end
 
-class Believe::Test::RegexMatchTest < Minitest::Test
+class ::Believe::Test::RegexMatchTest < Minitest::Test
   def test_json_content
     cases = {
       "application/json" => true,
@@ -178,7 +178,7 @@ class Believe::Test::RegexMatchTest < Minitest::Test
     }
     cases.each do |header, verdict|
       assert_pattern do
-        Believe::Internal::Util::JSON_CONTENT.match?(header) => ^verdict
+        ::Believe::Internal::Util::JSON_CONTENT.match?(header) => ^verdict
       end
     end
   end
@@ -194,19 +194,19 @@ class Believe::Test::RegexMatchTest < Minitest::Test
     }
     cases.each do |header, verdict|
       assert_pattern do
-        Believe::Internal::Util::JSONL_CONTENT.match?(header) => ^verdict
+        ::Believe::Internal::Util::JSONL_CONTENT.match?(header) => ^verdict
       end
     end
   end
 end
 
-class Believe::Test::UtilFormDataEncodingTest < Minitest::Test
+class ::Believe::Test::UtilFormDataEncodingTest < Minitest::Test
   class FakeCGI < CGI
     def initialize(headers, io)
       encoded = io.to_a
       @ctype = headers["content-type"]
       # rubocop:disable Lint/EmptyBlock
-      @io = Believe::Internal::Util::ReadIOAdapter.new(encoded.to_enum) {}
+      @io = ::Believe::Internal::Util::ReadIOAdapter.new(encoded.to_enum) {}
       # rubocop:enable Lint/EmptyBlock
       @c_len = encoded.join.bytesize.to_s
       super()
@@ -224,7 +224,7 @@ class Believe::Test::UtilFormDataEncodingTest < Minitest::Test
   end
 
   def test_encoding_length
-    headers, = Believe::Internal::Util.encode_content(
+    headers, = ::Believe::Internal::Util.encode_content(
       {"content-type" => "multipart/form-data"},
       Pathname(__FILE__)
     )
@@ -237,19 +237,19 @@ class Believe::Test::UtilFormDataEncodingTest < Minitest::Test
 
   def test_file_encode
     file = Pathname(__FILE__)
-    fileinput = Believe::Internal::Type::Converter.dump(Believe::Internal::Type::FileInput, "abc")
+    fileinput = ::Believe::Internal::Type::Converter.dump(::Believe::Internal::Type::FileInput, "abc")
     headers = {"content-type" => "multipart/form-data"}
     cases = {
       "abc" => ["", "abc"],
       StringIO.new("abc") => ["", "abc"],
       fileinput => %w[upload abc],
-      Believe::FilePart.new(StringIO.new("abc")) => ["", "abc"],
-      file => [file.basename.to_path, /^class Believe/],
-      Believe::FilePart.new(file, filename: "d o g") => ["d%20o%20g", /^class Believe/]
+      ::Believe::FilePart.new(StringIO.new("abc")) => ["", "abc"],
+      file => [file.basename.to_path, /^class ::Believe/],
+      ::Believe::FilePart.new(file, filename: "d o g") => ["d%20o%20g", /^class ::Believe/]
     }
     cases.each do |body, testcase|
       filename, val = testcase
-      encoded = Believe::Internal::Util.encode_content(headers, body)
+      encoded = ::Believe::Internal::Util.encode_content(headers, body)
       cgi = FakeCGI.new(*encoded)
       io = cgi[""]
       assert_pattern do
@@ -266,12 +266,12 @@ class Believe::Test::UtilFormDataEncodingTest < Minitest::Test
       {a: 2, b: nil} => {"a" => "2", "b" => "null"},
       {a: 2, b: [1, 2, 3]} => {"a" => "2", "b" => "1"},
       {strio: StringIO.new("a")} => {"strio" => "a"},
-      {strio: Believe::FilePart.new("a")} => {"strio" => "a"},
-      {pathname: Pathname(__FILE__)} => {"pathname" => -> { _1.read in /^class Believe/ }},
-      {pathname: Believe::FilePart.new(Pathname(__FILE__))} => {"pathname" => -> { _1.read in /^class Believe/ }}
+      {strio: ::Believe::FilePart.new("a")} => {"strio" => "a"},
+      {pathname: Pathname(__FILE__)} => {"pathname" => -> { _1.read in /^class ::Believe/ }},
+      {pathname: ::Believe::FilePart.new(Pathname(__FILE__))} => {"pathname" => -> { _1.read in /^class ::Believe/ }}
     }
     cases.each do |body, testcase|
-      encoded = Believe::Internal::Util.encode_content(headers, body)
+      encoded = ::Believe::Internal::Util.encode_content(headers, body)
       cgi = FakeCGI.new(*encoded)
       testcase.each do |key, val|
         assert_pattern do
@@ -289,7 +289,7 @@ class Believe::Test::UtilFormDataEncodingTest < Minitest::Test
   end
 end
 
-class Believe::Test::UtilIOAdapterTest < Minitest::Test
+class ::Believe::Test::UtilIOAdapterTest < Minitest::Test
   def test_copy_read
     cases = {
       StringIO.new("abc") => "abc",
@@ -298,7 +298,7 @@ class Believe::Test::UtilIOAdapterTest < Minitest::Test
     cases.each do |input, expected|
       io = StringIO.new
       # rubocop:disable Lint/EmptyBlock
-      adapter = Believe::Internal::Util::ReadIOAdapter.new(input) {}
+      adapter = ::Believe::Internal::Util::ReadIOAdapter.new(input) {}
       # rubocop:enable Lint/EmptyBlock
       IO.copy_stream(adapter, io)
       assert_equal(expected, io.string)
@@ -311,7 +311,7 @@ class Believe::Test::UtilIOAdapterTest < Minitest::Test
       StringIO.new("abc") => "abc"
     }
     cases.each do |input, expected|
-      enum = Believe::Internal::Util.writable_enum do |y|
+      enum = ::Believe::Internal::Util.writable_enum do |y|
         IO.copy_stream(input, y)
       end
       assert_equal(expected, enum.to_a.join)
@@ -319,7 +319,7 @@ class Believe::Test::UtilIOAdapterTest < Minitest::Test
   end
 end
 
-class Believe::Test::UtilFusedEnumTest < Minitest::Test
+class ::Believe::Test::UtilFusedEnumTest < Minitest::Test
   def test_rewind_closing
     touched = false
     once = 0
@@ -335,11 +335,11 @@ class Believe::Test::UtilFusedEnumTest < Minitest::Test
       once = once.succ
     end
 
-    fused = Believe::Internal::Util.fused_enum(enum, external: true) do
+    fused = ::Believe::Internal::Util.fused_enum(enum, external: true) do
       touched = true
       loop { enum.next }
     end
-    Believe::Internal::Util.close_fused!(fused)
+    ::Believe::Internal::Util.close_fused!(fused)
 
     assert_equal(1, once)
     assert_equal(0, steps)
@@ -354,9 +354,9 @@ class Believe::Test::UtilFusedEnumTest < Minitest::Test
       once = once.succ
     end
 
-    fused_1 = Believe::Internal::Util.fused_enum(enum, external: true) { loop { enum.next } }
-    fused_2 = Believe::Internal::Util.chain_fused(fused_1) { fused_1.each(&_1) }
-    fused_3 = Believe::Internal::Util.chain_fused(fused_2) { fused_2.each(&_1) }
+    fused_1 = ::Believe::Internal::Util.fused_enum(enum, external: true) { loop { enum.next } }
+    fused_2 = ::Believe::Internal::Util.chain_fused(fused_1) { fused_1.each(&_1) }
+    fused_3 = ::Believe::Internal::Util.chain_fused(fused_2) { fused_2.each(&_1) }
 
     th = ::Thread.new do
       que << "🐶"
@@ -371,7 +371,7 @@ class Believe::Test::UtilFusedEnumTest < Minitest::Test
   def test_closing
     arr = [1, 2, 3]
     once = 0
-    fused = Believe::Internal::Util.fused_enum(arr.to_enum) do
+    fused = ::Believe::Internal::Util.fused_enum(arr.to_enum) do
       once = once.succ
     end
 
@@ -386,7 +386,7 @@ class Believe::Test::UtilFusedEnumTest < Minitest::Test
 
   def test_rewind_chain
     once = 0
-    fused = Believe::Internal::Util.fused_enum([1, 2, 3].to_enum) do
+    fused = ::Believe::Internal::Util.fused_enum([1, 2, 3].to_enum) do
       once = once.succ
     end
       .lazy
@@ -403,7 +403,7 @@ class Believe::Test::UtilFusedEnumTest < Minitest::Test
   def test_external_iteration
     iter = [1, 2, 3].to_enum
     first = iter.next
-    fused = Believe::Internal::Util.fused_enum(iter, external: true)
+    fused = ::Believe::Internal::Util.fused_enum(iter, external: true)
 
     assert_equal(1, first)
     assert_equal([2, 3], fused.to_a)
@@ -411,11 +411,11 @@ class Believe::Test::UtilFusedEnumTest < Minitest::Test
 
   def test_close_fused
     once = 0
-    fused = Believe::Internal::Util.fused_enum([1, 2, 3].to_enum) do
+    fused = ::Believe::Internal::Util.fused_enum([1, 2, 3].to_enum) do
       once = once.succ
     end
 
-    Believe::Internal::Util.close_fused!(fused)
+    ::Believe::Internal::Util.close_fused!(fused)
 
     assert_equal(1, once)
     assert_equal([], fused.to_a)
@@ -428,11 +428,11 @@ class Believe::Test::UtilFusedEnumTest < Minitest::Test
       taken = taken.succ
       _1
     end
-    fused = Believe::Internal::Util.fused_enum(enum)
+    fused = ::Believe::Internal::Util.fused_enum(enum)
     first = fused.next
 
     assert_equal(1, first)
-    Believe::Internal::Util.close_fused!(fused)
+    ::Believe::Internal::Util.close_fused!(fused)
     assert_equal(1, taken)
   end
 
@@ -444,10 +444,10 @@ class Believe::Test::UtilFusedEnumTest < Minitest::Test
     end
       .map(&:succ)
       .filter(&:odd?)
-    fused = Believe::Internal::Util.fused_enum(enum)
+    fused = ::Believe::Internal::Util.fused_enum(enum)
 
     assert_equal(0, taken)
-    Believe::Internal::Util.close_fused!(fused)
+    ::Believe::Internal::Util.close_fused!(fused)
     assert_equal(0, taken)
   end
 
@@ -463,8 +463,8 @@ class Believe::Test::UtilFusedEnumTest < Minitest::Test
     assert_equal(2, first)
     assert_equal(1, taken)
 
-    fused = Believe::Internal::Util.fused_enum(enum)
-    Believe::Internal::Util.close_fused!(fused)
+    fused = ::Believe::Internal::Util.fused_enum(enum)
+    ::Believe::Internal::Util.close_fused!(fused)
     assert_equal(1, taken)
   end
 
@@ -478,17 +478,17 @@ class Believe::Test::UtilFusedEnumTest < Minitest::Test
       .filter(&:odd?)
       .map(&:to_s)
 
-    fused_1 = Believe::Internal::Util.fused_enum(enum)
-    fused_2 = Believe::Internal::Util.decode_lines(fused_1)
-    fused_3 = Believe::Internal::Util.decode_sse(fused_2)
+    fused_1 = ::Believe::Internal::Util.fused_enum(enum)
+    fused_2 = ::Believe::Internal::Util.decode_lines(fused_1)
+    fused_3 = ::Believe::Internal::Util.decode_sse(fused_2)
 
     assert_equal(0, taken)
-    Believe::Internal::Util.close_fused!(fused_3)
+    ::Believe::Internal::Util.close_fused!(fused_3)
     assert_equal(0, taken)
   end
 end
 
-class Believe::Test::UtilContentDecodingTest < Minitest::Test
+class ::Believe::Test::UtilContentDecodingTest < Minitest::Test
   def test_charset
     cases = {
       "application/json" => Encoding::BINARY,
@@ -500,13 +500,13 @@ class Believe::Test::UtilContentDecodingTest < Minitest::Test
     }
     text = String.new.force_encoding(Encoding::BINARY)
     cases.each do |content_type, encoding|
-      Believe::Internal::Util.force_charset!(content_type, text: text)
+      ::Believe::Internal::Util.force_charset!(content_type, text: text)
       assert_equal(encoding, text.encoding)
     end
   end
 end
 
-class Believe::Test::UtilSseTest < Minitest::Test
+class ::Believe::Test::UtilSseTest < Minitest::Test
   def test_decode_lines
     cases = {
       %w[] => %w[],
@@ -526,7 +526,7 @@ class Believe::Test::UtilSseTest < Minitest::Test
     eols = %W[\n \r \r\n]
     cases.each do |enum, expected|
       eols.each do |eol|
-        lines = Believe::Internal::Util.decode_lines(enum.map { _1.gsub("\n", eol) })
+        lines = ::Believe::Internal::Util.decode_lines(enum.map { _1.gsub("\n", eol) })
         assert_equal(expected.map { _1.gsub("\n", eol) }, lines.to_a, "eol=#{JSON.generate(eol)}")
       end
     end
@@ -544,7 +544,7 @@ class Believe::Test::UtilSseTest < Minitest::Test
       %W[\n\r] => %W[\n \r]
     }
     cases.each do |enum, expected|
-      lines = Believe::Internal::Util.decode_lines(enum)
+      lines = ::Believe::Internal::Util.decode_lines(enum)
       assert_equal(expected, lines.to_a)
     end
   end
@@ -667,7 +667,7 @@ class Believe::Test::UtilSseTest < Minitest::Test
 
     cases.each do |name, test_cases|
       test_cases.each do |input, expected|
-        actual = Believe::Internal::Util.decode_sse(input).map(&:compact)
+        actual = ::Believe::Internal::Util.decode_sse(input).map(&:compact)
         assert_equal(expected, actual, name)
       end
     end

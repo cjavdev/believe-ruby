@@ -2,8 +2,8 @@
 
 module Believe
   module Models
-    # @see Believe::Resources::TeamMembers#list_players
-    class Player < Believe::Internal::Type::BaseModel
+    # @see ::Believe::Resources::TeamMembers#list_players
+    class Player < ::Believe::Internal::Type::BaseModel
       # @!attribute id
       #   Unique identifier for this team membership
       #
@@ -25,8 +25,8 @@ module Believe
       # @!attribute position
       #   Playing position on the field
       #
-      #   @return [Symbol, Believe::Models::Position]
-      required :position, enum: -> { Believe::Position }
+      #   @return [Symbol, ::Believe::Models::Position]
+      required :position, enum: -> { ::Believe::Position }
 
       # @!attribute team_id
       #   ID of the team they belong to
@@ -56,13 +56,13 @@ module Believe
       #   Whether this player is team captain
       #
       #   @return [Boolean, nil]
-      optional :is_captain, Believe::Internal::Type::Boolean
+      optional :is_captain, ::Believe::Internal::Type::Boolean
 
       # @!attribute member_type
       #   Discriminator field indicating this is a player
       #
-      #   @return [Symbol, Believe::Models::Player::MemberType, nil]
-      optional :member_type, enum: -> { Believe::Player::MemberType }
+      #   @return [Symbol, ::Believe::Models::Player::MemberType, nil]
+      optional :member_type, enum: -> { ::Believe::Player::MemberType }
 
       # @!method initialize(id:, character_id:, jersey_number:, position:, team_id:, years_with_team:, assists: nil, goals_scored: nil, is_captain: nil, member_type: nil)
       #   Full player model with ID.
@@ -73,7 +73,7 @@ module Believe
       #
       #   @param jersey_number [Integer] Jersey/shirt number
       #
-      #   @param position [Symbol, Believe::Models::Position] Playing position on the field
+      #   @param position [Symbol, ::Believe::Models::Position] Playing position on the field
       #
       #   @param team_id [String] ID of the team they belong to
       #
@@ -85,13 +85,13 @@ module Believe
       #
       #   @param is_captain [Boolean] Whether this player is team captain
       #
-      #   @param member_type [Symbol, Believe::Models::Player::MemberType] Discriminator field indicating this is a player
+      #   @param member_type [Symbol, ::Believe::Models::Player::MemberType] Discriminator field indicating this is a player
 
       # Discriminator field indicating this is a player
       #
-      # @see Believe::Models::Player#member_type
+      # @see ::Believe::Models::Player#member_type
       module MemberType
-        extend Believe::Internal::Type::Enum
+        extend ::Believe::Internal::Type::Enum
 
         PLAYER = :player
 

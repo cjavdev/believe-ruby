@@ -5,7 +5,7 @@ module Believe
     module Type
       # @api private
       module Converter
-        extend Believe::Internal::Util::SorbetRuntimeSupport
+        extend ::Believe::Internal::Util::SorbetRuntimeSupport
 
         # rubocop:disable Lint/UnusedMethodArgument
 
@@ -40,17 +40,17 @@ module Believe
         def dump(value, state:)
           case value
           in Array
-            value.map { Believe::Internal::Type::Unknown.dump(_1, state: state) }
+            value.map { ::Believe::Internal::Type::Unknown.dump(_1, state: state) }
           in Hash
-            value.transform_values { Believe::Internal::Type::Unknown.dump(_1, state: state) }
-          in Believe::Internal::Type::BaseModel
+            value.transform_values { ::Believe::Internal::Type::Unknown.dump(_1, state: state) }
+          in ::Believe::Internal::Type::BaseModel
             value.class.dump(value, state: state)
           in StringIO
             value.string
           in Pathname | IO
             state[:can_retry] = false if value.is_a?(IO)
-            Believe::FilePart.new(value)
-          in Believe::FilePart
+            ::Believe::FilePart.new(value)
+          in ::Believe::FilePart
             state[:can_retry] = false if value.content.is_a?(IO)
             value
           else
@@ -72,7 +72,7 @@ module Believe
         class << self
           # @api private
           #
-          # @param spec [Hash{Symbol=>Object}, Proc, Believe::Internal::Type::Converter, Class] .
+          # @param spec [Hash{Symbol=>Object}, Proc, ::Believe::Internal::Type::Converter, Class] .
           #
           #   @option spec [NilClass, TrueClass, FalseClass, Integer, Float, Symbol] :const
           #
@@ -90,8 +90,8 @@ module Believe
             in Hash
               type_info(spec.slice(:const, :enum, :union).first&.last)
             in true | false
-              -> { Believe::Internal::Type::Boolean }
-            in Believe::Internal::Type::Converter | Class | Symbol
+              -> { ::Believe::Internal::Type::Boolean }
+            in ::Believe::Internal::Type::Converter | Class | Symbol
               -> { spec }
             in NilClass | Integer | Float
               -> { spec.class }
@@ -100,7 +100,7 @@ module Believe
 
           # @api private
           #
-          # @param type_info [Hash{Symbol=>Object}, Proc, Believe::Internal::Type::Converter, Class] .
+          # @param type_info [Hash{Symbol=>Object}, Proc, ::Believe::Internal::Type::Converter, Class] .
           #
           #   @option type_info [NilClass, TrueClass, FalseClass, Integer, Float, Symbol] :const
           #
@@ -110,7 +110,7 @@ module Believe
           #
           #   @option type_info [Boolean] :"nil?"
           #
-          # @param spec [Hash{Symbol=>Object}, Proc, Believe::Internal::Type::Converter, Class] .
+          # @param spec [Hash{Symbol=>Object}, Proc, ::Believe::Internal::Type::Converter, Class] .
           #
           #   @option spec [NilClass, TrueClass, FalseClass, Integer, Float, Symbol] :const
           #
@@ -152,7 +152,7 @@ module Believe
           # The coercion process is subject to improvement between minor release versions.
           # See https://docs.pydantic.dev/latest/concepts/unions/#smart-mode
           #
-          # @param target [Believe::Internal::Type::Converter, Class]
+          # @param target [::Believe::Internal::Type::Converter, Class]
           #
           # @param value [Object]
           #
@@ -184,12 +184,12 @@ module Believe
           #   @option state [Integer] :branched
           #
           # @return [Object]
-          def coerce(target, value, state: Believe::Internal::Type::Converter.new_coerce_state)
+          def coerce(target, value, state: ::Believe::Internal::Type::Converter.new_coerce_state)
             # rubocop:disable Metrics/BlockNesting
             exactness = state.fetch(:exactness)
 
             case target
-            in Believe::Internal::Type::Converter
+            in ::Believe::Internal::Type::Converter
               return target.coerce(value, state: state)
             in Class
               if value.is_a?(target)
@@ -270,7 +270,7 @@ module Believe
 
           # @api private
           #
-          # @param target [Believe::Internal::Type::Converter, Class]
+          # @param target [::Believe::Internal::Type::Converter, Class]
           #
           # @param value [Object]
           #
@@ -281,10 +281,10 @@ module Believe
           # @return [Object]
           def dump(target, value, state: {can_retry: true})
             case target
-            in Believe::Internal::Type::Converter
+            in ::Believe::Internal::Type::Converter
               target.dump(value, state: state)
             else
-              Believe::Internal::Type::Unknown.dump(value, state: state)
+              ::Believe::Internal::Type::Unknown.dump(value, state: state)
             end
           end
 
@@ -296,7 +296,7 @@ module Believe
           # @return [String]
           def inspect(target, depth:)
             case target
-            in Believe::Internal::Type::Converter
+            in ::Believe::Internal::Type::Converter
               target.inspect(depth: depth.succ)
             else
               target.inspect
@@ -305,7 +305,7 @@ module Believe
         end
 
         define_sorbet_constant!(:Input) do
-          T.type_alias { T.any(Believe::Internal::Type::Converter, T::Class[T.anything]) }
+          T.type_alias { T.any(::Believe::Internal::Type::Converter, T::Class[T.anything]) }
         end
         define_sorbet_constant!(:CoerceState) do
           T.type_alias do

@@ -34,7 +34,7 @@ module Believe
       | :maturity
 
     module QuoteTheme
-      extend Believe::Internal::Type::Enum
+      extend ::Believe::Internal::Type::Enum
 
       BELIEF: :belief
       TEAMWORK: :teamwork
@@ -68,7 +68,7 @@ module Believe
       NARCISSISM: :narcissism
       MATURITY: :maturity
 
-      def self?.values: -> ::Array[Believe::Models::quote_theme]
+      def self?.values: -> ::Array[::Believe::Models::quote_theme]
     end
   end
 end

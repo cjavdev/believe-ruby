@@ -2,10 +2,10 @@
 
 module Believe
   module Models
-    # @see Believe::Resources::TicketSales#update
-    class TicketSaleUpdateParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    # @see ::Believe::Resources::TicketSales#update
+    class TicketSaleUpdateParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       # @!attribute ticket_sale_id
       #
@@ -45,8 +45,8 @@ module Believe
       # @!attribute purchase_method
       #   How the ticket was purchased.
       #
-      #   @return [Symbol, Believe::Models::PurchaseMethod, nil]
-      optional :purchase_method, enum: -> { Believe::PurchaseMethod }, nil?: true
+      #   @return [Symbol, ::Believe::Models::PurchaseMethod, nil]
+      optional :purchase_method, enum: -> { ::Believe::PurchaseMethod }, nil?: true
 
       # @!attribute quantity
       #
@@ -88,7 +88,7 @@ module Believe
       #
       #   @param match_id [String, nil]
       #
-      #   @param purchase_method [Symbol, Believe::Models::PurchaseMethod, nil] How the ticket was purchased.
+      #   @param purchase_method [Symbol, ::Believe::Models::PurchaseMethod, nil] How the ticket was purchased.
       #
       #   @param quantity [Integer, nil]
       #
@@ -100,7 +100,7 @@ module Believe
       #
       #   @param unit_price [String, nil]
       #
-      #   @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}]
+      #   @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}]
     end
   end
 end

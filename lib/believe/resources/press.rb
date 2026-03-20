@@ -14,25 +14,25 @@ module Believe
       #
       # @param topic [String, nil] Topic category
       #
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Models::PressSimulateResponse]
+      # @return [::Believe::Models::PressSimulateResponse]
       #
-      # @see Believe::Models::PressSimulateParams
+      # @see ::Believe::Models::PressSimulateParams
       def simulate(params)
-        parsed, options = Believe::PressSimulateParams.dump_request(params)
+        parsed, options = ::Believe::PressSimulateParams.dump_request(params)
         @client.request(
           method: :post,
           path: "press",
           body: parsed,
-          model: Believe::Models::PressSimulateResponse,
+          model: ::Believe::Models::PressSimulateResponse,
           options: options
         )
       end
 
       # @api private
       #
-      # @param client [Believe::Client]
+      # @param client [::Believe::Client]
       def initialize(client:)
         @client = client
       end

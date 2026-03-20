@@ -2,9 +2,9 @@
 
 module Believe
   module Models
-    class Player < Believe::Internal::Type::BaseModel
+    class Player < ::Believe::Internal::Type::BaseModel
       OrHash =
-        T.type_alias { T.any(Believe::Player, Believe::Internal::AnyHash) }
+        T.type_alias { T.any(::Believe::Player, ::Believe::Internal::AnyHash) }
 
       # Unique identifier for this team membership
       sig { returns(String) }
@@ -19,7 +19,7 @@ module Believe
       attr_accessor :jersey_number
 
       # Playing position on the field
-      sig { returns(Believe::Position::TaggedSymbol) }
+      sig { returns(::Believe::Position::TaggedSymbol) }
       attr_accessor :position
 
       # ID of the team they belong to
@@ -52,10 +52,10 @@ module Believe
       attr_writer :is_captain
 
       # Discriminator field indicating this is a player
-      sig { returns(T.nilable(Believe::Player::MemberType::TaggedSymbol)) }
+      sig { returns(T.nilable(::Believe::Player::MemberType::TaggedSymbol)) }
       attr_reader :member_type
 
-      sig { params(member_type: Believe::Player::MemberType::OrSymbol).void }
+      sig { params(member_type: ::Believe::Player::MemberType::OrSymbol).void }
       attr_writer :member_type
 
       # Full player model with ID.
@@ -64,13 +64,13 @@ module Believe
           id: String,
           character_id: String,
           jersey_number: Integer,
-          position: Believe::Position::OrSymbol,
+          position: ::Believe::Position::OrSymbol,
           team_id: String,
           years_with_team: Integer,
           assists: Integer,
           goals_scored: Integer,
           is_captain: T::Boolean,
-          member_type: Believe::Player::MemberType::OrSymbol
+          member_type: ::Believe::Player::MemberType::OrSymbol
         ).returns(T.attached_class)
       end
       def self.new(
@@ -103,13 +103,13 @@ module Believe
             id: String,
             character_id: String,
             jersey_number: Integer,
-            position: Believe::Position::TaggedSymbol,
+            position: ::Believe::Position::TaggedSymbol,
             team_id: String,
             years_with_team: Integer,
             assists: Integer,
             goals_scored: Integer,
             is_captain: T::Boolean,
-            member_type: Believe::Player::MemberType::TaggedSymbol
+            member_type: ::Believe::Player::MemberType::TaggedSymbol
           }
         )
       end
@@ -118,16 +118,18 @@ module Believe
 
       # Discriminator field indicating this is a player
       module MemberType
-        extend Believe::Internal::Type::Enum
+        extend ::Believe::Internal::Type::Enum
 
         TaggedSymbol =
-          T.type_alias { T.all(Symbol, Believe::Player::MemberType) }
+          T.type_alias { T.all(Symbol, ::Believe::Player::MemberType) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        PLAYER = T.let(:player, Believe::Player::MemberType::TaggedSymbol)
+        PLAYER = T.let(:player, ::Believe::Player::MemberType::TaggedSymbol)
 
         sig do
-          override.returns(T::Array[Believe::Player::MemberType::TaggedSymbol])
+          override.returns(
+            T::Array[::Believe::Player::MemberType::TaggedSymbol]
+          )
         end
         def self.values
         end

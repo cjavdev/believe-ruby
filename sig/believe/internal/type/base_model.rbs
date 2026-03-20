@@ -2,47 +2,47 @@ module Believe
   module Internal
     module Type
       class BaseModel
-        extend Believe::Internal::Type::Converter
-        extend Believe::Internal::Util::SorbetRuntimeSupport
+        extend ::Believe::Internal::Type::Converter
+        extend ::Believe::Internal::Util::SorbetRuntimeSupport
 
         type known_field =
           { mode: (:coerce | :dump)?, required: bool, nilable: bool }
 
         def self.inherited: (self child) -> void
 
-        def self.known_fields: -> ::Hash[Symbol, (Believe::Internal::Type::BaseModel::known_field
-        & { type_fn: (^-> Believe::Internal::Type::Converter::input) })]
+        def self.known_fields: -> ::Hash[Symbol, (::Believe::Internal::Type::BaseModel::known_field
+        & { type_fn: (^-> ::Believe::Internal::Type::Converter::input) })]
 
-        def self.fields: -> ::Hash[Symbol, (Believe::Internal::Type::BaseModel::known_field
-        & { type: Believe::Internal::Type::Converter::input })]
+        def self.fields: -> ::Hash[Symbol, (::Believe::Internal::Type::BaseModel::known_field
+        & { type: ::Believe::Internal::Type::Converter::input })]
 
         private def self.add_field: (
           Symbol name_sym,
           required: bool,
           type_info: {
             const: (nil | bool | Integer | Float | Symbol)?,
-            enum: ^-> Believe::Internal::Type::Converter::input?,
-            union: ^-> Believe::Internal::Type::Converter::input?,
+            enum: ^-> ::Believe::Internal::Type::Converter::input?,
+            union: ^-> ::Believe::Internal::Type::Converter::input?,
             api_name: Symbol
           }
-          | ^-> Believe::Internal::Type::Converter::input
-          | Believe::Internal::Type::Converter::input,
+          | ^-> ::Believe::Internal::Type::Converter::input
+          | ::Believe::Internal::Type::Converter::input,
           spec: ::Hash[Symbol, top]
         ) -> void
 
         def self.required: (
           Symbol name_sym,
           ::Hash[Symbol, top]
-          | ^-> Believe::Internal::Type::Converter::input
-          | Believe::Internal::Type::Converter::input type_info,
+          | ^-> ::Believe::Internal::Type::Converter::input
+          | ::Believe::Internal::Type::Converter::input type_info,
           ?::Hash[Symbol, top] spec
         ) -> void
 
         def self.optional: (
           Symbol name_sym,
           ::Hash[Symbol, top]
-          | ^-> Believe::Internal::Type::Converter::input
-          | Believe::Internal::Type::Converter::input type_info,
+          | ^-> ::Believe::Internal::Type::Converter::input
+          | ::Believe::Internal::Type::Converter::input type_info,
           ?::Hash[Symbol, top] spec
         ) -> void
 
@@ -59,19 +59,19 @@ module Believe
         def hash: -> Integer
 
         def self.coerce: (
-          Believe::Internal::Type::BaseModel | ::Hash[top, top] | top value,
-          state: Believe::Internal::Type::Converter::coerce_state
+          ::Believe::Internal::Type::BaseModel | ::Hash[top, top] | top value,
+          state: ::Believe::Internal::Type::Converter::coerce_state
         ) -> (instance | top)
 
         def self.dump: (
           instance | top value,
-          state: Believe::Internal::Type::Converter::dump_state
+          state: ::Believe::Internal::Type::Converter::dump_state
         ) -> (::Hash[top, top] | top)
 
         def self.to_sorbet_type: -> top
 
         def self.recursively_to_h: (
-          Believe::Internal::Type::BaseModel model,
+          ::Believe::Internal::Type::BaseModel model,
           convert: bool
         ) -> ::Hash[Symbol, top]
 

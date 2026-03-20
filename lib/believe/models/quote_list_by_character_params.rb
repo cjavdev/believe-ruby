@@ -2,10 +2,10 @@
 
 module Believe
   module Models
-    # @see Believe::Resources::Quotes#list_by_character
-    class QuoteListByCharacterParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    # @see ::Believe::Resources::Quotes#list_by_character
+    class QuoteListByCharacterParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       # @!attribute character_id
       #
@@ -31,7 +31,7 @@ module Believe
       #
       #   @param skip [Integer] Number of items to skip (offset)
       #
-      #   @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}]
+      #   @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}]
     end
   end
 end

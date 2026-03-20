@@ -2,11 +2,11 @@
 
 module Believe
   module Models
-    class PaginatedResponseQuote < Believe::Internal::Type::BaseModel
+    class PaginatedResponseQuote < ::Believe::Internal::Type::BaseModel
       # @!attribute data
       #
-      #   @return [Array<Believe::Models::Quote>]
-      required :data, -> { Believe::Internal::Type::ArrayOf[Believe::Quote] }
+      #   @return [Array<::Believe::Models::Quote>]
+      required :data, -> { ::Believe::Internal::Type::ArrayOf[::Believe::Quote] }
 
       # @!attribute limit
       #
@@ -28,7 +28,7 @@ module Believe
         #   Whether there are more items after this page.
         #
         #   @return [Boolean]
-        required :has_more, Believe::Internal::Type::Boolean
+        required :has_more, ::Believe::Internal::Type::Boolean
 
         # @!attribute page
         #   Current page number (1-indexed, for display purposes).
@@ -44,7 +44,7 @@ module Believe
       end
 
       # @!method initialize(data:, has_more:, limit:, page:, pages:, skip:, total:)
-      #   @param data [Array<Believe::Models::Quote>]
+      #   @param data [Array<::Believe::Models::Quote>]
       #
       #   @param has_more [Boolean] Whether there are more items after this page.
       #

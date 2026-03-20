@@ -4,7 +4,7 @@ module Believe
   module Models
     # Roles characters can have.
     module CharacterRole
-      extend Believe::Internal::Type::Enum
+      extend ::Believe::Internal::Type::Enum
 
       COACH = :coach
       PLAYER = :player

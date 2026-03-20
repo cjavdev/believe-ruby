@@ -10,7 +10,7 @@ module Believe
           params(
             file_id: String,
             team_id: String,
-            request_options: Believe::RequestOptions::OrHash
+            request_options: ::Believe::RequestOptions::OrHash
           ).void
         end
         def delete(file_id, team_id:, request_options: {})
@@ -21,7 +21,7 @@ module Believe
           params(
             file_id: String,
             team_id: String,
-            request_options: Believe::RequestOptions::OrHash
+            request_options: ::Believe::RequestOptions::OrHash
           ).returns(T.anything)
         end
         def download(file_id, team_id:, request_options: {})
@@ -31,9 +31,9 @@ module Believe
         sig do
           params(
             team_id: String,
-            file: Believe::Internal::FileInput,
-            request_options: Believe::RequestOptions::OrHash
-          ).returns(Believe::Teams::FileUpload)
+            file: ::Believe::Internal::FileInput,
+            request_options: ::Believe::RequestOptions::OrHash
+          ).returns(::Believe::Teams::FileUpload)
         end
         def upload(
           team_id,
@@ -44,7 +44,7 @@ module Believe
         end
 
         # @api private
-        sig { params(client: Believe::Client).returns(T.attached_class) }
+        sig { params(client: ::Believe::Client).returns(T.attached_class) }
         def self.new(client:)
         end
       end

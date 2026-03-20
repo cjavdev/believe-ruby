@@ -4,7 +4,7 @@ module Believe
   module Models
     # How the ticket was purchased.
     module PurchaseMethod
-      extend Believe::Internal::Type::Enum
+      extend ::Believe::Internal::Type::Enum
 
       ONLINE = :online
       BOX_OFFICE = :box_office

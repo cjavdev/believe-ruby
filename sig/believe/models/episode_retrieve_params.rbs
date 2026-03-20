@@ -1,22 +1,22 @@
 module Believe
   module Models
     type episode_retrieve_params =
-      { episode_id: String } & Believe::Internal::Type::request_parameters
+      { episode_id: String } & ::Believe::Internal::Type::request_parameters
 
-    class EpisodeRetrieveParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class EpisodeRetrieveParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       attr_accessor episode_id: String
 
       def initialize: (
         episode_id: String,
-        ?request_options: Believe::request_opts
+        ?request_options: ::Believe::request_opts
       ) -> void
 
       def to_hash: -> {
         episode_id: String,
-        request_options: Believe::RequestOptions
+        request_options: ::Believe::RequestOptions
       }
     end
   end

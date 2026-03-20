@@ -9,7 +9,7 @@ class Believe::Test::Resources::HealthTest < Believe::Test::ResourceTest
     response = @believe.health.check
 
     assert_pattern do
-      response => Believe::Internal::Type::Unknown
+      response => ::Believe::Internal::Type::Unknown
     end
   end
 end

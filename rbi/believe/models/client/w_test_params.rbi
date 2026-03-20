@@ -3,27 +3,27 @@
 module Believe
   module Models
     module Client
-      class WTestParams < Believe::Internal::Type::BaseModel
-        extend Believe::Internal::Type::RequestParameters::Converter
-        include Believe::Internal::Type::RequestParameters
+      class WTestParams < ::Believe::Internal::Type::BaseModel
+        extend ::Believe::Internal::Type::RequestParameters::Converter
+        include ::Believe::Internal::Type::RequestParameters
 
         OrHash =
           T.type_alias do
             T.any(
-              Believe::Models::Client::WTestParams,
-              Believe::Internal::AnyHash
+              ::Believe::Models::Client::WTestParams,
+              ::Believe::Internal::AnyHash
             )
           end
 
         sig do
-          params(request_options: Believe::RequestOptions::OrHash).returns(
+          params(request_options: ::Believe::RequestOptions::OrHash).returns(
             T.attached_class
           )
         end
         def self.new(request_options: {})
         end
 
-        sig { override.returns({ request_options: Believe::RequestOptions }) }
+        sig { override.returns({ request_options: ::Believe::RequestOptions }) }
         def to_hash
         end
       end

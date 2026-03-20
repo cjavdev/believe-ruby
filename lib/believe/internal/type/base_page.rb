@@ -18,7 +18,7 @@ module Believe
 
         # @api public
         #
-        # @raise [Believe::Errors::APIError]
+        # @raise [::Believe::Errors::APIError]
         # @return [self]
         def next_page = (raise NotImplementedError)
 
@@ -37,7 +37,7 @@ module Believe
 
         # @api private
         #
-        # @param client [Believe::Internal::Transport::BaseClient]
+        # @param client [::Believe::Internal::Transport::BaseClient]
         # @param req [Hash{Symbol=>Object}]
         # @param headers [Hash{String=>String}]
         # @param page_data [Object]

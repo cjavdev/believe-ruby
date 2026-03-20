@@ -8,7 +8,7 @@ module Believe
       | :tactical_analyst
 
     module CoachSpecialty
-      extend Believe::Internal::Type::Enum
+      extend ::Believe::Internal::Type::Enum
 
       HEAD_COACH: :head_coach
       ASSISTANT_COACH: :assistant_coach
@@ -16,7 +16,7 @@ module Believe
       FITNESS_COACH: :fitness_coach
       TACTICAL_ANALYST: :tactical_analyst
 
-      def self?.values: -> ::Array[Believe::Models::coach_specialty]
+      def self?.values: -> ::Array[::Believe::Models::coach_specialty]
     end
   end
 end

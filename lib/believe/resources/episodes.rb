@@ -38,18 +38,18 @@ module Believe
       #
       # @param viewer_rating [Float, nil] Viewer rating out of 10
       #
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Models::Episode]
+      # @return [::Believe::Models::Episode]
       #
-      # @see Believe::Models::EpisodeCreateParams
+      # @see ::Believe::Models::EpisodeCreateParams
       def create(params)
-        parsed, options = Believe::EpisodeCreateParams.dump_request(params)
+        parsed, options = ::Believe::EpisodeCreateParams.dump_request(params)
         @client.request(
           method: :post,
           path: "episodes",
           body: parsed,
-          model: Believe::Episode,
+          model: ::Believe::Episode,
           options: options
         )
       end
@@ -59,16 +59,16 @@ module Believe
       # @overload retrieve(episode_id, request_options: {})
       #
       # @param episode_id [String]
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Models::Episode]
+      # @return [::Believe::Models::Episode]
       #
-      # @see Believe::Models::EpisodeRetrieveParams
+      # @see ::Believe::Models::EpisodeRetrieveParams
       def retrieve(episode_id, params = {})
         @client.request(
           method: :get,
           path: ["episodes/%1$s", episode_id],
-          model: Believe::Episode,
+          model: ::Believe::Episode,
           options: params[:request_options]
         )
       end
@@ -93,18 +93,18 @@ module Believe
       # @param us_viewers_millions [Float, nil]
       # @param viewer_rating [Float, nil]
       # @param writer [String, nil]
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Models::Episode]
+      # @return [::Believe::Models::Episode]
       #
-      # @see Believe::Models::EpisodeUpdateParams
+      # @see ::Believe::Models::EpisodeUpdateParams
       def update(episode_id, params = {})
-        parsed, options = Believe::EpisodeUpdateParams.dump_request(params)
+        parsed, options = ::Believe::EpisodeUpdateParams.dump_request(params)
         @client.request(
           method: :patch,
           path: ["episodes/%1$s", episode_id],
           body: parsed,
-          model: Believe::Episode,
+          model: ::Believe::Episode,
           options: options
         )
       end
@@ -122,20 +122,20 @@ module Believe
       #
       # @param skip [Integer] Number of items to skip (offset)
       #
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Internal::SkipLimitPage<Believe::Models::Episode>]
+      # @return [::Believe::Internal::SkipLimitPage<::Believe::Models::Episode>]
       #
-      # @see Believe::Models::EpisodeListParams
+      # @see ::Believe::Models::EpisodeListParams
       def list(params = {})
-        parsed, options = Believe::EpisodeListParams.dump_request(params)
-        query = Believe::Internal::Util.encode_query_params(parsed)
+        parsed, options = ::Believe::EpisodeListParams.dump_request(params)
+        query = ::Believe::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "episodes",
           query: query,
-          page: Believe::Internal::SkipLimitPage,
-          model: Believe::Episode,
+          page: ::Believe::Internal::SkipLimitPage,
+          model: ::Believe::Episode,
           options: options
         )
       end
@@ -145,11 +145,11 @@ module Believe
       # @overload delete(episode_id, request_options: {})
       #
       # @param episode_id [String]
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [nil]
       #
-      # @see Believe::Models::EpisodeDeleteParams
+      # @see ::Believe::Models::EpisodeDeleteParams
       def delete(episode_id, params = {})
         @client.request(
           method: :delete,
@@ -164,23 +164,23 @@ module Believe
       # @overload get_wisdom(episode_id, request_options: {})
       #
       # @param episode_id [String]
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [Hash{Symbol=>Object}]
       #
-      # @see Believe::Models::EpisodeGetWisdomParams
+      # @see ::Believe::Models::EpisodeGetWisdomParams
       def get_wisdom(episode_id, params = {})
         @client.request(
           method: :get,
           path: ["episodes/%1$s/wisdom", episode_id],
-          model: Believe::Internal::Type::HashOf[Believe::Internal::Type::Unknown],
+          model: ::Believe::Internal::Type::HashOf[::Believe::Internal::Type::Unknown],
           options: params[:request_options]
         )
       end
 
       # @api private
       #
-      # @param client [Believe::Client]
+      # @param client [::Believe::Client]
       def initialize(client:)
         @client = client
       end

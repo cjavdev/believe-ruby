@@ -5,12 +5,12 @@ module Believe
     CoachingPrinciple = Coaching::CoachingPrinciple
 
     module Coaching
-      class CoachingPrinciple < Believe::Internal::Type::BaseModel
+      class CoachingPrinciple < ::Believe::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
             T.any(
-              Believe::Coaching::CoachingPrinciple,
-              Believe::Internal::AnyHash
+              ::Believe::Coaching::CoachingPrinciple,
+              ::Believe::Internal::AnyHash
             )
           end
 

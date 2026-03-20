@@ -6,22 +6,22 @@ module Believe
         background: String?,
         date_of_birth: Date?,
         email: String?,
-        emotional_stats: Believe::EmotionalStats?,
-        growth_arcs: ::Array[Believe::GrowthArc]?,
+        emotional_stats: ::Believe::EmotionalStats?,
+        growth_arcs: ::Array[::Believe::GrowthArc]?,
         height_meters: Float?,
         name: String?,
         personality_traits: ::Array[String]?,
         profile_image_url: String?,
-        role: Believe::Models::character_role?,
-        salary_gbp: Believe::Models::CharacterUpdateParams::salary_gbp?,
+        role: ::Believe::Models::character_role?,
+        salary_gbp: ::Believe::Models::CharacterUpdateParams::salary_gbp?,
         signature_quotes: ::Array[String]?,
         team_id: String?
       }
-      & Believe::Internal::Type::request_parameters
+      & ::Believe::Internal::Type::request_parameters
 
-    class CharacterUpdateParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class CharacterUpdateParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       attr_accessor character_id: String
 
@@ -31,9 +31,9 @@ module Believe
 
       attr_accessor email: String?
 
-      attr_accessor emotional_stats: Believe::EmotionalStats?
+      attr_accessor emotional_stats: ::Believe::EmotionalStats?
 
-      attr_accessor growth_arcs: ::Array[Believe::GrowthArc]?
+      attr_accessor growth_arcs: ::Array[::Believe::GrowthArc]?
 
       attr_accessor height_meters: Float?
 
@@ -43,9 +43,9 @@ module Believe
 
       attr_accessor profile_image_url: String?
 
-      attr_accessor role: Believe::Models::character_role?
+      attr_accessor role: ::Believe::Models::character_role?
 
-      attr_accessor salary_gbp: Believe::Models::CharacterUpdateParams::salary_gbp?
+      attr_accessor salary_gbp: ::Believe::Models::CharacterUpdateParams::salary_gbp?
 
       attr_accessor signature_quotes: ::Array[String]?
 
@@ -56,17 +56,17 @@ module Believe
         ?background: String?,
         ?date_of_birth: Date?,
         ?email: String?,
-        ?emotional_stats: Believe::EmotionalStats?,
-        ?growth_arcs: ::Array[Believe::GrowthArc]?,
+        ?emotional_stats: ::Believe::EmotionalStats?,
+        ?growth_arcs: ::Array[::Believe::GrowthArc]?,
         ?height_meters: Float?,
         ?name: String?,
         ?personality_traits: ::Array[String]?,
         ?profile_image_url: String?,
-        ?role: Believe::Models::character_role?,
-        ?salary_gbp: Believe::Models::CharacterUpdateParams::salary_gbp?,
+        ?role: ::Believe::Models::character_role?,
+        ?salary_gbp: ::Believe::Models::CharacterUpdateParams::salary_gbp?,
         ?signature_quotes: ::Array[String]?,
         ?team_id: String?,
-        ?request_options: Believe::request_opts
+        ?request_options: ::Believe::request_opts
       ) -> void
 
       def to_hash: -> {
@@ -74,25 +74,25 @@ module Believe
         background: String?,
         date_of_birth: Date?,
         email: String?,
-        emotional_stats: Believe::EmotionalStats?,
-        growth_arcs: ::Array[Believe::GrowthArc]?,
+        emotional_stats: ::Believe::EmotionalStats?,
+        growth_arcs: ::Array[::Believe::GrowthArc]?,
         height_meters: Float?,
         name: String?,
         personality_traits: ::Array[String]?,
         profile_image_url: String?,
-        role: Believe::Models::character_role?,
-        salary_gbp: Believe::Models::CharacterUpdateParams::salary_gbp?,
+        role: ::Believe::Models::character_role?,
+        salary_gbp: ::Believe::Models::CharacterUpdateParams::salary_gbp?,
         signature_quotes: ::Array[String]?,
         team_id: String?,
-        request_options: Believe::RequestOptions
+        request_options: ::Believe::RequestOptions
       }
 
       type salary_gbp = Float | String
 
       module SalaryGbp
-        extend Believe::Internal::Type::Union
+        extend ::Believe::Internal::Type::Union
 
-        def self?.variants: -> ::Array[Believe::Models::CharacterUpdateParams::salary_gbp]
+        def self?.variants: -> ::Array[::Believe::Models::CharacterUpdateParams::salary_gbp]
       end
     end
   end

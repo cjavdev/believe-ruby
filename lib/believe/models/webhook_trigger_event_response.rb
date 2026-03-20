@@ -2,14 +2,14 @@
 
 module Believe
   module Models
-    # @see Believe::Resources::Webhooks#trigger_event
-    class WebhookTriggerEventResponse < Believe::Internal::Type::BaseModel
+    # @see ::Believe::Resources::Webhooks#trigger_event
+    class WebhookTriggerEventResponse < ::Believe::Internal::Type::BaseModel
       # @!attribute deliveries
       #   Results of webhook deliveries
       #
-      #   @return [Array<Believe::Models::WebhookTriggerEventResponse::Delivery>]
+      #   @return [Array<::Believe::Models::WebhookTriggerEventResponse::Delivery>]
       required :deliveries,
-               -> { Believe::Internal::Type::ArrayOf[Believe::Models::WebhookTriggerEventResponse::Delivery] }
+               -> { ::Believe::Internal::Type::ArrayOf[::Believe::Models::WebhookTriggerEventResponse::Delivery] }
 
       # @!attribute event_id
       #   Unique event identifier
@@ -20,8 +20,8 @@ module Believe
       # @!attribute event_type
       #   The type of event triggered
       #
-      #   @return [Symbol, Believe::Models::WebhookTriggerEventResponse::EventType]
-      required :event_type, enum: -> { Believe::Models::WebhookTriggerEventResponse::EventType }
+      #   @return [Symbol, ::Believe::Models::WebhookTriggerEventResponse::EventType]
+      required :event_type, enum: -> { ::Believe::Models::WebhookTriggerEventResponse::EventType }
 
       # @!attribute successful_deliveries
       #   Number of successful deliveries
@@ -44,11 +44,11 @@ module Believe
       # @!method initialize(deliveries:, event_id:, event_type:, successful_deliveries:, ted_says:, total_webhooks:)
       #   Response after triggering webhook events.
       #
-      #   @param deliveries [Array<Believe::Models::WebhookTriggerEventResponse::Delivery>] Results of webhook deliveries
+      #   @param deliveries [Array<::Believe::Models::WebhookTriggerEventResponse::Delivery>] Results of webhook deliveries
       #
       #   @param event_id [String] Unique event identifier
       #
-      #   @param event_type [Symbol, Believe::Models::WebhookTriggerEventResponse::EventType] The type of event triggered
+      #   @param event_type [Symbol, ::Believe::Models::WebhookTriggerEventResponse::EventType] The type of event triggered
       #
       #   @param successful_deliveries [Integer] Number of successful deliveries
       #
@@ -56,12 +56,12 @@ module Believe
       #
       #   @param total_webhooks [Integer] Total number of webhooks that received this event
 
-      class Delivery < Believe::Internal::Type::BaseModel
+      class Delivery < ::Believe::Internal::Type::BaseModel
         # @!attribute success
         #   Whether delivery was successful
         #
         #   @return [Boolean]
-        required :success, Believe::Internal::Type::Boolean
+        required :success, ::Believe::Internal::Type::Boolean
 
         # @!attribute url
         #   URL the webhook was sent to
@@ -103,9 +103,9 @@ module Believe
 
       # The type of event triggered
       #
-      # @see Believe::Models::WebhookTriggerEventResponse#event_type
+      # @see ::Believe::Models::WebhookTriggerEventResponse#event_type
       module EventType
-        extend Believe::Internal::Type::Enum
+        extend ::Believe::Internal::Type::Enum
 
         MATCH_COMPLETED = :"match.completed"
         TEAM_MEMBER_TRANSFERRED = :"team_member.transferred"

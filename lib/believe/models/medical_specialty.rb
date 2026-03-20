@@ -4,7 +4,7 @@ module Believe
   module Models
     # Medical staff specialties.
     module MedicalSpecialty
-      extend Believe::Internal::Type::Enum
+      extend ::Believe::Internal::Type::Enum
 
       TEAM_DOCTOR = :team_doctor
       PHYSIOTHERAPIST = :physiotherapist

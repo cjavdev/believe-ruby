@@ -3,14 +3,14 @@ module Believe
     type match_result = :win | :loss | :draw | :pending
 
     module MatchResult
-      extend Believe::Internal::Type::Enum
+      extend ::Believe::Internal::Type::Enum
 
       WIN: :win
       LOSS: :loss
       DRAW: :draw
       PENDING: :pending
 
-      def self?.values: -> ::Array[Believe::Models::match_result]
+      def self?.values: -> ::Array[::Believe::Models::match_result]
     end
   end
 end

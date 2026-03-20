@@ -2,8 +2,8 @@
 
 module Believe
   module Models
-    # @see Believe::Resources::Reframe#transform_negative_thoughts
-    class ReframeTransformNegativeThoughtsResponse < Believe::Internal::Type::BaseModel
+    # @see ::Believe::Resources::Reframe#transform_negative_thoughts
+    class ReframeTransformNegativeThoughtsResponse < ::Believe::Internal::Type::BaseModel
       # @!attribute daily_affirmation
       #   A daily affirmation to practice
       #

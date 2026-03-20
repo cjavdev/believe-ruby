@@ -28,8 +28,8 @@ module Believe
         # @api private
         sig do
           params(
-            client: Believe::Internal::Transport::BaseClient,
-            req: Believe::Internal::Transport::BaseClient::RequestComponents,
+            client: ::Believe::Internal::Transport::BaseClient,
+            req: ::Believe::Internal::Transport::BaseClient::RequestComponents,
             headers: T::Hash[String, String],
             page_data: T.anything
           ).void

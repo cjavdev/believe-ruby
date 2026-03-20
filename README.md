@@ -35,7 +35,7 @@ gem "believe", "~> 0.1.0"
 require "bundler/setup"
 require "believe"
 
-believe = Believe::Client.new(
+believe = ::Believe::Client.new(
   api_key: ENV["BELIEVE_API_KEY"] # This is the default and can be omitted
 )
 
@@ -86,7 +86,7 @@ file_upload = believe.teams.logo.upload(file: Pathname("/path/to/file"))
 file_upload = believe.teams.logo.upload(file: File.read("/path/to/file"))
 
 # Or, to control the filename and/or content type:
-file = Believe::FilePart.new(File.read("/path/to/file"), filename: "/path/to/file", content_type: "…")
+file = ::Believe::FilePart.new(File.read("/path/to/file"), filename: "/path/to/file", content_type: "…")
 file_upload = believe.teams.logo.upload(file: file)
 
 puts(file_upload.file_id)
@@ -96,17 +96,17 @@ Note that you can also pass a raw `IO` descriptor, but this disables retries, as
 
 ### Handling errors
 
-When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `Believe::Errors::APIError` will be thrown:
+When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `::Believe::Errors::APIError` will be thrown:
 
 ```ruby
 begin
   character = believe.characters.list
-rescue Believe::Errors::APIConnectionError => e
+rescue ::Believe::Errors::APIConnectionError => e
   puts("The server could not be reached")
   puts(e.cause)  # an underlying Exception, likely raised within `net/http`
-rescue Believe::Errors::RateLimitError => e
+rescue ::Believe::Errors::RateLimitError => e
   puts("A 429 status code was received; we should back off a bit.")
-rescue Believe::Errors::APIStatusError => e
+rescue ::Believe::Errors::APIStatusError => e
   puts("Another non-200-range status code was received")
   puts(e.status)
 end
@@ -138,7 +138,7 @@ You can use the `max_retries` option to configure or disable this:
 
 ```ruby
 # Configure the default for all requests:
-believe = Believe::Client.new(
+believe = ::Believe::Client.new(
   max_retries: 0 # default is 2
 )
 
@@ -152,7 +152,7 @@ By default, requests will time out after 60 seconds. You can use the timeout opt
 
 ```ruby
 # Configure the default for all requests:
-believe = Believe::Client.new(
+believe = ::Believe::Client.new(
   timeout: nil # default is 60
 )
 
@@ -160,7 +160,7 @@ believe = Believe::Client.new(
 believe.characters.list(request_options: {timeout: 5})
 ```
 
-On timeout, `Believe::Errors::APITimeoutError` is raised.
+On timeout, `::Believe::Errors::APITimeoutError` is raised.
 
 Note that requests that time out are retried by default.
 
@@ -168,7 +168,7 @@ Note that requests that time out are retried by default.
 
 ### BaseModel
 
-All parameter and response objects inherit from `Believe::Internal::Type::BaseModel`, which provides several conveniences, including:
+All parameter and response objects inherit from `::Believe::Internal::Type::BaseModel`, which provides several conveniences, including:
 
 1. All fields, including unknown ones, are accessible with `obj[:prop]` syntax, and can be destructured with `obj => {prop: prop}` or pattern-matching syntax.
 
@@ -219,9 +219,9 @@ response = client.request(
 
 ### Concurrency & connection pooling
 
-The `Believe::Client` instances are threadsafe, but are only are fork-safe when there are no in-flight HTTP requests.
+The `::Believe::Client` instances are threadsafe, but are only are fork-safe when there are no in-flight HTTP requests.
 
-Each instance of `Believe::Client` has its own HTTP connection pool with a default size of 99. As such, we recommend instantiating the client once per application in most settings.
+Each instance of `::Believe::Client` has its own HTTP connection pool with a default size of 99. As such, we recommend instantiating the client once per application in most settings.
 
 When all available connections from the pool are checked out, requests wait for a new connection to become available, with queue time counting towards the request timeout.
 
@@ -244,7 +244,7 @@ Or, equivalently:
 believe.characters.list
 
 # You can also splat a full Params class:
-params = Believe::CharacterListParams.new
+params = ::Believe::CharacterListParams.new
 believe.characters.list(**params)
 ```
 
@@ -254,10 +254,10 @@ Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::E
 
 ```ruby
 # :coach
-puts(Believe::CharacterRole::COACH)
+puts(::Believe::CharacterRole::COACH)
 
-# Revealed type: `T.all(Believe::CharacterRole, Symbol)`
-T.reveal_type(Believe::CharacterRole::COACH)
+# Revealed type: `T.all(::Believe::CharacterRole, Symbol)`
+T.reveal_type(::Believe::CharacterRole::COACH)
 ```
 
 Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
@@ -265,7 +265,7 @@ Enum parameters have a "relaxed" type, so you can either pass in enum constants 
 ```ruby
 # Using the enum constants preserves the tagged type information:
 believe.characters.create(
-  role: Believe::CharacterRole::COACH,
+  role: ::Believe::CharacterRole::COACH,
   # …
 )
 

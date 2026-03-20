@@ -4,7 +4,7 @@ module Believe
   module Models
     # Match result types.
     module MatchResult
-      extend Believe::Internal::Type::Enum
+      extend ::Believe::Internal::Type::Enum
 
       WIN = :win
       LOSS = :loss

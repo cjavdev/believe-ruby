@@ -12,7 +12,7 @@ module Believe
           currency: String,
           discount: String,
           match_id: String,
-          purchase_method: Believe::PurchaseMethod::OrSymbol,
+          purchase_method: ::Believe::PurchaseMethod::OrSymbol,
           quantity: Integer,
           subtotal: String,
           tax: String,
@@ -20,8 +20,8 @@ module Believe
           unit_price: String,
           buyer_email: T.nilable(String),
           coupon_code: T.nilable(String),
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::TicketSale)
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::TicketSale)
       end
       def create(
         # Name of the ticket buyer
@@ -56,8 +56,8 @@ module Believe
       sig do
         params(
           ticket_sale_id: String,
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::TicketSale)
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::TicketSale)
       end
       def retrieve(ticket_sale_id, request_options: {})
       end
@@ -72,14 +72,14 @@ module Believe
           currency: T.nilable(String),
           discount: T.nilable(String),
           match_id: T.nilable(String),
-          purchase_method: T.nilable(Believe::PurchaseMethod::OrSymbol),
+          purchase_method: T.nilable(::Believe::PurchaseMethod::OrSymbol),
           quantity: T.nilable(Integer),
           subtotal: T.nilable(String),
           tax: T.nilable(String),
           total: T.nilable(String),
           unit_price: T.nilable(String),
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::TicketSale)
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::TicketSale)
       end
       def update(
         ticket_sale_id,
@@ -108,10 +108,10 @@ module Believe
           currency: T.nilable(String),
           limit: Integer,
           match_id: T.nilable(String),
-          purchase_method: T.nilable(Believe::PurchaseMethod::OrSymbol),
+          purchase_method: T.nilable(::Believe::PurchaseMethod::OrSymbol),
           skip: Integer,
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::Internal::SkipLimitPage[Believe::TicketSale])
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::Internal::SkipLimitPage[::Believe::TicketSale])
       end
       def list(
         # Filter by coupon code (use 'none' for sales without coupons)
@@ -134,14 +134,14 @@ module Believe
       sig do
         params(
           ticket_sale_id: String,
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).void
       end
       def delete(ticket_sale_id, request_options: {})
       end
 
       # @api private
-      sig { params(client: Believe::Client).returns(T.attached_class) }
+      sig { params(client: ::Believe::Client).returns(T.attached_class) }
       def self.new(client:)
       end
     end

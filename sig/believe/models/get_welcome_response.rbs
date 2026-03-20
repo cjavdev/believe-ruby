@@ -1,5 +1,5 @@
 module Believe
   module Models
-    GetWelcomeResponse: Believe::Internal::Type::Converter
+    GetWelcomeResponse: ::Believe::Internal::Type::Converter
   end
 end

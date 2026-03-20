@@ -2,11 +2,11 @@ module Believe
   module Models
     type team_member_list_staff_params =
       { limit: Integer, skip: Integer, team_id: String? }
-      & Believe::Internal::Type::request_parameters
+      & ::Believe::Internal::Type::request_parameters
 
-    class TeamMemberListStaffParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class TeamMemberListStaffParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       attr_reader limit: Integer?
 
@@ -22,14 +22,14 @@ module Believe
         ?limit: Integer,
         ?skip: Integer,
         ?team_id: String?,
-        ?request_options: Believe::request_opts
+        ?request_options: ::Believe::request_opts
       ) -> void
 
       def to_hash: -> {
         limit: Integer,
         skip: Integer,
         team_id: String?,
-        request_options: Believe::RequestOptions
+        request_options: ::Believe::RequestOptions
       }
     end
   end

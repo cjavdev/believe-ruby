@@ -2,9 +2,9 @@
 
 module Believe
   module Models
-    class Episode < Believe::Internal::Type::BaseModel
+    class Episode < ::Believe::Internal::Type::BaseModel
       OrHash =
-        T.type_alias { T.any(Believe::Episode, Believe::Internal::AnyHash) }
+        T.type_alias { T.any(::Believe::Episode, ::Believe::Internal::AnyHash) }
 
       # Unique identifier (format: s##e##)
       sig { returns(String) }

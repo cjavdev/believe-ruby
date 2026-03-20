@@ -3,15 +3,15 @@
 module Believe
   module Models
     module Coaching
-      class PrincipleListParams < Believe::Internal::Type::BaseModel
-        extend Believe::Internal::Type::RequestParameters::Converter
-        include Believe::Internal::Type::RequestParameters
+      class PrincipleListParams < ::Believe::Internal::Type::BaseModel
+        extend ::Believe::Internal::Type::RequestParameters::Converter
+        include ::Believe::Internal::Type::RequestParameters
 
         OrHash =
           T.type_alias do
             T.any(
-              Believe::Coaching::PrincipleListParams,
-              Believe::Internal::AnyHash
+              ::Believe::Coaching::PrincipleListParams,
+              ::Believe::Internal::AnyHash
             )
           end
 
@@ -33,7 +33,7 @@ module Believe
           params(
             limit: Integer,
             skip: Integer,
-            request_options: Believe::RequestOptions::OrHash
+            request_options: ::Believe::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
         def self.new(
@@ -50,7 +50,7 @@ module Believe
             {
               limit: Integer,
               skip: Integer,
-              request_options: Believe::RequestOptions
+              request_options: ::Believe::RequestOptions
             }
           )
         end

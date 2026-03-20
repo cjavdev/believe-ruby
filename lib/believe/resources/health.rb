@@ -7,23 +7,23 @@ module Believe
       #
       # @overload check(request_options: {})
       #
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [Object]
       #
-      # @see Believe::Models::HealthCheckParams
+      # @see ::Believe::Models::HealthCheckParams
       def check(params = {})
         @client.request(
           method: :get,
           path: "health",
-          model: Believe::Internal::Type::Unknown,
+          model: ::Believe::Internal::Type::Unknown,
           options: params[:request_options]
         )
       end
 
       # @api private
       #
-      # @param client [Believe::Client]
+      # @param client [::Believe::Client]
       def initialize(client:)
         @client = client
       end

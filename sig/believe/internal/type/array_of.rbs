@@ -2,13 +2,13 @@ module Believe
   module Internal
     module Type
       class ArrayOf[Elem]
-        include Believe::Internal::Type::Converter
-        include Believe::Internal::Util::SorbetRuntimeSupport
+        include ::Believe::Internal::Type::Converter
+        include ::Believe::Internal::Util::SorbetRuntimeSupport
 
         def self.[]: (
           ::Hash[Symbol, top]
-          | ^-> Believe::Internal::Type::Converter::input
-          | Believe::Internal::Type::Converter::input type_info,
+          | ^-> ::Believe::Internal::Type::Converter::input
+          | ::Believe::Internal::Type::Converter::input type_info,
           ?::Hash[Symbol, top] spec
         ) -> instance
 
@@ -20,12 +20,12 @@ module Believe
 
         def coerce: (
           ::Array[top] | top value,
-          state: Believe::Internal::Type::Converter::coerce_state
+          state: ::Believe::Internal::Type::Converter::coerce_state
         ) -> (::Array[top] | top)
 
         def dump: (
           ::Array[top] | top value,
-          state: Believe::Internal::Type::Converter::dump_state
+          state: ::Believe::Internal::Type::Converter::dump_state
         ) -> (::Array[top] | top)
 
         def to_sorbet_type: -> top
@@ -36,8 +36,8 @@ module Believe
 
         def initialize: (
           ::Hash[Symbol, top]
-          | ^-> Believe::Internal::Type::Converter::input
-          | Believe::Internal::Type::Converter::input type_info,
+          | ^-> ::Believe::Internal::Type::Converter::input
+          | ::Believe::Internal::Type::Converter::input type_info,
           ?::Hash[Symbol, top] spec
         ) -> void
 

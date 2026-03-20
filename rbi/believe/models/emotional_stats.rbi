@@ -2,10 +2,10 @@
 
 module Believe
   module Models
-    class EmotionalStats < Believe::Internal::Type::BaseModel
+    class EmotionalStats < ::Believe::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
-          T.any(Believe::EmotionalStats, Believe::Internal::AnyHash)
+          T.any(::Believe::EmotionalStats, ::Believe::Internal::AnyHash)
         end
 
       # Level of curiosity over judgment (0-100)

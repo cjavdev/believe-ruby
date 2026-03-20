@@ -1,53 +1,53 @@
 module Believe
   module Models
     type team_member_create_params =
-      { member: Believe::Models::TeamMemberCreateParams::member }
-      & Believe::Internal::Type::request_parameters
+      { member: ::Believe::Models::TeamMemberCreateParams::member }
+      & ::Believe::Internal::Type::request_parameters
 
-    class TeamMemberCreateParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class TeamMemberCreateParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
-      attr_accessor member: Believe::Models::TeamMemberCreateParams::member
+      attr_accessor member: ::Believe::Models::TeamMemberCreateParams::member
 
       def initialize: (
-        member: Believe::Models::TeamMemberCreateParams::member,
-        ?request_options: Believe::request_opts
+        member: ::Believe::Models::TeamMemberCreateParams::member,
+        ?request_options: ::Believe::request_opts
       ) -> void
 
       def to_hash: -> {
-        member: Believe::Models::TeamMemberCreateParams::member,
-        request_options: Believe::RequestOptions
+        member: ::Believe::Models::TeamMemberCreateParams::member,
+        request_options: ::Believe::RequestOptions
       }
 
       type member =
-        Believe::TeamMemberCreateParams::Member::Player
-        | Believe::TeamMemberCreateParams::Member::Coach
-        | Believe::TeamMemberCreateParams::Member::MedicalStaff
-        | Believe::TeamMemberCreateParams::Member::EquipmentManager
+        ::Believe::TeamMemberCreateParams::Member::Player
+        | ::Believe::TeamMemberCreateParams::Member::Coach
+        | ::Believe::TeamMemberCreateParams::Member::MedicalStaff
+        | ::Believe::TeamMemberCreateParams::Member::EquipmentManager
 
       module Member
-        extend Believe::Internal::Type::Union
+        extend ::Believe::Internal::Type::Union
 
         type player =
           {
             character_id: String,
             jersey_number: Integer,
-            position: Believe::Models::position,
+            position: ::Believe::Models::position,
             team_id: String,
             years_with_team: Integer,
             assists: Integer,
             goals_scored: Integer,
             is_captain: bool,
-            member_type: Believe::Models::TeamMemberCreateParams::Member::Player::member_type
+            member_type: ::Believe::Models::TeamMemberCreateParams::Member::Player::member_type
           }
 
-        class Player < Believe::Internal::Type::BaseModel
+        class Player < ::Believe::Internal::Type::BaseModel
           attr_accessor character_id: String
 
           attr_accessor jersey_number: Integer
 
-          attr_accessor position: Believe::Models::position
+          attr_accessor position: ::Believe::Models::position
 
           attr_accessor team_id: String
 
@@ -65,62 +65,62 @@ module Believe
 
           def is_captain=: (bool) -> bool
 
-          attr_reader member_type: Believe::Models::TeamMemberCreateParams::Member::Player::member_type?
+          attr_reader member_type: ::Believe::Models::TeamMemberCreateParams::Member::Player::member_type?
 
           def member_type=: (
-            Believe::Models::TeamMemberCreateParams::Member::Player::member_type
-          ) -> Believe::Models::TeamMemberCreateParams::Member::Player::member_type
+            ::Believe::Models::TeamMemberCreateParams::Member::Player::member_type
+          ) -> ::Believe::Models::TeamMemberCreateParams::Member::Player::member_type
 
           def initialize: (
             character_id: String,
             jersey_number: Integer,
-            position: Believe::Models::position,
+            position: ::Believe::Models::position,
             team_id: String,
             years_with_team: Integer,
             ?assists: Integer,
             ?goals_scored: Integer,
             ?is_captain: bool,
-            ?member_type: Believe::Models::TeamMemberCreateParams::Member::Player::member_type
+            ?member_type: ::Believe::Models::TeamMemberCreateParams::Member::Player::member_type
           ) -> void
 
           def to_hash: -> {
             character_id: String,
             jersey_number: Integer,
-            position: Believe::Models::position,
+            position: ::Believe::Models::position,
             team_id: String,
             years_with_team: Integer,
             assists: Integer,
             goals_scored: Integer,
             is_captain: bool,
-            member_type: Believe::Models::TeamMemberCreateParams::Member::Player::member_type
+            member_type: ::Believe::Models::TeamMemberCreateParams::Member::Player::member_type
           }
 
           type member_type = :player
 
           module MemberType
-            extend Believe::Internal::Type::Enum
+            extend ::Believe::Internal::Type::Enum
 
             PLAYER: :player
 
-            def self?.values: -> ::Array[Believe::Models::TeamMemberCreateParams::Member::Player::member_type]
+            def self?.values: -> ::Array[::Believe::Models::TeamMemberCreateParams::Member::Player::member_type]
           end
         end
 
         type coach =
           {
             character_id: String,
-            specialty: Believe::Models::coach_specialty,
+            specialty: ::Believe::Models::coach_specialty,
             team_id: String,
             years_with_team: Integer,
             certifications: ::Array[String],
-            member_type: Believe::Models::TeamMemberCreateParams::Member::Coach::member_type,
+            member_type: ::Believe::Models::TeamMemberCreateParams::Member::Coach::member_type,
             win_rate: Float?
           }
 
-        class Coach < Believe::Internal::Type::BaseModel
+        class Coach < ::Believe::Internal::Type::BaseModel
           attr_accessor character_id: String
 
-          attr_accessor specialty: Believe::Models::coach_specialty
+          attr_accessor specialty: ::Believe::Models::coach_specialty
 
           attr_accessor team_id: String
 
@@ -130,60 +130,60 @@ module Believe
 
           def certifications=: (::Array[String]) -> ::Array[String]
 
-          attr_reader member_type: Believe::Models::TeamMemberCreateParams::Member::Coach::member_type?
+          attr_reader member_type: ::Believe::Models::TeamMemberCreateParams::Member::Coach::member_type?
 
           def member_type=: (
-            Believe::Models::TeamMemberCreateParams::Member::Coach::member_type
-          ) -> Believe::Models::TeamMemberCreateParams::Member::Coach::member_type
+            ::Believe::Models::TeamMemberCreateParams::Member::Coach::member_type
+          ) -> ::Believe::Models::TeamMemberCreateParams::Member::Coach::member_type
 
           attr_accessor win_rate: Float?
 
           def initialize: (
             character_id: String,
-            specialty: Believe::Models::coach_specialty,
+            specialty: ::Believe::Models::coach_specialty,
             team_id: String,
             years_with_team: Integer,
             ?certifications: ::Array[String],
-            ?member_type: Believe::Models::TeamMemberCreateParams::Member::Coach::member_type,
+            ?member_type: ::Believe::Models::TeamMemberCreateParams::Member::Coach::member_type,
             ?win_rate: Float?
           ) -> void
 
           def to_hash: -> {
             character_id: String,
-            specialty: Believe::Models::coach_specialty,
+            specialty: ::Believe::Models::coach_specialty,
             team_id: String,
             years_with_team: Integer,
             certifications: ::Array[String],
-            member_type: Believe::Models::TeamMemberCreateParams::Member::Coach::member_type,
+            member_type: ::Believe::Models::TeamMemberCreateParams::Member::Coach::member_type,
             win_rate: Float?
           }
 
           type member_type = :coach
 
           module MemberType
-            extend Believe::Internal::Type::Enum
+            extend ::Believe::Internal::Type::Enum
 
             COACH: :coach
 
-            def self?.values: -> ::Array[Believe::Models::TeamMemberCreateParams::Member::Coach::member_type]
+            def self?.values: -> ::Array[::Believe::Models::TeamMemberCreateParams::Member::Coach::member_type]
           end
         end
 
         type medical_staff =
           {
             character_id: String,
-            specialty: Believe::Models::medical_specialty,
+            specialty: ::Believe::Models::medical_specialty,
             team_id: String,
             years_with_team: Integer,
             license_number: String?,
-            member_type: Believe::Models::TeamMemberCreateParams::Member::MedicalStaff::member_type,
+            member_type: ::Believe::Models::TeamMemberCreateParams::Member::MedicalStaff::member_type,
             qualifications: ::Array[String]
           }
 
-        class MedicalStaff < Believe::Internal::Type::BaseModel
+        class MedicalStaff < ::Believe::Internal::Type::BaseModel
           attr_accessor character_id: String
 
-          attr_accessor specialty: Believe::Models::medical_specialty
+          attr_accessor specialty: ::Believe::Models::medical_specialty
 
           attr_accessor team_id: String
 
@@ -191,11 +191,11 @@ module Believe
 
           attr_accessor license_number: String?
 
-          attr_reader member_type: Believe::Models::TeamMemberCreateParams::Member::MedicalStaff::member_type?
+          attr_reader member_type: ::Believe::Models::TeamMemberCreateParams::Member::MedicalStaff::member_type?
 
           def member_type=: (
-            Believe::Models::TeamMemberCreateParams::Member::MedicalStaff::member_type
-          ) -> Believe::Models::TeamMemberCreateParams::Member::MedicalStaff::member_type
+            ::Believe::Models::TeamMemberCreateParams::Member::MedicalStaff::member_type
+          ) -> ::Believe::Models::TeamMemberCreateParams::Member::MedicalStaff::member_type
 
           attr_reader qualifications: ::Array[String]?
 
@@ -203,32 +203,32 @@ module Believe
 
           def initialize: (
             character_id: String,
-            specialty: Believe::Models::medical_specialty,
+            specialty: ::Believe::Models::medical_specialty,
             team_id: String,
             years_with_team: Integer,
             ?license_number: String?,
-            ?member_type: Believe::Models::TeamMemberCreateParams::Member::MedicalStaff::member_type,
+            ?member_type: ::Believe::Models::TeamMemberCreateParams::Member::MedicalStaff::member_type,
             ?qualifications: ::Array[String]
           ) -> void
 
           def to_hash: -> {
             character_id: String,
-            specialty: Believe::Models::medical_specialty,
+            specialty: ::Believe::Models::medical_specialty,
             team_id: String,
             years_with_team: Integer,
             license_number: String?,
-            member_type: Believe::Models::TeamMemberCreateParams::Member::MedicalStaff::member_type,
+            member_type: ::Believe::Models::TeamMemberCreateParams::Member::MedicalStaff::member_type,
             qualifications: ::Array[String]
           }
 
           type member_type = :medical_staff
 
           module MemberType
-            extend Believe::Internal::Type::Enum
+            extend ::Believe::Internal::Type::Enum
 
             MEDICAL_STAFF: :medical_staff
 
-            def self?.values: -> ::Array[Believe::Models::TeamMemberCreateParams::Member::MedicalStaff::member_type]
+            def self?.values: -> ::Array[::Believe::Models::TeamMemberCreateParams::Member::MedicalStaff::member_type]
           end
         end
 
@@ -238,11 +238,11 @@ module Believe
             team_id: String,
             years_with_team: Integer,
             is_head_kitman: bool,
-            member_type: Believe::Models::TeamMemberCreateParams::Member::EquipmentManager::member_type,
+            member_type: ::Believe::Models::TeamMemberCreateParams::Member::EquipmentManager::member_type,
             responsibilities: ::Array[String]
           }
 
-        class EquipmentManager < Believe::Internal::Type::BaseModel
+        class EquipmentManager < ::Believe::Internal::Type::BaseModel
           attr_accessor character_id: String
 
           attr_accessor team_id: String
@@ -253,11 +253,11 @@ module Believe
 
           def is_head_kitman=: (bool) -> bool
 
-          attr_reader member_type: Believe::Models::TeamMemberCreateParams::Member::EquipmentManager::member_type?
+          attr_reader member_type: ::Believe::Models::TeamMemberCreateParams::Member::EquipmentManager::member_type?
 
           def member_type=: (
-            Believe::Models::TeamMemberCreateParams::Member::EquipmentManager::member_type
-          ) -> Believe::Models::TeamMemberCreateParams::Member::EquipmentManager::member_type
+            ::Believe::Models::TeamMemberCreateParams::Member::EquipmentManager::member_type
+          ) -> ::Believe::Models::TeamMemberCreateParams::Member::EquipmentManager::member_type
 
           attr_reader responsibilities: ::Array[String]?
 
@@ -268,7 +268,7 @@ module Believe
             team_id: String,
             years_with_team: Integer,
             ?is_head_kitman: bool,
-            ?member_type: Believe::Models::TeamMemberCreateParams::Member::EquipmentManager::member_type,
+            ?member_type: ::Believe::Models::TeamMemberCreateParams::Member::EquipmentManager::member_type,
             ?responsibilities: ::Array[String]
           ) -> void
 
@@ -277,22 +277,22 @@ module Believe
             team_id: String,
             years_with_team: Integer,
             is_head_kitman: bool,
-            member_type: Believe::Models::TeamMemberCreateParams::Member::EquipmentManager::member_type,
+            member_type: ::Believe::Models::TeamMemberCreateParams::Member::EquipmentManager::member_type,
             responsibilities: ::Array[String]
           }
 
           type member_type = :equipment_manager
 
           module MemberType
-            extend Believe::Internal::Type::Enum
+            extend ::Believe::Internal::Type::Enum
 
             EQUIPMENT_MANAGER: :equipment_manager
 
-            def self?.values: -> ::Array[Believe::Models::TeamMemberCreateParams::Member::EquipmentManager::member_type]
+            def self?.values: -> ::Array[::Believe::Models::TeamMemberCreateParams::Member::EquipmentManager::member_type]
           end
         end
 
-        def self?.variants: -> ::Array[Believe::Models::TeamMemberCreateParams::member]
+        def self?.variants: -> ::Array[::Believe::Models::TeamMemberCreateParams::member]
       end
     end
   end

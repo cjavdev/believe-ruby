@@ -2,7 +2,7 @@ module Believe
   module Internal
     module Transport
       class PooledNetRequester
-        extend Believe::Internal::Util::SorbetRuntimeSupport
+        extend ::Believe::Internal::Util::SorbetRuntimeSupport
 
         type request =
           {
@@ -25,7 +25,7 @@ module Believe
         def self.calibrate_socket_timeout: (top conn, Float deadline) -> void
 
         def self.build_request: (
-          Believe::Internal::Transport::PooledNetRequester::request request
+          ::Believe::Internal::Transport::PooledNetRequester::request request
         ) {
           (String arg0) -> void
         } -> [top, (^-> void)]
@@ -38,7 +38,7 @@ module Believe
         } -> void
 
         def execute: (
-          Believe::Internal::Transport::PooledNetRequester::request request
+          ::Believe::Internal::Transport::PooledNetRequester::request request
         ) -> [Integer, top, Enumerable[String]]
 
         def initialize: (?size: Integer) -> void

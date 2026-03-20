@@ -2,33 +2,33 @@
 
 module Believe
   module Models
-    # @see Believe::Resources::Webhooks#trigger_event
-    class WebhookTriggerEventParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    # @see ::Believe::Resources::Webhooks#trigger_event
+    class WebhookTriggerEventParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       # @!attribute event_type
       #   The type of event to trigger
       #
-      #   @return [Symbol, Believe::Models::WebhookTriggerEventParams::EventType]
-      required :event_type, enum: -> { Believe::WebhookTriggerEventParams::EventType }
+      #   @return [Symbol, ::Believe::Models::WebhookTriggerEventParams::EventType]
+      required :event_type, enum: -> { ::Believe::WebhookTriggerEventParams::EventType }
 
       # @!attribute payload
       #   Optional event payload. If not provided, a sample payload will be generated.
       #
-      #   @return [Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted, Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred, nil]
-      optional :payload, union: -> { Believe::WebhookTriggerEventParams::Payload }, nil?: true
+      #   @return [::Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted, ::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred, nil]
+      optional :payload, union: -> { ::Believe::WebhookTriggerEventParams::Payload }, nil?: true
 
       # @!method initialize(event_type:, payload: nil, request_options: {})
-      #   @param event_type [Symbol, Believe::Models::WebhookTriggerEventParams::EventType] The type of event to trigger
+      #   @param event_type [Symbol, ::Believe::Models::WebhookTriggerEventParams::EventType] The type of event to trigger
       #
-      #   @param payload [Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted, Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred, nil] Optional event payload. If not provided, a sample payload will be generated.
+      #   @param payload [::Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted, ::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred, nil] Optional event payload. If not provided, a sample payload will be generated.
       #
-      #   @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}]
+      #   @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}]
 
       # The type of event to trigger
       module EventType
-        extend Believe::Internal::Type::Enum
+        extend ::Believe::Internal::Type::Enum
 
         MATCH_COMPLETED = :"match.completed"
         TEAM_MEMBER_TRANSFERRED = :"team_member.transferred"
@@ -39,39 +39,40 @@ module Believe
 
       # Optional event payload. If not provided, a sample payload will be generated.
       module Payload
-        extend Believe::Internal::Type::Union
+        extend ::Believe::Internal::Type::Union
 
         discriminator :event_type
 
         # Payload for match.completed event.
-        variant :"match.completed", -> { Believe::WebhookTriggerEventParams::Payload::MatchCompleted }
+        variant :"match.completed", -> { ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted }
 
         # Payload for team_member.transferred event.
         variant :"team_member.transferred",
-                -> { Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred }
+                -> { ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred }
 
-        class MatchCompleted < Believe::Internal::Type::BaseModel
+        class MatchCompleted < ::Believe::Internal::Type::BaseModel
           # @!attribute data
           #   Event data
           #
-          #   @return [Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::Data]
-          required :data, -> { Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data }
+          #   @return [::Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::Data]
+          required :data, -> { ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data }
 
           # @!attribute event_type
           #   The type of webhook event
           #
-          #   @return [Symbol, Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::EventType, nil]
-          optional :event_type, enum: -> { Believe::WebhookTriggerEventParams::Payload::MatchCompleted::EventType }
+          #   @return [Symbol, ::Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::EventType, nil]
+          optional :event_type,
+                   enum: -> { ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::EventType }
 
           # @!method initialize(data:, event_type: nil)
           #   Payload for match.completed event.
           #
-          #   @param data [Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::Data] Event data
+          #   @param data [::Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::Data] Event data
           #
-          #   @param event_type [Symbol, Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::EventType] The type of webhook event
+          #   @param event_type [Symbol, ::Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::EventType] The type of webhook event
 
-          # @see Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted#data
-          class Data < Believe::Internal::Type::BaseModel
+          # @see ::Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted#data
+          class Data < ::Believe::Internal::Type::BaseModel
             # @!attribute away_score
             #   Final away team score
             #
@@ -111,15 +112,15 @@ module Believe
             # @!attribute match_type
             #   Type of match
             #
-            #   @return [Symbol, Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::Data::MatchType]
+            #   @return [Symbol, ::Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::Data::MatchType]
             required :match_type,
-                     enum: -> { Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::MatchType }
+                     enum: -> { ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::MatchType }
 
             # @!attribute result
             #   Match result from home team perspective
             #
-            #   @return [Symbol, Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::Data::Result]
-            required :result, enum: -> { Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::Result }
+            #   @return [Symbol, ::Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::Data::Result]
+            required :result, enum: -> { ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data::Result }
 
             # @!attribute ted_post_match_quote
             #   Ted's post-match wisdom
@@ -154,9 +155,9 @@ module Believe
             #
             #   @param match_id [String] Unique match identifier
             #
-            #   @param match_type [Symbol, Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::Data::MatchType] Type of match
+            #   @param match_type [Symbol, ::Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::Data::MatchType] Type of match
             #
-            #   @param result [Symbol, Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::Data::Result] Match result from home team perspective
+            #   @param result [Symbol, ::Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::Data::Result] Match result from home team perspective
             #
             #   @param ted_post_match_quote [String] Ted's post-match wisdom
             #
@@ -166,9 +167,9 @@ module Believe
 
             # Type of match
             #
-            # @see Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::Data#match_type
+            # @see ::Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::Data#match_type
             module MatchType
-              extend Believe::Internal::Type::Enum
+              extend ::Believe::Internal::Type::Enum
 
               LEAGUE = :league
               CUP = :cup
@@ -182,9 +183,9 @@ module Believe
 
             # Match result from home team perspective
             #
-            # @see Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::Data#result
+            # @see ::Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::Data#result
             module Result
-              extend Believe::Internal::Type::Enum
+              extend ::Believe::Internal::Type::Enum
 
               HOME_WIN = :home_win
               AWAY_WIN = :away_win
@@ -197,9 +198,9 @@ module Believe
 
           # The type of webhook event
           #
-          # @see Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted#event_type
+          # @see ::Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted#event_type
           module EventType
-            extend Believe::Internal::Type::Enum
+            extend ::Believe::Internal::Type::Enum
 
             MATCH_COMPLETED = :"match.completed"
 
@@ -208,29 +209,29 @@ module Believe
           end
         end
 
-        class TeamMemberTransferred < Believe::Internal::Type::BaseModel
+        class TeamMemberTransferred < ::Believe::Internal::Type::BaseModel
           # @!attribute data
           #   Event data
           #
-          #   @return [Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data]
-          required :data, -> { Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data }
+          #   @return [::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data]
+          required :data, -> { ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data }
 
           # @!attribute event_type
           #   The type of webhook event
           #
-          #   @return [Symbol, Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::EventType, nil]
+          #   @return [Symbol, ::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::EventType, nil]
           optional :event_type,
-                   enum: -> { Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::EventType }
+                   enum: -> { ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::EventType }
 
           # @!method initialize(data:, event_type: nil)
           #   Payload for team_member.transferred event.
           #
-          #   @param data [Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data] Event data
+          #   @param data [::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data] Event data
           #
-          #   @param event_type [Symbol, Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::EventType] The type of webhook event
+          #   @param event_type [Symbol, ::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::EventType] The type of webhook event
 
-          # @see Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred#data
-          class Data < Believe::Internal::Type::BaseModel
+          # @see ::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred#data
+          class Data < ::Believe::Internal::Type::BaseModel
             # @!attribute character_id
             #   ID of the character (links to /characters)
             #
@@ -246,9 +247,9 @@ module Believe
             # @!attribute member_type
             #   Type of team member
             #
-            #   @return [Symbol, Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::MemberType]
+            #   @return [Symbol, ::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::MemberType]
             required :member_type,
-                     enum: -> { Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::MemberType }
+                     enum: -> { ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::MemberType }
 
             # @!attribute team_id
             #   ID of the team involved
@@ -277,9 +278,9 @@ module Believe
             # @!attribute transfer_type
             #   Whether the member joined or departed
             #
-            #   @return [Symbol, Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::TransferType]
+            #   @return [Symbol, ::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::TransferType]
             required :transfer_type,
-                     enum: -> { Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::TransferType }
+                     enum: -> { ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::TransferType }
 
             # @!attribute previous_team_id
             #   Previous team ID (for joins from another team)
@@ -312,7 +313,7 @@ module Believe
             #
             #   @param character_name [String] Name of the character
             #
-            #   @param member_type [Symbol, Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::MemberType] Type of team member
+            #   @param member_type [Symbol, ::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::MemberType] Type of team member
             #
             #   @param team_id [String] ID of the team involved
             #
@@ -322,7 +323,7 @@ module Believe
             #
             #   @param ted_reaction [String] Ted's reaction to the transfer
             #
-            #   @param transfer_type [Symbol, Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::TransferType] Whether the member joined or departed
+            #   @param transfer_type [Symbol, ::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::TransferType] Whether the member joined or departed
             #
             #   @param previous_team_id [String, nil] Previous team ID (for joins from another team)
             #
@@ -334,9 +335,9 @@ module Believe
 
             # Type of team member
             #
-            # @see Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data#member_type
+            # @see ::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data#member_type
             module MemberType
-              extend Believe::Internal::Type::Enum
+              extend ::Believe::Internal::Type::Enum
 
               PLAYER = :player
               COACH = :coach
@@ -349,9 +350,9 @@ module Believe
 
             # Whether the member joined or departed
             #
-            # @see Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data#transfer_type
+            # @see ::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data#transfer_type
             module TransferType
-              extend Believe::Internal::Type::Enum
+              extend ::Believe::Internal::Type::Enum
 
               JOINED = :joined
               DEPARTED = :departed
@@ -363,9 +364,9 @@ module Believe
 
           # The type of webhook event
           #
-          # @see Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred#event_type
+          # @see ::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred#event_type
           module EventType
-            extend Believe::Internal::Type::Enum
+            extend ::Believe::Internal::Type::Enum
 
             TEAM_MEMBER_TRANSFERRED = :"team_member.transferred"
 
@@ -375,7 +376,7 @@ module Believe
         end
 
         # @!method self.variants
-        #   @return [Array(Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted, Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred)]
+        #   @return [Array(::Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted, ::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred)]
       end
     end
   end

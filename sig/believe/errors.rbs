@@ -4,7 +4,7 @@ module Believe
       attr_accessor cause: StandardError?
     end
 
-    class ConversionError < Believe::Errors::Error
+    class ConversionError < ::Believe::Errors::Error
       def cause: -> StandardError?
 
       def initialize: (
@@ -16,7 +16,7 @@ module Believe
       ) -> void
     end
 
-    class APIError < Believe::Errors::Error
+    class APIError < ::Believe::Errors::Error
       attr_accessor url: URI::Generic
 
       attr_accessor status: Integer?
@@ -36,7 +36,7 @@ module Believe
       ) -> void
     end
 
-    class APIConnectionError < Believe::Errors::APIError
+    class APIConnectionError < ::Believe::Errors::APIError
       def initialize: (
         url: URI::Generic,
         ?status: nil,
@@ -48,7 +48,7 @@ module Believe
       ) -> void
     end
 
-    class APITimeoutError < Believe::Errors::APIConnectionError
+    class APITimeoutError < ::Believe::Errors::APIConnectionError
       def initialize: (
         url: URI::Generic,
         ?status: nil,
@@ -60,7 +60,7 @@ module Believe
       ) -> void
     end
 
-    class APIStatusError < Believe::Errors::APIError
+    class APIStatusError < ::Believe::Errors::APIError
       def self.for: (
         url: URI::Generic,
         status: Integer,
@@ -82,35 +82,35 @@ module Believe
       ) -> void
     end
 
-    class BadRequestError < Believe::Errors::APIStatusError
+    class BadRequestError < ::Believe::Errors::APIStatusError
       HTTP_STATUS: 400
     end
 
-    class AuthenticationError < Believe::Errors::APIStatusError
+    class AuthenticationError < ::Believe::Errors::APIStatusError
       HTTP_STATUS: 401
     end
 
-    class PermissionDeniedError < Believe::Errors::APIStatusError
+    class PermissionDeniedError < ::Believe::Errors::APIStatusError
       HTTP_STATUS: 403
     end
 
-    class NotFoundError < Believe::Errors::APIStatusError
+    class NotFoundError < ::Believe::Errors::APIStatusError
       HTTP_STATUS: 404
     end
 
-    class ConflictError < Believe::Errors::APIStatusError
+    class ConflictError < ::Believe::Errors::APIStatusError
       HTTP_STATUS: 409
     end
 
-    class UnprocessableEntityError < Believe::Errors::APIStatusError
+    class UnprocessableEntityError < ::Believe::Errors::APIStatusError
       HTTP_STATUS: 422
     end
 
-    class RateLimitError < Believe::Errors::APIStatusError
+    class RateLimitError < ::Believe::Errors::APIStatusError
       HTTP_STATUS: 429
     end
 
-    class InternalServerError < Believe::Errors::APIStatusError
+    class InternalServerError < ::Believe::Errors::APIStatusError
       HTTP_STATUS: Range[Integer]
     end
   end

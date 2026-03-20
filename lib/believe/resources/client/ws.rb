@@ -23,18 +23,18 @@ module Believe
         #
         # @overload test_(request_options: {})
         #
-        # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+        # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
         #
         # @return [nil]
         #
-        # @see Believe::Models::Client::WTestParams
+        # @see ::Believe::Models::Client::WTestParams
         def test_(params = {})
           @client.request(method: :get, path: "ws/test", model: NilClass, options: params[:request_options])
         end
 
         # @api private
         #
-        # @param client [Believe::Client]
+        # @param client [::Believe::Client]
         def initialize(client:)
           @client = client
         end

@@ -9,18 +9,18 @@ module Believe
         currency: String?,
         discount: String?,
         match_id: String?,
-        purchase_method: Believe::Models::purchase_method?,
+        purchase_method: ::Believe::Models::purchase_method?,
         quantity: Integer?,
         subtotal: String?,
         tax: String?,
         total: String?,
         unit_price: String?
       }
-      & Believe::Internal::Type::request_parameters
+      & ::Believe::Internal::Type::request_parameters
 
-    class TicketSaleUpdateParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class TicketSaleUpdateParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       attr_accessor ticket_sale_id: String
 
@@ -36,7 +36,7 @@ module Believe
 
       attr_accessor match_id: String?
 
-      attr_accessor purchase_method: Believe::Models::purchase_method?
+      attr_accessor purchase_method: ::Believe::Models::purchase_method?
 
       attr_accessor quantity: Integer?
 
@@ -56,13 +56,13 @@ module Believe
         ?currency: String?,
         ?discount: String?,
         ?match_id: String?,
-        ?purchase_method: Believe::Models::purchase_method?,
+        ?purchase_method: ::Believe::Models::purchase_method?,
         ?quantity: Integer?,
         ?subtotal: String?,
         ?tax: String?,
         ?total: String?,
         ?unit_price: String?,
-        ?request_options: Believe::request_opts
+        ?request_options: ::Believe::request_opts
       ) -> void
 
       def to_hash: -> {
@@ -73,13 +73,13 @@ module Believe
         currency: String?,
         discount: String?,
         match_id: String?,
-        purchase_method: Believe::Models::purchase_method?,
+        purchase_method: ::Believe::Models::purchase_method?,
         quantity: Integer?,
         subtotal: String?,
         tax: String?,
         total: String?,
         unit_price: String?,
-        request_options: Believe::RequestOptions
+        request_options: ::Believe::RequestOptions
       }
     end
   end

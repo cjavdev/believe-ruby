@@ -2,10 +2,10 @@
 
 module Believe
   module Models
-    # @see Believe::Resources::Quotes#update
-    class QuoteUpdateParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    # @see ::Believe::Resources::Quotes#update
+    class QuoteUpdateParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       # @!attribute quote_id
       #
@@ -30,18 +30,18 @@ module Believe
       # @!attribute is_funny
       #
       #   @return [Boolean, nil]
-      optional :is_funny, Believe::Internal::Type::Boolean, nil?: true
+      optional :is_funny, ::Believe::Internal::Type::Boolean, nil?: true
 
       # @!attribute is_inspirational
       #
       #   @return [Boolean, nil]
-      optional :is_inspirational, Believe::Internal::Type::Boolean, nil?: true
+      optional :is_inspirational, ::Believe::Internal::Type::Boolean, nil?: true
 
       # @!attribute moment_type
       #   Types of moments when quotes occur.
       #
-      #   @return [Symbol, Believe::Models::QuoteMoment, nil]
-      optional :moment_type, enum: -> { Believe::QuoteMoment }, nil?: true
+      #   @return [Symbol, ::Believe::Models::QuoteMoment, nil]
+      optional :moment_type, enum: -> { ::Believe::QuoteMoment }, nil?: true
 
       # @!attribute popularity_score
       #
@@ -50,11 +50,9 @@ module Believe
 
       # @!attribute secondary_themes
       #
-      #   @return [Array<Symbol, Believe::Models::QuoteTheme>, nil]
+      #   @return [Array<Symbol, ::Believe::Models::QuoteTheme>, nil]
       optional :secondary_themes,
-               -> {
-                 Believe::Internal::Type::ArrayOf[enum: Believe::QuoteTheme]
-               },
+               -> { ::Believe::Internal::Type::ArrayOf[enum: ::Believe::QuoteTheme] },
                nil?: true
 
       # @!attribute text
@@ -65,8 +63,8 @@ module Believe
       # @!attribute theme
       #   Themes that quotes can be categorized under.
       #
-      #   @return [Symbol, Believe::Models::QuoteTheme, nil]
-      optional :theme, enum: -> { Believe::QuoteTheme }, nil?: true
+      #   @return [Symbol, ::Believe::Models::QuoteTheme, nil]
+      optional :theme, enum: -> { ::Believe::QuoteTheme }, nil?: true
 
       # @!attribute times_shared
       #
@@ -86,19 +84,19 @@ module Believe
       #
       #   @param is_inspirational [Boolean, nil]
       #
-      #   @param moment_type [Symbol, Believe::Models::QuoteMoment, nil] Types of moments when quotes occur.
+      #   @param moment_type [Symbol, ::Believe::Models::QuoteMoment, nil] Types of moments when quotes occur.
       #
       #   @param popularity_score [Float, nil]
       #
-      #   @param secondary_themes [Array<Symbol, Believe::Models::QuoteTheme>, nil]
+      #   @param secondary_themes [Array<Symbol, ::Believe::Models::QuoteTheme>, nil]
       #
       #   @param text [String, nil]
       #
-      #   @param theme [Symbol, Believe::Models::QuoteTheme, nil] Themes that quotes can be categorized under.
+      #   @param theme [Symbol, ::Believe::Models::QuoteTheme, nil] Themes that quotes can be categorized under.
       #
       #   @param times_shared [Integer, nil]
       #
-      #   @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}]
+      #   @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}]
     end
   end
 end

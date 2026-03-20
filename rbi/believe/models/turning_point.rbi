@@ -2,10 +2,10 @@
 
 module Believe
   module Models
-    class TurningPoint < Believe::Internal::Type::BaseModel
+    class TurningPoint < ::Believe::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
-          T.any(Believe::TurningPoint, Believe::Internal::AnyHash)
+          T.any(::Believe::TurningPoint, ::Believe::Internal::AnyHash)
         end
 
       # What happened

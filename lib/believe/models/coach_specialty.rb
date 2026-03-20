@@ -4,7 +4,7 @@ module Believe
   module Models
     # Coaching specialties.
     module CoachSpecialty
-      extend Believe::Internal::Type::Enum
+      extend ::Believe::Internal::Type::Enum
 
       HEAD_COACH = :head_coach
       ASSISTANT_COACH = :assistant_coach

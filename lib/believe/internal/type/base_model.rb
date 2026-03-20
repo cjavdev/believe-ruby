@@ -5,8 +5,8 @@ module Believe
     module Type
       # @abstract
       class BaseModel
-        extend Believe::Internal::Type::Converter
-        extend Believe::Internal::Util::SorbetRuntimeSupport
+        extend ::Believe::Internal::Type::Converter
+        extend ::Believe::Internal::Util::SorbetRuntimeSupport
 
         class << self
           # @api private
@@ -14,7 +14,7 @@ module Believe
           # Assumes superclass fields are totally defined before fields are accessed /
           # defined on subclasses.
           #
-          # @param child [Class<Believe::Internal::Type::BaseModel>]
+          # @param child [Class<::Believe::Internal::Type::BaseModel>]
           def inherited(child)
             super
             child.known_fields.replace(known_fields.dup)
@@ -40,7 +40,7 @@ module Believe
           #
           # @param required [Boolean]
           #
-          # @param type_info [Hash{Symbol=>Object}, Proc, Believe::Internal::Type::Converter, Class]
+          # @param type_info [Hash{Symbol=>Object}, Proc, ::Believe::Internal::Type::Converter, Class]
           #
           # @param spec [Hash{Symbol=>Object}] .
           #
@@ -52,19 +52,19 @@ module Believe
           #
           #   @option spec [Boolean] :"nil?"
           private def add_field(name_sym, required:, type_info:, spec:)
-            meta = Believe::Internal::Type::Converter.meta_info(type_info, spec)
+            meta = ::Believe::Internal::Type::Converter.meta_info(type_info, spec)
             type_fn, info =
               case type_info
-              in Proc | Believe::Internal::Type::Converter | Class
-                [Believe::Internal::Type::Converter.type_info({**spec, union: type_info}), spec]
+              in Proc | ::Believe::Internal::Type::Converter | Class
+                [::Believe::Internal::Type::Converter.type_info({**spec, union: type_info}), spec]
               in Hash
-                [Believe::Internal::Type::Converter.type_info(type_info), type_info]
+                [::Believe::Internal::Type::Converter.type_info(type_info), type_info]
               end
 
             setter = :"#{name_sym}="
             api_name = info.fetch(:api_name, name_sym)
             nilable = info.fetch(:nil?, false)
-            const = required && !nilable ? info.fetch(:const, Believe::Internal::OMIT) : Believe::Internal::OMIT
+            const = required && !nilable ? info.fetch(:const, ::Believe::Internal::OMIT) : ::Believe::Internal::OMIT
 
             [name_sym, setter].each { undef_method(_1) } if known_fields.key?(name_sym)
 
@@ -81,12 +81,12 @@ module Believe
 
             define_method(setter) do |value|
               target = type_fn.call
-              state = Believe::Internal::Type::Converter.new_coerce_state(translate_names: false)
-              coerced = Believe::Internal::Type::Converter.coerce(target, value, state: state)
+              state = ::Believe::Internal::Type::Converter.new_coerce_state(translate_names: false)
+              coerced = ::Believe::Internal::Type::Converter.coerce(target, value, state: state)
               status = @coerced.store(name_sym, state.fetch(:error) || true)
               stored =
                 case [target, status]
-                in [Believe::Internal::Type::Converter | Symbol, true]
+                in [::Believe::Internal::Type::Converter | Symbol, true]
                   coerced
                 else
                   value
@@ -100,10 +100,10 @@ module Believe
               target = type_fn.call
 
               case @coerced[name_sym]
-              in true | false if Believe::Internal::Type::Converter === target
+              in true | false if ::Believe::Internal::Type::Converter === target
                 @data.fetch(name_sym)
               in ::StandardError => e
-                raise Believe::Errors::ConversionError.new(
+                raise ::Believe::Errors::ConversionError.new(
                   on: self.class,
                   method: __method__,
                   target: target,
@@ -112,17 +112,17 @@ module Believe
                 )
               else
                 Kernel.then do
-                  value = @data.fetch(name_sym) { const == Believe::Internal::OMIT ? nil : const }
-                  state = Believe::Internal::Type::Converter.new_coerce_state(translate_names: false)
+                  value = @data.fetch(name_sym) { const == ::Believe::Internal::OMIT ? nil : const }
+                  state = ::Believe::Internal::Type::Converter.new_coerce_state(translate_names: false)
                   if (nilable || !required) && value.nil?
                     nil
                   else
-                    Believe::Internal::Type::Converter.coerce(
+                    ::Believe::Internal::Type::Converter.coerce(
                       target, value, state: state
                     )
                   end
                 rescue StandardError => e
-                  raise Believe::Errors::ConversionError.new(
+                  raise ::Believe::Errors::ConversionError.new(
                     on: self.class,
                     method: __method__,
                     target: target,
@@ -140,7 +140,7 @@ module Believe
           #
           # @param name_sym [Symbol]
           #
-          # @param type_info [Hash{Symbol=>Object}, Proc, Believe::Internal::Type::Converter, Class]
+          # @param type_info [Hash{Symbol=>Object}, Proc, ::Believe::Internal::Type::Converter, Class]
           #
           # @param spec [Hash{Symbol=>Object}] .
           #
@@ -159,7 +159,7 @@ module Believe
           #
           # @param name_sym [Symbol]
           #
-          # @param type_info [Hash{Symbol=>Object}, Proc, Believe::Internal::Type::Converter, Class]
+          # @param type_info [Hash{Symbol=>Object}, Proc, ::Believe::Internal::Type::Converter, Class]
           #
           # @param spec [Hash{Symbol=>Object}] .
           #
@@ -205,7 +205,7 @@ module Believe
           #
           # @return [Boolean]
           def ==(other)
-            other.is_a?(Class) && other <= Believe::Internal::Type::BaseModel && other.fields == fields
+            other.is_a?(Class) && other <= ::Believe::Internal::Type::BaseModel && other.fields == fields
           end
 
           # @api public
@@ -229,7 +229,7 @@ module Believe
         class << self
           # @api private
           #
-          # @param value [Believe::Internal::Type::BaseModel, Hash{Object=>Object}, Object]
+          # @param value [::Believe::Internal::Type::BaseModel, Hash{Object=>Object}, Object]
           #
           # @param state [Hash{Symbol=>Object}] .
           #
@@ -252,7 +252,7 @@ module Believe
               return value
             end
 
-            unless (val = Believe::Internal::Util.coerce_hash(value)).is_a?(Hash)
+            unless (val = ::Believe::Internal::Util.coerce_hash(value)).is_a?(Hash)
               exactness[:no] += 1
               state[:error] = TypeError.new("#{value.class} can't be coerced into #{Hash}")
               return value
@@ -271,7 +271,7 @@ module Believe
               src_name = state.fetch(:translate_names) ? api_name : name
 
               unless val.key?(src_name)
-                if required && mode != :dump && const == Believe::Internal::OMIT
+                if required && mode != :dump && const == ::Believe::Internal::OMIT
                   exactness[nilable ? :maybe : :no] += 1
                 else
                   exactness[:yes] += 1
@@ -288,9 +288,9 @@ module Believe
                   exactness[nilable ? :yes : :maybe] += 1
                   nil
                 else
-                  coerced = Believe::Internal::Type::Converter.coerce(target, item, state: state)
+                  coerced = ::Believe::Internal::Type::Converter.coerce(target, item, state: state)
                   case target
-                  in Believe::Internal::Type::Converter | Symbol
+                  in ::Believe::Internal::Type::Converter | Symbol
                     coerced
                   else
                     item
@@ -316,7 +316,7 @@ module Believe
           #
           # @return [Hash{Object=>Object}, Object]
           def dump(value, state:)
-            unless (coerced = Believe::Internal::Util.coerce_hash(value)).is_a?(Hash)
+            unless (coerced = ::Believe::Internal::Util.coerce_hash(value)).is_a?(Hash)
               return super
             end
 
@@ -334,14 +334,14 @@ module Believe
                   next
                 else
                   target = type_fn.call
-                  acc.store(api_name, Believe::Internal::Type::Converter.dump(target, val, state: state))
+                  acc.store(api_name, ::Believe::Internal::Type::Converter.dump(target, val, state: state))
                 end
               end
             end
 
             known_fields.each_value do |field|
               api_name, mode, const = field.fetch_values(:api_name, :mode, :const)
-              next if mode == :coerce || acc.key?(api_name) || const == Believe::Internal::OMIT
+              next if mode == :coerce || acc.key?(api_name) || const == ::Believe::Internal::OMIT
               acc.store(api_name, const)
             end
 
@@ -359,19 +359,19 @@ module Believe
         class << self
           # @api private
           #
-          # @param model [Believe::Internal::Type::BaseModel]
+          # @param model [::Believe::Internal::Type::BaseModel]
           # @param convert [Boolean]
           #
           # @return [Hash{Symbol=>Object}]
           def recursively_to_h(model, convert:)
             rec = ->(x) do
               case x
-              in Believe::Internal::Type::BaseModel
+              in ::Believe::Internal::Type::BaseModel
                 if convert
                   fields = x.class.known_fields
                   x.to_h.to_h do |key, val|
                     [key, rec.call(fields.key?(key) ? x.public_send(key) : val)]
-                  rescue Believe::Errors::ConversionError
+                  rescue ::Believe::Errors::ConversionError
                     [key, rec.call(val)]
                   end
                 else
@@ -438,7 +438,7 @@ module Believe
         # @return [Hash{Symbol=>Object}]
         #
         # @example
-        #   # `character` is a `Believe::Character`
+        #   # `character` is a `::Believe::Character`
         #   character => {
         #     id: id,
         #     background: background,
@@ -461,14 +461,14 @@ module Believe
         # @param a [Object]
         #
         # @return [String]
-        def to_json(*a) = Believe::Internal::Type::Converter.dump(self.class, self).to_json(*a)
+        def to_json(*a) = ::Believe::Internal::Type::Converter.dump(self.class, self).to_json(*a)
 
         # @api public
         #
         # @param a [Object]
         #
         # @return [String]
-        def to_yaml(*a) = Believe::Internal::Type::Converter.dump(self.class, self).to_yaml(*a)
+        def to_yaml(*a) = ::Believe::Internal::Type::Converter.dump(self.class, self).to_yaml(*a)
 
         # Create a new instance of a model.
         #
@@ -476,7 +476,7 @@ module Believe
         def initialize(data = {})
           @data = {}
           @coerced = {}
-          Believe::Internal::Util.coerce_hash!(data).each do
+          ::Believe::Internal::Util.coerce_hash!(data).each do
             if self.class.known_fields.key?(_1)
               public_send(:"#{_1}=", _2)
             else
@@ -499,7 +499,7 @@ module Believe
             deferred = fields.transform_values do |field|
               type, required, nilable = field.fetch_values(:type, :required, :nilable)
               inspected = [
-                Believe::Internal::Type::Converter.inspect(type, depth: depth),
+                ::Believe::Internal::Type::Converter.inspect(type, depth: depth),
                 !required || nilable ? "nil" : nil
               ].compact.join(" | ")
               -> { inspected }.tap { _1.define_singleton_method(:inspect) { call } }

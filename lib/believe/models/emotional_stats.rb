@@ -2,7 +2,7 @@
 
 module Believe
   module Models
-    class EmotionalStats < Believe::Internal::Type::BaseModel
+    class EmotionalStats < ::Believe::Internal::Type::BaseModel
       # @!attribute curiosity
       #   Level of curiosity over judgment (0-100)
       #

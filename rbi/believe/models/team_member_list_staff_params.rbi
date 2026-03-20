@@ -2,13 +2,16 @@
 
 module Believe
   module Models
-    class TeamMemberListStaffParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class TeamMemberListStaffParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(Believe::TeamMemberListStaffParams, Believe::Internal::AnyHash)
+          T.any(
+            ::Believe::TeamMemberListStaffParams,
+            ::Believe::Internal::AnyHash
+          )
         end
 
       # Maximum number of items to return (max: 100)
@@ -34,7 +37,7 @@ module Believe
           limit: Integer,
           skip: Integer,
           team_id: T.nilable(String),
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
@@ -54,7 +57,7 @@ module Believe
             limit: Integer,
             skip: Integer,
             team_id: T.nilable(String),
-            request_options: Believe::RequestOptions
+            request_options: ::Believe::RequestOptions
           }
         )
       end

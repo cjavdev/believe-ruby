@@ -3,13 +3,13 @@
 module Believe
   module Models
     module Client
-      # @see Believe::Resources::Client::Ws#test_
-      class WTestParams < Believe::Internal::Type::BaseModel
-        extend Believe::Internal::Type::RequestParameters::Converter
-        include Believe::Internal::Type::RequestParameters
+      # @see ::Believe::Resources::Client::Ws#test_
+      class WTestParams < ::Believe::Internal::Type::BaseModel
+        extend ::Believe::Internal::Type::RequestParameters::Converter
+        include ::Believe::Internal::Type::RequestParameters
 
         # @!method initialize(request_options: {})
-        #   @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}]
+        #   @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}]
       end
     end
   end

@@ -2,7 +2,7 @@
 
 module Believe
   module Models
-    class GeoLocation < Believe::Internal::Type::BaseModel
+    class GeoLocation < ::Believe::Internal::Type::BaseModel
       # @!attribute latitude
       #   Latitude in degrees
       #

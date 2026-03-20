@@ -2,10 +2,10 @@
 
 module Believe
   module Models
-    # @see Believe::Resources::Characters#list
-    class CharacterListParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    # @see ::Believe::Resources::Characters#list
+    class CharacterListParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       # @!attribute limit
       #   Maximum number of items to return (max: 100)
@@ -22,8 +22,8 @@ module Believe
       # @!attribute role
       #   Filter by role
       #
-      #   @return [Symbol, Believe::Models::CharacterRole, nil]
-      optional :role, enum: -> { Believe::CharacterRole }, nil?: true
+      #   @return [Symbol, ::Believe::Models::CharacterRole, nil]
+      optional :role, enum: -> { ::Believe::CharacterRole }, nil?: true
 
       # @!attribute skip
       #   Number of items to skip (offset)
@@ -42,13 +42,13 @@ module Believe
       #
       #   @param min_optimism [Integer, nil] Minimum optimism score
       #
-      #   @param role [Symbol, Believe::Models::CharacterRole, nil] Filter by role
+      #   @param role [Symbol, ::Believe::Models::CharacterRole, nil] Filter by role
       #
       #   @param skip [Integer] Number of items to skip (offset)
       #
       #   @param team_id [String, nil] Filter by team ID
       #
-      #   @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}]
+      #   @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}]
     end
   end
 end

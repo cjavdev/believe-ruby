@@ -157,7 +157,7 @@ module Believe
           in Hash | nil => coerced
             coerced
           else
-            message = "Expected a #{Hash} or #{Believe::Internal::Type::BaseModel}, got #{data.inspect}"
+            message = "Expected a #{Hash} or #{::Believe::Internal::Type::BaseModel}, got #{data.inspect}"
             raise ArgumentError.new(message)
           end
         end
@@ -396,7 +396,7 @@ module Believe
         def close
           case @stream
           in Enumerator
-            Believe::Internal::Util.close_fused!(@stream)
+            ::Believe::Internal::Util.close_fused!(@stream)
           in IO if close?
             @stream.close
           else
@@ -531,7 +531,7 @@ module Believe
           content_line = "Content-Type: %s\r\n\r\n"
 
           case val
-          in Believe::FilePart
+          in ::Believe::FilePart
             return write_multipart_content(
               y,
               val: val.content,
@@ -576,7 +576,7 @@ module Believe
           end
 
           case val
-          in Believe::FilePart unless val.filename.nil?
+          in ::Believe::FilePart unless val.filename.nil?
             filename = ERB::Util.url_encode(val.filename)
             y << "; filename=\"#{filename}\""
           in Pathname | IO
@@ -635,11 +635,11 @@ module Believe
           # rubocop:disable Layout/LineLength
           content_type = headers["content-type"]
           case [content_type, body]
-          in [Believe::Internal::Util::JSON_CONTENT, Hash | Array | -> { primitive?(_1) }]
+          in [::Believe::Internal::Util::JSON_CONTENT, Hash | Array | -> { primitive?(_1) }]
             [headers, JSON.generate(body)]
-          in [Believe::Internal::Util::JSONL_CONTENT, Enumerable] unless Believe::Internal::Type::FileInput === body
+          in [::Believe::Internal::Util::JSONL_CONTENT, Enumerable] unless ::Believe::Internal::Type::FileInput === body
             [headers, body.lazy.map { JSON.generate(_1) }]
-          in [%r{^multipart/form-data}, Hash | Believe::Internal::Type::FileInput]
+          in [%r{^multipart/form-data}, Hash | ::Believe::Internal::Type::FileInput]
             boundary, strio = encode_multipart_streaming(body)
             headers = {**headers, "content-type" => "#{content_type}; boundary=#{boundary}"}
             [headers, strio]
@@ -647,7 +647,7 @@ module Believe
             [headers, body.to_s]
           in [_, StringIO]
             [headers, body.string]
-          in [_, Believe::FilePart]
+          in [_, ::Believe::FilePart]
             [headers, body.content]
           else
             [headers, body]
@@ -687,7 +687,7 @@ module Believe
         # @return [Object]
         def decode_content(headers, stream:, suppress_error: false)
           case (content_type = headers["content-type"])
-          in Believe::Internal::Util::JSON_CONTENT
+          in ::Believe::Internal::Util::JSON_CONTENT
             return nil if (json = stream.to_a.join).empty?
 
             begin
@@ -696,7 +696,7 @@ module Believe
               raise e unless suppress_error
               json
             end
-          in Believe::Internal::Util::JSONL_CONTENT
+          in ::Believe::Internal::Util::JSONL_CONTENT
             lines = decode_lines(stream)
             chain_fused(lines) do |y|
               lines.each do
@@ -904,12 +904,12 @@ module Believe
         class << self
           # @api private
           #
-          # @param type [Believe::Internal::Util::SorbetRuntimeSupport, Object]
+          # @param type [::Believe::Internal::Util::SorbetRuntimeSupport, Object]
           #
           # @return [Object]
           def to_sorbet_type(type)
             case type
-            in Believe::Internal::Util::SorbetRuntimeSupport
+            in ::Believe::Internal::Util::SorbetRuntimeSupport
               type.to_sorbet_type
             in Class | Module
               type
@@ -922,7 +922,7 @@ module Believe
         end
       end
 
-      extend Believe::Internal::Util::SorbetRuntimeSupport
+      extend ::Believe::Internal::Util::SorbetRuntimeSupport
 
       define_sorbet_constant!(:ParsedUri) do
         T.type_alias do

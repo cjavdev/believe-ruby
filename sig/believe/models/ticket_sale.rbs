@@ -7,7 +7,7 @@ module Believe
         currency: String,
         discount: String,
         match_id: String,
-        purchase_method: Believe::Models::purchase_method,
+        purchase_method: ::Believe::Models::purchase_method,
         quantity: Integer,
         subtotal: String,
         tax: String,
@@ -17,7 +17,7 @@ module Believe
         coupon_code: String?
       }
 
-    class TicketSale < Believe::Internal::Type::BaseModel
+    class TicketSale < ::Believe::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor buyer_name: String
@@ -28,7 +28,7 @@ module Believe
 
       attr_accessor match_id: String
 
-      attr_accessor purchase_method: Believe::Models::purchase_method
+      attr_accessor purchase_method: ::Believe::Models::purchase_method
 
       attr_accessor quantity: Integer
 
@@ -50,7 +50,7 @@ module Believe
         currency: String,
         discount: String,
         match_id: String,
-        purchase_method: Believe::Models::purchase_method,
+        purchase_method: ::Believe::Models::purchase_method,
         quantity: Integer,
         subtotal: String,
         tax: String,
@@ -66,7 +66,7 @@ module Believe
         currency: String,
         discount: String,
         match_id: String,
-        purchase_method: Believe::Models::purchase_method,
+        purchase_method: ::Believe::Models::purchase_method,
         quantity: Integer,
         subtotal: String,
         tax: String,

@@ -3,10 +3,10 @@
 module Believe
   module Models
     module Coaching
-      # @see Believe::Resources::Coaching::Principles#retrieve
-      class PrincipleRetrieveParams < Believe::Internal::Type::BaseModel
-        extend Believe::Internal::Type::RequestParameters::Converter
-        include Believe::Internal::Type::RequestParameters
+      # @see ::Believe::Resources::Coaching::Principles#retrieve
+      class PrincipleRetrieveParams < ::Believe::Internal::Type::BaseModel
+        extend ::Believe::Internal::Type::RequestParameters::Converter
+        include ::Believe::Internal::Type::RequestParameters
 
         # @!attribute principle_id
         #
@@ -15,7 +15,7 @@ module Believe
 
         # @!method initialize(principle_id:, request_options: {})
         #   @param principle_id [String]
-        #   @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}]
+        #   @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}]
       end
     end
   end

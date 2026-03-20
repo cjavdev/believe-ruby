@@ -2,22 +2,22 @@ module Believe
   module Models
     module Coaching
       type principle_retrieve_params =
-        { principle_id: String } & Believe::Internal::Type::request_parameters
+        { principle_id: String } & ::Believe::Internal::Type::request_parameters
 
-      class PrincipleRetrieveParams < Believe::Internal::Type::BaseModel
-        extend Believe::Internal::Type::RequestParameters::Converter
-        include Believe::Internal::Type::RequestParameters
+      class PrincipleRetrieveParams < ::Believe::Internal::Type::BaseModel
+        extend ::Believe::Internal::Type::RequestParameters::Converter
+        include ::Believe::Internal::Type::RequestParameters
 
         attr_accessor principle_id: String
 
         def initialize: (
           principle_id: String,
-          ?request_options: Believe::request_opts
+          ?request_options: ::Believe::request_opts
         ) -> void
 
         def to_hash: -> {
           principle_id: String,
-          request_options: Believe::RequestOptions
+          request_options: ::Believe::RequestOptions
         }
       end
     end

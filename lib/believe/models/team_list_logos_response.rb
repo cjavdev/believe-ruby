@@ -2,7 +2,7 @@
 
 module Believe
   module Models
-    # @type [Believe::Internal::Type::Converter]
-    TeamListLogosResponse = Believe::Internal::Type::ArrayOf[-> { Believe::Teams::FileUpload }]
+    # @type [::Believe::Internal::Type::Converter]
+    TeamListLogosResponse = ::Believe::Internal::Type::ArrayOf[-> { ::Believe::Teams::FileUpload }]
   end
 end

@@ -11,7 +11,7 @@ module Believe
       | :"Ligue 1"
 
     module League
-      extend Believe::Internal::Type::Enum
+      extend ::Believe::Internal::Type::Enum
 
       PREMIER_LEAGUE: :"Premier League"
       CHAMPIONSHIP: :Championship
@@ -22,7 +22,7 @@ module Believe
       BUNDESLIGA: :Bundesliga
       LIGUE_1: :"Ligue 1"
 
-      def self?.values: -> ::Array[Believe::Models::league]
+      def self?.values: -> ::Array[::Believe::Models::league]
     end
   end
 end

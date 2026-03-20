@@ -3,10 +3,10 @@
 module Believe
   module Models
     module Teams
-      class FileUpload < Believe::Internal::Type::BaseModel
+      class FileUpload < ::Believe::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
-            T.any(Believe::Teams::FileUpload, Believe::Internal::AnyHash)
+            T.any(::Believe::Teams::FileUpload, ::Believe::Internal::AnyHash)
           end
 
         sig { returns(String) }

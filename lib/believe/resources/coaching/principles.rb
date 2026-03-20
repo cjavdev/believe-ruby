@@ -10,16 +10,16 @@ module Believe
         # @overload retrieve(principle_id, request_options: {})
         #
         # @param principle_id [String]
-        # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+        # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Believe::Models::Coaching::CoachingPrinciple]
+        # @return [::Believe::Models::Coaching::CoachingPrinciple]
         #
-        # @see Believe::Models::Coaching::PrincipleRetrieveParams
+        # @see ::Believe::Models::Coaching::PrincipleRetrieveParams
         def retrieve(principle_id, params = {})
           @client.request(
             method: :get,
             path: ["coaching/principles/%1$s", principle_id],
-            model: Believe::Coaching::CoachingPrinciple,
+            model: ::Believe::Coaching::CoachingPrinciple,
             options: params[:request_options]
           )
         end
@@ -32,20 +32,20 @@ module Believe
         #
         # @param skip [Integer] Number of items to skip (offset)
         #
-        # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+        # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Believe::Internal::SkipLimitPage<Believe::Models::Coaching::CoachingPrinciple>]
+        # @return [::Believe::Internal::SkipLimitPage<::Believe::Models::Coaching::CoachingPrinciple>]
         #
-        # @see Believe::Models::Coaching::PrincipleListParams
+        # @see ::Believe::Models::Coaching::PrincipleListParams
         def list(params = {})
-          parsed, options = Believe::Coaching::PrincipleListParams.dump_request(params)
-          query = Believe::Internal::Util.encode_query_params(parsed)
+          parsed, options = ::Believe::Coaching::PrincipleListParams.dump_request(params)
+          query = ::Believe::Internal::Util.encode_query_params(parsed)
           @client.request(
             method: :get,
             path: "coaching/principles",
             query: query,
-            page: Believe::Internal::SkipLimitPage,
-            model: Believe::Coaching::CoachingPrinciple,
+            page: ::Believe::Internal::SkipLimitPage,
+            model: ::Believe::Coaching::CoachingPrinciple,
             options: options
           )
         end
@@ -54,23 +54,23 @@ module Believe
         #
         # @overload get_random(request_options: {})
         #
-        # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+        # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Believe::Models::Coaching::CoachingPrinciple]
+        # @return [::Believe::Models::Coaching::CoachingPrinciple]
         #
-        # @see Believe::Models::Coaching::PrincipleGetRandomParams
+        # @see ::Believe::Models::Coaching::PrincipleGetRandomParams
         def get_random(params = {})
           @client.request(
             method: :get,
             path: "coaching/principles/random",
-            model: Believe::Coaching::CoachingPrinciple,
+            model: ::Believe::Coaching::CoachingPrinciple,
             options: params[:request_options]
           )
         end
 
         # @api private
         #
-        # @param client [Believe::Client]
+        # @param client [::Believe::Client]
         def initialize(client:)
           @client = client
         end

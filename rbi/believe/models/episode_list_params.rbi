@@ -2,13 +2,13 @@
 
 module Believe
   module Models
-    class EpisodeListParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class EpisodeListParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(Believe::EpisodeListParams, Believe::Internal::AnyHash)
+          T.any(::Believe::EpisodeListParams, ::Believe::Internal::AnyHash)
         end
 
       # Filter by character focus (character ID)
@@ -39,7 +39,7 @@ module Believe
           limit: Integer,
           season: T.nilable(Integer),
           skip: Integer,
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
@@ -62,7 +62,7 @@ module Believe
             limit: Integer,
             season: T.nilable(Integer),
             skip: Integer,
-            request_options: Believe::RequestOptions
+            request_options: ::Believe::RequestOptions
           }
         )
       end

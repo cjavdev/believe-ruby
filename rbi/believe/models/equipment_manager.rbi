@@ -2,10 +2,10 @@
 
 module Believe
   module Models
-    class EquipmentManager < Believe::Internal::Type::BaseModel
+    class EquipmentManager < ::Believe::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
-          T.any(Believe::EquipmentManager, Believe::Internal::AnyHash)
+          T.any(::Believe::EquipmentManager, ::Believe::Internal::AnyHash)
         end
 
       # Unique identifier for this team membership
@@ -33,13 +33,15 @@ module Believe
 
       # Discriminator field indicating this is an equipment manager
       sig do
-        returns(T.nilable(Believe::EquipmentManager::MemberType::TaggedSymbol))
+        returns(
+          T.nilable(::Believe::EquipmentManager::MemberType::TaggedSymbol)
+        )
       end
       attr_reader :member_type
 
       sig do
         params(
-          member_type: Believe::EquipmentManager::MemberType::OrSymbol
+          member_type: ::Believe::EquipmentManager::MemberType::OrSymbol
         ).void
       end
       attr_writer :member_type
@@ -59,7 +61,7 @@ module Believe
           team_id: String,
           years_with_team: Integer,
           is_head_kitman: T::Boolean,
-          member_type: Believe::EquipmentManager::MemberType::OrSymbol,
+          member_type: ::Believe::EquipmentManager::MemberType::OrSymbol,
           responsibilities: T::Array[String]
         ).returns(T.attached_class)
       end
@@ -89,7 +91,7 @@ module Believe
             team_id: String,
             years_with_team: Integer,
             is_head_kitman: T::Boolean,
-            member_type: Believe::EquipmentManager::MemberType::TaggedSymbol,
+            member_type: ::Believe::EquipmentManager::MemberType::TaggedSymbol,
             responsibilities: T::Array[String]
           }
         )
@@ -99,21 +101,23 @@ module Believe
 
       # Discriminator field indicating this is an equipment manager
       module MemberType
-        extend Believe::Internal::Type::Enum
+        extend ::Believe::Internal::Type::Enum
 
         TaggedSymbol =
-          T.type_alias { T.all(Symbol, Believe::EquipmentManager::MemberType) }
+          T.type_alias do
+            T.all(Symbol, ::Believe::EquipmentManager::MemberType)
+          end
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         EQUIPMENT_MANAGER =
           T.let(
             :equipment_manager,
-            Believe::EquipmentManager::MemberType::TaggedSymbol
+            ::Believe::EquipmentManager::MemberType::TaggedSymbol
           )
 
         sig do
           override.returns(
-            T::Array[Believe::EquipmentManager::MemberType::TaggedSymbol]
+            T::Array[::Believe::EquipmentManager::MemberType::TaggedSymbol]
           )
         end
         def self.values

@@ -1,13 +1,13 @@
 module Believe
   module Models
     type unwrap_webhook_event =
-      Believe::MatchCompletedWebhookEvent
-      | Believe::TeamMemberTransferredWebhookEvent
+      ::Believe::MatchCompletedWebhookEvent
+      | ::Believe::TeamMemberTransferredWebhookEvent
 
     module UnwrapWebhookEvent
-      extend Believe::Internal::Type::Union
+      extend ::Believe::Internal::Type::Union
 
-      def self?.variants: -> ::Array[Believe::Models::unwrap_webhook_event]
+      def self?.variants: -> ::Array[::Believe::Models::unwrap_webhook_event]
     end
   end
 end

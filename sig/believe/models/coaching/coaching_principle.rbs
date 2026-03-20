@@ -13,7 +13,7 @@ module Believe
           ted_quote: String
         }
 
-      class CoachingPrinciple < Believe::Internal::Type::BaseModel
+      class CoachingPrinciple < ::Believe::Internal::Type::BaseModel
         attr_accessor id: String
 
         attr_accessor application: String

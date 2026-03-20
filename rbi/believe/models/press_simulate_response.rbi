@@ -2,12 +2,12 @@
 
 module Believe
   module Models
-    class PressSimulateResponse < Believe::Internal::Type::BaseModel
+    class PressSimulateResponse < ::Believe::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
           T.any(
-            Believe::Models::PressSimulateResponse,
-            Believe::Internal::AnyHash
+            ::Believe::Models::PressSimulateResponse,
+            ::Believe::Internal::AnyHash
           )
         end
 

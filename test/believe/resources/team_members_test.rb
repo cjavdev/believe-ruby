@@ -19,15 +19,15 @@ class Believe::Test::Resources::TeamMembersTest < Believe::Test::ResourceTest
       )
 
     assert_pattern do
-      response => Believe::Models::TeamMemberCreateResponse
+      response => ::Believe::Models::TeamMemberCreateResponse
     end
 
     assert_pattern do
       case response
-      in Believe::Player
-      in Believe::Coach
-      in Believe::MedicalStaff
-      in Believe::EquipmentManager
+      in ::Believe::Player
+      in ::Believe::Coach
+      in ::Believe::MedicalStaff
+      in ::Believe::EquipmentManager
       end
     end
 
@@ -38,32 +38,32 @@ class Believe::Test::Resources::TeamMembersTest < Believe::Test::ResourceTest
         id: String,
         character_id: String,
         jersey_number: Integer,
-        position: Believe::Position,
+        position: ::Believe::Position,
         team_id: String,
         years_with_team: Integer,
         assists: Integer | nil,
         goals_scored: Integer | nil,
-        is_captain: Believe::Internal::Type::Boolean | nil
+        is_captain: ::Believe::Internal::Type::Boolean | nil
       }
       in {
         member_type: :coach,
         id: String,
         character_id: String,
-        specialty: Believe::CoachSpecialty,
+        specialty: ::Believe::CoachSpecialty,
         team_id: String,
         years_with_team: Integer,
-        certifications: ^(Believe::Internal::Type::ArrayOf[String]) | nil,
+        certifications: ^(::Believe::Internal::Type::ArrayOf[String]) | nil,
         win_rate: Float | nil
       }
       in {
         member_type: :medical_staff,
         id: String,
         character_id: String,
-        specialty: Believe::MedicalSpecialty,
+        specialty: ::Believe::MedicalSpecialty,
         team_id: String,
         years_with_team: Integer,
         license_number: String | nil,
-        qualifications: ^(Believe::Internal::Type::ArrayOf[String]) | nil
+        qualifications: ^(::Believe::Internal::Type::ArrayOf[String]) | nil
       }
       in {
         member_type: :equipment_manager,
@@ -71,8 +71,8 @@ class Believe::Test::Resources::TeamMembersTest < Believe::Test::ResourceTest
         character_id: String,
         team_id: String,
         years_with_team: Integer,
-        is_head_kitman: Believe::Internal::Type::Boolean | nil,
-        responsibilities: ^(Believe::Internal::Type::ArrayOf[String]) | nil
+        is_head_kitman: ::Believe::Internal::Type::Boolean | nil,
+        responsibilities: ^(::Believe::Internal::Type::ArrayOf[String]) | nil
       }
       end
     end
@@ -84,15 +84,15 @@ class Believe::Test::Resources::TeamMembersTest < Believe::Test::ResourceTest
     response = @believe.team_members.retrieve("member_id")
 
     assert_pattern do
-      response => Believe::Models::TeamMemberRetrieveResponse
+      response => ::Believe::Models::TeamMemberRetrieveResponse
     end
 
     assert_pattern do
       case response
-      in Believe::Player
-      in Believe::Coach
-      in Believe::MedicalStaff
-      in Believe::EquipmentManager
+      in ::Believe::Player
+      in ::Believe::Coach
+      in ::Believe::MedicalStaff
+      in ::Believe::EquipmentManager
       end
     end
 
@@ -103,32 +103,32 @@ class Believe::Test::Resources::TeamMembersTest < Believe::Test::ResourceTest
         id: String,
         character_id: String,
         jersey_number: Integer,
-        position: Believe::Position,
+        position: ::Believe::Position,
         team_id: String,
         years_with_team: Integer,
         assists: Integer | nil,
         goals_scored: Integer | nil,
-        is_captain: Believe::Internal::Type::Boolean | nil
+        is_captain: ::Believe::Internal::Type::Boolean | nil
       }
       in {
         member_type: :coach,
         id: String,
         character_id: String,
-        specialty: Believe::CoachSpecialty,
+        specialty: ::Believe::CoachSpecialty,
         team_id: String,
         years_with_team: Integer,
-        certifications: ^(Believe::Internal::Type::ArrayOf[String]) | nil,
+        certifications: ^(::Believe::Internal::Type::ArrayOf[String]) | nil,
         win_rate: Float | nil
       }
       in {
         member_type: :medical_staff,
         id: String,
         character_id: String,
-        specialty: Believe::MedicalSpecialty,
+        specialty: ::Believe::MedicalSpecialty,
         team_id: String,
         years_with_team: Integer,
         license_number: String | nil,
-        qualifications: ^(Believe::Internal::Type::ArrayOf[String]) | nil
+        qualifications: ^(::Believe::Internal::Type::ArrayOf[String]) | nil
       }
       in {
         member_type: :equipment_manager,
@@ -136,8 +136,8 @@ class Believe::Test::Resources::TeamMembersTest < Believe::Test::ResourceTest
         character_id: String,
         team_id: String,
         years_with_team: Integer,
-        is_head_kitman: Believe::Internal::Type::Boolean | nil,
-        responsibilities: ^(Believe::Internal::Type::ArrayOf[String]) | nil
+        is_head_kitman: ::Believe::Internal::Type::Boolean | nil,
+        responsibilities: ^(::Believe::Internal::Type::ArrayOf[String]) | nil
       }
       end
     end
@@ -149,15 +149,15 @@ class Believe::Test::Resources::TeamMembersTest < Believe::Test::ResourceTest
     response = @believe.team_members.update("member_id", updates: {})
 
     assert_pattern do
-      response => Believe::Models::TeamMemberUpdateResponse
+      response => ::Believe::Models::TeamMemberUpdateResponse
     end
 
     assert_pattern do
       case response
-      in Believe::Player
-      in Believe::Coach
-      in Believe::MedicalStaff
-      in Believe::EquipmentManager
+      in ::Believe::Player
+      in ::Believe::Coach
+      in ::Believe::MedicalStaff
+      in ::Believe::EquipmentManager
       end
     end
 
@@ -168,32 +168,32 @@ class Believe::Test::Resources::TeamMembersTest < Believe::Test::ResourceTest
         id: String,
         character_id: String,
         jersey_number: Integer,
-        position: Believe::Position,
+        position: ::Believe::Position,
         team_id: String,
         years_with_team: Integer,
         assists: Integer | nil,
         goals_scored: Integer | nil,
-        is_captain: Believe::Internal::Type::Boolean | nil
+        is_captain: ::Believe::Internal::Type::Boolean | nil
       }
       in {
         member_type: :coach,
         id: String,
         character_id: String,
-        specialty: Believe::CoachSpecialty,
+        specialty: ::Believe::CoachSpecialty,
         team_id: String,
         years_with_team: Integer,
-        certifications: ^(Believe::Internal::Type::ArrayOf[String]) | nil,
+        certifications: ^(::Believe::Internal::Type::ArrayOf[String]) | nil,
         win_rate: Float | nil
       }
       in {
         member_type: :medical_staff,
         id: String,
         character_id: String,
-        specialty: Believe::MedicalSpecialty,
+        specialty: ::Believe::MedicalSpecialty,
         team_id: String,
         years_with_team: Integer,
         license_number: String | nil,
-        qualifications: ^(Believe::Internal::Type::ArrayOf[String]) | nil
+        qualifications: ^(::Believe::Internal::Type::ArrayOf[String]) | nil
       }
       in {
         member_type: :equipment_manager,
@@ -201,8 +201,8 @@ class Believe::Test::Resources::TeamMembersTest < Believe::Test::ResourceTest
         character_id: String,
         team_id: String,
         years_with_team: Integer,
-        is_head_kitman: Believe::Internal::Type::Boolean | nil,
-        responsibilities: ^(Believe::Internal::Type::ArrayOf[String]) | nil
+        is_head_kitman: ::Believe::Internal::Type::Boolean | nil,
+        responsibilities: ^(::Believe::Internal::Type::ArrayOf[String]) | nil
       }
       end
     end
@@ -214,22 +214,22 @@ class Believe::Test::Resources::TeamMembersTest < Believe::Test::ResourceTest
     response = @believe.team_members.list
 
     assert_pattern do
-      response => Believe::Internal::SkipLimitPage
+      response => ::Believe::Internal::SkipLimitPage
     end
 
     row = response.to_enum.first
     return if row.nil?
 
     assert_pattern do
-      row => Believe::Models::TeamMemberListResponse
+      row => ::Believe::Models::TeamMemberListResponse
     end
 
     assert_pattern do
       case row
-      in Believe::Player
-      in Believe::Coach
-      in Believe::MedicalStaff
-      in Believe::EquipmentManager
+      in ::Believe::Player
+      in ::Believe::Coach
+      in ::Believe::MedicalStaff
+      in ::Believe::EquipmentManager
       end
     end
 
@@ -240,32 +240,32 @@ class Believe::Test::Resources::TeamMembersTest < Believe::Test::ResourceTest
         id: String,
         character_id: String,
         jersey_number: Integer,
-        position: Believe::Position,
+        position: ::Believe::Position,
         team_id: String,
         years_with_team: Integer,
         assists: Integer | nil,
         goals_scored: Integer | nil,
-        is_captain: Believe::Internal::Type::Boolean | nil
+        is_captain: ::Believe::Internal::Type::Boolean | nil
       }
       in {
         member_type: :coach,
         id: String,
         character_id: String,
-        specialty: Believe::CoachSpecialty,
+        specialty: ::Believe::CoachSpecialty,
         team_id: String,
         years_with_team: Integer,
-        certifications: ^(Believe::Internal::Type::ArrayOf[String]) | nil,
+        certifications: ^(::Believe::Internal::Type::ArrayOf[String]) | nil,
         win_rate: Float | nil
       }
       in {
         member_type: :medical_staff,
         id: String,
         character_id: String,
-        specialty: Believe::MedicalSpecialty,
+        specialty: ::Believe::MedicalSpecialty,
         team_id: String,
         years_with_team: Integer,
         license_number: String | nil,
-        qualifications: ^(Believe::Internal::Type::ArrayOf[String]) | nil
+        qualifications: ^(::Believe::Internal::Type::ArrayOf[String]) | nil
       }
       in {
         member_type: :equipment_manager,
@@ -273,8 +273,8 @@ class Believe::Test::Resources::TeamMembersTest < Believe::Test::ResourceTest
         character_id: String,
         team_id: String,
         years_with_team: Integer,
-        is_head_kitman: Believe::Internal::Type::Boolean | nil,
-        responsibilities: ^(Believe::Internal::Type::ArrayOf[String]) | nil
+        is_head_kitman: ::Believe::Internal::Type::Boolean | nil,
+        responsibilities: ^(::Believe::Internal::Type::ArrayOf[String]) | nil
       }
       end
     end
@@ -296,25 +296,25 @@ class Believe::Test::Resources::TeamMembersTest < Believe::Test::ResourceTest
     response = @believe.team_members.list_coaches
 
     assert_pattern do
-      response => Believe::Internal::SkipLimitPage
+      response => ::Believe::Internal::SkipLimitPage
     end
 
     row = response.to_enum.first
     return if row.nil?
 
     assert_pattern do
-      row => Believe::Coach
+      row => ::Believe::Coach
     end
 
     assert_pattern do
       row => {
         id: String,
         character_id: String,
-        specialty: Believe::CoachSpecialty,
+        specialty: ::Believe::CoachSpecialty,
         team_id: String,
         years_with_team: Integer,
-        certifications: ^(Believe::Internal::Type::ArrayOf[String]) | nil,
-        member_type: Believe::Coach::MemberType | nil,
+        certifications: ^(::Believe::Internal::Type::ArrayOf[String]) | nil,
+        member_type: ::Believe::Coach::MemberType | nil,
         win_rate: Float | nil
       }
     end
@@ -326,14 +326,14 @@ class Believe::Test::Resources::TeamMembersTest < Believe::Test::ResourceTest
     response = @believe.team_members.list_players
 
     assert_pattern do
-      response => Believe::Internal::SkipLimitPage
+      response => ::Believe::Internal::SkipLimitPage
     end
 
     row = response.to_enum.first
     return if row.nil?
 
     assert_pattern do
-      row => Believe::Player
+      row => ::Believe::Player
     end
 
     assert_pattern do
@@ -341,13 +341,13 @@ class Believe::Test::Resources::TeamMembersTest < Believe::Test::ResourceTest
         id: String,
         character_id: String,
         jersey_number: Integer,
-        position: Believe::Position,
+        position: ::Believe::Position,
         team_id: String,
         years_with_team: Integer,
         assists: Integer | nil,
         goals_scored: Integer | nil,
-        is_captain: Believe::Internal::Type::Boolean | nil,
-        member_type: Believe::Player::MemberType | nil
+        is_captain: ::Believe::Internal::Type::Boolean | nil,
+        member_type: ::Believe::Player::MemberType | nil
       }
     end
   end
@@ -358,20 +358,20 @@ class Believe::Test::Resources::TeamMembersTest < Believe::Test::ResourceTest
     response = @believe.team_members.list_staff
 
     assert_pattern do
-      response => Believe::Internal::SkipLimitPage
+      response => ::Believe::Internal::SkipLimitPage
     end
 
     row = response.to_enum.first
     return if row.nil?
 
     assert_pattern do
-      row => Believe::Models::TeamMemberListStaffResponse
+      row => ::Believe::Models::TeamMemberListStaffResponse
     end
 
     assert_pattern do
       case row
-      in Believe::MedicalStaff
-      in Believe::EquipmentManager
+      in ::Believe::MedicalStaff
+      in ::Believe::EquipmentManager
       end
     end
   end

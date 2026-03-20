@@ -2,13 +2,13 @@
 
 module Believe
   module Models
-    class TicketSaleListParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class TicketSaleListParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(Believe::TicketSaleListParams, Believe::Internal::AnyHash)
+          T.any(::Believe::TicketSaleListParams, ::Believe::Internal::AnyHash)
         end
 
       # Filter by coupon code (use 'none' for sales without coupons)
@@ -31,7 +31,7 @@ module Believe
       attr_accessor :match_id
 
       # Filter by purchase method
-      sig { returns(T.nilable(Believe::PurchaseMethod::OrSymbol)) }
+      sig { returns(T.nilable(::Believe::PurchaseMethod::OrSymbol)) }
       attr_accessor :purchase_method
 
       # Number of items to skip (offset)
@@ -47,9 +47,9 @@ module Believe
           currency: T.nilable(String),
           limit: Integer,
           match_id: T.nilable(String),
-          purchase_method: T.nilable(Believe::PurchaseMethod::OrSymbol),
+          purchase_method: T.nilable(::Believe::PurchaseMethod::OrSymbol),
           skip: Integer,
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
@@ -76,9 +76,9 @@ module Believe
             currency: T.nilable(String),
             limit: Integer,
             match_id: T.nilable(String),
-            purchase_method: T.nilable(Believe::PurchaseMethod::OrSymbol),
+            purchase_method: T.nilable(::Believe::PurchaseMethod::OrSymbol),
             skip: Integer,
-            request_options: Believe::RequestOptions
+            request_options: ::Believe::RequestOptions
           }
         )
       end
