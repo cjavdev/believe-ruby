@@ -2,7 +2,7 @@
 
 module Believe
   module Models
-    class TurningPoint < Believe::Internal::Type::BaseModel
+    class TurningPoint < ::Believe::Internal::Type::BaseModel
       # @!attribute description
       #   What happened
       #

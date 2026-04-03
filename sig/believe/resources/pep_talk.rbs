@@ -3,10 +3,10 @@ module Believe
     class PepTalk
       def retrieve: (
         ?stream: bool,
-        ?request_options: Believe::request_opts
-      ) -> Believe::Models::PepTalkRetrieveResponse
+        ?request_options: ::Believe::request_opts
+      ) -> ::Believe::Models::PepTalkRetrieveResponse
 
-      def initialize: (client: Believe::Client) -> void
+      def initialize: (client: ::Believe::Client) -> void
     end
   end
 end

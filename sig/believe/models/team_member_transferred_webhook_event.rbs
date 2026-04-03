@@ -3,56 +3,56 @@ module Believe
     type team_member_transferred_webhook_event =
       {
         created_at: Time,
-        data: Believe::TeamMemberTransferredWebhookEvent::Data,
+        data: ::Believe::TeamMemberTransferredWebhookEvent::Data,
         event_id: String,
-        event_type: Believe::Models::TeamMemberTransferredWebhookEvent::event_type
+        event_type: ::Believe::Models::TeamMemberTransferredWebhookEvent::event_type
       }
 
-    class TeamMemberTransferredWebhookEvent < Believe::Internal::Type::BaseModel
+    class TeamMemberTransferredWebhookEvent < ::Believe::Internal::Type::BaseModel
       attr_accessor created_at: Time
 
-      attr_accessor data: Believe::TeamMemberTransferredWebhookEvent::Data
+      attr_accessor data: ::Believe::TeamMemberTransferredWebhookEvent::Data
 
       attr_accessor event_id: String
 
-      attr_accessor event_type: Believe::Models::TeamMemberTransferredWebhookEvent::event_type
+      attr_accessor event_type: ::Believe::Models::TeamMemberTransferredWebhookEvent::event_type
 
       def initialize: (
         created_at: Time,
-        data: Believe::TeamMemberTransferredWebhookEvent::Data,
+        data: ::Believe::TeamMemberTransferredWebhookEvent::Data,
         event_id: String,
-        event_type: Believe::Models::TeamMemberTransferredWebhookEvent::event_type
+        event_type: ::Believe::Models::TeamMemberTransferredWebhookEvent::event_type
       ) -> void
 
       def to_hash: -> {
         created_at: Time,
-        data: Believe::TeamMemberTransferredWebhookEvent::Data,
+        data: ::Believe::TeamMemberTransferredWebhookEvent::Data,
         event_id: String,
-        event_type: Believe::Models::TeamMemberTransferredWebhookEvent::event_type
+        event_type: ::Believe::Models::TeamMemberTransferredWebhookEvent::event_type
       }
 
       type data =
         {
           character_id: String,
           character_name: String,
-          member_type: Believe::Models::TeamMemberTransferredWebhookEvent::Data::member_type,
+          member_type: ::Believe::Models::TeamMemberTransferredWebhookEvent::Data::member_type,
           team_id: String,
           team_member_id: String,
           team_name: String,
           ted_reaction: String,
-          transfer_type: Believe::Models::TeamMemberTransferredWebhookEvent::Data::transfer_type,
+          transfer_type: ::Believe::Models::TeamMemberTransferredWebhookEvent::Data::transfer_type,
           previous_team_id: String?,
           previous_team_name: String?,
           transfer_fee_gbp: String?,
           years_with_previous_team: Integer?
         }
 
-      class Data < Believe::Internal::Type::BaseModel
+      class Data < ::Believe::Internal::Type::BaseModel
         attr_accessor character_id: String
 
         attr_accessor character_name: String
 
-        attr_accessor member_type: Believe::Models::TeamMemberTransferredWebhookEvent::Data::member_type
+        attr_accessor member_type: ::Believe::Models::TeamMemberTransferredWebhookEvent::Data::member_type
 
         attr_accessor team_id: String
 
@@ -62,7 +62,7 @@ module Believe
 
         attr_accessor ted_reaction: String
 
-        attr_accessor transfer_type: Believe::Models::TeamMemberTransferredWebhookEvent::Data::transfer_type
+        attr_accessor transfer_type: ::Believe::Models::TeamMemberTransferredWebhookEvent::Data::transfer_type
 
         attr_accessor previous_team_id: String?
 
@@ -75,12 +75,12 @@ module Believe
         def initialize: (
           character_id: String,
           character_name: String,
-          member_type: Believe::Models::TeamMemberTransferredWebhookEvent::Data::member_type,
+          member_type: ::Believe::Models::TeamMemberTransferredWebhookEvent::Data::member_type,
           team_id: String,
           team_member_id: String,
           team_name: String,
           ted_reaction: String,
-          transfer_type: Believe::Models::TeamMemberTransferredWebhookEvent::Data::transfer_type,
+          transfer_type: ::Believe::Models::TeamMemberTransferredWebhookEvent::Data::transfer_type,
           ?previous_team_id: String?,
           ?previous_team_name: String?,
           ?transfer_fee_gbp: String?,
@@ -90,12 +90,12 @@ module Believe
         def to_hash: -> {
           character_id: String,
           character_name: String,
-          member_type: Believe::Models::TeamMemberTransferredWebhookEvent::Data::member_type,
+          member_type: ::Believe::Models::TeamMemberTransferredWebhookEvent::Data::member_type,
           team_id: String,
           team_member_id: String,
           team_name: String,
           ted_reaction: String,
-          transfer_type: Believe::Models::TeamMemberTransferredWebhookEvent::Data::transfer_type,
+          transfer_type: ::Believe::Models::TeamMemberTransferredWebhookEvent::Data::transfer_type,
           previous_team_id: String?,
           previous_team_name: String?,
           transfer_fee_gbp: String?,
@@ -106,36 +106,36 @@ module Believe
           :player | :coach | :medical_staff | :equipment_manager
 
         module MemberType
-          extend Believe::Internal::Type::Enum
+          extend ::Believe::Internal::Type::Enum
 
           PLAYER: :player
           COACH: :coach
           MEDICAL_STAFF: :medical_staff
           EQUIPMENT_MANAGER: :equipment_manager
 
-          def self?.values: -> ::Array[Believe::Models::TeamMemberTransferredWebhookEvent::Data::member_type]
+          def self?.values: -> ::Array[::Believe::Models::TeamMemberTransferredWebhookEvent::Data::member_type]
         end
 
         type transfer_type = :joined | :departed
 
         module TransferType
-          extend Believe::Internal::Type::Enum
+          extend ::Believe::Internal::Type::Enum
 
           JOINED: :joined
           DEPARTED: :departed
 
-          def self?.values: -> ::Array[Believe::Models::TeamMemberTransferredWebhookEvent::Data::transfer_type]
+          def self?.values: -> ::Array[::Believe::Models::TeamMemberTransferredWebhookEvent::Data::transfer_type]
         end
       end
 
       type event_type = :"team_member.transferred"
 
       module EventType
-        extend Believe::Internal::Type::Enum
+        extend ::Believe::Internal::Type::Enum
 
         TEAM_MEMBER_TRANSFERRED: :"team_member.transferred"
 
-        def self?.values: -> ::Array[Believe::Models::TeamMemberTransferredWebhookEvent::event_type]
+        def self?.values: -> ::Array[::Believe::Models::TeamMemberTransferredWebhookEvent::event_type]
       end
     end
   end

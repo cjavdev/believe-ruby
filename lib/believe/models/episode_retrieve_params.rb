@@ -2,13 +2,19 @@
 
 module Believe
   module Models
-    # @see Believe::Resources::Episodes#retrieve
-    class EpisodeRetrieveParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    # @see ::Believe::Resources::Episodes#retrieve
+    class EpisodeRetrieveParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
-      # @!method initialize(request_options: {})
-      #   @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}]
+      # @!attribute episode_id
+      #
+      #   @return [String]
+      required :episode_id, String
+
+      # @!method initialize(episode_id:, request_options: {})
+      #   @param episode_id [String]
+      #   @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}]
     end
   end
 end

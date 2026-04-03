@@ -1,15 +1,23 @@
 module Believe
   module Models
     type match_get_lesson_params =
-      {  } & Believe::Internal::Type::request_parameters
+      { match_id: String } & ::Believe::Internal::Type::request_parameters
 
-    class MatchGetLessonParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class MatchGetLessonParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
-      def initialize: (?request_options: Believe::request_opts) -> void
+      attr_accessor match_id: String
 
-      def to_hash: -> { request_options: Believe::RequestOptions }
+      def initialize: (
+        match_id: String,
+        ?request_options: ::Believe::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        match_id: String,
+        request_options: ::Believe::RequestOptions
+      }
     end
   end
 end

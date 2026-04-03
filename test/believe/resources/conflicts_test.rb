@@ -14,7 +14,7 @@ class Believe::Test::Resources::ConflictsTest < Believe::Test::ResourceTest
       )
 
     assert_pattern do
-      response => Believe::Models::ConflictResolveResponse
+      response => ::Believe::Models::ConflictResolveResponse
     end
 
     assert_pattern do
@@ -23,7 +23,7 @@ class Believe::Test::Resources::ConflictsTest < Believe::Test::ResourceTest
         diagnosis: String,
         diamond_dogs_advice: String,
         potential_outcome: String,
-        steps_to_resolution: ^(Believe::Internal::Type::ArrayOf[String]),
+        steps_to_resolution: ^(::Believe::Internal::Type::ArrayOf[String]),
         ted_approach: String
       }
     end

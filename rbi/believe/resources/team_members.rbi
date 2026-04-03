@@ -2,6 +2,8 @@
 
 module Believe
   module Resources
+    # Team members with union types (oneOf) - Players, Coaches, Medical Staff,
+    # Equipment Managers
     class TeamMembers
       # Add a new team member to a team.
       #
@@ -37,13 +39,13 @@ module Believe
         params(
           member:
             T.any(
-              Believe::TeamMemberCreateParams::Member::Player::OrHash,
-              Believe::TeamMemberCreateParams::Member::Coach::OrHash,
-              Believe::TeamMemberCreateParams::Member::MedicalStaff::OrHash,
-              Believe::TeamMemberCreateParams::Member::EquipmentManager::OrHash
+              ::Believe::TeamMemberCreateParams::Member::Player::OrHash,
+              ::Believe::TeamMemberCreateParams::Member::Coach::OrHash,
+              ::Believe::TeamMemberCreateParams::Member::MedicalStaff::OrHash,
+              ::Believe::TeamMemberCreateParams::Member::EquipmentManager::OrHash
             ),
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::Models::TeamMemberCreateResponse::Variants)
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::Models::TeamMemberCreateResponse::Variants)
       end
       def create(
         # A football player on the team.
@@ -68,8 +70,8 @@ module Believe
       sig do
         params(
           member_id: String,
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::Models::TeamMemberRetrieveResponse::Variants)
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::Models::TeamMemberRetrieveResponse::Variants)
       end
       def retrieve(member_id, request_options: {})
       end
@@ -80,13 +82,13 @@ module Believe
           member_id: String,
           updates:
             T.any(
-              Believe::TeamMemberUpdateParams::Updates::PlayerUpdate::OrHash,
-              Believe::TeamMemberUpdateParams::Updates::CoachUpdate::OrHash,
-              Believe::TeamMemberUpdateParams::Updates::MedicalStaffUpdate::OrHash,
-              Believe::TeamMemberUpdateParams::Updates::EquipmentManagerUpdate::OrHash
+              ::Believe::TeamMemberUpdateParams::Updates::PlayerUpdate::OrHash,
+              ::Believe::TeamMemberUpdateParams::Updates::CoachUpdate::OrHash,
+              ::Believe::TeamMemberUpdateParams::Updates::MedicalStaffUpdate::OrHash,
+              ::Believe::TeamMemberUpdateParams::Updates::EquipmentManagerUpdate::OrHash
             ),
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::Models::TeamMemberUpdateResponse::Variants)
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::Models::TeamMemberUpdateResponse::Variants)
       end
       def update(
         member_id,
@@ -106,13 +108,13 @@ module Believe
         params(
           limit: Integer,
           member_type:
-            T.nilable(Believe::TeamMemberListParams::MemberType::OrSymbol),
+            T.nilable(::Believe::TeamMemberListParams::MemberType::OrSymbol),
           skip: Integer,
           team_id: T.nilable(String),
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).returns(
-          Believe::Internal::SkipLimitPage[
-            Believe::Models::TeamMemberListResponse::Variants
+          ::Believe::Internal::SkipLimitPage[
+            ::Believe::Models::TeamMemberListResponse::Variants
           ]
         )
       end
@@ -133,7 +135,7 @@ module Believe
       sig do
         params(
           member_id: String,
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).void
       end
       def delete(member_id, request_options: {})
@@ -144,10 +146,10 @@ module Believe
         params(
           limit: Integer,
           skip: Integer,
-          specialty: T.nilable(Believe::CoachSpecialty::OrSymbol),
+          specialty: T.nilable(::Believe::CoachSpecialty::OrSymbol),
           team_id: T.nilable(String),
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::Internal::SkipLimitPage[Believe::Coach])
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::Internal::SkipLimitPage[::Believe::Coach])
       end
       def list_coaches(
         # Maximum number of items to return (max: 100)
@@ -166,11 +168,11 @@ module Believe
       sig do
         params(
           limit: Integer,
-          position: T.nilable(Believe::Position::OrSymbol),
+          position: T.nilable(::Believe::Position::OrSymbol),
           skip: Integer,
           team_id: T.nilable(String),
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::Internal::SkipLimitPage[Believe::Player])
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::Internal::SkipLimitPage[::Believe::Player])
       end
       def list_players(
         # Maximum number of items to return (max: 100)
@@ -194,10 +196,10 @@ module Believe
           limit: Integer,
           skip: Integer,
           team_id: T.nilable(String),
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).returns(
-          Believe::Internal::SkipLimitPage[
-            Believe::Models::TeamMemberListStaffResponse::Variants
+          ::Believe::Internal::SkipLimitPage[
+            ::Believe::Models::TeamMemberListStaffResponse::Variants
           ]
         )
       end
@@ -213,7 +215,7 @@ module Believe
       end
 
       # @api private
-      sig { params(client: Believe::Client).returns(T.attached_class) }
+      sig { params(client: ::Believe::Client).returns(T.attached_class) }
       def self.new(client:)
       end
     end

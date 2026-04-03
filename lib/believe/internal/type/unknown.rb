@@ -9,8 +9,8 @@ module Believe
       #
       # When we don't know what to expect for the value.
       class Unknown
-        extend Believe::Internal::Type::Converter
-        extend Believe::Internal::Util::SorbetRuntimeSupport
+        extend ::Believe::Internal::Type::Converter
+        extend ::Believe::Internal::Util::SorbetRuntimeSupport
 
         # rubocop:disable Lint/UnusedMethodArgument
 
@@ -28,7 +28,7 @@ module Believe
         # @param other [Object]
         #
         # @return [Boolean]
-        def self.==(other) = other.is_a?(Class) && other <= Believe::Internal::Type::Unknown
+        def self.==(other) = other.is_a?(Class) && other <= ::Believe::Internal::Type::Unknown
 
         class << self
           # @api private

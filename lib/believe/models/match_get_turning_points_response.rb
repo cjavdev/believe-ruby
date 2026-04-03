@@ -2,8 +2,8 @@
 
 module Believe
   module Models
-    # @type [Believe::Internal::Type::Converter]
+    # @type [::Believe::Internal::Type::Converter]
     MatchGetTurningPointsResponse =
-      Believe::Internal::Type::ArrayOf[Believe::Internal::Type::HashOf[Believe::Internal::Type::Unknown]]
+      ::Believe::Internal::Type::ArrayOf[::Believe::Internal::Type::HashOf[::Believe::Internal::Type::Unknown]]
   end
 end

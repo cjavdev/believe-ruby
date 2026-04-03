@@ -2,19 +2,19 @@
 
 module Believe
   module Models
-    class WebhookTriggerEventResponse < Believe::Internal::Type::BaseModel
+    class WebhookTriggerEventResponse < ::Believe::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
           T.any(
-            Believe::Models::WebhookTriggerEventResponse,
-            Believe::Internal::AnyHash
+            ::Believe::Models::WebhookTriggerEventResponse,
+            ::Believe::Internal::AnyHash
           )
         end
 
       # Results of webhook deliveries
       sig do
         returns(
-          T::Array[Believe::Models::WebhookTriggerEventResponse::Delivery]
+          T::Array[::Believe::Models::WebhookTriggerEventResponse::Delivery]
         )
       end
       attr_accessor :deliveries
@@ -26,7 +26,7 @@ module Believe
       # The type of event triggered
       sig do
         returns(
-          Believe::Models::WebhookTriggerEventResponse::EventType::TaggedSymbol
+          ::Believe::Models::WebhookTriggerEventResponse::EventType::TaggedSymbol
         )
       end
       attr_accessor :event_type
@@ -48,11 +48,11 @@ module Believe
         params(
           deliveries:
             T::Array[
-              Believe::Models::WebhookTriggerEventResponse::Delivery::OrHash
+              ::Believe::Models::WebhookTriggerEventResponse::Delivery::OrHash
             ],
           event_id: String,
           event_type:
-            Believe::Models::WebhookTriggerEventResponse::EventType::OrSymbol,
+            ::Believe::Models::WebhookTriggerEventResponse::EventType::OrSymbol,
           successful_deliveries: Integer,
           ted_says: String,
           total_webhooks: Integer
@@ -78,10 +78,12 @@ module Believe
         override.returns(
           {
             deliveries:
-              T::Array[Believe::Models::WebhookTriggerEventResponse::Delivery],
+              T::Array[
+                ::Believe::Models::WebhookTriggerEventResponse::Delivery
+              ],
             event_id: String,
             event_type:
-              Believe::Models::WebhookTriggerEventResponse::EventType::TaggedSymbol,
+              ::Believe::Models::WebhookTriggerEventResponse::EventType::TaggedSymbol,
             successful_deliveries: Integer,
             ted_says: String,
             total_webhooks: Integer
@@ -91,12 +93,12 @@ module Believe
       def to_hash
       end
 
-      class Delivery < Believe::Internal::Type::BaseModel
+      class Delivery < ::Believe::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
             T.any(
-              Believe::Models::WebhookTriggerEventResponse::Delivery,
-              Believe::Internal::AnyHash
+              ::Believe::Models::WebhookTriggerEventResponse::Delivery,
+              ::Believe::Internal::AnyHash
             )
           end
 
@@ -161,13 +163,13 @@ module Believe
 
       # The type of event triggered
       module EventType
-        extend Believe::Internal::Type::Enum
+        extend ::Believe::Internal::Type::Enum
 
         TaggedSymbol =
           T.type_alias do
             T.all(
               Symbol,
-              Believe::Models::WebhookTriggerEventResponse::EventType
+              ::Believe::Models::WebhookTriggerEventResponse::EventType
             )
           end
         OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -175,18 +177,18 @@ module Believe
         MATCH_COMPLETED =
           T.let(
             :"match.completed",
-            Believe::Models::WebhookTriggerEventResponse::EventType::TaggedSymbol
+            ::Believe::Models::WebhookTriggerEventResponse::EventType::TaggedSymbol
           )
         TEAM_MEMBER_TRANSFERRED =
           T.let(
             :"team_member.transferred",
-            Believe::Models::WebhookTriggerEventResponse::EventType::TaggedSymbol
+            ::Believe::Models::WebhookTriggerEventResponse::EventType::TaggedSymbol
           )
 
         sig do
           override.returns(
             T::Array[
-              Believe::Models::WebhookTriggerEventResponse::EventType::TaggedSymbol
+              ::Believe::Models::WebhookTriggerEventResponse::EventType::TaggedSymbol
             ]
           )
         end

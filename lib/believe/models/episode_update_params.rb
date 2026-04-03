@@ -2,10 +2,15 @@
 
 module Believe
   module Models
-    # @see Believe::Resources::Episodes#update
-    class EpisodeUpdateParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    # @see ::Believe::Resources::Episodes#update
+    class EpisodeUpdateParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
+
+      # @!attribute episode_id
+      #
+      #   @return [String]
+      required :episode_id, String
 
       # @!attribute air_date
       #
@@ -20,7 +25,7 @@ module Believe
       # @!attribute character_focus
       #
       #   @return [Array<String>, nil]
-      optional :character_focus, Believe::Internal::Type::ArrayOf[String], nil?: true
+      optional :character_focus, ::Believe::Internal::Type::ArrayOf[String], nil?: true
 
       # @!attribute director
       #
@@ -40,7 +45,7 @@ module Believe
       # @!attribute memorable_moments
       #
       #   @return [Array<String>, nil]
-      optional :memorable_moments, Believe::Internal::Type::ArrayOf[String], nil?: true
+      optional :memorable_moments, ::Believe::Internal::Type::ArrayOf[String], nil?: true
 
       # @!attribute runtime_minutes
       #
@@ -82,7 +87,8 @@ module Believe
       #   @return [String, nil]
       optional :writer, String, nil?: true
 
-      # @!method initialize(air_date: nil, biscuits_with_boss_moment: nil, character_focus: nil, director: nil, episode_number: nil, main_theme: nil, memorable_moments: nil, runtime_minutes: nil, season: nil, synopsis: nil, ted_wisdom: nil, title: nil, us_viewers_millions: nil, viewer_rating: nil, writer: nil, request_options: {})
+      # @!method initialize(episode_id:, air_date: nil, biscuits_with_boss_moment: nil, character_focus: nil, director: nil, episode_number: nil, main_theme: nil, memorable_moments: nil, runtime_minutes: nil, season: nil, synopsis: nil, ted_wisdom: nil, title: nil, us_viewers_millions: nil, viewer_rating: nil, writer: nil, request_options: {})
+      #   @param episode_id [String]
       #   @param air_date [Date, nil]
       #   @param biscuits_with_boss_moment [String, nil]
       #   @param character_focus [Array<String>, nil]
@@ -98,7 +104,7 @@ module Believe
       #   @param us_viewers_millions [Float, nil]
       #   @param viewer_rating [Float, nil]
       #   @param writer [String, nil]
-      #   @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}]
+      #   @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}]
     end
   end
 end

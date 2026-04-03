@@ -2,14 +2,17 @@
 
 module Believe
   module Models
-    class EpisodeUpdateParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class EpisodeUpdateParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(Believe::EpisodeUpdateParams, Believe::Internal::AnyHash)
+          T.any(::Believe::EpisodeUpdateParams, ::Believe::Internal::AnyHash)
         end
+
+      sig { returns(String) }
+      attr_accessor :episode_id
 
       sig { returns(T.nilable(Date)) }
       attr_accessor :air_date
@@ -58,6 +61,7 @@ module Believe
 
       sig do
         params(
+          episode_id: String,
           air_date: T.nilable(Date),
           biscuits_with_boss_moment: T.nilable(String),
           character_focus: T.nilable(T::Array[String]),
@@ -73,10 +77,11 @@ module Believe
           us_viewers_millions: T.nilable(Float),
           viewer_rating: T.nilable(Float),
           writer: T.nilable(String),
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        episode_id:,
         air_date: nil,
         biscuits_with_boss_moment: nil,
         character_focus: nil,
@@ -99,6 +104,7 @@ module Believe
       sig do
         override.returns(
           {
+            episode_id: String,
             air_date: T.nilable(Date),
             biscuits_with_boss_moment: T.nilable(String),
             character_focus: T.nilable(T::Array[String]),
@@ -114,7 +120,7 @@ module Believe
             us_viewers_millions: T.nilable(Float),
             viewer_rating: T.nilable(Float),
             writer: T.nilable(String),
-            request_options: Believe::RequestOptions
+            request_options: ::Believe::RequestOptions
           }
         )
       end

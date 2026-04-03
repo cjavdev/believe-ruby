@@ -28,9 +28,13 @@ module Believe
       | :conflict
       | :honesty
       | :integrity
+      | :intimidation
+      | :ambition
+      | :narcissism
+      | :maturity
 
     module QuoteTheme
-      extend Believe::Internal::Type::Enum
+      extend ::Believe::Internal::Type::Enum
 
       BELIEF: :belief
       TEAMWORK: :teamwork
@@ -59,8 +63,12 @@ module Believe
       CONFLICT: :conflict
       HONESTY: :honesty
       INTEGRITY: :integrity
+      INTIMIDATION: :intimidation
+      AMBITION: :ambition
+      NARCISSISM: :narcissism
+      MATURITY: :maturity
 
-      def self?.values: -> ::Array[Believe::Models::quote_theme]
+      def self?.values: -> ::Array[::Believe::Models::quote_theme]
     end
   end
 end

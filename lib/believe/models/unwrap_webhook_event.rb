@@ -4,18 +4,16 @@ module Believe
   module Models
     # Webhook event sent when a match completes.
     module UnwrapWebhookEvent
-      extend Believe::Internal::Type::Union
-
-      discriminator :event_type
+      extend ::Believe::Internal::Type::Union
 
       # Webhook event sent when a match completes.
-      variant :"match.completed", -> { Believe::MatchCompletedWebhookEvent }
+      variant -> { ::Believe::MatchCompletedWebhookEvent }
 
       # Webhook event sent when a team member (player, coach, staff) transfers between teams.
-      variant :"team_member.transferred", -> { Believe::TeamMemberTransferredWebhookEvent }
+      variant -> { ::Believe::TeamMemberTransferredWebhookEvent }
 
       # @!method self.variants
-      #   @return [Array(Believe::Models::MatchCompletedWebhookEvent, Believe::Models::TeamMemberTransferredWebhookEvent)]
+      #   @return [Array(::Believe::Models::MatchCompletedWebhookEvent, ::Believe::Models::TeamMemberTransferredWebhookEvent)]
     end
   end
 end

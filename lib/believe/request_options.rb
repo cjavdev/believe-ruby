@@ -6,15 +6,15 @@ module Believe
   #
   # When making a request, you can pass an actual {RequestOptions} instance, or
   # simply pass a Hash with symbol keys matching the attributes on this class.
-  class RequestOptions < Believe::Internal::Type::BaseModel
+  class RequestOptions < ::Believe::Internal::Type::BaseModel
     # @api private
     #
-    # @param opts [Believe::RequestOptions, Hash{Symbol=>Object}]
+    # @param opts [::Believe::RequestOptions, Hash{Symbol=>Object}]
     #
     # @raise [ArgumentError]
     def self.validate!(opts)
       case opts
-      in Believe::RequestOptions | Hash
+      in ::Believe::RequestOptions | Hash
         opts.to_h.each_key do |k|
           unless fields.include?(k)
             raise ArgumentError.new("Request `opts` keys must be one of #{fields.keys}, got #{k.inspect}")
@@ -37,21 +37,21 @@ module Believe
     #   `query` given at the client level.
     #
     #   @return [Hash{String=>Array<String>, String, nil}, nil]
-    optional :extra_query, Believe::Internal::Type::HashOf[Believe::Internal::Type::ArrayOf[String]]
+    optional :extra_query, ::Believe::Internal::Type::HashOf[::Believe::Internal::Type::ArrayOf[String]]
 
     # @!attribute extra_headers
     #   Extra headers to send with the request. These are `.merged`’d into any
     #   `extra_headers` given at the client level.
     #
     #   @return [Hash{String=>String, nil}, nil]
-    optional :extra_headers, Believe::Internal::Type::HashOf[String, nil?: true]
+    optional :extra_headers, ::Believe::Internal::Type::HashOf[String, nil?: true]
 
     # @!attribute extra_body
     #   Extra data to send with the request. These are deep merged into any data
     #   generated as part of the normal request.
     #
     #   @return [Object, nil]
-    optional :extra_body, Believe::Internal::Type::HashOf[Believe::Internal::Type::Unknown]
+    optional :extra_body, ::Believe::Internal::Type::HashOf[::Believe::Internal::Type::Unknown]
 
     # @!attribute max_retries
     #   Maximum number of retries to attempt after a failed initial request.
@@ -71,7 +71,7 @@ module Believe
     #   @param values [Hash{Symbol=>Object}]
 
     define_sorbet_constant!(:OrHash) do
-      T.type_alias { T.any(Believe::RequestOptions, Believe::Internal::AnyHash) }
+      T.type_alias { T.any(::Believe::RequestOptions, ::Believe::Internal::AnyHash) }
     end
   end
 end

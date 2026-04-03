@@ -2,41 +2,41 @@
 
 require_relative "../test_helper"
 
-class Believe::Test::SorbetRuntimeSupportTest < Minitest::Test
+class ::Believe::Test::SorbetRuntimeSupportTest < Minitest::Test
   extend Minitest::Serial
 
   i_suck_and_my_tests_are_order_dependent!
 
   module E
-    extend Believe::Internal::Type::Enum
+    extend ::Believe::Internal::Type::Enum
 
     define_sorbet_constant!(:TaggedSymbol) { 1 }
   end
 
   module U
-    extend Believe::Internal::Type::Union
+    extend ::Believe::Internal::Type::Union
 
     define_sorbet_constant!(:Variants) { 2 }
   end
 
-  class M < Believe::Internal::Type::BaseModel
+  class M < ::Believe::Internal::Type::BaseModel
     define_sorbet_constant!(:OrHash) { 3 }
   end
 
   def test_nil_aliases
-    err = Believe::Internal::Util::SorbetRuntimeSupport::MissingSorbetRuntimeError
+    err = ::Believe::Internal::Util::SorbetRuntimeSupport::MissingSorbetRuntimeError
 
-    assert_raises(err) { Believe::Internal::AnyHash }
-    assert_raises(err) { Believe::Internal::FileInput }
-    assert_raises(err) { Believe::Internal::Type::Converter::Input }
-    assert_raises(err) { Believe::Internal::Type::Converter::CoerceState }
-    assert_raises(err) { Believe::Internal::Type::Converter::DumpState }
-    assert_raises(err) { Believe::Internal::Type::BaseModel::KnownField }
-    assert_raises(err) { Believe::Internal::Util::ParsedUri }
-    assert_raises(err) { Believe::Internal::Util::ServerSentEvent }
-    assert_raises(err) { Believe::Internal::Transport::BaseClient::RequestComponents }
-    assert_raises(err) { Believe::Internal::Transport::BaseClient::RequestInput }
-    assert_raises(err) { Believe::Internal::Transport::PooledNetRequester::Request }
+    assert_raises(err) { ::Believe::Internal::AnyHash }
+    assert_raises(err) { ::Believe::Internal::FileInput }
+    assert_raises(err) { ::Believe::Internal::Type::Converter::Input }
+    assert_raises(err) { ::Believe::Internal::Type::Converter::CoerceState }
+    assert_raises(err) { ::Believe::Internal::Type::Converter::DumpState }
+    assert_raises(err) { ::Believe::Internal::Type::BaseModel::KnownField }
+    assert_raises(err) { ::Believe::Internal::Util::ParsedUri }
+    assert_raises(err) { ::Believe::Internal::Util::ServerSentEvent }
+    assert_raises(err) { ::Believe::Internal::Transport::BaseClient::RequestComponents }
+    assert_raises(err) { ::Believe::Internal::Transport::BaseClient::RequestInput }
+    assert_raises(err) { ::Believe::Internal::Transport::PooledNetRequester::Request }
     assert_raises(err) { E::TaggedSymbol }
     assert_raises(err) { U::Variants }
     assert_raises(err) { M::OrHash }

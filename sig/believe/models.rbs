@@ -1,193 +1,205 @@
 module Believe
-  class BelieveSubmitParams = Believe::Models::BelieveSubmitParams
+  class BelieveSubmitParams = ::Believe::Models::BelieveSubmitParams
 
-  class Biscuit = Believe::Models::Biscuit
+  class Biscuit = ::Believe::Models::Biscuit
 
-  class BiscuitGetFreshParams = Believe::Models::BiscuitGetFreshParams
+  class BiscuitGetFreshParams = ::Believe::Models::BiscuitGetFreshParams
 
-  class BiscuitListParams = Believe::Models::BiscuitListParams
+  class BiscuitListParams = ::Believe::Models::BiscuitListParams
 
-  class BiscuitRetrieveParams = Believe::Models::BiscuitRetrieveParams
+  class BiscuitRetrieveParams = ::Believe::Models::BiscuitRetrieveParams
 
-  class Character = Believe::Models::Character
+  class Character = ::Believe::Models::Character
 
-  class CharacterCreateParams = Believe::Models::CharacterCreateParams
+  class CharacterCreateParams = ::Believe::Models::CharacterCreateParams
 
-  class CharacterDeleteParams = Believe::Models::CharacterDeleteParams
+  class CharacterDeleteParams = ::Believe::Models::CharacterDeleteParams
 
-  class CharacterGetQuotesParams = Believe::Models::CharacterGetQuotesParams
+  class CharacterGetQuotesParams = ::Believe::Models::CharacterGetQuotesParams
 
-  class CharacterListParams = Believe::Models::CharacterListParams
+  class CharacterListParams = ::Believe::Models::CharacterListParams
 
-  class CharacterRetrieveParams = Believe::Models::CharacterRetrieveParams
+  class CharacterRetrieveParams = ::Believe::Models::CharacterRetrieveParams
 
-  module CharacterRole = Believe::Models::CharacterRole
+  module CharacterRole = ::Believe::Models::CharacterRole
 
-  class CharacterUpdateParams = Believe::Models::CharacterUpdateParams
+  class CharacterUpdateParams = ::Believe::Models::CharacterUpdateParams
 
-  class ClientGetWelcomeParams = Believe::Models::ClientGetWelcomeParams
+  class ClientGetWelcomeParams = ::Believe::Models::ClientGetWelcomeParams
 
-  class Coach = Believe::Models::Coach
+  class Coach = ::Believe::Models::Coach
 
-  module Coaching = Believe::Models::Coaching
+  module Coaching = ::Believe::Models::Coaching
 
-  module CoachSpecialty = Believe::Models::CoachSpecialty
+  module CoachSpecialty = ::Believe::Models::CoachSpecialty
 
-  class ConflictResolveParams = Believe::Models::ConflictResolveParams
+  class ConflictResolveParams = ::Believe::Models::ConflictResolveParams
 
-  class EmotionalStats = Believe::Models::EmotionalStats
+  class EmotionalStats = ::Believe::Models::EmotionalStats
 
-  class Episode = Believe::Models::Episode
+  class Episode = ::Believe::Models::Episode
 
-  class EpisodeCreateParams = Believe::Models::EpisodeCreateParams
+  class EpisodeCreateParams = ::Believe::Models::EpisodeCreateParams
 
-  class EpisodeDeleteParams = Believe::Models::EpisodeDeleteParams
+  class EpisodeDeleteParams = ::Believe::Models::EpisodeDeleteParams
 
-  class EpisodeGetWisdomParams = Believe::Models::EpisodeGetWisdomParams
+  class EpisodeGetWisdomParams = ::Believe::Models::EpisodeGetWisdomParams
 
-  class EpisodeListBySeasonParams = Believe::Models::EpisodeListBySeasonParams
+  class EpisodeListParams = ::Believe::Models::EpisodeListParams
 
-  class EpisodeListParams = Believe::Models::EpisodeListParams
+  class EpisodeRetrieveParams = ::Believe::Models::EpisodeRetrieveParams
 
-  class EpisodeRetrieveParams = Believe::Models::EpisodeRetrieveParams
+  class EpisodeUpdateParams = ::Believe::Models::EpisodeUpdateParams
 
-  class EpisodeUpdateParams = Believe::Models::EpisodeUpdateParams
+  class EquipmentManager = ::Believe::Models::EquipmentManager
 
-  class EquipmentManager = Believe::Models::EquipmentManager
+  class GeoLocation = ::Believe::Models::GeoLocation
 
-  class GeoLocation = Believe::Models::GeoLocation
+  class GrowthArc = ::Believe::Models::GrowthArc
 
-  class GrowthArc = Believe::Models::GrowthArc
+  class HealthCheckParams = ::Believe::Models::HealthCheckParams
 
-  class HealthCheckParams = Believe::Models::HealthCheckParams
+  module League = ::Believe::Models::League
 
-  module League = Believe::Models::League
+  class Match = ::Believe::Models::Match
 
-  class Match = Believe::Models::Match
+  class MatchCompletedWebhookEvent = ::Believe::Models::MatchCompletedWebhookEvent
 
-  class MatchCompletedWebhookEvent = Believe::Models::MatchCompletedWebhookEvent
+  class MatchCreateParams = ::Believe::Models::MatchCreateParams
 
-  class MatchCreateParams = Believe::Models::MatchCreateParams
+  class MatchDeleteParams = ::Believe::Models::MatchDeleteParams
 
-  class MatchDeleteParams = Believe::Models::MatchDeleteParams
+  module Matches = ::Believe::Models::Matches
 
-  module Matches = Believe::Models::Matches
+  class MatchGetLessonParams = ::Believe::Models::MatchGetLessonParams
 
-  class MatchGetLessonParams = Believe::Models::MatchGetLessonParams
+  class MatchGetTurningPointsParams = ::Believe::Models::MatchGetTurningPointsParams
 
-  class MatchGetTurningPointsParams = Believe::Models::MatchGetTurningPointsParams
+  class MatchListParams = ::Believe::Models::MatchListParams
 
-  class MatchListParams = Believe::Models::MatchListParams
+  module MatchResult = ::Believe::Models::MatchResult
 
-  module MatchResult = Believe::Models::MatchResult
+  class MatchRetrieveParams = ::Believe::Models::MatchRetrieveParams
 
-  class MatchRetrieveParams = Believe::Models::MatchRetrieveParams
+  class MatchStreamLiveParams = ::Believe::Models::MatchStreamLiveParams
 
-  class MatchStreamLiveParams = Believe::Models::MatchStreamLiveParams
+  module MatchType = ::Believe::Models::MatchType
 
-  module MatchType = Believe::Models::MatchType
+  class MatchUpdateParams = ::Believe::Models::MatchUpdateParams
 
-  class MatchUpdateParams = Believe::Models::MatchUpdateParams
+  module MedicalSpecialty = ::Believe::Models::MedicalSpecialty
 
-  module MedicalSpecialty = Believe::Models::MedicalSpecialty
+  class MedicalStaff = ::Believe::Models::MedicalStaff
 
-  class MedicalStaff = Believe::Models::MedicalStaff
+  class PaginatedResponse = ::Believe::Models::PaginatedResponse
 
-  class PaginatedResponse = Believe::Models::PaginatedResponse
+  class PaginatedResponseQuote = ::Believe::Models::PaginatedResponseQuote
 
-  class PaginatedResponseQuote = Believe::Models::PaginatedResponseQuote
+  class PepTalkRetrieveParams = ::Believe::Models::PepTalkRetrieveParams
 
-  class PepTalkRetrieveParams = Believe::Models::PepTalkRetrieveParams
+  class Player = ::Believe::Models::Player
 
-  class Player = Believe::Models::Player
+  module Position = ::Believe::Models::Position
 
-  module Position = Believe::Models::Position
+  class PressSimulateParams = ::Believe::Models::PressSimulateParams
 
-  class PressSimulateParams = Believe::Models::PressSimulateParams
+  module PurchaseMethod = ::Believe::Models::PurchaseMethod
 
-  class Quote = Believe::Models::Quote
+  class Quote = ::Believe::Models::Quote
 
-  class QuoteCreateParams = Believe::Models::QuoteCreateParams
+  class QuoteCreateParams = ::Believe::Models::QuoteCreateParams
 
-  class QuoteDeleteParams = Believe::Models::QuoteDeleteParams
+  class QuoteDeleteParams = ::Believe::Models::QuoteDeleteParams
 
-  class QuoteGetRandomParams = Believe::Models::QuoteGetRandomParams
+  class QuoteGetRandomParams = ::Believe::Models::QuoteGetRandomParams
 
-  class QuoteListByCharacterParams = Believe::Models::QuoteListByCharacterParams
+  class QuoteListByCharacterParams = ::Believe::Models::QuoteListByCharacterParams
 
-  class QuoteListByThemeParams = Believe::Models::QuoteListByThemeParams
+  class QuoteListByThemeParams = ::Believe::Models::QuoteListByThemeParams
 
-  class QuoteListParams = Believe::Models::QuoteListParams
+  class QuoteListParams = ::Believe::Models::QuoteListParams
 
-  module QuoteMoment = Believe::Models::QuoteMoment
+  module QuoteMoment = ::Believe::Models::QuoteMoment
 
-  class QuoteRetrieveParams = Believe::Models::QuoteRetrieveParams
+  class QuoteRetrieveParams = ::Believe::Models::QuoteRetrieveParams
 
-  module QuoteTheme = Believe::Models::QuoteTheme
+  module QuoteTheme = ::Believe::Models::QuoteTheme
 
-  class QuoteUpdateParams = Believe::Models::QuoteUpdateParams
+  class QuoteUpdateParams = ::Believe::Models::QuoteUpdateParams
 
-  class ReframeTransformNegativeThoughtsParams = Believe::Models::ReframeTransformNegativeThoughtsParams
+  class ReframeTransformNegativeThoughtsParams = ::Believe::Models::ReframeTransformNegativeThoughtsParams
 
-  class RegisteredWebhook = Believe::Models::RegisteredWebhook
+  class RegisteredWebhook = ::Believe::Models::RegisteredWebhook
 
-  class StreamTestConnectionParams = Believe::Models::StreamTestConnectionParams
+  class StreamTestConnectionParams = ::Believe::Models::StreamTestConnectionParams
 
-  class Team = Believe::Models::Team
+  class Team = ::Believe::Models::Team
 
-  class TeamCreateParams = Believe::Models::TeamCreateParams
+  class TeamCreateParams = ::Believe::Models::TeamCreateParams
 
-  class TeamDeleteParams = Believe::Models::TeamDeleteParams
+  class TeamDeleteParams = ::Believe::Models::TeamDeleteParams
 
-  class TeamGetCultureParams = Believe::Models::TeamGetCultureParams
+  class TeamGetCultureParams = ::Believe::Models::TeamGetCultureParams
 
-  class TeamGetRivalsParams = Believe::Models::TeamGetRivalsParams
+  class TeamGetRivalsParams = ::Believe::Models::TeamGetRivalsParams
 
-  class TeamListLogosParams = Believe::Models::TeamListLogosParams
+  class TeamListLogosParams = ::Believe::Models::TeamListLogosParams
 
-  class TeamListParams = Believe::Models::TeamListParams
+  class TeamListParams = ::Believe::Models::TeamListParams
 
-  class TeamMemberCreateParams = Believe::Models::TeamMemberCreateParams
+  class TeamMemberCreateParams = ::Believe::Models::TeamMemberCreateParams
 
-  class TeamMemberDeleteParams = Believe::Models::TeamMemberDeleteParams
+  class TeamMemberDeleteParams = ::Believe::Models::TeamMemberDeleteParams
 
-  class TeamMemberListCoachesParams = Believe::Models::TeamMemberListCoachesParams
+  class TeamMemberListCoachesParams = ::Believe::Models::TeamMemberListCoachesParams
 
-  class TeamMemberListParams = Believe::Models::TeamMemberListParams
+  class TeamMemberListParams = ::Believe::Models::TeamMemberListParams
 
-  class TeamMemberListPlayersParams = Believe::Models::TeamMemberListPlayersParams
+  class TeamMemberListPlayersParams = ::Believe::Models::TeamMemberListPlayersParams
 
-  class TeamMemberListStaffParams = Believe::Models::TeamMemberListStaffParams
+  class TeamMemberListStaffParams = ::Believe::Models::TeamMemberListStaffParams
 
-  class TeamMemberRetrieveParams = Believe::Models::TeamMemberRetrieveParams
+  class TeamMemberRetrieveParams = ::Believe::Models::TeamMemberRetrieveParams
 
-  class TeamMemberTransferredWebhookEvent = Believe::Models::TeamMemberTransferredWebhookEvent
+  class TeamMemberTransferredWebhookEvent = ::Believe::Models::TeamMemberTransferredWebhookEvent
 
-  class TeamMemberUpdateParams = Believe::Models::TeamMemberUpdateParams
+  class TeamMemberUpdateParams = ::Believe::Models::TeamMemberUpdateParams
 
-  class TeamRetrieveParams = Believe::Models::TeamRetrieveParams
+  class TeamRetrieveParams = ::Believe::Models::TeamRetrieveParams
 
-  module Teams = Believe::Models::Teams
+  module Teams = ::Believe::Models::Teams
 
-  class TeamUpdateParams = Believe::Models::TeamUpdateParams
+  class TeamUpdateParams = ::Believe::Models::TeamUpdateParams
 
-  class TeamValues = Believe::Models::TeamValues
+  class TeamValues = ::Believe::Models::TeamValues
 
-  class TurningPoint = Believe::Models::TurningPoint
+  class TicketSale = ::Believe::Models::TicketSale
 
-  module UnwrapWebhookEvent = Believe::Models::UnwrapWebhookEvent
+  class TicketSaleCreateParams = ::Believe::Models::TicketSaleCreateParams
 
-  class VersionRetrieveParams = Believe::Models::VersionRetrieveParams
+  class TicketSaleDeleteParams = ::Believe::Models::TicketSaleDeleteParams
 
-  class WebhookCreateParams = Believe::Models::WebhookCreateParams
+  class TicketSaleListParams = ::Believe::Models::TicketSaleListParams
 
-  class WebhookDeleteParams = Believe::Models::WebhookDeleteParams
+  class TicketSaleRetrieveParams = ::Believe::Models::TicketSaleRetrieveParams
 
-  class WebhookListParams = Believe::Models::WebhookListParams
+  class TicketSaleUpdateParams = ::Believe::Models::TicketSaleUpdateParams
 
-  class WebhookRetrieveParams = Believe::Models::WebhookRetrieveParams
+  class TurningPoint = ::Believe::Models::TurningPoint
 
-  class WebhookTriggerEventParams = Believe::Models::WebhookTriggerEventParams
+  module UnwrapWebhookEvent = ::Believe::Models::UnwrapWebhookEvent
 
-  class WebhookUnwrapParams = Believe::Models::WebhookUnwrapParams
+  class VersionRetrieveParams = ::Believe::Models::VersionRetrieveParams
+
+  class WebhookCreateParams = ::Believe::Models::WebhookCreateParams
+
+  class WebhookDeleteParams = ::Believe::Models::WebhookDeleteParams
+
+  class WebhookListParams = ::Believe::Models::WebhookListParams
+
+  class WebhookRetrieveParams = ::Believe::Models::WebhookRetrieveParams
+
+  class WebhookTriggerEventParams = ::Believe::Models::WebhookTriggerEventParams
+
+  class WebhookUnwrapParams = ::Believe::Models::WebhookUnwrapParams
 end

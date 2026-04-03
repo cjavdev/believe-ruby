@@ -2,6 +2,7 @@
 
 module Believe
   module Resources
+    # Memorable quotes from the show
     class Quotes
       # Add a new memorable quote to the collection.
       #
@@ -11,11 +12,11 @@ module Believe
       #
       # @param context [String] Context in which the quote was said
       #
-      # @param moment_type [Symbol, Believe::Models::QuoteMoment] Type of moment when the quote was said
+      # @param moment_type [Symbol, ::Believe::Models::QuoteMoment] Type of moment when the quote was said
       #
       # @param text [String] The quote text
       #
-      # @param theme [Symbol, Believe::Models::QuoteTheme] Primary theme of the quote
+      # @param theme [Symbol, ::Believe::Models::QuoteTheme] Primary theme of the quote
       #
       # @param episode_id [String, nil] Episode where the quote appears
       #
@@ -25,18 +26,24 @@ module Believe
       #
       # @param popularity_score [Float, nil] Popularity/virality score (0-100)
       #
-      # @param secondary_themes [Array<Symbol, Believe::Models::QuoteTheme>] Additional themes
+      # @param secondary_themes [Array<Symbol, ::Believe::Models::QuoteTheme>] Additional themes
       #
       # @param times_shared [Integer, nil] Number of times shared on social media
       #
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Models::Quote]
+      # @return [::Believe::Models::Quote]
       #
-      # @see Believe::Models::QuoteCreateParams
+      # @see ::Believe::Models::QuoteCreateParams
       def create(params)
-        parsed, options = Believe::QuoteCreateParams.dump_request(params)
-        @client.request(method: :post, path: "quotes", body: parsed, model: Believe::Quote, options: options)
+        parsed, options = ::Believe::QuoteCreateParams.dump_request(params)
+        @client.request(
+          method: :post,
+          path: "quotes",
+          body: parsed,
+          model: ::Believe::Quote,
+          options: options
+        )
       end
 
       # Retrieve a specific quote by its ID.
@@ -44,16 +51,16 @@ module Believe
       # @overload retrieve(quote_id, request_options: {})
       #
       # @param quote_id [String]
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Models::Quote]
+      # @return [::Believe::Models::Quote]
       #
-      # @see Believe::Models::QuoteRetrieveParams
+      # @see ::Believe::Models::QuoteRetrieveParams
       def retrieve(quote_id, params = {})
         @client.request(
           method: :get,
           path: ["quotes/%1$s", quote_id],
-          model: Believe::Quote,
+          model: ::Believe::Quote,
           options: params[:request_options]
         )
       end
@@ -74,30 +81,30 @@ module Believe
       #
       # @param is_inspirational [Boolean, nil]
       #
-      # @param moment_type [Symbol, Believe::Models::QuoteMoment, nil] Types of moments when quotes occur.
+      # @param moment_type [Symbol, ::Believe::Models::QuoteMoment, nil] Types of moments when quotes occur.
       #
       # @param popularity_score [Float, nil]
       #
-      # @param secondary_themes [Array<Symbol, Believe::Models::QuoteTheme>, nil]
+      # @param secondary_themes [Array<Symbol, ::Believe::Models::QuoteTheme>, nil]
       #
       # @param text [String, nil]
       #
-      # @param theme [Symbol, Believe::Models::QuoteTheme, nil] Themes that quotes can be categorized under.
+      # @param theme [Symbol, ::Believe::Models::QuoteTheme, nil] Themes that quotes can be categorized under.
       #
       # @param times_shared [Integer, nil]
       #
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Models::Quote]
+      # @return [::Believe::Models::Quote]
       #
-      # @see Believe::Models::QuoteUpdateParams
+      # @see ::Believe::Models::QuoteUpdateParams
       def update(quote_id, params = {})
-        parsed, options = Believe::QuoteUpdateParams.dump_request(params)
+        parsed, options = ::Believe::QuoteUpdateParams.dump_request(params)
         @client.request(
           method: :patch,
           path: ["quotes/%1$s", quote_id],
           body: parsed,
-          model: Believe::Quote,
+          model: ::Believe::Quote,
           options: options
         )
       end
@@ -114,25 +121,26 @@ module Believe
       #
       # @param limit [Integer] Maximum number of items to return (max: 100)
       #
-      # @param moment_type [Symbol, Believe::Models::QuoteMoment, nil] Filter by moment type
+      # @param moment_type [Symbol, ::Believe::Models::QuoteMoment, nil] Filter by moment type
       #
       # @param skip [Integer] Number of items to skip (offset)
       #
-      # @param theme [Symbol, Believe::Models::QuoteTheme, nil] Filter by theme
+      # @param theme [Symbol, ::Believe::Models::QuoteTheme, nil] Filter by theme
       #
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Internal::SkipLimitPage<Believe::Models::Quote>]
+      # @return [::Believe::Internal::SkipLimitPage<::Believe::Models::Quote>]
       #
-      # @see Believe::Models::QuoteListParams
+      # @see ::Believe::Models::QuoteListParams
       def list(params = {})
-        parsed, options = Believe::QuoteListParams.dump_request(params)
+        parsed, options = ::Believe::QuoteListParams.dump_request(params)
+        query = ::Believe::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "quotes",
-          query: parsed,
-          page: Believe::Internal::SkipLimitPage,
-          model: Believe::Quote,
+          query: query,
+          page: ::Believe::Internal::SkipLimitPage,
+          model: ::Believe::Quote,
           options: options
         )
       end
@@ -142,11 +150,11 @@ module Believe
       # @overload delete(quote_id, request_options: {})
       #
       # @param quote_id [String]
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [nil]
       #
-      # @see Believe::Models::QuoteDeleteParams
+      # @see ::Believe::Models::QuoteDeleteParams
       def delete(quote_id, params = {})
         @client.request(
           method: :delete,
@@ -164,20 +172,21 @@ module Believe
       #
       # @param inspirational [Boolean, nil] Filter inspirational quotes
       #
-      # @param theme [Symbol, Believe::Models::QuoteTheme, nil] Filter by theme
+      # @param theme [Symbol, ::Believe::Models::QuoteTheme, nil] Filter by theme
       #
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Models::Quote]
+      # @return [::Believe::Models::Quote]
       #
-      # @see Believe::Models::QuoteGetRandomParams
+      # @see ::Believe::Models::QuoteGetRandomParams
       def get_random(params = {})
-        parsed, options = Believe::QuoteGetRandomParams.dump_request(params)
+        parsed, options = ::Believe::QuoteGetRandomParams.dump_request(params)
+        query = ::Believe::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "quotes/random",
-          query: parsed,
-          model: Believe::Quote,
+          query: query,
+          model: ::Believe::Quote,
           options: options
         )
       end
@@ -192,19 +201,20 @@ module Believe
       #
       # @param skip [Integer] Number of items to skip (offset)
       #
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Internal::SkipLimitPage<Believe::Models::Quote>]
+      # @return [::Believe::Internal::SkipLimitPage<::Believe::Models::Quote>]
       #
-      # @see Believe::Models::QuoteListByCharacterParams
+      # @see ::Believe::Models::QuoteListByCharacterParams
       def list_by_character(character_id, params = {})
-        parsed, options = Believe::QuoteListByCharacterParams.dump_request(params)
+        parsed, options = ::Believe::QuoteListByCharacterParams.dump_request(params)
+        query = ::Believe::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: ["quotes/characters/%1$s", character_id],
-          query: parsed,
-          page: Believe::Internal::SkipLimitPage,
-          model: Believe::Quote,
+          query: query,
+          page: ::Believe::Internal::SkipLimitPage,
+          model: ::Believe::Quote,
           options: options
         )
       end
@@ -213,32 +223,33 @@ module Believe
       #
       # @overload list_by_theme(theme, limit: nil, skip: nil, request_options: {})
       #
-      # @param theme [Symbol, Believe::Models::QuoteTheme] Themes that quotes can be categorized under.
+      # @param theme [Symbol, ::Believe::Models::QuoteTheme] Themes that quotes can be categorized under.
       #
       # @param limit [Integer] Maximum number of items to return (max: 100)
       #
       # @param skip [Integer] Number of items to skip (offset)
       #
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Internal::SkipLimitPage<Believe::Models::Quote>]
+      # @return [::Believe::Internal::SkipLimitPage<::Believe::Models::Quote>]
       #
-      # @see Believe::Models::QuoteListByThemeParams
+      # @see ::Believe::Models::QuoteListByThemeParams
       def list_by_theme(theme, params = {})
-        parsed, options = Believe::QuoteListByThemeParams.dump_request(params)
+        parsed, options = ::Believe::QuoteListByThemeParams.dump_request(params)
+        query = ::Believe::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: ["quotes/themes/%1$s", theme],
-          query: parsed,
-          page: Believe::Internal::SkipLimitPage,
-          model: Believe::Quote,
+          query: query,
+          page: ::Believe::Internal::SkipLimitPage,
+          model: ::Believe::Quote,
           options: options
         )
       end
 
       # @api private
       #
-      # @param client [Believe::Client]
+      # @param client [::Believe::Client]
       def initialize(client:)
         @client = client
       end

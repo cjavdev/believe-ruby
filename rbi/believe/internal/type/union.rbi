@@ -5,8 +5,8 @@ module Believe
     module Type
       # @api private
       module Union
-        include Believe::Internal::Type::Converter
-        include Believe::Internal::Util::SorbetRuntimeSupport
+        include ::Believe::Internal::Type::Converter
+        include ::Believe::Internal::Util::SorbetRuntimeSupport
 
         # @api private
         #
@@ -16,8 +16,8 @@ module Believe
             T::Array[
               [
                 T.nilable(Symbol),
-                T.proc.returns(Believe::Internal::Type::Converter::Input),
-                Believe::Internal::AnyHash
+                T.proc.returns(::Believe::Internal::Type::Converter::Input),
+                ::Believe::Internal::AnyHash
               ]
             ]
           )
@@ -29,7 +29,7 @@ module Believe
         sig do
           returns(
             T::Array[
-              [T.nilable(Symbol), T.anything, Believe::Internal::AnyHash]
+              [T.nilable(Symbol), T.anything, ::Believe::Internal::AnyHash]
             ]
           )
         end
@@ -52,13 +52,13 @@ module Believe
             key:
               T.any(
                 Symbol,
-                Believe::Internal::AnyHash,
+                ::Believe::Internal::AnyHash,
                 T.proc.returns(T.anything),
                 T.anything
               ),
             spec:
               T.any(
-                Believe::Internal::AnyHash,
+                ::Believe::Internal::AnyHash,
                 T.proc.returns(T.anything),
                 T.anything
               )
@@ -94,7 +94,7 @@ module Believe
           override
             .params(
               value: T.anything,
-              state: Believe::Internal::Type::Converter::CoerceState
+              state: ::Believe::Internal::Type::Converter::CoerceState
             )
             .returns(T.anything)
         end
@@ -106,7 +106,7 @@ module Believe
           override
             .params(
               value: T.anything,
-              state: Believe::Internal::Type::Converter::DumpState
+              state: ::Believe::Internal::Type::Converter::DumpState
             )
             .returns(T.anything)
         end

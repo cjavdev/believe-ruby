@@ -13,8 +13,8 @@ module Believe
         alias enum_for to_enum
 
         def initialize: (
-          client: Believe::Internal::Transport::BaseClient,
-          req: Believe::Internal::Transport::BaseClient::request_components,
+          client: ::Believe::Internal::Transport::BaseClient,
+          req: ::Believe::Internal::Transport::BaseClient::request_components,
           headers: ::Hash[String, String],
           page_data: top
         ) -> void

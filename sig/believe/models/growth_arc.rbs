@@ -9,7 +9,7 @@ module Believe
         starting_point: String
       }
 
-    class GrowthArc < Believe::Internal::Type::BaseModel
+    class GrowthArc < ::Believe::Internal::Type::BaseModel
       attr_accessor breakthrough: String
 
       attr_accessor challenge: String

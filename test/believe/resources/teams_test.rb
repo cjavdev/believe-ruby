@@ -21,7 +21,7 @@ class Believe::Test::Resources::TeamsTest < Believe::Test::ResourceTest
       )
 
     assert_pattern do
-      response => Believe::Team
+      response => ::Believe::Team
     end
 
     assert_pattern do
@@ -29,19 +29,19 @@ class Believe::Test::Resources::TeamsTest < Believe::Test::ResourceTest
         id: String,
         culture_score: Integer,
         founded_year: Integer,
-        league: Believe::League,
+        league: ::Believe::League,
         name: String,
         stadium: String,
-        values: Believe::TeamValues,
+        values: ::Believe::TeamValues,
         annual_budget_gbp: String | nil,
         average_attendance: Float | nil,
         contact_email: String | nil,
-        is_active: Believe::Internal::Type::Boolean | nil,
+        is_active: ::Believe::Internal::Type::Boolean | nil,
         nickname: String | nil,
         primary_color: String | nil,
-        rival_teams: ^(Believe::Internal::Type::ArrayOf[String]) | nil,
+        rival_teams: ^(::Believe::Internal::Type::ArrayOf[String]) | nil,
         secondary_color: String | nil,
-        stadium_location: Believe::GeoLocation | nil,
+        stadium_location: ::Believe::GeoLocation | nil,
         website: String | nil,
         win_percentage: Float | nil
       }
@@ -54,7 +54,7 @@ class Believe::Test::Resources::TeamsTest < Believe::Test::ResourceTest
     response = @believe.teams.retrieve("team_id")
 
     assert_pattern do
-      response => Believe::Team
+      response => ::Believe::Team
     end
 
     assert_pattern do
@@ -62,19 +62,19 @@ class Believe::Test::Resources::TeamsTest < Believe::Test::ResourceTest
         id: String,
         culture_score: Integer,
         founded_year: Integer,
-        league: Believe::League,
+        league: ::Believe::League,
         name: String,
         stadium: String,
-        values: Believe::TeamValues,
+        values: ::Believe::TeamValues,
         annual_budget_gbp: String | nil,
         average_attendance: Float | nil,
         contact_email: String | nil,
-        is_active: Believe::Internal::Type::Boolean | nil,
+        is_active: ::Believe::Internal::Type::Boolean | nil,
         nickname: String | nil,
         primary_color: String | nil,
-        rival_teams: ^(Believe::Internal::Type::ArrayOf[String]) | nil,
+        rival_teams: ^(::Believe::Internal::Type::ArrayOf[String]) | nil,
         secondary_color: String | nil,
-        stadium_location: Believe::GeoLocation | nil,
+        stadium_location: ::Believe::GeoLocation | nil,
         website: String | nil,
         win_percentage: Float | nil
       }
@@ -87,7 +87,7 @@ class Believe::Test::Resources::TeamsTest < Believe::Test::ResourceTest
     response = @believe.teams.update("team_id")
 
     assert_pattern do
-      response => Believe::Team
+      response => ::Believe::Team
     end
 
     assert_pattern do
@@ -95,19 +95,19 @@ class Believe::Test::Resources::TeamsTest < Believe::Test::ResourceTest
         id: String,
         culture_score: Integer,
         founded_year: Integer,
-        league: Believe::League,
+        league: ::Believe::League,
         name: String,
         stadium: String,
-        values: Believe::TeamValues,
+        values: ::Believe::TeamValues,
         annual_budget_gbp: String | nil,
         average_attendance: Float | nil,
         contact_email: String | nil,
-        is_active: Believe::Internal::Type::Boolean | nil,
+        is_active: ::Believe::Internal::Type::Boolean | nil,
         nickname: String | nil,
         primary_color: String | nil,
-        rival_teams: ^(Believe::Internal::Type::ArrayOf[String]) | nil,
+        rival_teams: ^(::Believe::Internal::Type::ArrayOf[String]) | nil,
         secondary_color: String | nil,
-        stadium_location: Believe::GeoLocation | nil,
+        stadium_location: ::Believe::GeoLocation | nil,
         website: String | nil,
         win_percentage: Float | nil
       }
@@ -120,14 +120,14 @@ class Believe::Test::Resources::TeamsTest < Believe::Test::ResourceTest
     response = @believe.teams.list
 
     assert_pattern do
-      response => Believe::Internal::SkipLimitPage
+      response => ::Believe::Internal::SkipLimitPage
     end
 
     row = response.to_enum.first
     return if row.nil?
 
     assert_pattern do
-      row => Believe::Team
+      row => ::Believe::Team
     end
 
     assert_pattern do
@@ -135,19 +135,19 @@ class Believe::Test::Resources::TeamsTest < Believe::Test::ResourceTest
         id: String,
         culture_score: Integer,
         founded_year: Integer,
-        league: Believe::League,
+        league: ::Believe::League,
         name: String,
         stadium: String,
-        values: Believe::TeamValues,
+        values: ::Believe::TeamValues,
         annual_budget_gbp: String | nil,
         average_attendance: Float | nil,
         contact_email: String | nil,
-        is_active: Believe::Internal::Type::Boolean | nil,
+        is_active: ::Believe::Internal::Type::Boolean | nil,
         nickname: String | nil,
         primary_color: String | nil,
-        rival_teams: ^(Believe::Internal::Type::ArrayOf[String]) | nil,
+        rival_teams: ^(::Believe::Internal::Type::ArrayOf[String]) | nil,
         secondary_color: String | nil,
-        stadium_location: Believe::GeoLocation | nil,
+        stadium_location: ::Believe::GeoLocation | nil,
         website: String | nil,
         win_percentage: Float | nil
       }
@@ -170,7 +170,7 @@ class Believe::Test::Resources::TeamsTest < Believe::Test::ResourceTest
     response = @believe.teams.get_culture("team_id")
 
     assert_pattern do
-      response => ^(Believe::Internal::Type::HashOf[Believe::Internal::Type::Unknown])
+      response => ^(::Believe::Internal::Type::HashOf[::Believe::Internal::Type::Unknown])
     end
   end
 
@@ -180,7 +180,7 @@ class Believe::Test::Resources::TeamsTest < Believe::Test::ResourceTest
     response = @believe.teams.get_rivals("team_id")
 
     assert_pattern do
-      response => ^(Believe::Internal::Type::ArrayOf[Believe::Team])
+      response => ^(::Believe::Internal::Type::ArrayOf[::Believe::Team])
     end
   end
 
@@ -190,7 +190,7 @@ class Believe::Test::Resources::TeamsTest < Believe::Test::ResourceTest
     response = @believe.teams.list_logos("team_id")
 
     assert_pattern do
-      response => ^(Believe::Internal::Type::ArrayOf[Believe::Teams::FileUpload])
+      response => ^(::Believe::Internal::Type::ArrayOf[::Believe::Teams::FileUpload])
     end
   end
 end

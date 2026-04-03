@@ -2,13 +2,13 @@
 
 module Believe
   module Models
-    class CharacterListParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class CharacterListParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(Believe::CharacterListParams, Believe::Internal::AnyHash)
+          T.any(::Believe::CharacterListParams, ::Believe::Internal::AnyHash)
         end
 
       # Maximum number of items to return (max: 100)
@@ -23,7 +23,7 @@ module Believe
       attr_accessor :min_optimism
 
       # Filter by role
-      sig { returns(T.nilable(Believe::CharacterRole::OrSymbol)) }
+      sig { returns(T.nilable(::Believe::CharacterRole::OrSymbol)) }
       attr_accessor :role
 
       # Number of items to skip (offset)
@@ -41,10 +41,10 @@ module Believe
         params(
           limit: Integer,
           min_optimism: T.nilable(Integer),
-          role: T.nilable(Believe::CharacterRole::OrSymbol),
+          role: T.nilable(::Believe::CharacterRole::OrSymbol),
           skip: Integer,
           team_id: T.nilable(String),
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
@@ -67,10 +67,10 @@ module Believe
           {
             limit: Integer,
             min_optimism: T.nilable(Integer),
-            role: T.nilable(Believe::CharacterRole::OrSymbol),
+            role: T.nilable(::Believe::CharacterRole::OrSymbol),
             skip: Integer,
             team_id: T.nilable(String),
-            request_options: Believe::RequestOptions
+            request_options: ::Believe::RequestOptions
           }
         )
       end

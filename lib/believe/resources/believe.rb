@@ -2,6 +2,7 @@
 
 module Believe
   module Resources
+    # Interactive endpoints for motivation and guidance
     class Believe
       # Submit your situation and receive Ted Lasso-style motivational guidance.
       #
@@ -9,31 +10,31 @@ module Believe
       #
       # @param situation [String] Describe your situation
       #
-      # @param situation_type [Symbol, Believe::Models::BelieveSubmitParams::SituationType] Type of situation
+      # @param situation_type [Symbol, ::Believe::Models::BelieveSubmitParams::SituationType] Type of situation
       #
       # @param context [String, nil] Additional context
       #
       # @param intensity [Integer] How intense is the response needed (1=gentle, 10=full Ted)
       #
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Models::BelieveSubmitResponse]
+      # @return [::Believe::Models::BelieveSubmitResponse]
       #
-      # @see Believe::Models::BelieveSubmitParams
+      # @see ::Believe::Models::BelieveSubmitParams
       def submit(params)
-        parsed, options = Believe::BelieveSubmitParams.dump_request(params)
+        parsed, options = ::Believe::BelieveSubmitParams.dump_request(params)
         @client.request(
           method: :post,
           path: "believe",
           body: parsed,
-          model: Believe::Models::BelieveSubmitResponse,
+          model: ::Believe::Models::BelieveSubmitResponse,
           options: options
         )
       end
 
       # @api private
       #
-      # @param client [Believe::Client]
+      # @param client [::Believe::Client]
       def initialize(client:)
         @client = client
       end

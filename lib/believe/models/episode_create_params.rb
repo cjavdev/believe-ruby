@@ -2,10 +2,10 @@
 
 module Believe
   module Models
-    # @see Believe::Resources::Episodes#create
-    class EpisodeCreateParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    # @see ::Believe::Resources::Episodes#create
+    class EpisodeCreateParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       # @!attribute air_date
       #   Original air date
@@ -17,7 +17,7 @@ module Believe
       #   Characters with significant development
       #
       #   @return [Array<String>]
-      required :character_focus, Believe::Internal::Type::ArrayOf[String]
+      required :character_focus, ::Believe::Internal::Type::ArrayOf[String]
 
       # @!attribute director
       #   Episode director
@@ -83,7 +83,7 @@ module Believe
       #   Standout moments from the episode
       #
       #   @return [Array<String>, nil]
-      optional :memorable_moments, Believe::Internal::Type::ArrayOf[String]
+      optional :memorable_moments, ::Believe::Internal::Type::ArrayOf[String]
 
       # @!attribute us_viewers_millions
       #   US viewership in millions
@@ -128,7 +128,7 @@ module Believe
       #
       #   @param viewer_rating [Float, nil] Viewer rating out of 10
       #
-      #   @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}]
+      #   @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}]
     end
   end
 end

@@ -2,13 +2,19 @@
 
 module Believe
   module Models
-    # @see Believe::Resources::Teams#retrieve
-    class TeamRetrieveParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    # @see ::Believe::Resources::Teams#retrieve
+    class TeamRetrieveParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
-      # @!method initialize(request_options: {})
-      #   @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}]
+      # @!attribute team_id
+      #
+      #   @return [String]
+      required :team_id, String
+
+      # @!method initialize(team_id:, request_options: {})
+      #   @param team_id [String]
+      #   @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}]
     end
   end
 end

@@ -2,17 +2,17 @@
 
 module Believe
   module Models
-    class TeamListParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class TeamListParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(Believe::TeamListParams, Believe::Internal::AnyHash)
+          T.any(::Believe::TeamListParams, ::Believe::Internal::AnyHash)
         end
 
       # Filter by league
-      sig { returns(T.nilable(Believe::League::OrSymbol)) }
+      sig { returns(T.nilable(::Believe::League::OrSymbol)) }
       attr_accessor :league
 
       # Maximum number of items to return (max: 100)
@@ -35,11 +35,11 @@ module Believe
 
       sig do
         params(
-          league: T.nilable(Believe::League::OrSymbol),
+          league: T.nilable(::Believe::League::OrSymbol),
           limit: Integer,
           min_culture_score: T.nilable(Integer),
           skip: Integer,
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
@@ -58,11 +58,11 @@ module Believe
       sig do
         override.returns(
           {
-            league: T.nilable(Believe::League::OrSymbol),
+            league: T.nilable(::Believe::League::OrSymbol),
             limit: Integer,
             min_culture_score: T.nilable(Integer),
             skip: Integer,
-            request_options: Believe::RequestOptions
+            request_options: ::Believe::RequestOptions
           }
         )
       end

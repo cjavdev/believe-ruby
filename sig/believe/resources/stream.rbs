@@ -1,9 +1,9 @@
 module Believe
   module Resources
     class Stream
-      def test_connection: (?request_options: Believe::request_opts) -> top
+      def test_connection: (?request_options: ::Believe::request_opts) -> top
 
-      def initialize: (client: Believe::Client) -> void
+      def initialize: (client: ::Believe::Client) -> void
     end
   end
 end

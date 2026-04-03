@@ -3,13 +3,19 @@
 module Believe
   module Models
     module Matches
-      # @see Believe::Resources::Matches::Commentary#stream
-      class CommentaryStreamParams < Believe::Internal::Type::BaseModel
-        extend Believe::Internal::Type::RequestParameters::Converter
-        include Believe::Internal::Type::RequestParameters
+      # @see ::Believe::Resources::Matches::Commentary#stream
+      class CommentaryStreamParams < ::Believe::Internal::Type::BaseModel
+        extend ::Believe::Internal::Type::RequestParameters::Converter
+        include ::Believe::Internal::Type::RequestParameters
 
-        # @!method initialize(request_options: {})
-        #   @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}]
+        # @!attribute match_id
+        #
+        #   @return [String]
+        required :match_id, String
+
+        # @!method initialize(match_id:, request_options: {})
+        #   @param match_id [String]
+        #   @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}]
       end
     end
   end

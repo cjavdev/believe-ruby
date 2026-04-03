@@ -16,8 +16,8 @@ module Believe
       # We can therefore convert string values to Symbols, but can't convert other
       # values safely.
       module Enum
-        include Believe::Internal::Type::Converter
-        include Believe::Internal::Util::SorbetRuntimeSupport
+        include ::Believe::Internal::Type::Converter
+        include ::Believe::Internal::Util::SorbetRuntimeSupport
 
         # All of the valid Symbol values for this enum.
         sig do
@@ -48,7 +48,7 @@ module Believe
           override
             .params(
               value: T.any(String, Symbol, T.anything),
-              state: Believe::Internal::Type::Converter::CoerceState
+              state: ::Believe::Internal::Type::Converter::CoerceState
             )
             .returns(T.any(Symbol, T.anything))
         end
@@ -60,7 +60,7 @@ module Believe
           override
             .params(
               value: T.any(Symbol, T.anything),
-              state: Believe::Internal::Type::Converter::DumpState
+              state: ::Believe::Internal::Type::Converter::DumpState
             )
             .returns(T.any(Symbol, T.anything))
         end

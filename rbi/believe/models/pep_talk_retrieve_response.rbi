@@ -2,17 +2,19 @@
 
 module Believe
   module Models
-    class PepTalkRetrieveResponse < Believe::Internal::Type::BaseModel
+    class PepTalkRetrieveResponse < ::Believe::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
           T.any(
-            Believe::Models::PepTalkRetrieveResponse,
-            Believe::Internal::AnyHash
+            ::Believe::Models::PepTalkRetrieveResponse,
+            ::Believe::Internal::AnyHash
           )
         end
 
       # Individual chunks of the pep talk
-      sig { returns(T::Array[Believe::Models::PepTalkRetrieveResponse::Chunk]) }
+      sig do
+        returns(T::Array[::Believe::Models::PepTalkRetrieveResponse::Chunk])
+      end
       attr_accessor :chunks
 
       # The full pep talk text
@@ -23,7 +25,7 @@ module Believe
       sig do
         params(
           chunks:
-            T::Array[Believe::Models::PepTalkRetrieveResponse::Chunk::OrHash],
+            T::Array[::Believe::Models::PepTalkRetrieveResponse::Chunk::OrHash],
           text: String
         ).returns(T.attached_class)
       end
@@ -38,7 +40,7 @@ module Believe
       sig do
         override.returns(
           {
-            chunks: T::Array[Believe::Models::PepTalkRetrieveResponse::Chunk],
+            chunks: T::Array[::Believe::Models::PepTalkRetrieveResponse::Chunk],
             text: String
           }
         )
@@ -46,12 +48,12 @@ module Believe
       def to_hash
       end
 
-      class Chunk < Believe::Internal::Type::BaseModel
+      class Chunk < ::Believe::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
             T.any(
-              Believe::Models::PepTalkRetrieveResponse::Chunk,
-              Believe::Internal::AnyHash
+              ::Believe::Models::PepTalkRetrieveResponse::Chunk,
+              ::Believe::Internal::AnyHash
             )
           end
 

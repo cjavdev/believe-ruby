@@ -2,10 +2,10 @@
 
 module Believe
   module Models
-    # @see Believe::Resources::Characters#create
-    class CharacterCreateParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    # @see ::Believe::Resources::Characters#create
+    class CharacterCreateParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       # @!attribute background
       #   Character background and history
@@ -16,8 +16,8 @@ module Believe
       # @!attribute emotional_stats
       #   Emotional intelligence stats
       #
-      #   @return [Believe::Models::EmotionalStats]
-      required :emotional_stats, -> { Believe::EmotionalStats }
+      #   @return [::Believe::Models::EmotionalStats]
+      required :emotional_stats, -> { ::Believe::EmotionalStats }
 
       # @!attribute name
       #   Character's full name
@@ -29,13 +29,13 @@ module Believe
       #   Key personality traits
       #
       #   @return [Array<String>]
-      required :personality_traits, Believe::Internal::Type::ArrayOf[String]
+      required :personality_traits, ::Believe::Internal::Type::ArrayOf[String]
 
       # @!attribute role
       #   Character's role
       #
-      #   @return [Symbol, Believe::Models::CharacterRole]
-      required :role, enum: -> { Believe::CharacterRole }
+      #   @return [Symbol, ::Believe::Models::CharacterRole]
+      required :role, enum: -> { ::Believe::CharacterRole }
 
       # @!attribute date_of_birth
       #   Character's date of birth
@@ -52,8 +52,8 @@ module Believe
       # @!attribute growth_arcs
       #   Character development across seasons
       #
-      #   @return [Array<Believe::Models::GrowthArc>, nil]
-      optional :growth_arcs, -> { Believe::Internal::Type::ArrayOf[Believe::GrowthArc] }
+      #   @return [Array<::Believe::Models::GrowthArc>, nil]
+      optional :growth_arcs, -> { ::Believe::Internal::Type::ArrayOf[::Believe::GrowthArc] }
 
       # @!attribute height_meters
       #   Height in meters
@@ -71,13 +71,13 @@ module Believe
       #   Annual salary in GBP
       #
       #   @return [Float, String, nil]
-      optional :salary_gbp, union: -> { Believe::CharacterCreateParams::SalaryGbp }, nil?: true
+      optional :salary_gbp, union: -> { ::Believe::CharacterCreateParams::SalaryGbp }, nil?: true
 
       # @!attribute signature_quotes
       #   Memorable quotes from this character
       #
       #   @return [Array<String>, nil]
-      optional :signature_quotes, Believe::Internal::Type::ArrayOf[String]
+      optional :signature_quotes, ::Believe::Internal::Type::ArrayOf[String]
 
       # @!attribute team_id
       #   ID of the team they belong to
@@ -88,19 +88,19 @@ module Believe
       # @!method initialize(background:, emotional_stats:, name:, personality_traits:, role:, date_of_birth: nil, email: nil, growth_arcs: nil, height_meters: nil, profile_image_url: nil, salary_gbp: nil, signature_quotes: nil, team_id: nil, request_options: {})
       #   @param background [String] Character background and history
       #
-      #   @param emotional_stats [Believe::Models::EmotionalStats] Emotional intelligence stats
+      #   @param emotional_stats [::Believe::Models::EmotionalStats] Emotional intelligence stats
       #
       #   @param name [String] Character's full name
       #
       #   @param personality_traits [Array<String>] Key personality traits
       #
-      #   @param role [Symbol, Believe::Models::CharacterRole] Character's role
+      #   @param role [Symbol, ::Believe::Models::CharacterRole] Character's role
       #
       #   @param date_of_birth [Date, nil] Character's date of birth
       #
       #   @param email [String, nil] Character's email address
       #
-      #   @param growth_arcs [Array<Believe::Models::GrowthArc>] Character development across seasons
+      #   @param growth_arcs [Array<::Believe::Models::GrowthArc>] Character development across seasons
       #
       #   @param height_meters [Float, nil] Height in meters
       #
@@ -112,11 +112,11 @@ module Believe
       #
       #   @param team_id [String, nil] ID of the team they belong to
       #
-      #   @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}]
+      #   @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}]
 
       # Annual salary in GBP
       module SalaryGbp
-        extend Believe::Internal::Type::Union
+        extend ::Believe::Internal::Type::Union
 
         variant Float
 

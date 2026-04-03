@@ -2,13 +2,13 @@
 
 module Believe
   module Models
-    class EpisodeCreateParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class EpisodeCreateParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(Believe::EpisodeCreateParams, Believe::Internal::AnyHash)
+          T.any(::Believe::EpisodeCreateParams, ::Believe::Internal::AnyHash)
         end
 
       # Original air date
@@ -91,7 +91,7 @@ module Believe
           memorable_moments: T::Array[String],
           us_viewers_millions: T.nilable(Float),
           viewer_rating: T.nilable(Float),
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
@@ -147,7 +147,7 @@ module Believe
             memorable_moments: T::Array[String],
             us_viewers_millions: T.nilable(Float),
             viewer_rating: T.nilable(Float),
-            request_options: Believe::RequestOptions
+            request_options: ::Believe::RequestOptions
           }
         )
       end

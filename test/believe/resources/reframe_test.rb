@@ -10,7 +10,7 @@ class Believe::Test::Resources::ReframeTest < Believe::Test::ResourceTest
       @believe.reframe.transform_negative_thoughts(negative_thought: "I'm not good enough for this job.")
 
     assert_pattern do
-      response => Believe::Models::ReframeTransformNegativeThoughtsResponse
+      response => ::Believe::Models::ReframeTransformNegativeThoughtsResponse
     end
 
     assert_pattern do

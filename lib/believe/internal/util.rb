@@ -157,7 +157,7 @@ module Believe
           in Hash | nil => coerced
             coerced
           else
-            message = "Expected a #{Hash} or #{Believe::Internal::Type::BaseModel}, got #{data.inspect}"
+            message = "Expected a #{Hash} or #{::Believe::Internal::Type::BaseModel}, got #{input.inspect}"
             raise ArgumentError.new(message)
           end
         end
@@ -237,6 +237,11 @@ module Believe
         end
       end
 
+      # @type [Regexp]
+      #
+      # https://www.rfc-editor.org/rfc/rfc3986.html#section-3.3
+      RFC_3986_NOT_PCHARS = /[^A-Za-z0-9\-._~!$&'()*+,;=:@]+/
+
       class << self
         # @api private
         #
@@ -245,6 +250,15 @@ module Believe
         # @return [String]
         def uri_origin(uri)
           "#{uri.scheme}://#{uri.host}#{":#{uri.port}" unless uri.port == uri.default_port}"
+        end
+
+        # @api private
+        #
+        # @param path [String, Integer]
+        #
+        # @return [String]
+        def encode_path(path)
+          path.to_s.gsub(::Believe::Internal::Util::RFC_3986_NOT_PCHARS) { ERB::Util.url_encode(_1) }
         end
 
         # @api private
@@ -259,7 +273,7 @@ module Believe
           in []
             ""
           in [String => p, *interpolations]
-            encoded = interpolations.map { ERB::Util.url_encode(_1) }
+            encoded = interpolations.map { encode_path(_1) }
             format(p, *encoded)
           end
         end
@@ -396,7 +410,7 @@ module Believe
         def close
           case @stream
           in Enumerator
-            Believe::Internal::Util.close_fused!(@stream)
+            ::Believe::Internal::Util.close_fused!(@stream)
           in IO if close?
             @stream.close
           else
@@ -492,6 +506,37 @@ module Believe
       class << self
         # @api private
         #
+        # @param query [Hash{Symbol=>Object}]
+        #
+        # @return [Hash{Symbol=>Object}]
+        def encode_query_params(query)
+          out = {}
+          query.each { write_query_param_element!(out, _1, _2) }
+          out
+        end
+
+        # @api private
+        #
+        # @param collection [Hash{Symbol=>Object}]
+        # @param key [String]
+        # @param element [Object]
+        #
+        # @return [nil]
+        private def write_query_param_element!(collection, key, element)
+          case element
+          in Hash
+            element.each do |name, value|
+              write_query_param_element!(collection, "#{key}[#{name}]", value)
+            end
+          in Array
+            collection[key] = element.map(&:to_s).join(",")
+          else
+            collection[key] = element.to_s
+          end
+        end
+
+        # @api private
+        #
         # @param y [Enumerator::Yielder]
         # @param val [Object]
         # @param closing [Array<Proc>]
@@ -500,7 +545,7 @@ module Believe
           content_line = "Content-Type: %s\r\n\r\n"
 
           case val
-          in Believe::FilePart
+          in ::Believe::FilePart
             return write_multipart_content(
               y,
               val: val.content,
@@ -540,16 +585,15 @@ module Believe
           y << "Content-Disposition: form-data"
 
           unless key.nil?
-            name = ERB::Util.url_encode(key.to_s)
-            y << "; name=\"#{name}\""
+            y << "; name=\"#{key}\""
           end
 
           case val
-          in Believe::FilePart unless val.filename.nil?
-            filename = ERB::Util.url_encode(val.filename)
+          in ::Believe::FilePart unless val.filename.nil?
+            filename = encode_path(val.filename)
             y << "; filename=\"#{filename}\""
           in Pathname | IO
-            filename = ERB::Util.url_encode(::File.basename(val.to_path))
+            filename = encode_path(::File.basename(val.to_path))
             y << "; filename=\"#{filename}\""
           else
           end
@@ -604,11 +648,11 @@ module Believe
           # rubocop:disable Layout/LineLength
           content_type = headers["content-type"]
           case [content_type, body]
-          in [Believe::Internal::Util::JSON_CONTENT, Hash | Array | -> { primitive?(_1) }]
+          in [::Believe::Internal::Util::JSON_CONTENT, Hash | Array | -> { primitive?(_1) }]
             [headers, JSON.generate(body)]
-          in [Believe::Internal::Util::JSONL_CONTENT, Enumerable] unless Believe::Internal::Type::FileInput === body
+          in [::Believe::Internal::Util::JSONL_CONTENT, Enumerable] unless ::Believe::Internal::Type::FileInput === body
             [headers, body.lazy.map { JSON.generate(_1) }]
-          in [%r{^multipart/form-data}, Hash | Believe::Internal::Type::FileInput]
+          in [%r{^multipart/form-data}, Hash | ::Believe::Internal::Type::FileInput]
             boundary, strio = encode_multipart_streaming(body)
             headers = {**headers, "content-type" => "#{content_type}; boundary=#{boundary}"}
             [headers, strio]
@@ -616,7 +660,7 @@ module Believe
             [headers, body.to_s]
           in [_, StringIO]
             [headers, body.string]
-          in [_, Believe::FilePart]
+          in [_, ::Believe::FilePart]
             [headers, body.content]
           else
             [headers, body]
@@ -656,7 +700,7 @@ module Believe
         # @return [Object]
         def decode_content(headers, stream:, suppress_error: false)
           case (content_type = headers["content-type"])
-          in Believe::Internal::Util::JSON_CONTENT
+          in ::Believe::Internal::Util::JSON_CONTENT
             return nil if (json = stream.to_a.join).empty?
 
             begin
@@ -665,7 +709,7 @@ module Believe
               raise e unless suppress_error
               json
             end
-          in Believe::Internal::Util::JSONL_CONTENT
+          in ::Believe::Internal::Util::JSONL_CONTENT
             lines = decode_lines(stream)
             chain_fused(lines) do |y|
               lines.each do
@@ -873,12 +917,12 @@ module Believe
         class << self
           # @api private
           #
-          # @param type [Believe::Internal::Util::SorbetRuntimeSupport, Object]
+          # @param type [::Believe::Internal::Util::SorbetRuntimeSupport, Object]
           #
           # @return [Object]
           def to_sorbet_type(type)
             case type
-            in Believe::Internal::Util::SorbetRuntimeSupport
+            in ::Believe::Internal::Util::SorbetRuntimeSupport
               type.to_sorbet_type
             in Class | Module
               type
@@ -891,7 +935,7 @@ module Believe
         end
       end
 
-      extend Believe::Internal::Util::SorbetRuntimeSupport
+      extend ::Believe::Internal::Util::SorbetRuntimeSupport
 
       define_sorbet_constant!(:ParsedUri) do
         T.type_alias do

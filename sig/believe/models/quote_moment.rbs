@@ -14,7 +14,7 @@ module Believe
       | :confrontation
 
     module QuoteMoment
-      extend Believe::Internal::Type::Enum
+      extend ::Believe::Internal::Type::Enum
 
       HALFTIME_SPEECH: :halftime_speech
       PRESS_CONFERENCE: :press_conference
@@ -28,7 +28,7 @@ module Believe
       CASUAL: :casual
       CONFRONTATION: :confrontation
 
-      def self?.values: -> ::Array[Believe::Models::quote_moment]
+      def self?.values: -> ::Array[::Believe::Models::quote_moment]
     end
   end
 end

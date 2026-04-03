@@ -9,7 +9,7 @@ module Believe
         dr_sharon_insight: String?
       }
 
-    class ReframeTransformNegativeThoughtsResponse < Believe::Internal::Type::BaseModel
+    class ReframeTransformNegativeThoughtsResponse < ::Believe::Internal::Type::BaseModel
       attr_accessor daily_affirmation: String
 
       attr_accessor original_thought: String

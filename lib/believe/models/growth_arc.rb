@@ -2,7 +2,7 @@
 
 module Believe
   module Models
-    class GrowthArc < Believe::Internal::Type::BaseModel
+    class GrowthArc < ::Believe::Internal::Type::BaseModel
       # @!attribute breakthrough
       #   Key breakthrough moment
       #

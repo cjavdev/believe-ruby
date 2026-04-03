@@ -2,15 +2,15 @@
 
 module Believe
   module Models
-    class TeamMemberListCoachesParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class TeamMemberListCoachesParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
           T.any(
-            Believe::TeamMemberListCoachesParams,
-            Believe::Internal::AnyHash
+            ::Believe::TeamMemberListCoachesParams,
+            ::Believe::Internal::AnyHash
           )
         end
 
@@ -29,7 +29,7 @@ module Believe
       attr_writer :skip
 
       # Filter by specialty
-      sig { returns(T.nilable(Believe::CoachSpecialty::OrSymbol)) }
+      sig { returns(T.nilable(::Believe::CoachSpecialty::OrSymbol)) }
       attr_accessor :specialty
 
       # Filter by team ID
@@ -40,9 +40,9 @@ module Believe
         params(
           limit: Integer,
           skip: Integer,
-          specialty: T.nilable(Believe::CoachSpecialty::OrSymbol),
+          specialty: T.nilable(::Believe::CoachSpecialty::OrSymbol),
           team_id: T.nilable(String),
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
@@ -63,9 +63,9 @@ module Believe
           {
             limit: Integer,
             skip: Integer,
-            specialty: T.nilable(Believe::CoachSpecialty::OrSymbol),
+            specialty: T.nilable(::Believe::CoachSpecialty::OrSymbol),
             team_id: T.nilable(String),
-            request_options: Believe::RequestOptions
+            request_options: ::Believe::RequestOptions
           }
         )
       end

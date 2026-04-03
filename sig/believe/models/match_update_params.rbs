@@ -2,6 +2,7 @@ module Believe
   module Models
     type match_update_params =
       {
+        match_id: String,
         attendance: Integer?,
         away_score: Integer?,
         away_team_id: String?,
@@ -10,19 +11,21 @@ module Believe
         home_score: Integer?,
         home_team_id: String?,
         lesson_learned: String?,
-        match_type: Believe::Models::match_type?,
+        match_type: ::Believe::Models::match_type?,
         possession_percentage: Float?,
-        result: Believe::Models::match_result?,
+        result: ::Believe::Models::match_result?,
         ted_halftime_speech: String?,
-        ticket_revenue_gbp: Believe::Models::MatchUpdateParams::ticket_revenue_gbp?,
-        turning_points: ::Array[Believe::TurningPoint]?,
+        ticket_revenue_gbp: ::Believe::Models::MatchUpdateParams::ticket_revenue_gbp?,
+        turning_points: ::Array[::Believe::TurningPoint]?,
         weather_temp_celsius: Float?
       }
-      & Believe::Internal::Type::request_parameters
+      & ::Believe::Internal::Type::request_parameters
 
-    class MatchUpdateParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class MatchUpdateParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
+
+      attr_accessor match_id: String
 
       attr_accessor attendance: Integer?
 
@@ -40,21 +43,22 @@ module Believe
 
       attr_accessor lesson_learned: String?
 
-      attr_accessor match_type: Believe::Models::match_type?
+      attr_accessor match_type: ::Believe::Models::match_type?
 
       attr_accessor possession_percentage: Float?
 
-      attr_accessor result: Believe::Models::match_result?
+      attr_accessor result: ::Believe::Models::match_result?
 
       attr_accessor ted_halftime_speech: String?
 
-      attr_accessor ticket_revenue_gbp: Believe::Models::MatchUpdateParams::ticket_revenue_gbp?
+      attr_accessor ticket_revenue_gbp: ::Believe::Models::MatchUpdateParams::ticket_revenue_gbp?
 
-      attr_accessor turning_points: ::Array[Believe::TurningPoint]?
+      attr_accessor turning_points: ::Array[::Believe::TurningPoint]?
 
       attr_accessor weather_temp_celsius: Float?
 
       def initialize: (
+        match_id: String,
         ?attendance: Integer?,
         ?away_score: Integer?,
         ?away_team_id: String?,
@@ -63,17 +67,18 @@ module Believe
         ?home_score: Integer?,
         ?home_team_id: String?,
         ?lesson_learned: String?,
-        ?match_type: Believe::Models::match_type?,
+        ?match_type: ::Believe::Models::match_type?,
         ?possession_percentage: Float?,
-        ?result: Believe::Models::match_result?,
+        ?result: ::Believe::Models::match_result?,
         ?ted_halftime_speech: String?,
-        ?ticket_revenue_gbp: Believe::Models::MatchUpdateParams::ticket_revenue_gbp?,
-        ?turning_points: ::Array[Believe::TurningPoint]?,
+        ?ticket_revenue_gbp: ::Believe::Models::MatchUpdateParams::ticket_revenue_gbp?,
+        ?turning_points: ::Array[::Believe::TurningPoint]?,
         ?weather_temp_celsius: Float?,
-        ?request_options: Believe::request_opts
+        ?request_options: ::Believe::request_opts
       ) -> void
 
       def to_hash: -> {
+        match_id: String,
         attendance: Integer?,
         away_score: Integer?,
         away_team_id: String?,
@@ -82,22 +87,22 @@ module Believe
         home_score: Integer?,
         home_team_id: String?,
         lesson_learned: String?,
-        match_type: Believe::Models::match_type?,
+        match_type: ::Believe::Models::match_type?,
         possession_percentage: Float?,
-        result: Believe::Models::match_result?,
+        result: ::Believe::Models::match_result?,
         ted_halftime_speech: String?,
-        ticket_revenue_gbp: Believe::Models::MatchUpdateParams::ticket_revenue_gbp?,
-        turning_points: ::Array[Believe::TurningPoint]?,
+        ticket_revenue_gbp: ::Believe::Models::MatchUpdateParams::ticket_revenue_gbp?,
+        turning_points: ::Array[::Believe::TurningPoint]?,
         weather_temp_celsius: Float?,
-        request_options: Believe::RequestOptions
+        request_options: ::Believe::RequestOptions
       }
 
       type ticket_revenue_gbp = Float | String
 
       module TicketRevenueGbp
-        extend Believe::Internal::Type::Union
+        extend ::Believe::Internal::Type::Union
 
-        def self?.variants: -> ::Array[Believe::Models::MatchUpdateParams::ticket_revenue_gbp]
+        def self?.variants: -> ::Array[::Believe::Models::MatchUpdateParams::ticket_revenue_gbp]
       end
     end
   end

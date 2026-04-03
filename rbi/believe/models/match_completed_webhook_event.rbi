@@ -2,10 +2,13 @@
 
 module Believe
   module Models
-    class MatchCompletedWebhookEvent < Believe::Internal::Type::BaseModel
+    class MatchCompletedWebhookEvent < ::Believe::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
-          T.any(Believe::MatchCompletedWebhookEvent, Believe::Internal::AnyHash)
+          T.any(
+            ::Believe::MatchCompletedWebhookEvent,
+            ::Believe::Internal::AnyHash
+          )
         end
 
       # When the event was created
@@ -13,11 +16,11 @@ module Believe
       attr_accessor :created_at
 
       # Data payload for a match completed event.
-      sig { returns(Believe::MatchCompletedWebhookEvent::Data) }
+      sig { returns(::Believe::MatchCompletedWebhookEvent::Data) }
       attr_reader :data
 
       sig do
-        params(data: Believe::MatchCompletedWebhookEvent::Data::OrHash).void
+        params(data: ::Believe::MatchCompletedWebhookEvent::Data::OrHash).void
       end
       attr_writer :data
 
@@ -27,7 +30,7 @@ module Believe
 
       # The type of webhook event
       sig do
-        returns(Believe::MatchCompletedWebhookEvent::EventType::TaggedSymbol)
+        returns(::Believe::MatchCompletedWebhookEvent::EventType::TaggedSymbol)
       end
       attr_accessor :event_type
 
@@ -35,9 +38,9 @@ module Believe
       sig do
         params(
           created_at: Time,
-          data: Believe::MatchCompletedWebhookEvent::Data::OrHash,
+          data: ::Believe::MatchCompletedWebhookEvent::Data::OrHash,
           event_id: String,
-          event_type: Believe::MatchCompletedWebhookEvent::EventType::OrSymbol
+          event_type: ::Believe::MatchCompletedWebhookEvent::EventType::OrSymbol
         ).returns(T.attached_class)
       end
       def self.new(
@@ -56,22 +59,22 @@ module Believe
         override.returns(
           {
             created_at: Time,
-            data: Believe::MatchCompletedWebhookEvent::Data,
+            data: ::Believe::MatchCompletedWebhookEvent::Data,
             event_id: String,
             event_type:
-              Believe::MatchCompletedWebhookEvent::EventType::TaggedSymbol
+              ::Believe::MatchCompletedWebhookEvent::EventType::TaggedSymbol
           }
         )
       end
       def to_hash
       end
 
-      class Data < Believe::Internal::Type::BaseModel
+      class Data < ::Believe::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
             T.any(
-              Believe::MatchCompletedWebhookEvent::Data,
-              Believe::Internal::AnyHash
+              ::Believe::MatchCompletedWebhookEvent::Data,
+              ::Believe::Internal::AnyHash
             )
           end
 
@@ -102,7 +105,7 @@ module Believe
         # Type of match
         sig do
           returns(
-            Believe::MatchCompletedWebhookEvent::Data::MatchType::TaggedSymbol
+            ::Believe::MatchCompletedWebhookEvent::Data::MatchType::TaggedSymbol
           )
         end
         attr_accessor :match_type
@@ -110,7 +113,7 @@ module Believe
         # Match result from home team perspective
         sig do
           returns(
-            Believe::MatchCompletedWebhookEvent::Data::Result::TaggedSymbol
+            ::Believe::MatchCompletedWebhookEvent::Data::Result::TaggedSymbol
           )
         end
         attr_accessor :result
@@ -137,8 +140,9 @@ module Believe
             home_team_id: String,
             match_id: String,
             match_type:
-              Believe::MatchCompletedWebhookEvent::Data::MatchType::OrSymbol,
-            result: Believe::MatchCompletedWebhookEvent::Data::Result::OrSymbol,
+              ::Believe::MatchCompletedWebhookEvent::Data::MatchType::OrSymbol,
+            result:
+              ::Believe::MatchCompletedWebhookEvent::Data::Result::OrSymbol,
             ted_post_match_quote: String,
             lesson_learned: T.nilable(String),
             man_of_the_match: T.nilable(String)
@@ -180,9 +184,9 @@ module Believe
               home_team_id: String,
               match_id: String,
               match_type:
-                Believe::MatchCompletedWebhookEvent::Data::MatchType::TaggedSymbol,
+                ::Believe::MatchCompletedWebhookEvent::Data::MatchType::TaggedSymbol,
               result:
-                Believe::MatchCompletedWebhookEvent::Data::Result::TaggedSymbol,
+                ::Believe::MatchCompletedWebhookEvent::Data::Result::TaggedSymbol,
               ted_post_match_quote: String,
               lesson_learned: T.nilable(String),
               man_of_the_match: T.nilable(String)
@@ -194,13 +198,13 @@ module Believe
 
         # Type of match
         module MatchType
-          extend Believe::Internal::Type::Enum
+          extend ::Believe::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias do
               T.all(
                 Symbol,
-                Believe::MatchCompletedWebhookEvent::Data::MatchType
+                ::Believe::MatchCompletedWebhookEvent::Data::MatchType
               )
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -208,33 +212,33 @@ module Believe
           LEAGUE =
             T.let(
               :league,
-              Believe::MatchCompletedWebhookEvent::Data::MatchType::TaggedSymbol
+              ::Believe::MatchCompletedWebhookEvent::Data::MatchType::TaggedSymbol
             )
           CUP =
             T.let(
               :cup,
-              Believe::MatchCompletedWebhookEvent::Data::MatchType::TaggedSymbol
+              ::Believe::MatchCompletedWebhookEvent::Data::MatchType::TaggedSymbol
             )
           FRIENDLY =
             T.let(
               :friendly,
-              Believe::MatchCompletedWebhookEvent::Data::MatchType::TaggedSymbol
+              ::Believe::MatchCompletedWebhookEvent::Data::MatchType::TaggedSymbol
             )
           PLAYOFF =
             T.let(
               :playoff,
-              Believe::MatchCompletedWebhookEvent::Data::MatchType::TaggedSymbol
+              ::Believe::MatchCompletedWebhookEvent::Data::MatchType::TaggedSymbol
             )
           FINAL =
             T.let(
               :final,
-              Believe::MatchCompletedWebhookEvent::Data::MatchType::TaggedSymbol
+              ::Believe::MatchCompletedWebhookEvent::Data::MatchType::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                Believe::MatchCompletedWebhookEvent::Data::MatchType::TaggedSymbol
+                ::Believe::MatchCompletedWebhookEvent::Data::MatchType::TaggedSymbol
               ]
             )
           end
@@ -244,34 +248,34 @@ module Believe
 
         # Match result from home team perspective
         module Result
-          extend Believe::Internal::Type::Enum
+          extend ::Believe::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias do
-              T.all(Symbol, Believe::MatchCompletedWebhookEvent::Data::Result)
+              T.all(Symbol, ::Believe::MatchCompletedWebhookEvent::Data::Result)
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           HOME_WIN =
             T.let(
               :home_win,
-              Believe::MatchCompletedWebhookEvent::Data::Result::TaggedSymbol
+              ::Believe::MatchCompletedWebhookEvent::Data::Result::TaggedSymbol
             )
           AWAY_WIN =
             T.let(
               :away_win,
-              Believe::MatchCompletedWebhookEvent::Data::Result::TaggedSymbol
+              ::Believe::MatchCompletedWebhookEvent::Data::Result::TaggedSymbol
             )
           DRAW =
             T.let(
               :draw,
-              Believe::MatchCompletedWebhookEvent::Data::Result::TaggedSymbol
+              ::Believe::MatchCompletedWebhookEvent::Data::Result::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                Believe::MatchCompletedWebhookEvent::Data::Result::TaggedSymbol
+                ::Believe::MatchCompletedWebhookEvent::Data::Result::TaggedSymbol
               ]
             )
           end
@@ -282,24 +286,24 @@ module Believe
 
       # The type of webhook event
       module EventType
-        extend Believe::Internal::Type::Enum
+        extend ::Believe::Internal::Type::Enum
 
         TaggedSymbol =
           T.type_alias do
-            T.all(Symbol, Believe::MatchCompletedWebhookEvent::EventType)
+            T.all(Symbol, ::Believe::MatchCompletedWebhookEvent::EventType)
           end
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         MATCH_COMPLETED =
           T.let(
             :"match.completed",
-            Believe::MatchCompletedWebhookEvent::EventType::TaggedSymbol
+            ::Believe::MatchCompletedWebhookEvent::EventType::TaggedSymbol
           )
 
         sig do
           override.returns(
             T::Array[
-              Believe::MatchCompletedWebhookEvent::EventType::TaggedSymbol
+              ::Believe::MatchCompletedWebhookEvent::EventType::TaggedSymbol
             ]
           )
         end

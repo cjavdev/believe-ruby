@@ -2,8 +2,8 @@
 
 module Believe
   module Models
-    # @see Believe::Resources::Believe#submit
-    class BelieveSubmitResponse < Believe::Internal::Type::BaseModel
+    # @see ::Believe::Resources::Believe#submit
+    class BelieveSubmitResponse < ::Believe::Internal::Type::BaseModel
       # @!attribute action_suggestion
       #   Suggested action to take
       #

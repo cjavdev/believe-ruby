@@ -2,6 +2,7 @@
 
 module Believe
   module Resources
+    # Register webhook endpoints and trigger events for testing
     class Webhooks
       # Register a new webhook endpoint to receive event notifications.
       #
@@ -30,10 +31,10 @@ module Believe
           description: T.nilable(String),
           event_types:
             T.nilable(
-              T::Array[Believe::WebhookCreateParams::EventType::OrSymbol]
+              T::Array[::Believe::WebhookCreateParams::EventType::OrSymbol]
             ),
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::Models::WebhookCreateResponse)
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::Models::WebhookCreateResponse)
       end
       def create(
         # The URL to send webhook events to
@@ -50,16 +51,16 @@ module Believe
       sig do
         params(
           webhook_id: String,
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::RegisteredWebhook)
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::RegisteredWebhook)
       end
       def retrieve(webhook_id, request_options: {})
       end
 
       # Get a list of all registered webhook endpoints.
       sig do
-        params(request_options: Believe::RequestOptions::OrHash).returns(
-          T::Array[Believe::RegisteredWebhook]
+        params(request_options: ::Believe::RequestOptions::OrHash).returns(
+          T::Array[::Believe::RegisteredWebhook]
         )
       end
       def list(request_options: {})
@@ -69,7 +70,7 @@ module Believe
       sig do
         params(
           webhook_id: String,
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).returns(T::Hash[Symbol, T.anything])
       end
       def delete(webhook_id, request_options: {})
@@ -106,16 +107,16 @@ module Believe
       # ```
       sig do
         params(
-          event_type: Believe::WebhookTriggerEventParams::EventType::OrSymbol,
+          event_type: ::Believe::WebhookTriggerEventParams::EventType::OrSymbol,
           payload:
             T.nilable(
               T.any(
-                Believe::WebhookTriggerEventParams::Payload::MatchCompleted::OrHash,
-                Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::OrHash
+                ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::OrHash,
+                ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::OrHash
               )
             ),
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::Models::WebhookTriggerEventResponse)
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::Models::WebhookTriggerEventResponse)
       end
       def trigger_event(
         # The type of event to trigger
@@ -129,8 +130,8 @@ module Believe
       sig do
         params(payload: String).returns(
           T.any(
-            Believe::MatchCompletedWebhookEvent,
-            Believe::TeamMemberTransferredWebhookEvent
+            ::Believe::MatchCompletedWebhookEvent,
+            ::Believe::TeamMemberTransferredWebhookEvent
           )
         )
       end
@@ -141,7 +142,7 @@ module Believe
       end
 
       # @api private
-      sig { params(client: Believe::Client).returns(T.attached_class) }
+      sig { params(client: ::Believe::Client).returns(T.attached_class) }
       def self.new(client:)
       end
     end

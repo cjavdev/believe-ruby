@@ -6,13 +6,13 @@ module Believe
       # @api private
       #
       # @example
-      #   # `team_member_create_response` is a `Believe::Models::TeamMemberCreateResponse`
+      #   # `team_member_create_response` is a `::Believe::Models::TeamMemberCreateResponse`
       #   case team_member_create_response
-      #   when Believe::Player
+      #   when ::Believe::Player
       #     puts(team_member_create_response.id)
-      #   when Believe::Coach
+      #   when ::Believe::Coach
       #     puts(team_member_create_response.character_id)
-      #   when Believe::MedicalStaff
+      #   when ::Believe::MedicalStaff
       #     puts(team_member_create_response.specialty)
       #   else
       #     puts(team_member_create_response)
@@ -30,8 +30,8 @@ module Believe
       #     puts(team_member_create_response)
       #   end
       module Union
-        include Believe::Internal::Type::Converter
-        include Believe::Internal::Util::SorbetRuntimeSupport
+        include ::Believe::Internal::Type::Converter
+        include ::Believe::Internal::Util::SorbetRuntimeSupport
 
         # @api private
         #
@@ -64,9 +64,9 @@ module Believe
 
         # @api private
         #
-        # @param key [Symbol, Hash{Symbol=>Object}, Proc, Believe::Internal::Type::Converter, Class]
+        # @param key [Symbol, Hash{Symbol=>Object}, Proc, ::Believe::Internal::Type::Converter, Class]
         #
-        # @param spec [Hash{Symbol=>Object}, Proc, Believe::Internal::Type::Converter, Class] .
+        # @param spec [Hash{Symbol=>Object}, Proc, ::Believe::Internal::Type::Converter, Class] .
         #
         #   @option spec [NilClass, TrueClass, FalseClass, Integer, Float, Symbol] :const
         #
@@ -76,13 +76,13 @@ module Believe
         #
         #   @option spec [Boolean] :"nil?"
         private def variant(key, spec = nil)
-          meta = Believe::Internal::Type::Converter.meta_info(nil, spec)
+          meta = ::Believe::Internal::Type::Converter.meta_info(nil, spec)
           variant_info =
             case key
             in Symbol
-              [key, Believe::Internal::Type::Converter.type_info(spec), meta]
-            in Proc | Believe::Internal::Type::Converter | Class | Hash
-              [nil, Believe::Internal::Type::Converter.type_info(key), meta]
+              [key, ::Believe::Internal::Type::Converter.type_info(spec), meta]
+            in Proc | ::Believe::Internal::Type::Converter | Class | Hash
+              [nil, ::Believe::Internal::Type::Converter.type_info(key), meta]
             end
 
           known_variants << variant_info
@@ -92,17 +92,17 @@ module Believe
         #
         # @param value [Object]
         #
-        # @return [Believe::Internal::Type::Converter, Class, nil]
+        # @return [::Believe::Internal::Type::Converter, Class, nil]
         private def resolve_variant(value)
           case [@discriminator, value]
-          in [_, Believe::Internal::Type::BaseModel]
+          in [_, ::Believe::Internal::Type::BaseModel]
             value.class
           in [Symbol, Hash]
             key = value.fetch(@discriminator) do
-              value.fetch(@discriminator.to_s, Believe::Internal::OMIT)
+              value.fetch(@discriminator.to_s, ::Believe::Internal::OMIT)
             end
 
-            return nil if key == Believe::Internal::OMIT
+            return nil if key == ::Believe::Internal::OMIT
 
             key = key.to_sym if key.is_a?(String)
             _, found = known_variants.find { |k,| k == key }
@@ -132,7 +132,7 @@ module Believe
         #
         # @return [Boolean]
         def ==(other)
-          Believe::Internal::Type::Union === other && other.derefed_variants == derefed_variants
+          ::Believe::Internal::Type::Union === other && other.derefed_variants == derefed_variants
         end
 
         # @api public
@@ -164,7 +164,7 @@ module Believe
         # @return [Object]
         def coerce(value, state:)
           if (target = resolve_variant(value))
-            return Believe::Internal::Type::Converter.coerce(target, value, state: state)
+            return ::Believe::Internal::Type::Converter.coerce(target, value, state: state)
           end
 
           strictness = state.fetch(:strictness)
@@ -176,7 +176,7 @@ module Believe
             exact = state[:exactness] = {yes: 0, no: 0, maybe: 0}
             state[:branched] += 1
 
-            coerced = Believe::Internal::Type::Converter.coerce(target, value, state: state)
+            coerced = ::Believe::Internal::Type::Converter.coerce(target, value, state: state)
             yes, no, maybe = exact.values
             if (no + maybe).zero? || (!strictness && yes.positive?)
               exact.each { exactness[_1] += _2 }
@@ -212,12 +212,12 @@ module Believe
         # @return [Object]
         def dump(value, state:)
           if (target = resolve_variant(value))
-            return Believe::Internal::Type::Converter.dump(target, value, state: state)
+            return ::Believe::Internal::Type::Converter.dump(target, value, state: state)
           end
 
           known_variants.each do
             target = _2.call
-            return Believe::Internal::Type::Converter.dump(target, value, state: state) if target === value
+            return ::Believe::Internal::Type::Converter.dump(target, value, state: state) if target === value
           end
 
           super
@@ -227,7 +227,7 @@ module Believe
         #
         # @return [Object]
         def to_sorbet_type
-          types = variants.map { Believe::Internal::Util::SorbetRuntimeSupport.to_sorbet_type(_1) }.uniq
+          types = variants.map { ::Believe::Internal::Util::SorbetRuntimeSupport.to_sorbet_type(_1) }.uniq
           case types
           in []
             T.noreturn
@@ -251,7 +251,7 @@ module Believe
             return is_a?(Module) ? super() : self.class.name
           end
 
-          members = variants.map { Believe::Internal::Type::Converter.inspect(_1, depth: depth.succ) }
+          members = variants.map { ::Believe::Internal::Type::Converter.inspect(_1, depth: depth.succ) }
           prefix = is_a?(Module) ? name : self.class.name
 
           "#{prefix}[#{members.join(' | ')}]"

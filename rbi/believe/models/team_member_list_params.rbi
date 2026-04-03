@@ -2,13 +2,13 @@
 
 module Believe
   module Models
-    class TeamMemberListParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class TeamMemberListParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(Believe::TeamMemberListParams, Believe::Internal::AnyHash)
+          T.any(::Believe::TeamMemberListParams, ::Believe::Internal::AnyHash)
         end
 
       # Maximum number of items to return (max: 100)
@@ -20,7 +20,9 @@ module Believe
 
       # Filter by member type
       sig do
-        returns(T.nilable(Believe::TeamMemberListParams::MemberType::OrSymbol))
+        returns(
+          T.nilable(::Believe::TeamMemberListParams::MemberType::OrSymbol)
+        )
       end
       attr_accessor :member_type
 
@@ -39,10 +41,10 @@ module Believe
         params(
           limit: Integer,
           member_type:
-            T.nilable(Believe::TeamMemberListParams::MemberType::OrSymbol),
+            T.nilable(::Believe::TeamMemberListParams::MemberType::OrSymbol),
           skip: Integer,
           team_id: T.nilable(String),
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
@@ -63,10 +65,10 @@ module Believe
           {
             limit: Integer,
             member_type:
-              T.nilable(Believe::TeamMemberListParams::MemberType::OrSymbol),
+              T.nilable(::Believe::TeamMemberListParams::MemberType::OrSymbol),
             skip: Integer,
             team_id: T.nilable(String),
-            request_options: Believe::RequestOptions
+            request_options: ::Believe::RequestOptions
           }
         )
       end
@@ -75,35 +77,38 @@ module Believe
 
       # Filter by member type
       module MemberType
-        extend Believe::Internal::Type::Enum
+        extend ::Believe::Internal::Type::Enum
 
         TaggedSymbol =
           T.type_alias do
-            T.all(Symbol, Believe::TeamMemberListParams::MemberType)
+            T.all(Symbol, ::Believe::TeamMemberListParams::MemberType)
           end
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         PLAYER =
           T.let(
             :player,
-            Believe::TeamMemberListParams::MemberType::TaggedSymbol
+            ::Believe::TeamMemberListParams::MemberType::TaggedSymbol
           )
         COACH =
-          T.let(:coach, Believe::TeamMemberListParams::MemberType::TaggedSymbol)
+          T.let(
+            :coach,
+            ::Believe::TeamMemberListParams::MemberType::TaggedSymbol
+          )
         MEDICAL_STAFF =
           T.let(
             :medical_staff,
-            Believe::TeamMemberListParams::MemberType::TaggedSymbol
+            ::Believe::TeamMemberListParams::MemberType::TaggedSymbol
           )
         EQUIPMENT_MANAGER =
           T.let(
             :equipment_manager,
-            Believe::TeamMemberListParams::MemberType::TaggedSymbol
+            ::Believe::TeamMemberListParams::MemberType::TaggedSymbol
           )
 
         sig do
           override.returns(
-            T::Array[Believe::TeamMemberListParams::MemberType::TaggedSymbol]
+            T::Array[::Believe::TeamMemberListParams::MemberType::TaggedSymbol]
           )
         end
         def self.values

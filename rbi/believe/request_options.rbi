@@ -6,14 +6,14 @@ module Believe
   #
   # When making a request, you can pass an actual {RequestOptions} instance, or
   # simply pass a Hash with symbol keys matching the attributes on this class.
-  class RequestOptions < Believe::Internal::Type::BaseModel
+  class RequestOptions < ::Believe::Internal::Type::BaseModel
     OrHash =
       T.type_alias do
-        T.any(Believe::RequestOptions, Believe::Internal::AnyHash)
+        T.any(::Believe::RequestOptions, ::Believe::Internal::AnyHash)
       end
 
     # @api private
-    sig { params(opts: Believe::RequestOptions::OrHash).void }
+    sig { params(opts: ::Believe::RequestOptions::OrHash).void }
     def self.validate!(opts)
     end
 
@@ -50,7 +50,9 @@ module Believe
     attr_accessor :timeout
 
     # Returns a new instance of RequestOptions.
-    sig { params(values: Believe::Internal::AnyHash).returns(T.attached_class) }
+    sig do
+      params(values: ::Believe::Internal::AnyHash).returns(T.attached_class)
+    end
     def self.new(values = {})
     end
   end

@@ -3,64 +3,64 @@ module Believe
     class Characters
       def create: (
         background: String,
-        emotional_stats: Believe::EmotionalStats,
+        emotional_stats: ::Believe::EmotionalStats,
         name: String,
         personality_traits: ::Array[String],
-        role: Believe::Models::character_role,
+        role: ::Believe::Models::character_role,
         ?date_of_birth: Date?,
         ?email: String?,
-        ?growth_arcs: ::Array[Believe::GrowthArc],
+        ?growth_arcs: ::Array[::Believe::GrowthArc],
         ?height_meters: Float?,
         ?profile_image_url: String?,
-        ?salary_gbp: Believe::Models::CharacterCreateParams::salary_gbp?,
+        ?salary_gbp: ::Believe::Models::CharacterCreateParams::salary_gbp?,
         ?signature_quotes: ::Array[String],
         ?team_id: String?,
-        ?request_options: Believe::request_opts
-      ) -> Believe::Character
+        ?request_options: ::Believe::request_opts
+      ) -> ::Believe::Character
 
       def retrieve: (
         String character_id,
-        ?request_options: Believe::request_opts
-      ) -> Believe::Character
+        ?request_options: ::Believe::request_opts
+      ) -> ::Believe::Character
 
       def update: (
         String character_id,
         ?background: String?,
         ?date_of_birth: Date?,
         ?email: String?,
-        ?emotional_stats: Believe::EmotionalStats?,
-        ?growth_arcs: ::Array[Believe::GrowthArc]?,
+        ?emotional_stats: ::Believe::EmotionalStats?,
+        ?growth_arcs: ::Array[::Believe::GrowthArc]?,
         ?height_meters: Float?,
         ?name: String?,
         ?personality_traits: ::Array[String]?,
         ?profile_image_url: String?,
-        ?role: Believe::Models::character_role?,
-        ?salary_gbp: Believe::Models::CharacterUpdateParams::salary_gbp?,
+        ?role: ::Believe::Models::character_role?,
+        ?salary_gbp: ::Believe::Models::CharacterUpdateParams::salary_gbp?,
         ?signature_quotes: ::Array[String]?,
         ?team_id: String?,
-        ?request_options: Believe::request_opts
-      ) -> Believe::Character
+        ?request_options: ::Believe::request_opts
+      ) -> ::Believe::Character
 
       def list: (
         ?limit: Integer,
         ?min_optimism: Integer?,
-        ?role: Believe::Models::character_role?,
+        ?role: ::Believe::Models::character_role?,
         ?skip: Integer,
         ?team_id: String?,
-        ?request_options: Believe::request_opts
-      ) -> Believe::Internal::SkipLimitPage[Believe::Character]
+        ?request_options: ::Believe::request_opts
+      ) -> ::Believe::Internal::SkipLimitPage[::Believe::Character]
 
       def delete: (
         String character_id,
-        ?request_options: Believe::request_opts
+        ?request_options: ::Believe::request_opts
       ) -> nil
 
       def get_quotes: (
         String character_id,
-        ?request_options: Believe::request_opts
-      ) -> Believe::Models::character_get_quotes_response
+        ?request_options: ::Believe::request_opts
+      ) -> ::Believe::Models::character_get_quotes_response
 
-      def initialize: (client: Believe::Client) -> void
+      def initialize: (client: ::Believe::Client) -> void
     end
   end
 end

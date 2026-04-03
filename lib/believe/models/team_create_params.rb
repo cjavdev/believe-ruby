@@ -2,10 +2,10 @@
 
 module Believe
   module Models
-    # @see Believe::Resources::Teams#create
-    class TeamCreateParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    # @see ::Believe::Resources::Teams#create
+    class TeamCreateParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       # @!attribute culture_score
       #   Team culture/morale score (0-100)
@@ -22,8 +22,8 @@ module Believe
       # @!attribute league
       #   Current league
       #
-      #   @return [Symbol, Believe::Models::League]
-      required :league, enum: -> { Believe::League }
+      #   @return [Symbol, ::Believe::Models::League]
+      required :league, enum: -> { ::Believe::League }
 
       # @!attribute name
       #   Team name
@@ -40,14 +40,14 @@ module Believe
       # @!attribute values
       #   Team's core values
       #
-      #   @return [Believe::Models::TeamValues]
-      required :values, -> { Believe::TeamValues }
+      #   @return [::Believe::Models::TeamValues]
+      required :values, -> { ::Believe::TeamValues }
 
       # @!attribute annual_budget_gbp
       #   Annual budget in GBP
       #
       #   @return [Float, String, nil]
-      optional :annual_budget_gbp, union: -> { Believe::TeamCreateParams::AnnualBudgetGbp }, nil?: true
+      optional :annual_budget_gbp, union: -> { ::Believe::TeamCreateParams::AnnualBudgetGbp }, nil?: true
 
       # @!attribute average_attendance
       #   Average match attendance
@@ -65,7 +65,7 @@ module Believe
       #   Whether the team is currently active
       #
       #   @return [Boolean, nil]
-      optional :is_active, Believe::Internal::Type::Boolean
+      optional :is_active, ::Believe::Internal::Type::Boolean
 
       # @!attribute nickname
       #   Team nickname
@@ -83,7 +83,7 @@ module Believe
       #   List of rival team IDs
       #
       #   @return [Array<String>, nil]
-      optional :rival_teams, Believe::Internal::Type::ArrayOf[String]
+      optional :rival_teams, ::Believe::Internal::Type::ArrayOf[String]
 
       # @!attribute secondary_color
       #   Secondary team color (hex)
@@ -94,8 +94,8 @@ module Believe
       # @!attribute stadium_location
       #   Geographic coordinates for a location.
       #
-      #   @return [Believe::Models::GeoLocation, nil]
-      optional :stadium_location, -> { Believe::GeoLocation }, nil?: true
+      #   @return [::Believe::Models::GeoLocation, nil]
+      optional :stadium_location, -> { ::Believe::GeoLocation }, nil?: true
 
       # @!attribute website
       #   Official team website
@@ -114,13 +114,13 @@ module Believe
       #
       #   @param founded_year [Integer] Year the club was founded
       #
-      #   @param league [Symbol, Believe::Models::League] Current league
+      #   @param league [Symbol, ::Believe::Models::League] Current league
       #
       #   @param name [String] Team name
       #
       #   @param stadium [String] Home stadium name
       #
-      #   @param values [Believe::Models::TeamValues] Team's core values
+      #   @param values [::Believe::Models::TeamValues] Team's core values
       #
       #   @param annual_budget_gbp [Float, String, nil] Annual budget in GBP
       #
@@ -138,17 +138,17 @@ module Believe
       #
       #   @param secondary_color [String, nil] Secondary team color (hex)
       #
-      #   @param stadium_location [Believe::Models::GeoLocation, nil] Geographic coordinates for a location.
+      #   @param stadium_location [::Believe::Models::GeoLocation, nil] Geographic coordinates for a location.
       #
       #   @param website [String, nil] Official team website
       #
       #   @param win_percentage [Float, nil] Season win percentage
       #
-      #   @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}]
+      #   @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}]
 
       # Annual budget in GBP
       module AnnualBudgetGbp
-        extend Believe::Internal::Type::Union
+        extend ::Believe::Internal::Type::Union
 
         variant Float
 

@@ -2,23 +2,24 @@
 
 module Believe
   module Resources
+    # Memorable quotes from the show
     class Quotes
       # Add a new memorable quote to the collection.
       sig do
         params(
           character_id: String,
           context: String,
-          moment_type: Believe::QuoteMoment::OrSymbol,
+          moment_type: ::Believe::QuoteMoment::OrSymbol,
           text: String,
-          theme: Believe::QuoteTheme::OrSymbol,
+          theme: ::Believe::QuoteTheme::OrSymbol,
           episode_id: T.nilable(String),
           is_funny: T::Boolean,
           is_inspirational: T::Boolean,
           popularity_score: T.nilable(Float),
-          secondary_themes: T::Array[Believe::QuoteTheme::OrSymbol],
+          secondary_themes: T::Array[::Believe::QuoteTheme::OrSymbol],
           times_shared: T.nilable(Integer),
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::Quote)
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::Quote)
       end
       def create(
         # ID of the character who said it
@@ -51,8 +52,8 @@ module Believe
       sig do
         params(
           quote_id: String,
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::Quote)
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::Quote)
       end
       def retrieve(quote_id, request_options: {})
       end
@@ -66,14 +67,15 @@ module Believe
           episode_id: T.nilable(String),
           is_funny: T.nilable(T::Boolean),
           is_inspirational: T.nilable(T::Boolean),
-          moment_type: T.nilable(Believe::QuoteMoment::OrSymbol),
+          moment_type: T.nilable(::Believe::QuoteMoment::OrSymbol),
           popularity_score: T.nilable(Float),
-          secondary_themes: T.nilable(T::Array[Believe::QuoteTheme::OrSymbol]),
+          secondary_themes:
+            T.nilable(T::Array[::Believe::QuoteTheme::OrSymbol]),
           text: T.nilable(String),
-          theme: T.nilable(Believe::QuoteTheme::OrSymbol),
+          theme: T.nilable(::Believe::QuoteTheme::OrSymbol),
           times_shared: T.nilable(Integer),
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::Quote)
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::Quote)
       end
       def update(
         quote_id,
@@ -101,11 +103,11 @@ module Believe
           funny: T.nilable(T::Boolean),
           inspirational: T.nilable(T::Boolean),
           limit: Integer,
-          moment_type: T.nilable(Believe::QuoteMoment::OrSymbol),
+          moment_type: T.nilable(::Believe::QuoteMoment::OrSymbol),
           skip: Integer,
-          theme: T.nilable(Believe::QuoteTheme::OrSymbol),
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::Internal::SkipLimitPage[Believe::Quote])
+          theme: T.nilable(::Believe::QuoteTheme::OrSymbol),
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::Internal::SkipLimitPage[::Believe::Quote])
       end
       def list(
         # Filter by character
@@ -130,7 +132,7 @@ module Believe
       sig do
         params(
           quote_id: String,
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).void
       end
       def delete(quote_id, request_options: {})
@@ -141,9 +143,9 @@ module Believe
         params(
           character_id: T.nilable(String),
           inspirational: T.nilable(T::Boolean),
-          theme: T.nilable(Believe::QuoteTheme::OrSymbol),
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::Quote)
+          theme: T.nilable(::Believe::QuoteTheme::OrSymbol),
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::Quote)
       end
       def get_random(
         # Filter by character
@@ -162,8 +164,8 @@ module Believe
           character_id: String,
           limit: Integer,
           skip: Integer,
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::Internal::SkipLimitPage[Believe::Quote])
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::Internal::SkipLimitPage[::Believe::Quote])
       end
       def list_by_character(
         character_id,
@@ -178,11 +180,11 @@ module Believe
       # Get a paginated list of quotes related to a specific theme.
       sig do
         params(
-          theme: Believe::QuoteTheme::OrSymbol,
+          theme: ::Believe::QuoteTheme::OrSymbol,
           limit: Integer,
           skip: Integer,
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::Internal::SkipLimitPage[Believe::Quote])
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::Internal::SkipLimitPage[::Believe::Quote])
       end
       def list_by_theme(
         # Themes that quotes can be categorized under.
@@ -196,7 +198,7 @@ module Believe
       end
 
       # @api private
-      sig { params(client: Believe::Client).returns(T.attached_class) }
+      sig { params(client: ::Believe::Client).returns(T.attached_class) }
       def self.new(client:)
       end
     end

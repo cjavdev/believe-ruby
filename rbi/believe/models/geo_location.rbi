@@ -2,9 +2,11 @@
 
 module Believe
   module Models
-    class GeoLocation < Believe::Internal::Type::BaseModel
+    class GeoLocation < ::Believe::Internal::Type::BaseModel
       OrHash =
-        T.type_alias { T.any(Believe::GeoLocation, Believe::Internal::AnyHash) }
+        T.type_alias do
+          T.any(::Believe::GeoLocation, ::Believe::Internal::AnyHash)
+        end
 
       # Latitude in degrees
       sig { returns(Float) }

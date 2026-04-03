@@ -7,7 +7,7 @@ module Believe
       #
       # @abstract
       class BaseClient
-        extend Believe::Internal::Util::SorbetRuntimeSupport
+        extend ::Believe::Internal::Util::SorbetRuntimeSupport
 
         # from whatwg fetch spec
         MAX_REDIRECTS = 20
@@ -15,10 +15,10 @@ module Believe
         # rubocop:disable Style/MutableConstant
         PLATFORM_HEADERS =
           {
-            "x-stainless-arch" => Believe::Internal::Util.arch,
+            "x-stainless-arch" => ::Believe::Internal::Util.arch,
             "x-stainless-lang" => "ruby",
-            "x-stainless-os" => Believe::Internal::Util.os,
-            "x-stainless-package-version" => Believe::VERSION,
+            "x-stainless-os" => ::Believe::Internal::Util.os,
+            "x-stainless-package-version" => ::Believe::VERSION,
             "x-stainless-runtime" => ::RUBY_ENGINE,
             "x-stainless-runtime-version" => ::RUBY_ENGINE_VERSION
           }
@@ -51,7 +51,7 @@ module Believe
           #
           # @return [Boolean]
           def should_retry?(status, headers:)
-            coerced = Believe::Internal::Util.coerce_boolean(headers["x-should-retry"])
+            coerced = ::Believe::Internal::Util.coerce_boolean(headers["x-should-retry"])
             case [coerced, status]
             in [true | false, _]
               coerced
@@ -95,7 +95,7 @@ module Believe
                 URI.join(url, response_headers["location"])
               rescue ArgumentError
                 message = "Server responded with status #{status} but no valid location header."
-                raise Believe::Errors::APIConnectionError.new(
+                raise ::Believe::Errors::APIConnectionError.new(
                   url: url,
                   response: response_headers,
                   message: message
@@ -107,7 +107,7 @@ module Believe
             case [url.scheme, location.scheme]
             in ["https", "http"]
               message = "Tried to redirect to a insecure URL"
-              raise Believe::Errors::APIConnectionError.new(
+              raise ::Believe::Errors::APIConnectionError.new(
                 url: url,
                 response: response_headers,
                 message: message
@@ -130,7 +130,7 @@ module Believe
             end
 
             # from undici
-            if Believe::Internal::Util.uri_origin(url) != Believe::Internal::Util.uri_origin(location)
+            if ::Believe::Internal::Util.uri_origin(url) != ::Believe::Internal::Util.uri_origin(location)
               drop = %w[authorization cookie host proxy-authorization]
               request = {**request, headers: request.fetch(:headers).except(*drop)}
             end
@@ -140,14 +140,14 @@ module Believe
 
           # @api private
           #
-          # @param status [Integer, Believe::Errors::APIConnectionError]
+          # @param status [Integer, ::Believe::Errors::APIConnectionError]
           # @param stream [Enumerable<String>, nil]
           def reap_connection!(status, stream:)
             case status
             in (..199) | (300..499)
               stream&.each { next }
-            in Believe::Errors::APIConnectionError | (500..)
-              Believe::Internal::Util.close_fused!(stream)
+            in ::Believe::Errors::APIConnectionError | (500..)
+              ::Believe::Internal::Util.close_fused!(stream)
             else
             end
           end
@@ -175,7 +175,7 @@ module Believe
         attr_reader :idempotency_header
 
         # @api private
-        # @return [Believe::Internal::Transport::PooledNetRequester]
+        # @return [::Believe::Internal::Transport::PooledNetRequester]
         attr_reader :requester
 
         # @api private
@@ -196,8 +196,8 @@ module Believe
           headers: {},
           idempotency_header: nil
         )
-          @requester = Believe::Internal::Transport::PooledNetRequester.new
-          @headers = Believe::Internal::Util.normalized_headers(
+          @requester = ::Believe::Internal::Transport::PooledNetRequester.new
+          @headers = ::Believe::Internal::Util.normalized_headers(
             self.class::PLATFORM_HEADERS,
             {
               "accept" => "application/json",
@@ -206,8 +206,8 @@ module Believe
             },
             headers
           )
-          @base_url_components = Believe::Internal::Util.parse_uri(base_url)
-          @base_url = Believe::Internal::Util.unparse_uri(@base_url_components)
+          @base_url_components = ::Believe::Internal::Util.parse_uri(base_url)
+          @base_url = ::Believe::Internal::Util.unparse_uri(@base_url_components)
           @idempotency_header = idempotency_header&.to_s&.downcase
           @timeout = timeout
           @max_retries = max_retries
@@ -223,7 +223,7 @@ module Believe
         # @api private
         #
         # @return [String]
-        private def user_agent = "#{self.class.name}/Ruby #{Believe::VERSION}"
+        private def user_agent = "#{self.class.name}/Ruby #{::Believe::VERSION}"
 
         # @api private
         #
@@ -246,11 +246,11 @@ module Believe
         #
         #   @option req [Symbol, Integer, Array<Symbol, Integer>, Proc, nil] :unwrap
         #
-        #   @option req [Class<Believe::Internal::Type::BasePage>, nil] :page
+        #   @option req [Class<::Believe::Internal::Type::BasePage>, nil] :page
         #
-        #   @option req [Class<Believe::Internal::Type::BaseStream>, nil] :stream
+        #   @option req [Class<::Believe::Internal::Type::BaseStream>, nil] :stream
         #
-        #   @option req [Believe::Internal::Type::Converter, Class, nil] :model
+        #   @option req [::Believe::Internal::Type::Converter, Class, nil] :model
         #
         # @param opts [Hash{Symbol=>Object}] .
         #
@@ -270,11 +270,11 @@ module Believe
         private def build_request(req, opts)
           method, uninterpolated_path = req.fetch_values(:method, :path)
 
-          path = Believe::Internal::Util.interpolate_path(uninterpolated_path)
+          path = ::Believe::Internal::Util.interpolate_path(uninterpolated_path)
 
-          query = Believe::Internal::Util.deep_merge(req[:query].to_h, opts[:extra_query].to_h)
+          query = ::Believe::Internal::Util.deep_merge(req[:query].to_h, opts[:extra_query].to_h)
 
-          headers = Believe::Internal::Util.normalized_headers(
+          headers = ::Believe::Internal::Util.normalized_headers(
             @headers,
             auth_headers,
             req[:headers].to_h,
@@ -303,14 +303,14 @@ module Believe
             in :get | :head | :options | :trace
               nil
             else
-              Believe::Internal::Util.deep_merge(*[req[:body], opts[:extra_body]].compact)
+              ::Believe::Internal::Util.deep_merge(*[req[:body], opts[:extra_body]].compact)
             end
 
-          url = Believe::Internal::Util.join_parsed_uri(
+          url = ::Believe::Internal::Util.join_parsed_uri(
             @base_url_components,
             {**req, path: path, query: query}
           )
-          headers, encoded = Believe::Internal::Util.encode_content(headers, body)
+          headers, encoded = ::Believe::Internal::Util.encode_content(headers, body)
           {
             method: method,
             url: url,
@@ -369,11 +369,11 @@ module Believe
         #
         # @param send_retry_header [Boolean]
         #
-        # @raise [Believe::Errors::APIError]
+        # @raise [::Believe::Errors::APIError]
         # @return [Array(Integer, Net::HTTPResponse, Enumerable<String>)]
         def send_request(request, redirect_count:, retry_count:, send_retry_header:)
           url, headers, max_retries, timeout = request.fetch_values(:url, :headers, :max_retries, :timeout)
-          input = {**request.except(:timeout), deadline: Believe::Internal::Util.monotonic_secs + timeout}
+          input = {**request.except(:timeout), deadline: ::Believe::Internal::Util.monotonic_secs + timeout}
 
           if send_retry_header
             headers["x-stainless-retry-count"] = retry_count.to_s
@@ -381,10 +381,10 @@ module Believe
 
           begin
             status, response, stream = @requester.execute(input)
-          rescue Believe::Errors::APIConnectionError => e
+          rescue ::Believe::Errors::APIConnectionError => e
             status = e
           end
-          headers = Believe::Internal::Util.normalized_headers(response&.each_header&.to_h)
+          headers = ::Believe::Internal::Util.normalized_headers(response&.each_header&.to_h)
 
           case status
           in ..299
@@ -393,7 +393,7 @@ module Believe
             self.class.reap_connection!(status, stream: stream)
 
             message = "Failed to complete the request within #{self.class::MAX_REDIRECTS} redirects."
-            raise Believe::Errors::APIConnectionError.new(url: url, response: response, message: message)
+            raise ::Believe::Errors::APIConnectionError.new(url: url, response: response, message: message)
           in 300..399
             self.class.reap_connection!(status, stream: stream)
 
@@ -404,16 +404,16 @@ module Believe
               retry_count: retry_count,
               send_retry_header: send_retry_header
             )
-          in Believe::Errors::APIConnectionError if retry_count >= max_retries
+          in ::Believe::Errors::APIConnectionError if retry_count >= max_retries
             raise status
           in (400..) if retry_count >= max_retries || !self.class.should_retry?(status, headers: headers)
             decoded = Kernel.then do
-              Believe::Internal::Util.decode_content(headers, stream: stream, suppress_error: true)
+              ::Believe::Internal::Util.decode_content(headers, stream: stream, suppress_error: true)
             ensure
               self.class.reap_connection!(status, stream: stream)
             end
 
-            raise Believe::Errors::APIStatusError.for(
+            raise ::Believe::Errors::APIStatusError.for(
               url: url,
               status: status,
               headers: headers,
@@ -421,7 +421,7 @@ module Believe
               request: nil,
               response: response
             )
-          in (400..) | Believe::Errors::APIConnectionError
+          in (400..) | ::Believe::Errors::APIConnectionError
             self.class.reap_connection!(status, stream: stream)
 
             delay = retry_delay(response || {}, retry_count: retry_count)
@@ -439,7 +439,7 @@ module Believe
         # Execute the request specified by `req`. This is the method that all resource
         # methods call into.
         #
-        # @overload request(method, path, query: {}, headers: {}, body: nil, unwrap: nil, page: nil, stream: nil, model: Believe::Internal::Type::Unknown, options: {})
+        # @overload request(method, path, query: {}, headers: {}, body: nil, unwrap: nil, page: nil, stream: nil, model: ::Believe::Internal::Type::Unknown, options: {})
         #
         # @param method [Symbol]
         #
@@ -453,13 +453,13 @@ module Believe
         #
         # @param unwrap [Symbol, Integer, Array<Symbol, Integer>, Proc, nil]
         #
-        # @param page [Class<Believe::Internal::Type::BasePage>, nil]
+        # @param page [Class<::Believe::Internal::Type::BasePage>, nil]
         #
-        # @param stream [Class<Believe::Internal::Type::BaseStream>, nil]
+        # @param stream [Class<::Believe::Internal::Type::BaseStream>, nil]
         #
-        # @param model [Believe::Internal::Type::Converter, Class, nil]
+        # @param model [::Believe::Internal::Type::Converter, Class, nil]
         #
-        # @param options [Believe::RequestOptions, Hash{Symbol=>Object}, nil] .
+        # @param options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil] .
         #
         #   @option options [String, nil] :idempotency_key
         #
@@ -473,14 +473,14 @@ module Believe
         #
         #   @option options [Float, nil] :timeout
         #
-        # @raise [Believe::Errors::APIError]
+        # @raise [::Believe::Errors::APIError]
         # @return [Object]
         def request(req)
           self.class.validate!(req)
-          model = req.fetch(:model) { Believe::Internal::Type::Unknown }
+          model = req.fetch(:model) { ::Believe::Internal::Type::Unknown }
           opts = req[:options].to_h
           unwrap = req[:unwrap]
-          Believe::RequestOptions.validate!(opts)
+          ::Believe::RequestOptions.validate!(opts)
           request = build_request(req.except(:options), opts)
           url = request.fetch(:url)
 
@@ -493,8 +493,8 @@ module Believe
             send_retry_header: send_retry_header
           )
 
-          headers = Believe::Internal::Util.normalized_headers(response.each_header.to_h)
-          decoded = Believe::Internal::Util.decode_content(headers, stream: stream)
+          headers = ::Believe::Internal::Util.normalized_headers(response.each_header.to_h)
+          decoded = ::Believe::Internal::Util.decode_content(headers, stream: stream)
           case req
           in {stream: Class => st}
             st.new(
@@ -509,8 +509,8 @@ module Believe
           in {page: Class => page}
             page.new(client: self, req: req, headers: headers, page_data: decoded)
           else
-            unwrapped = Believe::Internal::Util.dig(decoded, unwrap)
-            Believe::Internal::Type::Converter.coerce(model, unwrapped)
+            unwrapped = ::Believe::Internal::Util.dig(decoded, unwrap)
+            ::Believe::Internal::Type::Converter.coerce(model, unwrapped)
           end
         end
 
@@ -548,10 +548,10 @@ module Believe
                   T.proc.params(arg0: T.anything).returns(T.anything)
                 )
               ),
-              page: T.nilable(T::Class[Believe::Internal::Type::BasePage[Believe::Internal::Type::BaseModel]]),
+              page: T.nilable(T::Class[::Believe::Internal::Type::BasePage[::Believe::Internal::Type::BaseModel]]),
               stream: T.nilable(T::Class[T.anything]),
-              model: T.nilable(Believe::Internal::Type::Converter::Input),
-              options: T.nilable(Believe::RequestOptions::OrHash)
+              model: T.nilable(::Believe::Internal::Type::Converter::Input),
+              options: T.nilable(::Believe::RequestOptions::OrHash)
             }
           end
         end

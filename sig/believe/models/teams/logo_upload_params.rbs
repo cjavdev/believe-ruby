@@ -2,23 +2,27 @@ module Believe
   module Models
     module Teams
       type logo_upload_params =
-        { file: Believe::Internal::file_input }
-        & Believe::Internal::Type::request_parameters
+        { team_id: String, file: ::Believe::Internal::file_input }
+        & ::Believe::Internal::Type::request_parameters
 
-      class LogoUploadParams < Believe::Internal::Type::BaseModel
-        extend Believe::Internal::Type::RequestParameters::Converter
-        include Believe::Internal::Type::RequestParameters
+      class LogoUploadParams < ::Believe::Internal::Type::BaseModel
+        extend ::Believe::Internal::Type::RequestParameters::Converter
+        include ::Believe::Internal::Type::RequestParameters
 
-        attr_accessor file: Believe::Internal::file_input
+        attr_accessor team_id: String
+
+        attr_accessor file: ::Believe::Internal::file_input
 
         def initialize: (
-          file: Believe::Internal::file_input,
-          ?request_options: Believe::request_opts
+          team_id: String,
+          file: ::Believe::Internal::file_input,
+          ?request_options: ::Believe::request_opts
         ) -> void
 
         def to_hash: -> {
-          file: Believe::Internal::file_input,
-          request_options: Believe::RequestOptions
+          team_id: String,
+          file: ::Believe::Internal::file_input,
+          request_options: ::Believe::RequestOptions
         }
       end
     end

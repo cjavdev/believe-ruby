@@ -4,7 +4,7 @@ module Believe
   module Models
     # Types of matches.
     module MatchType
-      extend Believe::Internal::Type::Enum
+      extend ::Believe::Internal::Type::Enum
 
       LEAGUE = :league
       CUP = :cup

@@ -2,10 +2,10 @@
 
 module Believe
   module Models
-    class MedicalStaff < Believe::Internal::Type::BaseModel
+    class MedicalStaff < ::Believe::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
-          T.any(Believe::MedicalStaff, Believe::Internal::AnyHash)
+          T.any(::Believe::MedicalStaff, ::Believe::Internal::AnyHash)
         end
 
       # Unique identifier for this team membership
@@ -17,7 +17,7 @@ module Believe
       attr_accessor :character_id
 
       # Medical specialty
-      sig { returns(Believe::MedicalSpecialty::TaggedSymbol) }
+      sig { returns(::Believe::MedicalSpecialty::TaggedSymbol) }
       attr_accessor :specialty
 
       # ID of the team they belong to
@@ -34,12 +34,12 @@ module Believe
 
       # Discriminator field indicating this is medical staff
       sig do
-        returns(T.nilable(Believe::MedicalStaff::MemberType::TaggedSymbol))
+        returns(T.nilable(::Believe::MedicalStaff::MemberType::TaggedSymbol))
       end
       attr_reader :member_type
 
       sig do
-        params(member_type: Believe::MedicalStaff::MemberType::OrSymbol).void
+        params(member_type: ::Believe::MedicalStaff::MemberType::OrSymbol).void
       end
       attr_writer :member_type
 
@@ -55,11 +55,11 @@ module Believe
         params(
           id: String,
           character_id: String,
-          specialty: Believe::MedicalSpecialty::OrSymbol,
+          specialty: ::Believe::MedicalSpecialty::OrSymbol,
           team_id: String,
           years_with_team: Integer,
           license_number: T.nilable(String),
-          member_type: Believe::MedicalStaff::MemberType::OrSymbol,
+          member_type: ::Believe::MedicalStaff::MemberType::OrSymbol,
           qualifications: T::Array[String]
         ).returns(T.attached_class)
       end
@@ -88,11 +88,11 @@ module Believe
           {
             id: String,
             character_id: String,
-            specialty: Believe::MedicalSpecialty::TaggedSymbol,
+            specialty: ::Believe::MedicalSpecialty::TaggedSymbol,
             team_id: String,
             years_with_team: Integer,
             license_number: T.nilable(String),
-            member_type: Believe::MedicalStaff::MemberType::TaggedSymbol,
+            member_type: ::Believe::MedicalStaff::MemberType::TaggedSymbol,
             qualifications: T::Array[String]
           }
         )
@@ -102,18 +102,21 @@ module Believe
 
       # Discriminator field indicating this is medical staff
       module MemberType
-        extend Believe::Internal::Type::Enum
+        extend ::Believe::Internal::Type::Enum
 
         TaggedSymbol =
-          T.type_alias { T.all(Symbol, Believe::MedicalStaff::MemberType) }
+          T.type_alias { T.all(Symbol, ::Believe::MedicalStaff::MemberType) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         MEDICAL_STAFF =
-          T.let(:medical_staff, Believe::MedicalStaff::MemberType::TaggedSymbol)
+          T.let(
+            :medical_staff,
+            ::Believe::MedicalStaff::MemberType::TaggedSymbol
+          )
 
         sig do
           override.returns(
-            T::Array[Believe::MedicalStaff::MemberType::TaggedSymbol]
+            T::Array[::Believe::MedicalStaff::MemberType::TaggedSymbol]
           )
         end
         def self.values

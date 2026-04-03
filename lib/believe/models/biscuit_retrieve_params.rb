@@ -2,13 +2,19 @@
 
 module Believe
   module Models
-    # @see Believe::Resources::Biscuits#retrieve
-    class BiscuitRetrieveParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    # @see ::Believe::Resources::Biscuits#retrieve
+    class BiscuitRetrieveParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
-      # @!method initialize(request_options: {})
-      #   @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}]
+      # @!attribute biscuit_id
+      #
+      #   @return [String]
+      required :biscuit_id, String
+
+      # @!method initialize(biscuit_id:, request_options: {})
+      #   @param biscuit_id [String]
+      #   @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}]
     end
   end
 end

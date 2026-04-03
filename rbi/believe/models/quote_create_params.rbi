@@ -2,13 +2,13 @@
 
 module Believe
   module Models
-    class QuoteCreateParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class QuoteCreateParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(Believe::QuoteCreateParams, Believe::Internal::AnyHash)
+          T.any(::Believe::QuoteCreateParams, ::Believe::Internal::AnyHash)
         end
 
       # ID of the character who said it
@@ -20,7 +20,7 @@ module Believe
       attr_accessor :context
 
       # Type of moment when the quote was said
-      sig { returns(Believe::QuoteMoment::OrSymbol) }
+      sig { returns(::Believe::QuoteMoment::OrSymbol) }
       attr_accessor :moment_type
 
       # The quote text
@@ -28,7 +28,7 @@ module Believe
       attr_accessor :text
 
       # Primary theme of the quote
-      sig { returns(Believe::QuoteTheme::OrSymbol) }
+      sig { returns(::Believe::QuoteTheme::OrSymbol) }
       attr_accessor :theme
 
       # Episode where the quote appears
@@ -54,11 +54,11 @@ module Believe
       attr_accessor :popularity_score
 
       # Additional themes
-      sig { returns(T.nilable(T::Array[Believe::QuoteTheme::OrSymbol])) }
+      sig { returns(T.nilable(T::Array[::Believe::QuoteTheme::OrSymbol])) }
       attr_reader :secondary_themes
 
       sig do
-        params(secondary_themes: T::Array[Believe::QuoteTheme::OrSymbol]).void
+        params(secondary_themes: T::Array[::Believe::QuoteTheme::OrSymbol]).void
       end
       attr_writer :secondary_themes
 
@@ -70,16 +70,16 @@ module Believe
         params(
           character_id: String,
           context: String,
-          moment_type: Believe::QuoteMoment::OrSymbol,
+          moment_type: ::Believe::QuoteMoment::OrSymbol,
           text: String,
-          theme: Believe::QuoteTheme::OrSymbol,
+          theme: ::Believe::QuoteTheme::OrSymbol,
           episode_id: T.nilable(String),
           is_funny: T::Boolean,
           is_inspirational: T::Boolean,
           popularity_score: T.nilable(Float),
-          secondary_themes: T::Array[Believe::QuoteTheme::OrSymbol],
+          secondary_themes: T::Array[::Believe::QuoteTheme::OrSymbol],
           times_shared: T.nilable(Integer),
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
@@ -114,16 +114,16 @@ module Believe
           {
             character_id: String,
             context: String,
-            moment_type: Believe::QuoteMoment::OrSymbol,
+            moment_type: ::Believe::QuoteMoment::OrSymbol,
             text: String,
-            theme: Believe::QuoteTheme::OrSymbol,
+            theme: ::Believe::QuoteTheme::OrSymbol,
             episode_id: T.nilable(String),
             is_funny: T::Boolean,
             is_inspirational: T::Boolean,
             popularity_score: T.nilable(Float),
-            secondary_themes: T::Array[Believe::QuoteTheme::OrSymbol],
+            secondary_themes: T::Array[::Believe::QuoteTheme::OrSymbol],
             times_shared: T.nilable(Integer),
-            request_options: Believe::RequestOptions
+            request_options: ::Believe::RequestOptions
           }
         )
       end

@@ -1,5 +1,5 @@
 module Believe
   module Models
-    StreamTestConnectionResponse: Believe::Internal::Type::Converter
+    StreamTestConnectionResponse: ::Believe::Internal::Type::Converter
   end
 end

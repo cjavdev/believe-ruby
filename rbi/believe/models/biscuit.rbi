@@ -2,9 +2,9 @@
 
 module Believe
   module Models
-    class Biscuit < Believe::Internal::Type::BaseModel
+    class Biscuit < ::Believe::Internal::Type::BaseModel
       OrHash =
-        T.type_alias { T.any(Believe::Biscuit, Believe::Internal::AnyHash) }
+        T.type_alias { T.any(::Believe::Biscuit, ::Believe::Internal::AnyHash) }
 
       # Biscuit identifier
       sig { returns(String) }
@@ -23,7 +23,7 @@ module Believe
       attr_accessor :ted_note
 
       # Type of biscuit
-      sig { returns(Believe::Biscuit::Type::TaggedSymbol) }
+      sig { returns(::Believe::Biscuit::Type::TaggedSymbol) }
       attr_accessor :type
 
       # How warm and fresh (1-10)
@@ -37,7 +37,7 @@ module Believe
           message: String,
           pairs_well_with: String,
           ted_note: String,
-          type: Believe::Biscuit::Type::OrSymbol,
+          type: ::Believe::Biscuit::Type::OrSymbol,
           warmth_level: Integer
         ).returns(T.attached_class)
       end
@@ -64,7 +64,7 @@ module Believe
             message: String,
             pairs_well_with: String,
             ted_note: String,
-            type: Believe::Biscuit::Type::TaggedSymbol,
+            type: ::Believe::Biscuit::Type::TaggedSymbol,
             warmth_level: Integer
           }
         )
@@ -74,19 +74,25 @@ module Believe
 
       # Type of biscuit
       module Type
-        extend Believe::Internal::Type::Enum
+        extend ::Believe::Internal::Type::Enum
 
-        TaggedSymbol = T.type_alias { T.all(Symbol, Believe::Biscuit::Type) }
+        TaggedSymbol = T.type_alias { T.all(Symbol, ::Believe::Biscuit::Type) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        CLASSIC = T.let(:classic, Believe::Biscuit::Type::TaggedSymbol)
-        SHORTBREAD = T.let(:shortbread, Believe::Biscuit::Type::TaggedSymbol)
+        CLASSIC = T.let(:classic, ::Believe::Biscuit::Type::TaggedSymbol)
+        SHORTBREAD = T.let(:shortbread, ::Believe::Biscuit::Type::TaggedSymbol)
         CHOCOLATE_CHIP =
-          T.let(:chocolate_chip, Believe::Biscuit::Type::TaggedSymbol)
+          T.let(:chocolate_chip, ::Believe::Biscuit::Type::TaggedSymbol)
         OATMEAL_RAISIN =
-          T.let(:oatmeal_raisin, Believe::Biscuit::Type::TaggedSymbol)
+          T.let(:oatmeal_raisin, ::Believe::Biscuit::Type::TaggedSymbol)
+        SNICKERDOODLE =
+          T.let(:snickerdoodle, ::Believe::Biscuit::Type::TaggedSymbol)
+        LEMON_DRIZZLE =
+          T.let(:lemon_drizzle, ::Believe::Biscuit::Type::TaggedSymbol)
 
-        sig { override.returns(T::Array[Believe::Biscuit::Type::TaggedSymbol]) }
+        sig do
+          override.returns(T::Array[::Believe::Biscuit::Type::TaggedSymbol])
+        end
         def self.values
         end
       end

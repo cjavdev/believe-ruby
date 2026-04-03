@@ -3,7 +3,7 @@
 module Believe
   module Internal
     class SkipLimitPage
-      include Believe::Internal::Type::BasePage
+      include ::Believe::Internal::Type::BasePage
 
       Elem = type_member
 

@@ -8,13 +8,13 @@ module Believe
         # @!attribute request_options
         # Options to specify HTTP behaviour for this request.
         #
-        #   @return [Believe::RequestOptions, Hash{Symbol=>Object}]
+        #   @return [::Believe::RequestOptions, Hash{Symbol=>Object}]
 
         # @param mod [Module]
         def self.included(mod)
-          raise ArgumentError.new(mod) unless mod <= Believe::Internal::Type::BaseModel
+          raise ArgumentError.new(mod) unless mod <= ::Believe::Internal::Type::BaseModel
 
-          mod.optional(:request_options, Believe::RequestOptions)
+          mod.optional(:request_options, ::Believe::RequestOptions)
         end
 
         # @api private
@@ -28,7 +28,7 @@ module Believe
             state = {can_retry: true}
             case (dumped = dump(params, state: state))
             in Hash
-              options = Believe::Internal::Util.coerce_hash!(dumped[:request_options]).to_h
+              options = ::Believe::Internal::Util.coerce_hash!(dumped[:request_options]).to_h
               request_options = state.fetch(:can_retry) ? options : {**options, max_retries: 0}
               [dumped.except(:request_options), request_options]
             else

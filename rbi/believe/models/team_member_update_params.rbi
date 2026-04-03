@@ -2,23 +2,26 @@
 
 module Believe
   module Models
-    class TeamMemberUpdateParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class TeamMemberUpdateParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(Believe::TeamMemberUpdateParams, Believe::Internal::AnyHash)
+          T.any(::Believe::TeamMemberUpdateParams, ::Believe::Internal::AnyHash)
         end
+
+      sig { returns(String) }
+      attr_accessor :member_id
 
       # Update model for players.
       sig do
         returns(
           T.any(
-            Believe::TeamMemberUpdateParams::Updates::PlayerUpdate,
-            Believe::TeamMemberUpdateParams::Updates::CoachUpdate,
-            Believe::TeamMemberUpdateParams::Updates::MedicalStaffUpdate,
-            Believe::TeamMemberUpdateParams::Updates::EquipmentManagerUpdate
+            ::Believe::TeamMemberUpdateParams::Updates::PlayerUpdate,
+            ::Believe::TeamMemberUpdateParams::Updates::CoachUpdate,
+            ::Believe::TeamMemberUpdateParams::Updates::MedicalStaffUpdate,
+            ::Believe::TeamMemberUpdateParams::Updates::EquipmentManagerUpdate
           )
         )
       end
@@ -26,17 +29,19 @@ module Believe
 
       sig do
         params(
+          member_id: String,
           updates:
             T.any(
-              Believe::TeamMemberUpdateParams::Updates::PlayerUpdate::OrHash,
-              Believe::TeamMemberUpdateParams::Updates::CoachUpdate::OrHash,
-              Believe::TeamMemberUpdateParams::Updates::MedicalStaffUpdate::OrHash,
-              Believe::TeamMemberUpdateParams::Updates::EquipmentManagerUpdate::OrHash
+              ::Believe::TeamMemberUpdateParams::Updates::PlayerUpdate::OrHash,
+              ::Believe::TeamMemberUpdateParams::Updates::CoachUpdate::OrHash,
+              ::Believe::TeamMemberUpdateParams::Updates::MedicalStaffUpdate::OrHash,
+              ::Believe::TeamMemberUpdateParams::Updates::EquipmentManagerUpdate::OrHash
             ),
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        member_id:,
         # Update model for players.
         updates:,
         request_options: {}
@@ -46,14 +51,15 @@ module Believe
       sig do
         override.returns(
           {
+            member_id: String,
             updates:
               T.any(
-                Believe::TeamMemberUpdateParams::Updates::PlayerUpdate,
-                Believe::TeamMemberUpdateParams::Updates::CoachUpdate,
-                Believe::TeamMemberUpdateParams::Updates::MedicalStaffUpdate,
-                Believe::TeamMemberUpdateParams::Updates::EquipmentManagerUpdate
+                ::Believe::TeamMemberUpdateParams::Updates::PlayerUpdate,
+                ::Believe::TeamMemberUpdateParams::Updates::CoachUpdate,
+                ::Believe::TeamMemberUpdateParams::Updates::MedicalStaffUpdate,
+                ::Believe::TeamMemberUpdateParams::Updates::EquipmentManagerUpdate
               ),
-            request_options: Believe::RequestOptions
+            request_options: ::Believe::RequestOptions
           }
         )
       end
@@ -62,24 +68,24 @@ module Believe
 
       # Update model for players.
       module Updates
-        extend Believe::Internal::Type::Union
+        extend ::Believe::Internal::Type::Union
 
         Variants =
           T.type_alias do
             T.any(
-              Believe::TeamMemberUpdateParams::Updates::PlayerUpdate,
-              Believe::TeamMemberUpdateParams::Updates::CoachUpdate,
-              Believe::TeamMemberUpdateParams::Updates::MedicalStaffUpdate,
-              Believe::TeamMemberUpdateParams::Updates::EquipmentManagerUpdate
+              ::Believe::TeamMemberUpdateParams::Updates::PlayerUpdate,
+              ::Believe::TeamMemberUpdateParams::Updates::CoachUpdate,
+              ::Believe::TeamMemberUpdateParams::Updates::MedicalStaffUpdate,
+              ::Believe::TeamMemberUpdateParams::Updates::EquipmentManagerUpdate
             )
           end
 
-        class PlayerUpdate < Believe::Internal::Type::BaseModel
+        class PlayerUpdate < ::Believe::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                Believe::TeamMemberUpdateParams::Updates::PlayerUpdate,
-                Believe::Internal::AnyHash
+                ::Believe::TeamMemberUpdateParams::Updates::PlayerUpdate,
+                ::Believe::Internal::AnyHash
               )
             end
 
@@ -96,7 +102,7 @@ module Believe
           attr_accessor :jersey_number
 
           # Football positions for players.
-          sig { returns(T.nilable(Believe::Position::OrSymbol)) }
+          sig { returns(T.nilable(::Believe::Position::OrSymbol)) }
           attr_accessor :position
 
           sig { returns(T.nilable(String)) }
@@ -112,7 +118,7 @@ module Believe
               goals_scored: T.nilable(Integer),
               is_captain: T.nilable(T::Boolean),
               jersey_number: T.nilable(Integer),
-              position: T.nilable(Believe::Position::OrSymbol),
+              position: T.nilable(::Believe::Position::OrSymbol),
               team_id: T.nilable(String),
               years_with_team: T.nilable(Integer)
             ).returns(T.attached_class)
@@ -136,7 +142,7 @@ module Believe
                 goals_scored: T.nilable(Integer),
                 is_captain: T.nilable(T::Boolean),
                 jersey_number: T.nilable(Integer),
-                position: T.nilable(Believe::Position::OrSymbol),
+                position: T.nilable(::Believe::Position::OrSymbol),
                 team_id: T.nilable(String),
                 years_with_team: T.nilable(Integer)
               }
@@ -146,12 +152,12 @@ module Believe
           end
         end
 
-        class CoachUpdate < Believe::Internal::Type::BaseModel
+        class CoachUpdate < ::Believe::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                Believe::TeamMemberUpdateParams::Updates::CoachUpdate,
-                Believe::Internal::AnyHash
+                ::Believe::TeamMemberUpdateParams::Updates::CoachUpdate,
+                ::Believe::Internal::AnyHash
               )
             end
 
@@ -159,7 +165,7 @@ module Believe
           attr_accessor :certifications
 
           # Coaching specialties.
-          sig { returns(T.nilable(Believe::CoachSpecialty::OrSymbol)) }
+          sig { returns(T.nilable(::Believe::CoachSpecialty::OrSymbol)) }
           attr_accessor :specialty
 
           sig { returns(T.nilable(String)) }
@@ -175,7 +181,7 @@ module Believe
           sig do
             params(
               certifications: T.nilable(T::Array[String]),
-              specialty: T.nilable(Believe::CoachSpecialty::OrSymbol),
+              specialty: T.nilable(::Believe::CoachSpecialty::OrSymbol),
               team_id: T.nilable(String),
               win_rate: T.nilable(Float),
               years_with_team: T.nilable(Integer)
@@ -195,7 +201,7 @@ module Believe
             override.returns(
               {
                 certifications: T.nilable(T::Array[String]),
-                specialty: T.nilable(Believe::CoachSpecialty::OrSymbol),
+                specialty: T.nilable(::Believe::CoachSpecialty::OrSymbol),
                 team_id: T.nilable(String),
                 win_rate: T.nilable(Float),
                 years_with_team: T.nilable(Integer)
@@ -206,12 +212,12 @@ module Believe
           end
         end
 
-        class MedicalStaffUpdate < Believe::Internal::Type::BaseModel
+        class MedicalStaffUpdate < ::Believe::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                Believe::TeamMemberUpdateParams::Updates::MedicalStaffUpdate,
-                Believe::Internal::AnyHash
+                ::Believe::TeamMemberUpdateParams::Updates::MedicalStaffUpdate,
+                ::Believe::Internal::AnyHash
               )
             end
 
@@ -222,7 +228,7 @@ module Believe
           attr_accessor :qualifications
 
           # Medical staff specialties.
-          sig { returns(T.nilable(Believe::MedicalSpecialty::OrSymbol)) }
+          sig { returns(T.nilable(::Believe::MedicalSpecialty::OrSymbol)) }
           attr_accessor :specialty
 
           sig { returns(T.nilable(String)) }
@@ -236,7 +242,7 @@ module Believe
             params(
               license_number: T.nilable(String),
               qualifications: T.nilable(T::Array[String]),
-              specialty: T.nilable(Believe::MedicalSpecialty::OrSymbol),
+              specialty: T.nilable(::Believe::MedicalSpecialty::OrSymbol),
               team_id: T.nilable(String),
               years_with_team: T.nilable(Integer)
             ).returns(T.attached_class)
@@ -256,7 +262,7 @@ module Believe
               {
                 license_number: T.nilable(String),
                 qualifications: T.nilable(T::Array[String]),
-                specialty: T.nilable(Believe::MedicalSpecialty::OrSymbol),
+                specialty: T.nilable(::Believe::MedicalSpecialty::OrSymbol),
                 team_id: T.nilable(String),
                 years_with_team: T.nilable(Integer)
               }
@@ -266,12 +272,12 @@ module Believe
           end
         end
 
-        class EquipmentManagerUpdate < Believe::Internal::Type::BaseModel
+        class EquipmentManagerUpdate < ::Believe::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                Believe::TeamMemberUpdateParams::Updates::EquipmentManagerUpdate,
-                Believe::Internal::AnyHash
+                ::Believe::TeamMemberUpdateParams::Updates::EquipmentManagerUpdate,
+                ::Believe::Internal::AnyHash
               )
             end
 
@@ -320,7 +326,7 @@ module Believe
 
         sig do
           override.returns(
-            T::Array[Believe::TeamMemberUpdateParams::Updates::Variants]
+            T::Array[::Believe::TeamMemberUpdateParams::Updates::Variants]
           )
         end
         def self.variants

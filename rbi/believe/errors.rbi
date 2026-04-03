@@ -7,7 +7,7 @@ module Believe
       attr_accessor :cause
     end
 
-    class ConversionError < Believe::Errors::Error
+    class ConversionError < ::Believe::Errors::Error
       sig { returns(T.nilable(StandardError)) }
       def cause
       end
@@ -26,7 +26,7 @@ module Believe
       end
     end
 
-    class APIError < Believe::Errors::Error
+    class APIError < ::Believe::Errors::Error
       sig { returns(URI::Generic) }
       attr_accessor :url
 
@@ -63,7 +63,7 @@ module Believe
       end
     end
 
-    class APIConnectionError < Believe::Errors::APIError
+    class APIConnectionError < ::Believe::Errors::APIError
       sig { returns(NilClass) }
       attr_accessor :status
 
@@ -94,7 +94,7 @@ module Believe
       end
     end
 
-    class APITimeoutError < Believe::Errors::APIConnectionError
+    class APITimeoutError < ::Believe::Errors::APIConnectionError
       # @api private
       sig do
         params(
@@ -119,7 +119,7 @@ module Believe
       end
     end
 
-    class APIStatusError < Believe::Errors::APIError
+    class APIStatusError < ::Believe::Errors::APIError
       # @api private
       sig do
         params(
@@ -170,35 +170,35 @@ module Believe
       end
     end
 
-    class BadRequestError < Believe::Errors::APIStatusError
+    class BadRequestError < ::Believe::Errors::APIStatusError
       HTTP_STATUS = 400
     end
 
-    class AuthenticationError < Believe::Errors::APIStatusError
+    class AuthenticationError < ::Believe::Errors::APIStatusError
       HTTP_STATUS = 401
     end
 
-    class PermissionDeniedError < Believe::Errors::APIStatusError
+    class PermissionDeniedError < ::Believe::Errors::APIStatusError
       HTTP_STATUS = 403
     end
 
-    class NotFoundError < Believe::Errors::APIStatusError
+    class NotFoundError < ::Believe::Errors::APIStatusError
       HTTP_STATUS = 404
     end
 
-    class ConflictError < Believe::Errors::APIStatusError
+    class ConflictError < ::Believe::Errors::APIStatusError
       HTTP_STATUS = 409
     end
 
-    class UnprocessableEntityError < Believe::Errors::APIStatusError
+    class UnprocessableEntityError < ::Believe::Errors::APIStatusError
       HTTP_STATUS = 422
     end
 
-    class RateLimitError < Believe::Errors::APIStatusError
+    class RateLimitError < ::Believe::Errors::APIStatusError
       HTTP_STATUS = 429
     end
 
-    class InternalServerError < Believe::Errors::APIStatusError
+    class InternalServerError < ::Believe::Errors::APIStatusError
       HTTP_STATUS = T.let((500..), T::Range[Integer])
     end
   end

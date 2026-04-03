@@ -11,7 +11,7 @@ module Believe
           uploaded_at: Time
         }
 
-      class FileUpload < Believe::Internal::Type::BaseModel
+      class FileUpload < ::Believe::Internal::Type::BaseModel
         attr_accessor checksum_sha256: String
 
         attr_accessor content_type: String

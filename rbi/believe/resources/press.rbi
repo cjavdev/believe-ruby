@@ -2,6 +2,7 @@
 
 module Believe
   module Resources
+    # Interactive endpoints for motivation and guidance
     class Press
       # Get Ted's response to press conference questions.
       sig do
@@ -9,8 +10,8 @@ module Believe
           question: String,
           hostile: T::Boolean,
           topic: T.nilable(String),
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::Models::PressSimulateResponse)
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::Models::PressSimulateResponse)
       end
       def simulate(
         # The press question to answer
@@ -24,7 +25,7 @@ module Believe
       end
 
       # @api private
-      sig { params(client: Believe::Client).returns(T.attached_class) }
+      sig { params(client: ::Believe::Client).returns(T.attached_class) }
       def self.new(client:)
       end
     end

@@ -5,7 +5,7 @@ module Believe
     module Transport
       # @api private
       class PooledNetRequester
-        extend Believe::Internal::Util::SorbetRuntimeSupport
+        extend ::Believe::Internal::Util::SorbetRuntimeSupport
 
         Request =
           T.type_alias do
@@ -43,7 +43,7 @@ module Believe
           sig do
             params(
               request:
-                Believe::Internal::Transport::PooledNetRequester::Request,
+                ::Believe::Internal::Transport::PooledNetRequester::Request,
               blk: T.proc.params(arg0: String).void
             ).returns([Net::HTTPGenericRequest, T.proc.void])
           end
@@ -65,7 +65,7 @@ module Believe
         # @api private
         sig do
           params(
-            request: Believe::Internal::Transport::PooledNetRequester::Request
+            request: ::Believe::Internal::Transport::PooledNetRequester::Request
           ).returns([Integer, Net::HTTPResponse, T::Enumerable[String]])
         end
         def execute(request)
@@ -74,7 +74,7 @@ module Believe
         # @api private
         sig { params(size: Integer).returns(T.attached_class) }
         def self.new(
-          size: Believe::Internal::Transport::PooledNetRequester::DEFAULT_MAX_CONNECTIONS
+          size: ::Believe::Internal::Transport::PooledNetRequester::DEFAULT_MAX_CONNECTIONS
         )
         end
       end

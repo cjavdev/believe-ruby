@@ -2,13 +2,13 @@
 
 module Believe
   module Models
-    class TeamCreateParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class TeamCreateParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(Believe::TeamCreateParams, Believe::Internal::AnyHash)
+          T.any(::Believe::TeamCreateParams, ::Believe::Internal::AnyHash)
         end
 
       # Team culture/morale score (0-100)
@@ -20,7 +20,7 @@ module Believe
       attr_accessor :founded_year
 
       # Current league
-      sig { returns(Believe::League::OrSymbol) }
+      sig { returns(::Believe::League::OrSymbol) }
       attr_accessor :league
 
       # Team name
@@ -32,15 +32,17 @@ module Believe
       attr_accessor :stadium
 
       # Team's core values
-      sig { returns(Believe::TeamValues) }
+      sig { returns(::Believe::TeamValues) }
       attr_reader :values
 
-      sig { params(values: Believe::TeamValues::OrHash).void }
+      sig { params(values: ::Believe::TeamValues::OrHash).void }
       attr_writer :values
 
       # Annual budget in GBP
       sig do
-        returns(T.nilable(Believe::TeamCreateParams::AnnualBudgetGbp::Variants))
+        returns(
+          T.nilable(::Believe::TeamCreateParams::AnnualBudgetGbp::Variants)
+        )
       end
       attr_accessor :annual_budget_gbp
 
@@ -79,11 +81,11 @@ module Believe
       attr_accessor :secondary_color
 
       # Geographic coordinates for a location.
-      sig { returns(T.nilable(Believe::GeoLocation)) }
+      sig { returns(T.nilable(::Believe::GeoLocation)) }
       attr_reader :stadium_location
 
       sig do
-        params(stadium_location: T.nilable(Believe::GeoLocation::OrHash)).void
+        params(stadium_location: T.nilable(::Believe::GeoLocation::OrHash)).void
       end
       attr_writer :stadium_location
 
@@ -99,12 +101,12 @@ module Believe
         params(
           culture_score: Integer,
           founded_year: Integer,
-          league: Believe::League::OrSymbol,
+          league: ::Believe::League::OrSymbol,
           name: String,
           stadium: String,
-          values: Believe::TeamValues::OrHash,
+          values: ::Believe::TeamValues::OrHash,
           annual_budget_gbp:
-            T.nilable(Believe::TeamCreateParams::AnnualBudgetGbp::Variants),
+            T.nilable(::Believe::TeamCreateParams::AnnualBudgetGbp::Variants),
           average_attendance: T.nilable(Float),
           contact_email: T.nilable(String),
           is_active: T::Boolean,
@@ -112,10 +114,10 @@ module Believe
           primary_color: T.nilable(String),
           rival_teams: T::Array[String],
           secondary_color: T.nilable(String),
-          stadium_location: T.nilable(Believe::GeoLocation::OrHash),
+          stadium_location: T.nilable(::Believe::GeoLocation::OrHash),
           website: T.nilable(String),
           win_percentage: T.nilable(Float),
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
@@ -162,12 +164,12 @@ module Believe
           {
             culture_score: Integer,
             founded_year: Integer,
-            league: Believe::League::OrSymbol,
+            league: ::Believe::League::OrSymbol,
             name: String,
             stadium: String,
-            values: Believe::TeamValues,
+            values: ::Believe::TeamValues,
             annual_budget_gbp:
-              T.nilable(Believe::TeamCreateParams::AnnualBudgetGbp::Variants),
+              T.nilable(::Believe::TeamCreateParams::AnnualBudgetGbp::Variants),
             average_attendance: T.nilable(Float),
             contact_email: T.nilable(String),
             is_active: T::Boolean,
@@ -175,10 +177,10 @@ module Believe
             primary_color: T.nilable(String),
             rival_teams: T::Array[String],
             secondary_color: T.nilable(String),
-            stadium_location: T.nilable(Believe::GeoLocation),
+            stadium_location: T.nilable(::Believe::GeoLocation),
             website: T.nilable(String),
             win_percentage: T.nilable(Float),
-            request_options: Believe::RequestOptions
+            request_options: ::Believe::RequestOptions
           }
         )
       end
@@ -187,13 +189,13 @@ module Believe
 
       # Annual budget in GBP
       module AnnualBudgetGbp
-        extend Believe::Internal::Type::Union
+        extend ::Believe::Internal::Type::Union
 
         Variants = T.type_alias { T.any(Float, String) }
 
         sig do
           override.returns(
-            T::Array[Believe::TeamCreateParams::AnnualBudgetGbp::Variants]
+            T::Array[::Believe::TeamCreateParams::AnnualBudgetGbp::Variants]
           )
         end
         def self.variants

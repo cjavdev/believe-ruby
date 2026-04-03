@@ -2,6 +2,7 @@
 
 module Believe
   module Resources
+    # Interactive endpoints for motivation and guidance
     class Reframe
       # Transform negative thoughts into positive perspectives with Ted's help.
       #
@@ -11,25 +12,25 @@ module Believe
       #
       # @param recurring [Boolean] Is this a recurring thought?
       #
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Models::ReframeTransformNegativeThoughtsResponse]
+      # @return [::Believe::Models::ReframeTransformNegativeThoughtsResponse]
       #
-      # @see Believe::Models::ReframeTransformNegativeThoughtsParams
+      # @see ::Believe::Models::ReframeTransformNegativeThoughtsParams
       def transform_negative_thoughts(params)
-        parsed, options = Believe::ReframeTransformNegativeThoughtsParams.dump_request(params)
+        parsed, options = ::Believe::ReframeTransformNegativeThoughtsParams.dump_request(params)
         @client.request(
           method: :post,
           path: "reframe",
           body: parsed,
-          model: Believe::Models::ReframeTransformNegativeThoughtsResponse,
+          model: ::Believe::Models::ReframeTransformNegativeThoughtsResponse,
           options: options
         )
       end
 
       # @api private
       #
-      # @param client [Believe::Client]
+      # @param client [::Believe::Client]
       def initialize(client:)
         @client = client
       end

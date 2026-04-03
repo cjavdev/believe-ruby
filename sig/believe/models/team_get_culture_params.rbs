@@ -1,15 +1,23 @@
 module Believe
   module Models
     type team_get_culture_params =
-      {  } & Believe::Internal::Type::request_parameters
+      { team_id: String } & ::Believe::Internal::Type::request_parameters
 
-    class TeamGetCultureParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class TeamGetCultureParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
-      def initialize: (?request_options: Believe::request_opts) -> void
+      attr_accessor team_id: String
 
-      def to_hash: -> { request_options: Believe::RequestOptions }
+      def initialize: (
+        team_id: String,
+        ?request_options: ::Believe::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        team_id: String,
+        request_options: ::Believe::RequestOptions
+      }
     end
   end
 end

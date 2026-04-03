@@ -29,7 +29,7 @@ class BelieveTest < Minitest::Test
 
   def test_raises_on_missing_non_nullable_opts
     e = assert_raises(ArgumentError) do
-      Believe::Client.new
+      ::Believe::Client.new
     end
     assert_match(/is required/, e.message)
   end
@@ -37,9 +37,9 @@ class BelieveTest < Minitest::Test
   def test_client_default_request_default_retry_attempts
     stub_request(:get, "http://localhost/characters").to_return_json(status: 500, body: {})
 
-    believe = Believe::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    believe = ::Believe::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
-    assert_raises(Believe::Errors::InternalServerError) do
+    assert_raises(::Believe::Errors::InternalServerError) do
       believe.characters.list
     end
 
@@ -49,9 +49,9 @@ class BelieveTest < Minitest::Test
   def test_client_given_request_default_retry_attempts
     stub_request(:get, "http://localhost/characters").to_return_json(status: 500, body: {})
 
-    believe = Believe::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 3)
+    believe = ::Believe::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 3)
 
-    assert_raises(Believe::Errors::InternalServerError) do
+    assert_raises(::Believe::Errors::InternalServerError) do
       believe.characters.list
     end
 
@@ -61,9 +61,9 @@ class BelieveTest < Minitest::Test
   def test_client_default_request_given_retry_attempts
     stub_request(:get, "http://localhost/characters").to_return_json(status: 500, body: {})
 
-    believe = Believe::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    believe = ::Believe::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
-    assert_raises(Believe::Errors::InternalServerError) do
+    assert_raises(::Believe::Errors::InternalServerError) do
       believe.characters.list(request_options: {max_retries: 3})
     end
 
@@ -73,9 +73,9 @@ class BelieveTest < Minitest::Test
   def test_client_given_request_given_retry_attempts
     stub_request(:get, "http://localhost/characters").to_return_json(status: 500, body: {})
 
-    believe = Believe::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 3)
+    believe = ::Believe::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 3)
 
-    assert_raises(Believe::Errors::InternalServerError) do
+    assert_raises(::Believe::Errors::InternalServerError) do
       believe.characters.list(request_options: {max_retries: 4})
     end
 
@@ -89,9 +89,9 @@ class BelieveTest < Minitest::Test
       body: {}
     )
 
-    believe = Believe::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
+    believe = ::Believe::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
 
-    assert_raises(Believe::Errors::InternalServerError) do
+    assert_raises(::Believe::Errors::InternalServerError) do
       believe.characters.list
     end
 
@@ -100,19 +100,21 @@ class BelieveTest < Minitest::Test
   end
 
   def test_client_retry_after_date
+    time_now = Time.now
+
     stub_request(:get, "http://localhost/characters").to_return_json(
       status: 500,
-      headers: {"retry-after" => (Time.now + 10).httpdate},
+      headers: {"retry-after" => (time_now + 10).httpdate},
       body: {}
     )
 
-    believe = Believe::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
+    believe = ::Believe::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
 
-    assert_raises(Believe::Errors::InternalServerError) do
-      Thread.current.thread_variable_set(:time_now, Time.now)
+    Thread.current.thread_variable_set(:time_now, time_now)
+    assert_raises(::Believe::Errors::InternalServerError) do
       believe.characters.list
-      Thread.current.thread_variable_set(:time_now, nil)
     end
+    Thread.current.thread_variable_set(:time_now, nil)
 
     assert_requested(:any, /./, times: 2)
     assert_in_delta(10, Thread.current.thread_variable_get(:mock_sleep).last, 1.0)
@@ -125,9 +127,9 @@ class BelieveTest < Minitest::Test
       body: {}
     )
 
-    believe = Believe::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
+    believe = ::Believe::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
 
-    assert_raises(Believe::Errors::InternalServerError) do
+    assert_raises(::Believe::Errors::InternalServerError) do
       believe.characters.list
     end
 
@@ -138,9 +140,9 @@ class BelieveTest < Minitest::Test
   def test_retry_count_header
     stub_request(:get, "http://localhost/characters").to_return_json(status: 500, body: {})
 
-    believe = Believe::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    believe = ::Believe::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
-    assert_raises(Believe::Errors::InternalServerError) do
+    assert_raises(::Believe::Errors::InternalServerError) do
       believe.characters.list
     end
 
@@ -152,9 +154,9 @@ class BelieveTest < Minitest::Test
   def test_omit_retry_count_header
     stub_request(:get, "http://localhost/characters").to_return_json(status: 500, body: {})
 
-    believe = Believe::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    believe = ::Believe::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
-    assert_raises(Believe::Errors::InternalServerError) do
+    assert_raises(::Believe::Errors::InternalServerError) do
       believe.characters.list(request_options: {extra_headers: {"x-stainless-retry-count" => nil}})
     end
 
@@ -166,9 +168,9 @@ class BelieveTest < Minitest::Test
   def test_overwrite_retry_count_header
     stub_request(:get, "http://localhost/characters").to_return_json(status: 500, body: {})
 
-    believe = Believe::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    believe = ::Believe::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
-    assert_raises(Believe::Errors::InternalServerError) do
+    assert_raises(::Believe::Errors::InternalServerError) do
       believe.characters.list(request_options: {extra_headers: {"x-stainless-retry-count" => "42"}})
     end
 
@@ -186,15 +188,15 @@ class BelieveTest < Minitest::Test
       headers: {"location" => "/redirected"}
     )
 
-    believe = Believe::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    believe = ::Believe::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
-    assert_raises(Believe::Errors::APIConnectionError) do
+    assert_raises(::Believe::Errors::APIConnectionError) do
       believe.characters.list(request_options: {extra_headers: {}})
     end
 
     recorded, = WebMock::RequestRegistry.instance.requested_signatures.hash.first
 
-    assert_requested(:any, "http://localhost/redirected", times: Believe::Client::MAX_REDIRECTS) do
+    assert_requested(:any, "http://localhost/redirected", times: ::Believe::Client::MAX_REDIRECTS) do
       assert_equal(recorded.method, _1.method)
       assert_equal(recorded.body, _1.body)
       assert_equal(
@@ -215,13 +217,13 @@ class BelieveTest < Minitest::Test
       headers: {"location" => "/redirected"}
     )
 
-    believe = Believe::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    believe = ::Believe::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
-    assert_raises(Believe::Errors::APIConnectionError) do
+    assert_raises(::Believe::Errors::APIConnectionError) do
       believe.characters.list(request_options: {extra_headers: {}})
     end
 
-    assert_requested(:get, "http://localhost/redirected", times: Believe::Client::MAX_REDIRECTS) do
+    assert_requested(:get, "http://localhost/redirected", times: ::Believe::Client::MAX_REDIRECTS) do
       headers = _1.headers.keys.map(&:downcase)
       refute_includes(headers, "content-type")
       assert_nil(_1.body)
@@ -239,9 +241,9 @@ class BelieveTest < Minitest::Test
       headers: {"location" => "/redirected"}
     )
 
-    believe = Believe::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    believe = ::Believe::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
-    assert_raises(Believe::Errors::APIConnectionError) do
+    assert_raises(::Believe::Errors::APIConnectionError) do
       believe.characters.list(request_options: {extra_headers: {"authorization" => "Bearer xyz"}})
     end
 
@@ -249,7 +251,7 @@ class BelieveTest < Minitest::Test
     auth_header = recorded.headers.transform_keys(&:downcase).fetch("authorization")
 
     assert_equal("Bearer xyz", auth_header)
-    assert_requested(:any, "http://localhost/redirected", times: Believe::Client::MAX_REDIRECTS) do
+    assert_requested(:any, "http://localhost/redirected", times: ::Believe::Client::MAX_REDIRECTS) do
       auth_header = _1.headers.transform_keys(&:downcase).fetch("authorization")
       assert_equal("Bearer xyz", auth_header)
     end
@@ -266,13 +268,13 @@ class BelieveTest < Minitest::Test
       headers: {"location" => "https://example.com/redirected"}
     )
 
-    believe = Believe::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    believe = ::Believe::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
-    assert_raises(Believe::Errors::APIConnectionError) do
+    assert_raises(::Believe::Errors::APIConnectionError) do
       believe.characters.list(request_options: {extra_headers: {"authorization" => "Bearer xyz"}})
     end
 
-    assert_requested(:any, "https://example.com/redirected", times: Believe::Client::MAX_REDIRECTS) do
+    assert_requested(:any, "https://example.com/redirected", times: ::Believe::Client::MAX_REDIRECTS) do
       headers = _1.headers.keys.map(&:downcase)
       refute_includes(headers, "authorization")
     end
@@ -281,7 +283,7 @@ class BelieveTest < Minitest::Test
   def test_default_headers
     stub_request(:get, "http://localhost/characters").to_return_json(status: 200, body: {})
 
-    believe = Believe::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    believe = ::Believe::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     believe.characters.list
 

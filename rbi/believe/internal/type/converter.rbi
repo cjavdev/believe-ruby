@@ -5,11 +5,11 @@ module Believe
     module Type
       # @api private
       module Converter
-        extend Believe::Internal::Util::SorbetRuntimeSupport
+        extend ::Believe::Internal::Util::SorbetRuntimeSupport
 
         Input =
           T.type_alias do
-            T.any(Believe::Internal::Type::Converter, T::Class[T.anything])
+            T.any(::Believe::Internal::Type::Converter, T::Class[T.anything])
           end
 
         CoerceState =
@@ -34,7 +34,7 @@ module Believe
           overridable
             .params(
               value: T.anything,
-              state: Believe::Internal::Type::Converter::CoerceState
+              state: ::Believe::Internal::Type::Converter::CoerceState
             )
             .returns(T.anything)
         end
@@ -46,7 +46,7 @@ module Believe
           overridable
             .params(
               value: T.anything,
-              state: Believe::Internal::Type::Converter::DumpState
+              state: ::Believe::Internal::Type::Converter::DumpState
             )
             .returns(T.anything)
         end
@@ -72,18 +72,18 @@ module Believe
                     enum:
                       T.nilable(
                         T.proc.returns(
-                          Believe::Internal::Type::Converter::Input
+                          ::Believe::Internal::Type::Converter::Input
                         )
                       ),
                     union:
                       T.nilable(
                         T.proc.returns(
-                          Believe::Internal::Type::Converter::Input
+                          ::Believe::Internal::Type::Converter::Input
                         )
                       )
                   },
-                  T.proc.returns(Believe::Internal::Type::Converter::Input),
-                  Believe::Internal::Type::Converter::Input
+                  T.proc.returns(::Believe::Internal::Type::Converter::Input),
+                  ::Believe::Internal::Type::Converter::Input
                 )
             ).returns(T.proc.returns(T.anything))
           end
@@ -103,18 +103,18 @@ module Believe
                     enum:
                       T.nilable(
                         T.proc.returns(
-                          Believe::Internal::Type::Converter::Input
+                          ::Believe::Internal::Type::Converter::Input
                         )
                       ),
                     union:
                       T.nilable(
                         T.proc.returns(
-                          Believe::Internal::Type::Converter::Input
+                          ::Believe::Internal::Type::Converter::Input
                         )
                       )
                   },
-                  T.proc.returns(Believe::Internal::Type::Converter::Input),
-                  Believe::Internal::Type::Converter::Input
+                  T.proc.returns(::Believe::Internal::Type::Converter::Input),
+                  ::Believe::Internal::Type::Converter::Input
                 ),
               spec:
                 T.any(
@@ -126,20 +126,20 @@ module Believe
                     enum:
                       T.nilable(
                         T.proc.returns(
-                          Believe::Internal::Type::Converter::Input
+                          ::Believe::Internal::Type::Converter::Input
                         )
                       ),
                     union:
                       T.nilable(
                         T.proc.returns(
-                          Believe::Internal::Type::Converter::Input
+                          ::Believe::Internal::Type::Converter::Input
                         )
                       )
                   },
-                  T.proc.returns(Believe::Internal::Type::Converter::Input),
-                  Believe::Internal::Type::Converter::Input
+                  T.proc.returns(::Believe::Internal::Type::Converter::Input),
+                  ::Believe::Internal::Type::Converter::Input
                 )
-            ).returns(Believe::Internal::AnyHash)
+            ).returns(::Believe::Internal::AnyHash)
           end
           def self.meta_info(type_info, spec)
           end
@@ -147,7 +147,7 @@ module Believe
           # @api private
           sig do
             params(translate_names: T::Boolean).returns(
-              Believe::Internal::Type::Converter::CoerceState
+              ::Believe::Internal::Type::Converter::CoerceState
             )
           end
           def self.new_coerce_state(translate_names: true)
@@ -166,9 +166,9 @@ module Believe
           # See https://docs.pydantic.dev/latest/concepts/unions/#smart-mode
           sig do
             params(
-              target: Believe::Internal::Type::Converter::Input,
+              target: ::Believe::Internal::Type::Converter::Input,
               value: T.anything,
-              state: Believe::Internal::Type::Converter::CoerceState
+              state: ::Believe::Internal::Type::Converter::CoerceState
             ).returns(T.anything)
           end
           def self.coerce(
@@ -190,16 +190,16 @@ module Believe
             # - `no`: the value cannot be converted to the target type.
             #
             # See implementation below for more details.
-            state: Believe::Internal::Type::Converter.new_coerce_state
+            state: ::Believe::Internal::Type::Converter.new_coerce_state
           )
           end
 
           # @api private
           sig do
             params(
-              target: Believe::Internal::Type::Converter::Input,
+              target: ::Believe::Internal::Type::Converter::Input,
               value: T.anything,
-              state: Believe::Internal::Type::Converter::DumpState
+              state: ::Believe::Internal::Type::Converter::DumpState
             ).returns(T.anything)
           end
           def self.dump(target, value, state: { can_retry: true })

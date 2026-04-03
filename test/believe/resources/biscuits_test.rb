@@ -9,7 +9,7 @@ class Believe::Test::Resources::BiscuitsTest < Believe::Test::ResourceTest
     response = @believe.biscuits.retrieve("biscuit_id")
 
     assert_pattern do
-      response => Believe::Biscuit
+      response => ::Believe::Biscuit
     end
 
     assert_pattern do
@@ -18,7 +18,7 @@ class Believe::Test::Resources::BiscuitsTest < Believe::Test::ResourceTest
         message: String,
         pairs_well_with: String,
         ted_note: String,
-        type: Believe::Biscuit::Type,
+        type: ::Believe::Biscuit::Type,
         warmth_level: Integer
       }
     end
@@ -30,14 +30,14 @@ class Believe::Test::Resources::BiscuitsTest < Believe::Test::ResourceTest
     response = @believe.biscuits.list
 
     assert_pattern do
-      response => Believe::Internal::SkipLimitPage
+      response => ::Believe::Internal::SkipLimitPage
     end
 
     row = response.to_enum.first
     return if row.nil?
 
     assert_pattern do
-      row => Believe::Biscuit
+      row => ::Believe::Biscuit
     end
 
     assert_pattern do
@@ -46,7 +46,7 @@ class Believe::Test::Resources::BiscuitsTest < Believe::Test::ResourceTest
         message: String,
         pairs_well_with: String,
         ted_note: String,
-        type: Believe::Biscuit::Type,
+        type: ::Believe::Biscuit::Type,
         warmth_level: Integer
       }
     end
@@ -58,7 +58,7 @@ class Believe::Test::Resources::BiscuitsTest < Believe::Test::ResourceTest
     response = @believe.biscuits.get_fresh
 
     assert_pattern do
-      response => Believe::Biscuit
+      response => ::Believe::Biscuit
     end
 
     assert_pattern do
@@ -67,7 +67,7 @@ class Believe::Test::Resources::BiscuitsTest < Believe::Test::ResourceTest
         message: String,
         pairs_well_with: String,
         ted_note: String,
-        type: Believe::Biscuit::Type,
+        type: ::Believe::Biscuit::Type,
         warmth_level: Integer
       }
     end

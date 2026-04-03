@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 module Believe
-  [Believe::Internal::Type::BaseModel, *Believe::Internal::Type::BaseModel.subclasses].each do |cls|
-    cls.define_sorbet_constant!(:OrHash) { T.type_alias { T.any(cls, Believe::Internal::AnyHash) } }
+  [::Believe::Internal::Type::BaseModel, *::Believe::Internal::Type::BaseModel.subclasses].each do |cls|
+    cls.define_sorbet_constant!(:OrHash) { T.type_alias { T.any(cls, ::Believe::Internal::AnyHash) } }
   end
 
-  Believe::Internal::Util.walk_namespaces(Believe::Models).each do |mod|
+  ::Believe::Internal::Util.walk_namespaces(::Believe::Models).each do |mod|
     case mod
-    in Believe::Internal::Type::Enum | Believe::Internal::Type::Union
+    in ::Believe::Internal::Type::Enum | ::Believe::Internal::Type::Union
       mod.constants.each do |name|
         case mod.const_get(name)
         in true | false
@@ -29,205 +29,217 @@ module Believe
     end
   end
 
-  Believe::Internal::Util.walk_namespaces(Believe::Models)
-                         .lazy
-                         .grep(Believe::Internal::Type::Union)
-                         .each do |mod|
+  ::Believe::Internal::Util.walk_namespaces(::Believe::Models)
+                           .lazy
+                           .grep(::Believe::Internal::Type::Union)
+                           .each do |mod|
     const = :Variants
     next if mod.sorbet_constant_defined?(const)
 
     mod.define_sorbet_constant!(const) { T.type_alias { mod.to_sorbet_type } }
   end
 
-  BelieveSubmitParams = Believe::Models::BelieveSubmitParams
+  BelieveSubmitParams = ::Believe::Models::BelieveSubmitParams
 
-  Biscuit = Believe::Models::Biscuit
+  Biscuit = ::Believe::Models::Biscuit
 
-  BiscuitGetFreshParams = Believe::Models::BiscuitGetFreshParams
+  BiscuitGetFreshParams = ::Believe::Models::BiscuitGetFreshParams
 
-  BiscuitListParams = Believe::Models::BiscuitListParams
+  BiscuitListParams = ::Believe::Models::BiscuitListParams
 
-  BiscuitRetrieveParams = Believe::Models::BiscuitRetrieveParams
+  BiscuitRetrieveParams = ::Believe::Models::BiscuitRetrieveParams
 
-  Character = Believe::Models::Character
+  Character = ::Believe::Models::Character
 
-  CharacterCreateParams = Believe::Models::CharacterCreateParams
+  CharacterCreateParams = ::Believe::Models::CharacterCreateParams
 
-  CharacterDeleteParams = Believe::Models::CharacterDeleteParams
+  CharacterDeleteParams = ::Believe::Models::CharacterDeleteParams
 
-  CharacterGetQuotesParams = Believe::Models::CharacterGetQuotesParams
+  CharacterGetQuotesParams = ::Believe::Models::CharacterGetQuotesParams
 
-  CharacterListParams = Believe::Models::CharacterListParams
+  CharacterListParams = ::Believe::Models::CharacterListParams
 
-  CharacterRetrieveParams = Believe::Models::CharacterRetrieveParams
+  CharacterRetrieveParams = ::Believe::Models::CharacterRetrieveParams
 
-  CharacterRole = Believe::Models::CharacterRole
+  CharacterRole = ::Believe::Models::CharacterRole
 
-  CharacterUpdateParams = Believe::Models::CharacterUpdateParams
+  CharacterUpdateParams = ::Believe::Models::CharacterUpdateParams
 
-  ClientGetWelcomeParams = Believe::Models::ClientGetWelcomeParams
+  ClientGetWelcomeParams = ::Believe::Models::ClientGetWelcomeParams
 
-  Coach = Believe::Models::Coach
+  Coach = ::Believe::Models::Coach
 
-  Coaching = Believe::Models::Coaching
+  Coaching = ::Believe::Models::Coaching
 
-  CoachSpecialty = Believe::Models::CoachSpecialty
+  CoachSpecialty = ::Believe::Models::CoachSpecialty
 
-  ConflictResolveParams = Believe::Models::ConflictResolveParams
+  ConflictResolveParams = ::Believe::Models::ConflictResolveParams
 
-  EmotionalStats = Believe::Models::EmotionalStats
+  EmotionalStats = ::Believe::Models::EmotionalStats
 
-  Episode = Believe::Models::Episode
+  Episode = ::Believe::Models::Episode
 
-  EpisodeCreateParams = Believe::Models::EpisodeCreateParams
+  EpisodeCreateParams = ::Believe::Models::EpisodeCreateParams
 
-  EpisodeDeleteParams = Believe::Models::EpisodeDeleteParams
+  EpisodeDeleteParams = ::Believe::Models::EpisodeDeleteParams
 
-  EpisodeGetWisdomParams = Believe::Models::EpisodeGetWisdomParams
+  EpisodeGetWisdomParams = ::Believe::Models::EpisodeGetWisdomParams
 
-  EpisodeListBySeasonParams = Believe::Models::EpisodeListBySeasonParams
+  EpisodeListParams = ::Believe::Models::EpisodeListParams
 
-  EpisodeListParams = Believe::Models::EpisodeListParams
+  EpisodeRetrieveParams = ::Believe::Models::EpisodeRetrieveParams
 
-  EpisodeRetrieveParams = Believe::Models::EpisodeRetrieveParams
+  EpisodeUpdateParams = ::Believe::Models::EpisodeUpdateParams
 
-  EpisodeUpdateParams = Believe::Models::EpisodeUpdateParams
+  EquipmentManager = ::Believe::Models::EquipmentManager
 
-  EquipmentManager = Believe::Models::EquipmentManager
+  GeoLocation = ::Believe::Models::GeoLocation
 
-  GeoLocation = Believe::Models::GeoLocation
+  GrowthArc = ::Believe::Models::GrowthArc
 
-  GrowthArc = Believe::Models::GrowthArc
+  HealthCheckParams = ::Believe::Models::HealthCheckParams
 
-  HealthCheckParams = Believe::Models::HealthCheckParams
+  League = ::Believe::Models::League
 
-  League = Believe::Models::League
+  Match = ::Believe::Models::Match
 
-  Match = Believe::Models::Match
+  MatchCompletedWebhookEvent = ::Believe::Models::MatchCompletedWebhookEvent
 
-  MatchCompletedWebhookEvent = Believe::Models::MatchCompletedWebhookEvent
+  MatchCreateParams = ::Believe::Models::MatchCreateParams
 
-  MatchCreateParams = Believe::Models::MatchCreateParams
+  MatchDeleteParams = ::Believe::Models::MatchDeleteParams
 
-  MatchDeleteParams = Believe::Models::MatchDeleteParams
+  Matches = ::Believe::Models::Matches
 
-  Matches = Believe::Models::Matches
+  MatchGetLessonParams = ::Believe::Models::MatchGetLessonParams
 
-  MatchGetLessonParams = Believe::Models::MatchGetLessonParams
+  MatchGetTurningPointsParams = ::Believe::Models::MatchGetTurningPointsParams
 
-  MatchGetTurningPointsParams = Believe::Models::MatchGetTurningPointsParams
+  MatchListParams = ::Believe::Models::MatchListParams
 
-  MatchListParams = Believe::Models::MatchListParams
+  MatchResult = ::Believe::Models::MatchResult
 
-  MatchResult = Believe::Models::MatchResult
+  MatchRetrieveParams = ::Believe::Models::MatchRetrieveParams
 
-  MatchRetrieveParams = Believe::Models::MatchRetrieveParams
+  MatchStreamLiveParams = ::Believe::Models::MatchStreamLiveParams
 
-  MatchStreamLiveParams = Believe::Models::MatchStreamLiveParams
+  MatchType = ::Believe::Models::MatchType
 
-  MatchType = Believe::Models::MatchType
+  MatchUpdateParams = ::Believe::Models::MatchUpdateParams
 
-  MatchUpdateParams = Believe::Models::MatchUpdateParams
+  MedicalSpecialty = ::Believe::Models::MedicalSpecialty
 
-  MedicalSpecialty = Believe::Models::MedicalSpecialty
+  MedicalStaff = ::Believe::Models::MedicalStaff
 
-  MedicalStaff = Believe::Models::MedicalStaff
+  PaginatedResponse = ::Believe::Models::PaginatedResponse
 
-  PaginatedResponse = Believe::Models::PaginatedResponse
+  PaginatedResponseQuote = ::Believe::Models::PaginatedResponseQuote
 
-  PaginatedResponseQuote = Believe::Models::PaginatedResponseQuote
+  PepTalkRetrieveParams = ::Believe::Models::PepTalkRetrieveParams
 
-  PepTalkRetrieveParams = Believe::Models::PepTalkRetrieveParams
+  Player = ::Believe::Models::Player
 
-  Player = Believe::Models::Player
+  Position = ::Believe::Models::Position
 
-  Position = Believe::Models::Position
+  PressSimulateParams = ::Believe::Models::PressSimulateParams
 
-  PressSimulateParams = Believe::Models::PressSimulateParams
+  PurchaseMethod = ::Believe::Models::PurchaseMethod
 
-  Quote = Believe::Models::Quote
+  Quote = ::Believe::Models::Quote
 
-  QuoteCreateParams = Believe::Models::QuoteCreateParams
+  QuoteCreateParams = ::Believe::Models::QuoteCreateParams
 
-  QuoteDeleteParams = Believe::Models::QuoteDeleteParams
+  QuoteDeleteParams = ::Believe::Models::QuoteDeleteParams
 
-  QuoteGetRandomParams = Believe::Models::QuoteGetRandomParams
+  QuoteGetRandomParams = ::Believe::Models::QuoteGetRandomParams
 
-  QuoteListByCharacterParams = Believe::Models::QuoteListByCharacterParams
+  QuoteListByCharacterParams = ::Believe::Models::QuoteListByCharacterParams
 
-  QuoteListByThemeParams = Believe::Models::QuoteListByThemeParams
+  QuoteListByThemeParams = ::Believe::Models::QuoteListByThemeParams
 
-  QuoteListParams = Believe::Models::QuoteListParams
+  QuoteListParams = ::Believe::Models::QuoteListParams
 
-  QuoteMoment = Believe::Models::QuoteMoment
+  QuoteMoment = ::Believe::Models::QuoteMoment
 
-  QuoteRetrieveParams = Believe::Models::QuoteRetrieveParams
+  QuoteRetrieveParams = ::Believe::Models::QuoteRetrieveParams
 
-  QuoteTheme = Believe::Models::QuoteTheme
+  QuoteTheme = ::Believe::Models::QuoteTheme
 
-  QuoteUpdateParams = Believe::Models::QuoteUpdateParams
+  QuoteUpdateParams = ::Believe::Models::QuoteUpdateParams
 
-  ReframeTransformNegativeThoughtsParams = Believe::Models::ReframeTransformNegativeThoughtsParams
+  ReframeTransformNegativeThoughtsParams = ::Believe::Models::ReframeTransformNegativeThoughtsParams
 
-  RegisteredWebhook = Believe::Models::RegisteredWebhook
+  RegisteredWebhook = ::Believe::Models::RegisteredWebhook
 
-  StreamTestConnectionParams = Believe::Models::StreamTestConnectionParams
+  StreamTestConnectionParams = ::Believe::Models::StreamTestConnectionParams
 
-  Team = Believe::Models::Team
+  Team = ::Believe::Models::Team
 
-  TeamCreateParams = Believe::Models::TeamCreateParams
+  TeamCreateParams = ::Believe::Models::TeamCreateParams
 
-  TeamDeleteParams = Believe::Models::TeamDeleteParams
+  TeamDeleteParams = ::Believe::Models::TeamDeleteParams
 
-  TeamGetCultureParams = Believe::Models::TeamGetCultureParams
+  TeamGetCultureParams = ::Believe::Models::TeamGetCultureParams
 
-  TeamGetRivalsParams = Believe::Models::TeamGetRivalsParams
+  TeamGetRivalsParams = ::Believe::Models::TeamGetRivalsParams
 
-  TeamListLogosParams = Believe::Models::TeamListLogosParams
+  TeamListLogosParams = ::Believe::Models::TeamListLogosParams
 
-  TeamListParams = Believe::Models::TeamListParams
+  TeamListParams = ::Believe::Models::TeamListParams
 
-  TeamMemberCreateParams = Believe::Models::TeamMemberCreateParams
+  TeamMemberCreateParams = ::Believe::Models::TeamMemberCreateParams
 
-  TeamMemberDeleteParams = Believe::Models::TeamMemberDeleteParams
+  TeamMemberDeleteParams = ::Believe::Models::TeamMemberDeleteParams
 
-  TeamMemberListCoachesParams = Believe::Models::TeamMemberListCoachesParams
+  TeamMemberListCoachesParams = ::Believe::Models::TeamMemberListCoachesParams
 
-  TeamMemberListParams = Believe::Models::TeamMemberListParams
+  TeamMemberListParams = ::Believe::Models::TeamMemberListParams
 
-  TeamMemberListPlayersParams = Believe::Models::TeamMemberListPlayersParams
+  TeamMemberListPlayersParams = ::Believe::Models::TeamMemberListPlayersParams
 
-  TeamMemberListStaffParams = Believe::Models::TeamMemberListStaffParams
+  TeamMemberListStaffParams = ::Believe::Models::TeamMemberListStaffParams
 
-  TeamMemberRetrieveParams = Believe::Models::TeamMemberRetrieveParams
+  TeamMemberRetrieveParams = ::Believe::Models::TeamMemberRetrieveParams
 
-  TeamMemberTransferredWebhookEvent = Believe::Models::TeamMemberTransferredWebhookEvent
+  TeamMemberTransferredWebhookEvent = ::Believe::Models::TeamMemberTransferredWebhookEvent
 
-  TeamMemberUpdateParams = Believe::Models::TeamMemberUpdateParams
+  TeamMemberUpdateParams = ::Believe::Models::TeamMemberUpdateParams
 
-  TeamRetrieveParams = Believe::Models::TeamRetrieveParams
+  TeamRetrieveParams = ::Believe::Models::TeamRetrieveParams
 
-  Teams = Believe::Models::Teams
+  Teams = ::Believe::Models::Teams
 
-  TeamUpdateParams = Believe::Models::TeamUpdateParams
+  TeamUpdateParams = ::Believe::Models::TeamUpdateParams
 
-  TeamValues = Believe::Models::TeamValues
+  TeamValues = ::Believe::Models::TeamValues
 
-  TurningPoint = Believe::Models::TurningPoint
+  TicketSale = ::Believe::Models::TicketSale
 
-  UnwrapWebhookEvent = Believe::Models::UnwrapWebhookEvent
+  TicketSaleCreateParams = ::Believe::Models::TicketSaleCreateParams
 
-  VersionRetrieveParams = Believe::Models::VersionRetrieveParams
+  TicketSaleDeleteParams = ::Believe::Models::TicketSaleDeleteParams
 
-  WebhookCreateParams = Believe::Models::WebhookCreateParams
+  TicketSaleListParams = ::Believe::Models::TicketSaleListParams
 
-  WebhookDeleteParams = Believe::Models::WebhookDeleteParams
+  TicketSaleRetrieveParams = ::Believe::Models::TicketSaleRetrieveParams
 
-  WebhookListParams = Believe::Models::WebhookListParams
+  TicketSaleUpdateParams = ::Believe::Models::TicketSaleUpdateParams
 
-  WebhookRetrieveParams = Believe::Models::WebhookRetrieveParams
+  TurningPoint = ::Believe::Models::TurningPoint
 
-  WebhookTriggerEventParams = Believe::Models::WebhookTriggerEventParams
+  UnwrapWebhookEvent = ::Believe::Models::UnwrapWebhookEvent
 
-  WebhookUnwrapParams = Believe::Models::WebhookUnwrapParams
+  VersionRetrieveParams = ::Believe::Models::VersionRetrieveParams
+
+  WebhookCreateParams = ::Believe::Models::WebhookCreateParams
+
+  WebhookDeleteParams = ::Believe::Models::WebhookDeleteParams
+
+  WebhookListParams = ::Believe::Models::WebhookListParams
+
+  WebhookRetrieveParams = ::Believe::Models::WebhookRetrieveParams
+
+  WebhookTriggerEventParams = ::Believe::Models::WebhookTriggerEventParams
+
+  WebhookUnwrapParams = ::Believe::Models::WebhookUnwrapParams
 end

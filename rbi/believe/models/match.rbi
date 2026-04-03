@@ -2,9 +2,9 @@
 
 module Believe
   module Models
-    class Match < Believe::Internal::Type::BaseModel
+    class Match < ::Believe::Internal::Type::BaseModel
       OrHash =
-        T.type_alias { T.any(Believe::Match, Believe::Internal::AnyHash) }
+        T.type_alias { T.any(::Believe::Match, ::Believe::Internal::AnyHash) }
 
       # Unique identifier
       sig { returns(String) }
@@ -23,7 +23,7 @@ module Believe
       attr_accessor :home_team_id
 
       # Type of match
-      sig { returns(Believe::MatchType::TaggedSymbol) }
+      sig { returns(::Believe::MatchType::TaggedSymbol) }
       attr_accessor :match_type
 
       # Match attendance
@@ -57,10 +57,10 @@ module Believe
       attr_accessor :possession_percentage
 
       # Match result from home team perspective
-      sig { returns(T.nilable(Believe::MatchResult::TaggedSymbol)) }
+      sig { returns(T.nilable(::Believe::MatchResult::TaggedSymbol)) }
       attr_reader :result
 
-      sig { params(result: Believe::MatchResult::OrSymbol).void }
+      sig { params(result: ::Believe::MatchResult::OrSymbol).void }
       attr_writer :result
 
       # Ted's inspirational halftime speech
@@ -72,11 +72,11 @@ module Believe
       attr_accessor :ticket_revenue_gbp
 
       # Key moments that changed the match
-      sig { returns(T.nilable(T::Array[Believe::TurningPoint])) }
+      sig { returns(T.nilable(T::Array[::Believe::TurningPoint])) }
       attr_reader :turning_points
 
       sig do
-        params(turning_points: T::Array[Believe::TurningPoint::OrHash]).void
+        params(turning_points: T::Array[::Believe::TurningPoint::OrHash]).void
       end
       attr_writer :turning_points
 
@@ -91,17 +91,17 @@ module Believe
           away_team_id: String,
           date: Time,
           home_team_id: String,
-          match_type: Believe::MatchType::OrSymbol,
+          match_type: ::Believe::MatchType::OrSymbol,
           attendance: T.nilable(Integer),
           away_score: Integer,
           episode_id: T.nilable(String),
           home_score: Integer,
           lesson_learned: T.nilable(String),
           possession_percentage: T.nilable(Float),
-          result: Believe::MatchResult::OrSymbol,
+          result: ::Believe::MatchResult::OrSymbol,
           ted_halftime_speech: T.nilable(String),
           ticket_revenue_gbp: T.nilable(String),
-          turning_points: T::Array[Believe::TurningPoint::OrHash],
+          turning_points: T::Array[::Believe::TurningPoint::OrHash],
           weather_temp_celsius: T.nilable(Float)
         ).returns(T.attached_class)
       end
@@ -148,17 +148,17 @@ module Believe
             away_team_id: String,
             date: Time,
             home_team_id: String,
-            match_type: Believe::MatchType::TaggedSymbol,
+            match_type: ::Believe::MatchType::TaggedSymbol,
             attendance: T.nilable(Integer),
             away_score: Integer,
             episode_id: T.nilable(String),
             home_score: Integer,
             lesson_learned: T.nilable(String),
             possession_percentage: T.nilable(Float),
-            result: Believe::MatchResult::TaggedSymbol,
+            result: ::Believe::MatchResult::TaggedSymbol,
             ted_halftime_speech: T.nilable(String),
             ticket_revenue_gbp: T.nilable(String),
-            turning_points: T::Array[Believe::TurningPoint],
+            turning_points: T::Array[::Believe::TurningPoint],
             weather_temp_celsius: T.nilable(Float)
           }
         )

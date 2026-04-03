@@ -2,10 +2,10 @@
 
 module Believe
   module Models
-    # @see Believe::Resources::Matches#stream_live
-    class MatchStreamLiveParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    # @see ::Believe::Resources::Matches#stream_live
+    class MatchStreamLiveParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       # @!attribute away_team
       #   Away team name
@@ -40,7 +40,7 @@ module Believe
       #
       #   @param speed [Float] Simulation speed multiplier (1.0 = real-time)
       #
-      #   @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}]
+      #   @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}]
     end
   end
 end

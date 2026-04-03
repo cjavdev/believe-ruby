@@ -3,6 +3,6 @@
 module Believe
   module Models
     VersionRetrieveResponse =
-      T.let(T.anything, Believe::Internal::Type::Converter)
+      T.let(T.anything, ::Believe::Internal::Type::Converter)
   end
 end

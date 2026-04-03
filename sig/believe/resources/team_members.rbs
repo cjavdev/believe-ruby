@@ -2,58 +2,58 @@ module Believe
   module Resources
     class TeamMembers
       def create: (
-        member: Believe::Models::TeamMemberCreateParams::member,
-        ?request_options: Believe::request_opts
-      ) -> Believe::Models::team_member_create_response
+        member: ::Believe::Models::TeamMemberCreateParams::member,
+        ?request_options: ::Believe::request_opts
+      ) -> ::Believe::Models::team_member_create_response
 
       def retrieve: (
         String member_id,
-        ?request_options: Believe::request_opts
-      ) -> Believe::Models::team_member_retrieve_response
+        ?request_options: ::Believe::request_opts
+      ) -> ::Believe::Models::team_member_retrieve_response
 
       def update: (
         String member_id,
-        updates: Believe::Models::TeamMemberUpdateParams::updates,
-        ?request_options: Believe::request_opts
-      ) -> Believe::Models::team_member_update_response
+        updates: ::Believe::Models::TeamMemberUpdateParams::updates,
+        ?request_options: ::Believe::request_opts
+      ) -> ::Believe::Models::team_member_update_response
 
       def list: (
         ?limit: Integer,
-        ?member_type: Believe::Models::TeamMemberListParams::member_type?,
+        ?member_type: ::Believe::Models::TeamMemberListParams::member_type?,
         ?skip: Integer,
         ?team_id: String?,
-        ?request_options: Believe::request_opts
-      ) -> Believe::Internal::SkipLimitPage[Believe::Models::team_member_list_response]
+        ?request_options: ::Believe::request_opts
+      ) -> ::Believe::Internal::SkipLimitPage[::Believe::Models::team_member_list_response]
 
       def delete: (
         String member_id,
-        ?request_options: Believe::request_opts
+        ?request_options: ::Believe::request_opts
       ) -> nil
 
       def list_coaches: (
         ?limit: Integer,
         ?skip: Integer,
-        ?specialty: Believe::Models::coach_specialty?,
+        ?specialty: ::Believe::Models::coach_specialty?,
         ?team_id: String?,
-        ?request_options: Believe::request_opts
-      ) -> Believe::Internal::SkipLimitPage[Believe::Coach]
+        ?request_options: ::Believe::request_opts
+      ) -> ::Believe::Internal::SkipLimitPage[::Believe::Coach]
 
       def list_players: (
         ?limit: Integer,
-        ?position: Believe::Models::position?,
+        ?position: ::Believe::Models::position?,
         ?skip: Integer,
         ?team_id: String?,
-        ?request_options: Believe::request_opts
-      ) -> Believe::Internal::SkipLimitPage[Believe::Player]
+        ?request_options: ::Believe::request_opts
+      ) -> ::Believe::Internal::SkipLimitPage[::Believe::Player]
 
       def list_staff: (
         ?limit: Integer,
         ?skip: Integer,
         ?team_id: String?,
-        ?request_options: Believe::request_opts
-      ) -> Believe::Internal::SkipLimitPage[Believe::Models::team_member_list_staff_response]
+        ?request_options: ::Believe::request_opts
+      ) -> ::Believe::Internal::SkipLimitPage[::Believe::Models::team_member_list_staff_response]
 
-      def initialize: (client: Believe::Client) -> void
+      def initialize: (client: ::Believe::Client) -> void
     end
   end
 end

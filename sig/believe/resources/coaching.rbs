@@ -1,9 +1,9 @@
 module Believe
   module Resources
     class Coaching
-      attr_reader principles: Believe::Resources::Coaching::Principles
+      attr_reader principles: ::Believe::Resources::Coaching::Principles
 
-      def initialize: (client: Believe::Client) -> void
+      def initialize: (client: ::Believe::Client) -> void
     end
   end
 end

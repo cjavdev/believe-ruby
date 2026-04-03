@@ -2,8 +2,8 @@
 
 module Believe
   module Models
-    # @see Believe::Resources::Episodes#create
-    class Episode < Believe::Internal::Type::BaseModel
+    # @see ::Believe::Resources::Episodes#create
+    class Episode < ::Believe::Internal::Type::BaseModel
       # @!attribute id
       #   Unique identifier (format: s##e##)
       #
@@ -20,7 +20,7 @@ module Believe
       #   Characters with significant development
       #
       #   @return [Array<String>]
-      required :character_focus, Believe::Internal::Type::ArrayOf[String]
+      required :character_focus, ::Believe::Internal::Type::ArrayOf[String]
 
       # @!attribute director
       #   Episode director
@@ -86,7 +86,7 @@ module Believe
       #   Standout moments from the episode
       #
       #   @return [Array<String>, nil]
-      optional :memorable_moments, Believe::Internal::Type::ArrayOf[String]
+      optional :memorable_moments, ::Believe::Internal::Type::ArrayOf[String]
 
       # @!attribute us_viewers_millions
       #   US viewership in millions

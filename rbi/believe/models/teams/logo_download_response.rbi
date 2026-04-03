@@ -4,7 +4,7 @@ module Believe
   module Models
     module Teams
       LogoDownloadResponse =
-        T.let(T.anything, Believe::Internal::Type::Converter)
+        T.let(T.anything, ::Believe::Internal::Type::Converter)
     end
   end
 end

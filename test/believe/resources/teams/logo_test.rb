@@ -19,17 +19,17 @@ class Believe::Test::Resources::Teams::LogoTest < Believe::Test::ResourceTest
     response = @believe.teams.logo.download("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e", team_id: "team_id")
 
     assert_pattern do
-      response => Believe::Internal::Type::Unknown
+      response => ::Believe::Internal::Type::Unknown
     end
   end
 
   def test_upload_required_params
     skip("Mock server tests are disabled")
 
-    response = @believe.teams.logo.upload("team_id", file: Pathname(__FILE__))
+    response = @believe.teams.logo.upload("team_id", file: StringIO.new("Example data"))
 
     assert_pattern do
-      response => Believe::Teams::FileUpload
+      response => ::Believe::Teams::FileUpload
     end
 
     assert_pattern do

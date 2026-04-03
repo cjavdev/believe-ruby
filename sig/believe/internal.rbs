@@ -1,8 +1,8 @@
 module Believe
   module Internal
-    extend Believe::Internal::Util::SorbetRuntimeSupport
+    extend ::Believe::Internal::Util::SorbetRuntimeSupport
 
-    type file_input = Pathname | StringIO | IO | String | Believe::FilePart
+    type file_input = Pathname | StringIO | IO | String | ::Believe::FilePart
 
     OMIT: Object
   end

@@ -1,7 +1,7 @@
 module Believe
   module Internal
     class SkipLimitPage[Elem]
-      include Believe::Internal::Type::BasePage[Elem]
+      include ::Believe::Internal::Type::BasePage[Elem]
 
       attr_accessor data: ::Array[Elem]?
 

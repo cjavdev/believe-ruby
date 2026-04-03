@@ -2,7 +2,7 @@
 
 module Believe
   module Models
-    class EquipmentManager < Believe::Internal::Type::BaseModel
+    class EquipmentManager < ::Believe::Internal::Type::BaseModel
       # @!attribute id
       #   Unique identifier for this team membership
       #
@@ -31,19 +31,19 @@ module Believe
       #   Whether this is the head equipment manager
       #
       #   @return [Boolean, nil]
-      optional :is_head_kitman, Believe::Internal::Type::Boolean
+      optional :is_head_kitman, ::Believe::Internal::Type::Boolean
 
       # @!attribute member_type
       #   Discriminator field indicating this is an equipment manager
       #
-      #   @return [Symbol, Believe::Models::EquipmentManager::MemberType, nil]
-      optional :member_type, enum: -> { Believe::EquipmentManager::MemberType }
+      #   @return [Symbol, ::Believe::Models::EquipmentManager::MemberType, nil]
+      optional :member_type, enum: -> { ::Believe::EquipmentManager::MemberType }
 
       # @!attribute responsibilities
       #   List of responsibilities
       #
       #   @return [Array<String>, nil]
-      optional :responsibilities, Believe::Internal::Type::ArrayOf[String]
+      optional :responsibilities, ::Believe::Internal::Type::ArrayOf[String]
 
       # @!method initialize(id:, character_id:, team_id:, years_with_team:, is_head_kitman: nil, member_type: nil, responsibilities: nil)
       #   Full equipment manager model with ID.
@@ -58,15 +58,15 @@ module Believe
       #
       #   @param is_head_kitman [Boolean] Whether this is the head equipment manager
       #
-      #   @param member_type [Symbol, Believe::Models::EquipmentManager::MemberType] Discriminator field indicating this is an equipment manager
+      #   @param member_type [Symbol, ::Believe::Models::EquipmentManager::MemberType] Discriminator field indicating this is an equipment manager
       #
       #   @param responsibilities [Array<String>] List of responsibilities
 
       # Discriminator field indicating this is an equipment manager
       #
-      # @see Believe::Models::EquipmentManager#member_type
+      # @see ::Believe::Models::EquipmentManager#member_type
       module MemberType
-        extend Believe::Internal::Type::Enum
+        extend ::Believe::Internal::Type::Enum
 
         EQUIPMENT_MANAGER = :equipment_manager
 

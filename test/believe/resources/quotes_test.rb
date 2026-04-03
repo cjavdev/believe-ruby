@@ -16,7 +16,7 @@ class Believe::Test::Resources::QuotesTest < Believe::Test::ResourceTest
       )
 
     assert_pattern do
-      response => Believe::Quote
+      response => ::Believe::Quote
     end
 
     assert_pattern do
@@ -24,14 +24,14 @@ class Believe::Test::Resources::QuotesTest < Believe::Test::ResourceTest
         id: String,
         character_id: String,
         context: String,
-        moment_type: Believe::QuoteMoment,
+        moment_type: ::Believe::QuoteMoment,
         text: String,
-        theme: Believe::QuoteTheme,
+        theme: ::Believe::QuoteTheme,
         episode_id: String | nil,
-        is_funny: Believe::Internal::Type::Boolean | nil,
-        is_inspirational: Believe::Internal::Type::Boolean | nil,
+        is_funny: ::Believe::Internal::Type::Boolean | nil,
+        is_inspirational: ::Believe::Internal::Type::Boolean | nil,
         popularity_score: Float | nil,
-        secondary_themes: ^(Believe::Internal::Type::ArrayOf[enum: Believe::QuoteTheme]) | nil,
+        secondary_themes: ^(::Believe::Internal::Type::ArrayOf[enum: ::Believe::QuoteTheme]) | nil,
         times_shared: Integer | nil
       }
     end
@@ -43,7 +43,7 @@ class Believe::Test::Resources::QuotesTest < Believe::Test::ResourceTest
     response = @believe.quotes.retrieve("quote_id")
 
     assert_pattern do
-      response => Believe::Quote
+      response => ::Believe::Quote
     end
 
     assert_pattern do
@@ -51,14 +51,14 @@ class Believe::Test::Resources::QuotesTest < Believe::Test::ResourceTest
         id: String,
         character_id: String,
         context: String,
-        moment_type: Believe::QuoteMoment,
+        moment_type: ::Believe::QuoteMoment,
         text: String,
-        theme: Believe::QuoteTheme,
+        theme: ::Believe::QuoteTheme,
         episode_id: String | nil,
-        is_funny: Believe::Internal::Type::Boolean | nil,
-        is_inspirational: Believe::Internal::Type::Boolean | nil,
+        is_funny: ::Believe::Internal::Type::Boolean | nil,
+        is_inspirational: ::Believe::Internal::Type::Boolean | nil,
         popularity_score: Float | nil,
-        secondary_themes: ^(Believe::Internal::Type::ArrayOf[enum: Believe::QuoteTheme]) | nil,
+        secondary_themes: ^(::Believe::Internal::Type::ArrayOf[enum: ::Believe::QuoteTheme]) | nil,
         times_shared: Integer | nil
       }
     end
@@ -70,7 +70,7 @@ class Believe::Test::Resources::QuotesTest < Believe::Test::ResourceTest
     response = @believe.quotes.update("quote_id")
 
     assert_pattern do
-      response => Believe::Quote
+      response => ::Believe::Quote
     end
 
     assert_pattern do
@@ -78,14 +78,14 @@ class Believe::Test::Resources::QuotesTest < Believe::Test::ResourceTest
         id: String,
         character_id: String,
         context: String,
-        moment_type: Believe::QuoteMoment,
+        moment_type: ::Believe::QuoteMoment,
         text: String,
-        theme: Believe::QuoteTheme,
+        theme: ::Believe::QuoteTheme,
         episode_id: String | nil,
-        is_funny: Believe::Internal::Type::Boolean | nil,
-        is_inspirational: Believe::Internal::Type::Boolean | nil,
+        is_funny: ::Believe::Internal::Type::Boolean | nil,
+        is_inspirational: ::Believe::Internal::Type::Boolean | nil,
         popularity_score: Float | nil,
-        secondary_themes: ^(Believe::Internal::Type::ArrayOf[enum: Believe::QuoteTheme]) | nil,
+        secondary_themes: ^(::Believe::Internal::Type::ArrayOf[enum: ::Believe::QuoteTheme]) | nil,
         times_shared: Integer | nil
       }
     end
@@ -97,14 +97,14 @@ class Believe::Test::Resources::QuotesTest < Believe::Test::ResourceTest
     response = @believe.quotes.list
 
     assert_pattern do
-      response => Believe::Internal::SkipLimitPage
+      response => ::Believe::Internal::SkipLimitPage
     end
 
     row = response.to_enum.first
     return if row.nil?
 
     assert_pattern do
-      row => Believe::Quote
+      row => ::Believe::Quote
     end
 
     assert_pattern do
@@ -112,14 +112,14 @@ class Believe::Test::Resources::QuotesTest < Believe::Test::ResourceTest
         id: String,
         character_id: String,
         context: String,
-        moment_type: Believe::QuoteMoment,
+        moment_type: ::Believe::QuoteMoment,
         text: String,
-        theme: Believe::QuoteTheme,
+        theme: ::Believe::QuoteTheme,
         episode_id: String | nil,
-        is_funny: Believe::Internal::Type::Boolean | nil,
-        is_inspirational: Believe::Internal::Type::Boolean | nil,
+        is_funny: ::Believe::Internal::Type::Boolean | nil,
+        is_inspirational: ::Believe::Internal::Type::Boolean | nil,
         popularity_score: Float | nil,
-        secondary_themes: ^(Believe::Internal::Type::ArrayOf[enum: Believe::QuoteTheme]) | nil,
+        secondary_themes: ^(::Believe::Internal::Type::ArrayOf[enum: ::Believe::QuoteTheme]) | nil,
         times_shared: Integer | nil
       }
     end
@@ -141,7 +141,7 @@ class Believe::Test::Resources::QuotesTest < Believe::Test::ResourceTest
     response = @believe.quotes.get_random
 
     assert_pattern do
-      response => Believe::Quote
+      response => ::Believe::Quote
     end
 
     assert_pattern do
@@ -149,14 +149,14 @@ class Believe::Test::Resources::QuotesTest < Believe::Test::ResourceTest
         id: String,
         character_id: String,
         context: String,
-        moment_type: Believe::QuoteMoment,
+        moment_type: ::Believe::QuoteMoment,
         text: String,
-        theme: Believe::QuoteTheme,
+        theme: ::Believe::QuoteTheme,
         episode_id: String | nil,
-        is_funny: Believe::Internal::Type::Boolean | nil,
-        is_inspirational: Believe::Internal::Type::Boolean | nil,
+        is_funny: ::Believe::Internal::Type::Boolean | nil,
+        is_inspirational: ::Believe::Internal::Type::Boolean | nil,
         popularity_score: Float | nil,
-        secondary_themes: ^(Believe::Internal::Type::ArrayOf[enum: Believe::QuoteTheme]) | nil,
+        secondary_themes: ^(::Believe::Internal::Type::ArrayOf[enum: ::Believe::QuoteTheme]) | nil,
         times_shared: Integer | nil
       }
     end
@@ -168,14 +168,14 @@ class Believe::Test::Resources::QuotesTest < Believe::Test::ResourceTest
     response = @believe.quotes.list_by_character("character_id")
 
     assert_pattern do
-      response => Believe::Internal::SkipLimitPage
+      response => ::Believe::Internal::SkipLimitPage
     end
 
     row = response.to_enum.first
     return if row.nil?
 
     assert_pattern do
-      row => Believe::Quote
+      row => ::Believe::Quote
     end
 
     assert_pattern do
@@ -183,14 +183,14 @@ class Believe::Test::Resources::QuotesTest < Believe::Test::ResourceTest
         id: String,
         character_id: String,
         context: String,
-        moment_type: Believe::QuoteMoment,
+        moment_type: ::Believe::QuoteMoment,
         text: String,
-        theme: Believe::QuoteTheme,
+        theme: ::Believe::QuoteTheme,
         episode_id: String | nil,
-        is_funny: Believe::Internal::Type::Boolean | nil,
-        is_inspirational: Believe::Internal::Type::Boolean | nil,
+        is_funny: ::Believe::Internal::Type::Boolean | nil,
+        is_inspirational: ::Believe::Internal::Type::Boolean | nil,
         popularity_score: Float | nil,
-        secondary_themes: ^(Believe::Internal::Type::ArrayOf[enum: Believe::QuoteTheme]) | nil,
+        secondary_themes: ^(::Believe::Internal::Type::ArrayOf[enum: ::Believe::QuoteTheme]) | nil,
         times_shared: Integer | nil
       }
     end
@@ -202,14 +202,14 @@ class Believe::Test::Resources::QuotesTest < Believe::Test::ResourceTest
     response = @believe.quotes.list_by_theme(:belief)
 
     assert_pattern do
-      response => Believe::Internal::SkipLimitPage
+      response => ::Believe::Internal::SkipLimitPage
     end
 
     row = response.to_enum.first
     return if row.nil?
 
     assert_pattern do
-      row => Believe::Quote
+      row => ::Believe::Quote
     end
 
     assert_pattern do
@@ -217,14 +217,14 @@ class Believe::Test::Resources::QuotesTest < Believe::Test::ResourceTest
         id: String,
         character_id: String,
         context: String,
-        moment_type: Believe::QuoteMoment,
+        moment_type: ::Believe::QuoteMoment,
         text: String,
-        theme: Believe::QuoteTheme,
+        theme: ::Believe::QuoteTheme,
         episode_id: String | nil,
-        is_funny: Believe::Internal::Type::Boolean | nil,
-        is_inspirational: Believe::Internal::Type::Boolean | nil,
+        is_funny: ::Believe::Internal::Type::Boolean | nil,
+        is_inspirational: ::Believe::Internal::Type::Boolean | nil,
         popularity_score: Float | nil,
-        secondary_themes: ^(Believe::Internal::Type::ArrayOf[enum: Believe::QuoteTheme]) | nil,
+        secondary_themes: ^(::Believe::Internal::Type::ArrayOf[enum: ::Believe::QuoteTheme]) | nil,
         times_shared: Integer | nil
       }
     end

@@ -2,13 +2,13 @@
 
 module Believe
   module Models
-    class MatchCreateParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class MatchCreateParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(Believe::MatchCreateParams, Believe::Internal::AnyHash)
+          T.any(::Believe::MatchCreateParams, ::Believe::Internal::AnyHash)
         end
 
       # Away team ID
@@ -24,7 +24,7 @@ module Believe
       attr_accessor :home_team_id
 
       # Type of match
-      sig { returns(Believe::MatchType::OrSymbol) }
+      sig { returns(::Believe::MatchType::OrSymbol) }
       attr_accessor :match_type
 
       # Match attendance
@@ -58,10 +58,10 @@ module Believe
       attr_accessor :possession_percentage
 
       # Match result from home team perspective
-      sig { returns(T.nilable(Believe::MatchResult::OrSymbol)) }
+      sig { returns(T.nilable(::Believe::MatchResult::OrSymbol)) }
       attr_reader :result
 
-      sig { params(result: Believe::MatchResult::OrSymbol).void }
+      sig { params(result: ::Believe::MatchResult::OrSymbol).void }
       attr_writer :result
 
       # Ted's inspirational halftime speech
@@ -71,17 +71,17 @@ module Believe
       # Total ticket revenue in GBP
       sig do
         returns(
-          T.nilable(Believe::MatchCreateParams::TicketRevenueGbp::Variants)
+          T.nilable(::Believe::MatchCreateParams::TicketRevenueGbp::Variants)
         )
       end
       attr_accessor :ticket_revenue_gbp
 
       # Key moments that changed the match
-      sig { returns(T.nilable(T::Array[Believe::TurningPoint])) }
+      sig { returns(T.nilable(T::Array[::Believe::TurningPoint])) }
       attr_reader :turning_points
 
       sig do
-        params(turning_points: T::Array[Believe::TurningPoint::OrHash]).void
+        params(turning_points: T::Array[::Believe::TurningPoint::OrHash]).void
       end
       attr_writer :turning_points
 
@@ -94,20 +94,20 @@ module Believe
           away_team_id: String,
           date: Time,
           home_team_id: String,
-          match_type: Believe::MatchType::OrSymbol,
+          match_type: ::Believe::MatchType::OrSymbol,
           attendance: T.nilable(Integer),
           away_score: Integer,
           episode_id: T.nilable(String),
           home_score: Integer,
           lesson_learned: T.nilable(String),
           possession_percentage: T.nilable(Float),
-          result: Believe::MatchResult::OrSymbol,
+          result: ::Believe::MatchResult::OrSymbol,
           ted_halftime_speech: T.nilable(String),
           ticket_revenue_gbp:
-            T.nilable(Believe::MatchCreateParams::TicketRevenueGbp::Variants),
-          turning_points: T::Array[Believe::TurningPoint::OrHash],
+            T.nilable(::Believe::MatchCreateParams::TicketRevenueGbp::Variants),
+          turning_points: T::Array[::Believe::TurningPoint::OrHash],
           weather_temp_celsius: T.nilable(Float),
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
@@ -151,20 +151,22 @@ module Believe
             away_team_id: String,
             date: Time,
             home_team_id: String,
-            match_type: Believe::MatchType::OrSymbol,
+            match_type: ::Believe::MatchType::OrSymbol,
             attendance: T.nilable(Integer),
             away_score: Integer,
             episode_id: T.nilable(String),
             home_score: Integer,
             lesson_learned: T.nilable(String),
             possession_percentage: T.nilable(Float),
-            result: Believe::MatchResult::OrSymbol,
+            result: ::Believe::MatchResult::OrSymbol,
             ted_halftime_speech: T.nilable(String),
             ticket_revenue_gbp:
-              T.nilable(Believe::MatchCreateParams::TicketRevenueGbp::Variants),
-            turning_points: T::Array[Believe::TurningPoint],
+              T.nilable(
+                ::Believe::MatchCreateParams::TicketRevenueGbp::Variants
+              ),
+            turning_points: T::Array[::Believe::TurningPoint],
             weather_temp_celsius: T.nilable(Float),
-            request_options: Believe::RequestOptions
+            request_options: ::Believe::RequestOptions
           }
         )
       end
@@ -173,13 +175,13 @@ module Believe
 
       # Total ticket revenue in GBP
       module TicketRevenueGbp
-        extend Believe::Internal::Type::Union
+        extend ::Believe::Internal::Type::Union
 
         Variants = T.type_alias { T.any(Float, String) }
 
         sig do
           override.returns(
-            T::Array[Believe::MatchCreateParams::TicketRevenueGbp::Variants]
+            T::Array[::Believe::MatchCreateParams::TicketRevenueGbp::Variants]
           )
         end
         def self.variants

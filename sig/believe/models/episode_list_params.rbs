@@ -7,11 +7,11 @@ module Believe
         season: Integer?,
         skip: Integer
       }
-      & Believe::Internal::Type::request_parameters
+      & ::Believe::Internal::Type::request_parameters
 
-    class EpisodeListParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class EpisodeListParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       attr_accessor character_focus: String?
 
@@ -30,7 +30,7 @@ module Believe
         ?limit: Integer,
         ?season: Integer?,
         ?skip: Integer,
-        ?request_options: Believe::request_opts
+        ?request_options: ::Believe::request_opts
       ) -> void
 
       def to_hash: -> {
@@ -38,7 +38,7 @@ module Believe
         limit: Integer,
         season: Integer?,
         skip: Integer,
-        request_options: Believe::RequestOptions
+        request_options: ::Believe::RequestOptions
       }
     end
   end

@@ -2,8 +2,8 @@
 
 module Believe
   module Models
-    # @see Believe::Resources::Webhooks#retrieve
-    class RegisteredWebhook < Believe::Internal::Type::BaseModel
+    # @see ::Believe::Resources::Webhooks#retrieve
+    class RegisteredWebhook < ::Believe::Internal::Type::BaseModel
       # @!attribute id
       #   Unique webhook identifier
       #
@@ -19,9 +19,9 @@ module Believe
       # @!attribute event_types
       #   List of event types this webhook is subscribed to
       #
-      #   @return [Array<Symbol, Believe::Models::RegisteredWebhook::EventType>]
+      #   @return [Array<Symbol, ::Believe::Models::RegisteredWebhook::EventType>]
       required :event_types,
-               -> { Believe::Internal::Type::ArrayOf[enum: Believe::RegisteredWebhook::EventType] }
+               -> { ::Believe::Internal::Type::ArrayOf[enum: ::Believe::RegisteredWebhook::EventType] }
 
       # @!attribute secret
       #   The secret key for verifying webhook signatures (base64 encoded)
@@ -48,7 +48,7 @@ module Believe
       #
       #   @param created_at [Time] When the webhook was registered
       #
-      #   @param event_types [Array<Symbol, Believe::Models::RegisteredWebhook::EventType>] List of event types this webhook is subscribed to
+      #   @param event_types [Array<Symbol, ::Believe::Models::RegisteredWebhook::EventType>] List of event types this webhook is subscribed to
       #
       #   @param secret [String] The secret key for verifying webhook signatures (base64 encoded)
       #
@@ -57,7 +57,7 @@ module Believe
       #   @param description [String, nil] Optional description for this webhook
 
       module EventType
-        extend Believe::Internal::Type::Enum
+        extend ::Believe::Internal::Type::Enum
 
         MATCH_COMPLETED = :"match.completed"
         TEAM_MEMBER_TRANSFERRED = :"team_member.transferred"

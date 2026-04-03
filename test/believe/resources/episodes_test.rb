@@ -22,14 +22,14 @@ class Believe::Test::Resources::EpisodesTest < Believe::Test::ResourceTest
       )
 
     assert_pattern do
-      response => Believe::Episode
+      response => ::Believe::Episode
     end
 
     assert_pattern do
       response => {
         id: String,
         air_date: Date,
-        character_focus: ^(Believe::Internal::Type::ArrayOf[String]),
+        character_focus: ^(::Believe::Internal::Type::ArrayOf[String]),
         director: String,
         episode_number: Integer,
         main_theme: String,
@@ -40,7 +40,7 @@ class Believe::Test::Resources::EpisodesTest < Believe::Test::ResourceTest
         title: String,
         writer: String,
         biscuits_with_boss_moment: String | nil,
-        memorable_moments: ^(Believe::Internal::Type::ArrayOf[String]) | nil,
+        memorable_moments: ^(::Believe::Internal::Type::ArrayOf[String]) | nil,
         us_viewers_millions: Float | nil,
         viewer_rating: Float | nil
       }
@@ -53,14 +53,14 @@ class Believe::Test::Resources::EpisodesTest < Believe::Test::ResourceTest
     response = @believe.episodes.retrieve("episode_id")
 
     assert_pattern do
-      response => Believe::Episode
+      response => ::Believe::Episode
     end
 
     assert_pattern do
       response => {
         id: String,
         air_date: Date,
-        character_focus: ^(Believe::Internal::Type::ArrayOf[String]),
+        character_focus: ^(::Believe::Internal::Type::ArrayOf[String]),
         director: String,
         episode_number: Integer,
         main_theme: String,
@@ -71,7 +71,7 @@ class Believe::Test::Resources::EpisodesTest < Believe::Test::ResourceTest
         title: String,
         writer: String,
         biscuits_with_boss_moment: String | nil,
-        memorable_moments: ^(Believe::Internal::Type::ArrayOf[String]) | nil,
+        memorable_moments: ^(::Believe::Internal::Type::ArrayOf[String]) | nil,
         us_viewers_millions: Float | nil,
         viewer_rating: Float | nil
       }
@@ -84,14 +84,14 @@ class Believe::Test::Resources::EpisodesTest < Believe::Test::ResourceTest
     response = @believe.episodes.update("episode_id")
 
     assert_pattern do
-      response => Believe::Episode
+      response => ::Believe::Episode
     end
 
     assert_pattern do
       response => {
         id: String,
         air_date: Date,
-        character_focus: ^(Believe::Internal::Type::ArrayOf[String]),
+        character_focus: ^(::Believe::Internal::Type::ArrayOf[String]),
         director: String,
         episode_number: Integer,
         main_theme: String,
@@ -102,7 +102,7 @@ class Believe::Test::Resources::EpisodesTest < Believe::Test::ResourceTest
         title: String,
         writer: String,
         biscuits_with_boss_moment: String | nil,
-        memorable_moments: ^(Believe::Internal::Type::ArrayOf[String]) | nil,
+        memorable_moments: ^(::Believe::Internal::Type::ArrayOf[String]) | nil,
         us_viewers_millions: Float | nil,
         viewer_rating: Float | nil
       }
@@ -115,21 +115,21 @@ class Believe::Test::Resources::EpisodesTest < Believe::Test::ResourceTest
     response = @believe.episodes.list
 
     assert_pattern do
-      response => Believe::Internal::SkipLimitPage
+      response => ::Believe::Internal::SkipLimitPage
     end
 
     row = response.to_enum.first
     return if row.nil?
 
     assert_pattern do
-      row => Believe::Episode
+      row => ::Believe::Episode
     end
 
     assert_pattern do
       row => {
         id: String,
         air_date: Date,
-        character_focus: ^(Believe::Internal::Type::ArrayOf[String]),
+        character_focus: ^(::Believe::Internal::Type::ArrayOf[String]),
         director: String,
         episode_number: Integer,
         main_theme: String,
@@ -140,7 +140,7 @@ class Believe::Test::Resources::EpisodesTest < Believe::Test::ResourceTest
         title: String,
         writer: String,
         biscuits_with_boss_moment: String | nil,
-        memorable_moments: ^(Believe::Internal::Type::ArrayOf[String]) | nil,
+        memorable_moments: ^(::Believe::Internal::Type::ArrayOf[String]) | nil,
         us_viewers_millions: Float | nil,
         viewer_rating: Float | nil
       }
@@ -163,45 +163,7 @@ class Believe::Test::Resources::EpisodesTest < Believe::Test::ResourceTest
     response = @believe.episodes.get_wisdom("episode_id")
 
     assert_pattern do
-      response => ^(Believe::Internal::Type::HashOf[Believe::Internal::Type::Unknown])
-    end
-  end
-
-  def test_list_by_season
-    skip("Mock server tests are disabled")
-
-    response = @believe.episodes.list_by_season(0)
-
-    assert_pattern do
-      response => Believe::Internal::SkipLimitPage
-    end
-
-    row = response.to_enum.first
-    return if row.nil?
-
-    assert_pattern do
-      row => Believe::Episode
-    end
-
-    assert_pattern do
-      row => {
-        id: String,
-        air_date: Date,
-        character_focus: ^(Believe::Internal::Type::ArrayOf[String]),
-        director: String,
-        episode_number: Integer,
-        main_theme: String,
-        runtime_minutes: Integer,
-        season: Integer,
-        synopsis: String,
-        ted_wisdom: String,
-        title: String,
-        writer: String,
-        biscuits_with_boss_moment: String | nil,
-        memorable_moments: ^(Believe::Internal::Type::ArrayOf[String]) | nil,
-        us_viewers_millions: Float | nil,
-        viewer_rating: Float | nil
-      }
+      response => ^(::Believe::Internal::Type::HashOf[::Believe::Internal::Type::Unknown])
     end
   end
 end

@@ -9,12 +9,12 @@ class Believe::Test::Resources::WebhooksTest < Believe::Test::ResourceTest
     response = @believe.webhooks.create(url: "https://example.com/webhooks")
 
     assert_pattern do
-      response => Believe::Models::WebhookCreateResponse
+      response => ::Believe::Models::WebhookCreateResponse
     end
 
     assert_pattern do
       response => {
-        webhook: Believe::RegisteredWebhook,
+        webhook: ::Believe::RegisteredWebhook,
         message: String | nil,
         ted_says: String | nil
       }
@@ -27,14 +27,14 @@ class Believe::Test::Resources::WebhooksTest < Believe::Test::ResourceTest
     response = @believe.webhooks.retrieve("webhook_id")
 
     assert_pattern do
-      response => Believe::RegisteredWebhook
+      response => ::Believe::RegisteredWebhook
     end
 
     assert_pattern do
       response => {
         id: String,
         created_at: Time,
-        event_types: ^(Believe::Internal::Type::ArrayOf[enum: Believe::RegisteredWebhook::EventType]),
+        event_types: ^(::Believe::Internal::Type::ArrayOf[enum: ::Believe::RegisteredWebhook::EventType]),
         secret: String,
         url: String,
         description: String | nil
@@ -48,7 +48,7 @@ class Believe::Test::Resources::WebhooksTest < Believe::Test::ResourceTest
     response = @believe.webhooks.list
 
     assert_pattern do
-      response => ^(Believe::Internal::Type::ArrayOf[Believe::RegisteredWebhook])
+      response => ^(::Believe::Internal::Type::ArrayOf[::Believe::RegisteredWebhook])
     end
   end
 
@@ -58,7 +58,7 @@ class Believe::Test::Resources::WebhooksTest < Believe::Test::ResourceTest
     response = @believe.webhooks.delete("webhook_id")
 
     assert_pattern do
-      response => ^(Believe::Internal::Type::HashOf[Believe::Internal::Type::Unknown])
+      response => ^(::Believe::Internal::Type::HashOf[::Believe::Internal::Type::Unknown])
     end
   end
 
@@ -68,14 +68,14 @@ class Believe::Test::Resources::WebhooksTest < Believe::Test::ResourceTest
     response = @believe.webhooks.trigger_event(event_type: :"match.completed")
 
     assert_pattern do
-      response => Believe::Models::WebhookTriggerEventResponse
+      response => ::Believe::Models::WebhookTriggerEventResponse
     end
 
     assert_pattern do
       response => {
-        deliveries: ^(Believe::Internal::Type::ArrayOf[Believe::Models::WebhookTriggerEventResponse::Delivery]),
+        deliveries: ^(::Believe::Internal::Type::ArrayOf[::Believe::Models::WebhookTriggerEventResponse::Delivery]),
         event_id: String,
-        event_type: Believe::Models::WebhookTriggerEventResponse::EventType,
+        event_type: ::Believe::Models::WebhookTriggerEventResponse::EventType,
         successful_deliveries: Integer,
         ted_says: String,
         total_webhooks: Integer

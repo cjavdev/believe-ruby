@@ -9,7 +9,7 @@ class Believe::Test::Resources::VersionTest < Believe::Test::ResourceTest
     response = @believe.version.retrieve
 
     assert_pattern do
-      response => Believe::Internal::Type::Unknown
+      response => ::Believe::Internal::Type::Unknown
     end
   end
 end

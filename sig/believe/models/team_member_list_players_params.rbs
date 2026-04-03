@@ -3,21 +3,21 @@ module Believe
     type team_member_list_players_params =
       {
         limit: Integer,
-        position: Believe::Models::position?,
+        position: ::Believe::Models::position?,
         skip: Integer,
         team_id: String?
       }
-      & Believe::Internal::Type::request_parameters
+      & ::Believe::Internal::Type::request_parameters
 
-    class TeamMemberListPlayersParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class TeamMemberListPlayersParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       attr_reader limit: Integer?
 
       def limit=: (Integer) -> Integer
 
-      attr_accessor position: Believe::Models::position?
+      attr_accessor position: ::Believe::Models::position?
 
       attr_reader skip: Integer?
 
@@ -27,18 +27,18 @@ module Believe
 
       def initialize: (
         ?limit: Integer,
-        ?position: Believe::Models::position?,
+        ?position: ::Believe::Models::position?,
         ?skip: Integer,
         ?team_id: String?,
-        ?request_options: Believe::request_opts
+        ?request_options: ::Believe::request_opts
       ) -> void
 
       def to_hash: -> {
         limit: Integer,
-        position: Believe::Models::position?,
+        position: ::Believe::Models::position?,
         skip: Integer,
         team_id: String?,
-        request_options: Believe::RequestOptions
+        request_options: ::Believe::RequestOptions
       }
     end
   end

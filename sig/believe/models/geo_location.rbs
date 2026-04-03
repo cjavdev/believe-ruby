@@ -2,7 +2,7 @@ module Believe
   module Models
     type geo_location = { latitude: Float, longitude: Float }
 
-    class GeoLocation < Believe::Internal::Type::BaseModel
+    class GeoLocation < ::Believe::Internal::Type::BaseModel
       attr_accessor latitude: Float
 
       attr_accessor longitude: Float

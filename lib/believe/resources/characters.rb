@@ -2,6 +2,7 @@
 
 module Believe
   module Resources
+    # Operations related to Ted Lasso characters
     class Characters
       # Add a new character to the Ted Lasso universe.
       #
@@ -9,19 +10,19 @@ module Believe
       #
       # @param background [String] Character background and history
       #
-      # @param emotional_stats [Believe::Models::EmotionalStats] Emotional intelligence stats
+      # @param emotional_stats [::Believe::Models::EmotionalStats] Emotional intelligence stats
       #
       # @param name [String] Character's full name
       #
       # @param personality_traits [Array<String>] Key personality traits
       #
-      # @param role [Symbol, Believe::Models::CharacterRole] Character's role
+      # @param role [Symbol, ::Believe::Models::CharacterRole] Character's role
       #
       # @param date_of_birth [Date, nil] Character's date of birth
       #
       # @param email [String, nil] Character's email address
       #
-      # @param growth_arcs [Array<Believe::Models::GrowthArc>] Character development across seasons
+      # @param growth_arcs [Array<::Believe::Models::GrowthArc>] Character development across seasons
       #
       # @param height_meters [Float, nil] Height in meters
       #
@@ -33,18 +34,18 @@ module Believe
       #
       # @param team_id [String, nil] ID of the team they belong to
       #
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Models::Character]
+      # @return [::Believe::Models::Character]
       #
-      # @see Believe::Models::CharacterCreateParams
+      # @see ::Believe::Models::CharacterCreateParams
       def create(params)
-        parsed, options = Believe::CharacterCreateParams.dump_request(params)
+        parsed, options = ::Believe::CharacterCreateParams.dump_request(params)
         @client.request(
           method: :post,
           path: "characters",
           body: parsed,
-          model: Believe::Character,
+          model: ::Believe::Character,
           options: options
         )
       end
@@ -54,16 +55,16 @@ module Believe
       # @overload retrieve(character_id, request_options: {})
       #
       # @param character_id [String]
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Models::Character]
+      # @return [::Believe::Models::Character]
       #
-      # @see Believe::Models::CharacterRetrieveParams
+      # @see ::Believe::Models::CharacterRetrieveParams
       def retrieve(character_id, params = {})
         @client.request(
           method: :get,
           path: ["characters/%1$s", character_id],
-          model: Believe::Character,
+          model: ::Believe::Character,
           options: params[:request_options]
         )
       end
@@ -80,9 +81,9 @@ module Believe
       #
       # @param email [String, nil]
       #
-      # @param emotional_stats [Believe::Models::EmotionalStats, nil] Emotional intelligence statistics for a character.
+      # @param emotional_stats [::Believe::Models::EmotionalStats, nil] Emotional intelligence statistics for a character.
       #
-      # @param growth_arcs [Array<Believe::Models::GrowthArc>, nil]
+      # @param growth_arcs [Array<::Believe::Models::GrowthArc>, nil]
       #
       # @param height_meters [Float, nil]
       #
@@ -92,7 +93,7 @@ module Believe
       #
       # @param profile_image_url [String, nil]
       #
-      # @param role [Symbol, Believe::Models::CharacterRole, nil] Roles characters can have.
+      # @param role [Symbol, ::Believe::Models::CharacterRole, nil] Roles characters can have.
       #
       # @param salary_gbp [Float, String, nil]
       #
@@ -100,18 +101,18 @@ module Believe
       #
       # @param team_id [String, nil]
       #
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Models::Character]
+      # @return [::Believe::Models::Character]
       #
-      # @see Believe::Models::CharacterUpdateParams
+      # @see ::Believe::Models::CharacterUpdateParams
       def update(character_id, params = {})
-        parsed, options = Believe::CharacterUpdateParams.dump_request(params)
+        parsed, options = ::Believe::CharacterUpdateParams.dump_request(params)
         @client.request(
           method: :patch,
           path: ["characters/%1$s", character_id],
           body: parsed,
-          model: Believe::Character,
+          model: ::Believe::Character,
           options: options
         )
       end
@@ -124,25 +125,26 @@ module Believe
       #
       # @param min_optimism [Integer, nil] Minimum optimism score
       #
-      # @param role [Symbol, Believe::Models::CharacterRole, nil] Filter by role
+      # @param role [Symbol, ::Believe::Models::CharacterRole, nil] Filter by role
       #
       # @param skip [Integer] Number of items to skip (offset)
       #
       # @param team_id [String, nil] Filter by team ID
       #
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Believe::Internal::SkipLimitPage<Believe::Models::Character>]
+      # @return [::Believe::Internal::SkipLimitPage<::Believe::Models::Character>]
       #
-      # @see Believe::Models::CharacterListParams
+      # @see ::Believe::Models::CharacterListParams
       def list(params = {})
-        parsed, options = Believe::CharacterListParams.dump_request(params)
+        parsed, options = ::Believe::CharacterListParams.dump_request(params)
+        query = ::Believe::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "characters",
-          query: parsed,
-          page: Believe::Internal::SkipLimitPage,
-          model: Believe::Character,
+          query: query,
+          page: ::Believe::Internal::SkipLimitPage,
+          model: ::Believe::Character,
           options: options
         )
       end
@@ -152,11 +154,11 @@ module Believe
       # @overload delete(character_id, request_options: {})
       #
       # @param character_id [String]
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [nil]
       #
-      # @see Believe::Models::CharacterDeleteParams
+      # @see ::Believe::Models::CharacterDeleteParams
       def delete(character_id, params = {})
         @client.request(
           method: :delete,
@@ -171,23 +173,23 @@ module Believe
       # @overload get_quotes(character_id, request_options: {})
       #
       # @param character_id [String]
-      # @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [Array<String>]
       #
-      # @see Believe::Models::CharacterGetQuotesParams
+      # @see ::Believe::Models::CharacterGetQuotesParams
       def get_quotes(character_id, params = {})
         @client.request(
           method: :get,
           path: ["characters/%1$s/quotes", character_id],
-          model: Believe::Internal::Type::ArrayOf[String],
+          model: ::Believe::Internal::Type::ArrayOf[String],
           options: params[:request_options]
         )
       end
 
       # @api private
       #
-      # @param client [Believe::Client]
+      # @param client [::Believe::Client]
       def initialize(client:)
         @client = client
       end

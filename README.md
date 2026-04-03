@@ -8,8 +8,8 @@ It is generated with [Stainless](https://www.stainless.com/).
 
 Use the Believe MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.
 
-[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=%40cjavdev%2Fbelieve-mcp&config=eyJuYW1lIjoiQGNqYXZkZXYvYmVsaWV2ZS1tY3AiLCJ0cmFuc3BvcnQiOiJodHRwIiwidXJsIjoiaHR0cHM6Ly9iZWxpZXZlLnN0bG1jcC5jb20iLCJoZWFkZXJzIjp7IngtYmVsaWV2ZS1hcGkta2V5IjoiTXkgQVBJIEtleSJ9fQ)
-[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22%40cjavdev%2Fbelieve-mcp%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fbelieve.stlmcp.com%22%2C%22headers%22%3A%7B%22x-believe-api-key%22%3A%22My%20API%20Key%22%7D%7D)
+[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=%40cjavdev%2Fbelieve-mcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBjamF2ZGV2L2JlbGlldmUtbWNwIl0sImVudiI6eyJCRUxJRVZFX0FQSV9LRVkiOiJNeSBBUEkgS2V5In19)
+[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22%40cjavdev%2Fbelieve-mcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40cjavdev%2Fbelieve-mcp%22%5D%2C%22env%22%3A%7B%22BELIEVE_API_KEY%22%3A%22My%20API%20Key%22%7D%7D)
 
 > Note: You may need to set environment variables in your MCP client.
 
@@ -24,7 +24,7 @@ To use this gem, install via Bundler by adding the following to your application
 <!-- x-release-please-start-version -->
 
 ```ruby
-gem "believe", "~> 0.1.0"
+gem "believe", "~> 0.2.0"
 ```
 
 <!-- x-release-please-end -->
@@ -35,7 +35,7 @@ gem "believe", "~> 0.1.0"
 require "bundler/setup"
 require "believe"
 
-believe = Believe::Client.new(
+believe = ::Believe::Client.new(
   api_key: ENV["BELIEVE_API_KEY"] # This is the default and can be omitted
 )
 
@@ -86,7 +86,7 @@ file_upload = believe.teams.logo.upload(file: Pathname("/path/to/file"))
 file_upload = believe.teams.logo.upload(file: File.read("/path/to/file"))
 
 # Or, to control the filename and/or content type:
-file = Believe::FilePart.new(File.read("/path/to/file"), filename: "/path/to/file", content_type: "…")
+file = ::Believe::FilePart.new(File.read("/path/to/file"), filename: "/path/to/file", content_type: "…")
 file_upload = believe.teams.logo.upload(file: file)
 
 puts(file_upload.file_id)
@@ -96,17 +96,17 @@ Note that you can also pass a raw `IO` descriptor, but this disables retries, as
 
 ### Handling errors
 
-When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `Believe::Errors::APIError` will be thrown:
+When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `::Believe::Errors::APIError` will be thrown:
 
 ```ruby
 begin
   character = believe.characters.list
-rescue Believe::Errors::APIConnectionError => e
+rescue ::Believe::Errors::APIConnectionError => e
   puts("The server could not be reached")
   puts(e.cause)  # an underlying Exception, likely raised within `net/http`
-rescue Believe::Errors::RateLimitError => e
+rescue ::Believe::Errors::RateLimitError => e
   puts("A 429 status code was received; we should back off a bit.")
-rescue Believe::Errors::APIStatusError => e
+rescue ::Believe::Errors::APIStatusError => e
   puts("Another non-200-range status code was received")
   puts(e.status)
 end
@@ -138,7 +138,7 @@ You can use the `max_retries` option to configure or disable this:
 
 ```ruby
 # Configure the default for all requests:
-believe = Believe::Client.new(
+believe = ::Believe::Client.new(
   max_retries: 0 # default is 2
 )
 
@@ -152,7 +152,7 @@ By default, requests will time out after 60 seconds. You can use the timeout opt
 
 ```ruby
 # Configure the default for all requests:
-believe = Believe::Client.new(
+believe = ::Believe::Client.new(
   timeout: nil # default is 60
 )
 
@@ -160,7 +160,7 @@ believe = Believe::Client.new(
 believe.characters.list(request_options: {timeout: 5})
 ```
 
-On timeout, `Believe::Errors::APITimeoutError` is raised.
+On timeout, `::Believe::Errors::APITimeoutError` is raised.
 
 Note that requests that time out are retried by default.
 
@@ -168,7 +168,7 @@ Note that requests that time out are retried by default.
 
 ### BaseModel
 
-All parameter and response objects inherit from `Believe::Internal::Type::BaseModel`, which provides several conveniences, including:
+All parameter and response objects inherit from `::Believe::Internal::Type::BaseModel`, which provides several conveniences, including:
 
 1. All fields, including unknown ones, are accessible with `obj[:prop]` syntax, and can be destructured with `obj => {prop: prop}` or pattern-matching syntax.
 
@@ -219,9 +219,9 @@ response = client.request(
 
 ### Concurrency & connection pooling
 
-The `Believe::Client` instances are threadsafe, but are only are fork-safe when there are no in-flight HTTP requests.
+The `::Believe::Client` instances are threadsafe, but are only are fork-safe when there are no in-flight HTTP requests.
 
-Each instance of `Believe::Client` has its own HTTP connection pool with a default size of 99. As such, we recommend instantiating the client once per application in most settings.
+Each instance of `::Believe::Client` has its own HTTP connection pool with a default size of 99. As such, we recommend instantiating the client once per application in most settings.
 
 When all available connections from the pool are checked out, requests wait for a new connection to become available, with queue time counting towards the request timeout.
 
@@ -244,7 +244,7 @@ Or, equivalently:
 believe.characters.list
 
 # You can also splat a full Params class:
-params = Believe::CharacterListParams.new
+params = ::Believe::CharacterListParams.new
 believe.characters.list(**params)
 ```
 
@@ -254,10 +254,10 @@ Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::E
 
 ```ruby
 # :coach
-puts(Believe::CharacterRole::COACH)
+puts(::Believe::CharacterRole::COACH)
 
-# Revealed type: `T.all(Believe::CharacterRole, Symbol)`
-T.reveal_type(Believe::CharacterRole::COACH)
+# Revealed type: `T.all(::Believe::CharacterRole, Symbol)`
+T.reveal_type(::Believe::CharacterRole::COACH)
 ```
 
 Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
@@ -265,7 +265,7 @@ Enum parameters have a "relaxed" type, so you can either pass in enum constants 
 ```ruby
 # Using the enum constants preserves the tagged type information:
 believe.characters.create(
-  role: Believe::CharacterRole::COACH,
+  role: ::Believe::CharacterRole::COACH,
   # …
 )
 

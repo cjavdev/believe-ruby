@@ -3,8 +3,8 @@
 module Believe
   module Models
     module Teams
-      # @see Believe::Resources::Teams::Logo#upload
-      class FileUpload < Believe::Internal::Type::BaseModel
+      # @see ::Believe::Resources::Teams::Logo#upload
+      class FileUpload < ::Believe::Internal::Type::BaseModel
         # @!attribute checksum_sha256
         #
         #   @return [String]

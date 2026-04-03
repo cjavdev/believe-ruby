@@ -3,8 +3,8 @@
 module Believe
   module Models
     module Coaching
-      # @see Believe::Resources::Coaching::Principles#retrieve
-      class CoachingPrinciple < Believe::Internal::Type::BaseModel
+      # @see ::Believe::Resources::Coaching::Principles#retrieve
+      class CoachingPrinciple < ::Believe::Internal::Type::BaseModel
         # @!attribute id
         #   Principle identifier
         #

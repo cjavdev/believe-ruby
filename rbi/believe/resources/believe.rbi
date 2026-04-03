@@ -2,16 +2,18 @@
 
 module Believe
   module Resources
+    # Interactive endpoints for motivation and guidance
     class Believe
       # Submit your situation and receive Ted Lasso-style motivational guidance.
       sig do
         params(
           situation: String,
-          situation_type: Believe::BelieveSubmitParams::SituationType::OrSymbol,
+          situation_type:
+            ::Believe::BelieveSubmitParams::SituationType::OrSymbol,
           context: T.nilable(String),
           intensity: Integer,
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::Models::BelieveSubmitResponse)
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::Models::BelieveSubmitResponse)
       end
       def submit(
         # Describe your situation
@@ -27,7 +29,7 @@ module Believe
       end
 
       # @api private
-      sig { params(client: Believe::Client).returns(T.attached_class) }
+      sig { params(client: ::Believe::Client).returns(T.attached_class) }
       def self.new(client:)
       end
     end

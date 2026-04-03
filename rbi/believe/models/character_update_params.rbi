@@ -2,14 +2,17 @@
 
 module Believe
   module Models
-    class CharacterUpdateParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class CharacterUpdateParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(Believe::CharacterUpdateParams, Believe::Internal::AnyHash)
+          T.any(::Believe::CharacterUpdateParams, ::Believe::Internal::AnyHash)
         end
+
+      sig { returns(String) }
+      attr_accessor :character_id
 
       sig { returns(T.nilable(String)) }
       attr_accessor :background
@@ -21,15 +24,17 @@ module Believe
       attr_accessor :email
 
       # Emotional intelligence statistics for a character.
-      sig { returns(T.nilable(Believe::EmotionalStats)) }
+      sig { returns(T.nilable(::Believe::EmotionalStats)) }
       attr_reader :emotional_stats
 
       sig do
-        params(emotional_stats: T.nilable(Believe::EmotionalStats::OrHash)).void
+        params(
+          emotional_stats: T.nilable(::Believe::EmotionalStats::OrHash)
+        ).void
       end
       attr_writer :emotional_stats
 
-      sig { returns(T.nilable(T::Array[Believe::GrowthArc])) }
+      sig { returns(T.nilable(T::Array[::Believe::GrowthArc])) }
       attr_accessor :growth_arcs
 
       sig { returns(T.nilable(Float)) }
@@ -45,11 +50,13 @@ module Believe
       attr_accessor :profile_image_url
 
       # Roles characters can have.
-      sig { returns(T.nilable(Believe::CharacterRole::OrSymbol)) }
+      sig { returns(T.nilable(::Believe::CharacterRole::OrSymbol)) }
       attr_accessor :role
 
       sig do
-        returns(T.nilable(Believe::CharacterUpdateParams::SalaryGbp::Variants))
+        returns(
+          T.nilable(::Believe::CharacterUpdateParams::SalaryGbp::Variants)
+        )
       end
       attr_accessor :salary_gbp
 
@@ -61,24 +68,26 @@ module Believe
 
       sig do
         params(
+          character_id: String,
           background: T.nilable(String),
           date_of_birth: T.nilable(Date),
           email: T.nilable(String),
-          emotional_stats: T.nilable(Believe::EmotionalStats::OrHash),
-          growth_arcs: T.nilable(T::Array[Believe::GrowthArc::OrHash]),
+          emotional_stats: T.nilable(::Believe::EmotionalStats::OrHash),
+          growth_arcs: T.nilable(T::Array[::Believe::GrowthArc::OrHash]),
           height_meters: T.nilable(Float),
           name: T.nilable(String),
           personality_traits: T.nilable(T::Array[String]),
           profile_image_url: T.nilable(String),
-          role: T.nilable(Believe::CharacterRole::OrSymbol),
+          role: T.nilable(::Believe::CharacterRole::OrSymbol),
           salary_gbp:
-            T.nilable(Believe::CharacterUpdateParams::SalaryGbp::Variants),
+            T.nilable(::Believe::CharacterUpdateParams::SalaryGbp::Variants),
           signature_quotes: T.nilable(T::Array[String]),
           team_id: T.nilable(String),
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        character_id:,
         background: nil,
         date_of_birth: nil,
         email: nil,
@@ -101,21 +110,22 @@ module Believe
       sig do
         override.returns(
           {
+            character_id: String,
             background: T.nilable(String),
             date_of_birth: T.nilable(Date),
             email: T.nilable(String),
-            emotional_stats: T.nilable(Believe::EmotionalStats),
-            growth_arcs: T.nilable(T::Array[Believe::GrowthArc]),
+            emotional_stats: T.nilable(::Believe::EmotionalStats),
+            growth_arcs: T.nilable(T::Array[::Believe::GrowthArc]),
             height_meters: T.nilable(Float),
             name: T.nilable(String),
             personality_traits: T.nilable(T::Array[String]),
             profile_image_url: T.nilable(String),
-            role: T.nilable(Believe::CharacterRole::OrSymbol),
+            role: T.nilable(::Believe::CharacterRole::OrSymbol),
             salary_gbp:
-              T.nilable(Believe::CharacterUpdateParams::SalaryGbp::Variants),
+              T.nilable(::Believe::CharacterUpdateParams::SalaryGbp::Variants),
             signature_quotes: T.nilable(T::Array[String]),
             team_id: T.nilable(String),
-            request_options: Believe::RequestOptions
+            request_options: ::Believe::RequestOptions
           }
         )
       end
@@ -123,13 +133,13 @@ module Believe
       end
 
       module SalaryGbp
-        extend Believe::Internal::Type::Union
+        extend ::Believe::Internal::Type::Union
 
         Variants = T.type_alias { T.any(Float, String) }
 
         sig do
           override.returns(
-            T::Array[Believe::CharacterUpdateParams::SalaryGbp::Variants]
+            T::Array[::Believe::CharacterUpdateParams::SalaryGbp::Variants]
           )
         end
         def self.variants

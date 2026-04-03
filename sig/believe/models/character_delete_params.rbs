@@ -1,15 +1,23 @@
 module Believe
   module Models
     type character_delete_params =
-      {  } & Believe::Internal::Type::request_parameters
+      { character_id: String } & ::Believe::Internal::Type::request_parameters
 
-    class CharacterDeleteParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    class CharacterDeleteParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
-      def initialize: (?request_options: Believe::request_opts) -> void
+      attr_accessor character_id: String
 
-      def to_hash: -> { request_options: Believe::RequestOptions }
+      def initialize: (
+        character_id: String,
+        ?request_options: ::Believe::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        character_id: String,
+        request_options: ::Believe::RequestOptions
+      }
     end
   end
 end

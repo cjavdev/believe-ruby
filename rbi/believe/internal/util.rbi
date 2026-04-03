@@ -4,7 +4,7 @@ module Believe
   module Internal
     # @api private
     module Util
-      extend Believe::Internal::Util::SorbetRuntimeSupport
+      extend ::Believe::Internal::Util::SorbetRuntimeSupport
 
       # @api private
       sig { returns(Float) }
@@ -128,7 +128,7 @@ module Believe
           params(
             data:
               T.any(
-                Believe::Internal::AnyHash,
+                ::Believe::Internal::AnyHash,
                 T::Array[T.anything],
                 T.anything
               ),
@@ -148,10 +148,18 @@ module Believe
         end
       end
 
+      # https://www.rfc-editor.org/rfc/rfc3986.html#section-3.3
+      RFC_3986_NOT_PCHARS = T.let(/[^A-Za-z0-9\-._~!$&'()*+,;=:@]+/, Regexp)
+
       class << self
         # @api private
         sig { params(uri: URI::Generic).returns(String) }
         def uri_origin(uri)
+        end
+
+        # @api private
+        sig { params(path: T.any(String, Integer)).returns(String) }
+        def encode_path(path)
         end
 
         # @api private
@@ -198,7 +206,7 @@ module Believe
         # @api private
         sig do
           params(url: T.any(URI::Generic, String)).returns(
-            Believe::Internal::Util::ParsedUri
+            ::Believe::Internal::Util::ParsedUri
           )
         end
         def parse_uri(url)
@@ -206,7 +214,7 @@ module Believe
 
         # @api private
         sig do
-          params(parsed: Believe::Internal::Util::ParsedUri).returns(
+          params(parsed: ::Believe::Internal::Util::ParsedUri).returns(
             URI::Generic
           )
         end
@@ -216,8 +224,8 @@ module Believe
         # @api private
         sig do
           params(
-            lhs: Believe::Internal::Util::ParsedUri,
-            rhs: Believe::Internal::Util::ParsedUri
+            lhs: ::Believe::Internal::Util::ParsedUri,
+            rhs: ::Believe::Internal::Util::ParsedUri
           ).returns(URI::Generic)
         end
         def join_parsed_uri(lhs, rhs)
@@ -301,6 +309,26 @@ module Believe
         T.let(%r{^application/(:?x-(?:n|l)djson)|(:?(?:x-)?jsonl)}, Regexp)
 
       class << self
+        # @api private
+        sig do
+          params(query: ::Believe::Internal::AnyHash).returns(
+            ::Believe::Internal::AnyHash
+          )
+        end
+        def encode_query_params(query)
+        end
+
+        # @api private
+        sig do
+          params(
+            collection: ::Believe::Internal::AnyHash,
+            key: String,
+            element: T.anything
+          ).void
+        end
+        private def write_query_param_element!(collection, key, element)
+        end
+
         # @api private
         sig do
           params(
@@ -430,7 +458,7 @@ module Believe
         # Assumes that `lines` has been decoded with `#decode_lines`.
         sig do
           params(lines: T::Enumerable[String]).returns(
-            T::Enumerable[Believe::Internal::Util::ServerSentEvent]
+            T::Enumerable[::Believe::Internal::Util::ServerSentEvent]
           )
         end
         def decode_sse(lines)
@@ -472,7 +500,10 @@ module Believe
           sig do
             params(
               type:
-                T.any(Believe::Internal::Util::SorbetRuntimeSupport, T.anything)
+                T.any(
+                  ::Believe::Internal::Util::SorbetRuntimeSupport,
+                  T.anything
+                )
             ).returns(T.anything)
           end
           def to_sorbet_type(type)

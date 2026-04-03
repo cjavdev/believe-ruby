@@ -2,10 +2,10 @@
 
 module Believe
   module Models
-    # @see Believe::Resources::Believe#submit
-    class BelieveSubmitParams < Believe::Internal::Type::BaseModel
-      extend Believe::Internal::Type::RequestParameters::Converter
-      include Believe::Internal::Type::RequestParameters
+    # @see ::Believe::Resources::Believe#submit
+    class BelieveSubmitParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
 
       # @!attribute situation
       #   Describe your situation
@@ -16,8 +16,8 @@ module Believe
       # @!attribute situation_type
       #   Type of situation
       #
-      #   @return [Symbol, Believe::Models::BelieveSubmitParams::SituationType]
-      required :situation_type, enum: -> { Believe::BelieveSubmitParams::SituationType }
+      #   @return [Symbol, ::Believe::Models::BelieveSubmitParams::SituationType]
+      required :situation_type, enum: -> { ::Believe::BelieveSubmitParams::SituationType }
 
       # @!attribute context
       #   Additional context
@@ -34,17 +34,17 @@ module Believe
       # @!method initialize(situation:, situation_type:, context: nil, intensity: nil, request_options: {})
       #   @param situation [String] Describe your situation
       #
-      #   @param situation_type [Symbol, Believe::Models::BelieveSubmitParams::SituationType] Type of situation
+      #   @param situation_type [Symbol, ::Believe::Models::BelieveSubmitParams::SituationType] Type of situation
       #
       #   @param context [String, nil] Additional context
       #
       #   @param intensity [Integer] How intense is the response needed (1=gentle, 10=full Ted)
       #
-      #   @param request_options [Believe::RequestOptions, Hash{Symbol=>Object}]
+      #   @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}]
 
       # Type of situation
       module SituationType
-        extend Believe::Internal::Type::Enum
+        extend ::Believe::Internal::Type::Enum
 
         WORK_CHALLENGE = :work_challenge
         PERSONAL_SETBACK = :personal_setback

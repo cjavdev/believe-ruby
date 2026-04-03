@@ -3,7 +3,8 @@
 module Believe
   module Resources
     class Matches
-      sig { returns(Believe::Resources::Matches::Commentary) }
+      # Server-Sent Events (SSE) streaming endpoints
+      sig { returns(::Believe::Resources::Matches::Commentary) }
       attr_reader :commentary
 
       # Schedule a new match.
@@ -12,21 +13,21 @@ module Believe
           away_team_id: String,
           date: Time,
           home_team_id: String,
-          match_type: Believe::MatchType::OrSymbol,
+          match_type: ::Believe::MatchType::OrSymbol,
           attendance: T.nilable(Integer),
           away_score: Integer,
           episode_id: T.nilable(String),
           home_score: Integer,
           lesson_learned: T.nilable(String),
           possession_percentage: T.nilable(Float),
-          result: Believe::MatchResult::OrSymbol,
+          result: ::Believe::MatchResult::OrSymbol,
           ted_halftime_speech: T.nilable(String),
           ticket_revenue_gbp:
-            T.nilable(Believe::MatchCreateParams::TicketRevenueGbp::Variants),
-          turning_points: T::Array[Believe::TurningPoint::OrHash],
+            T.nilable(::Believe::MatchCreateParams::TicketRevenueGbp::Variants),
+          turning_points: T::Array[::Believe::TurningPoint::OrHash],
           weather_temp_celsius: T.nilable(Float),
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::Match)
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::Match)
       end
       def create(
         # Away team ID
@@ -67,8 +68,8 @@ module Believe
       sig do
         params(
           match_id: String,
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::Match)
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::Match)
       end
       def retrieve(match_id, request_options: {})
       end
@@ -85,16 +86,16 @@ module Believe
           home_score: T.nilable(Integer),
           home_team_id: T.nilable(String),
           lesson_learned: T.nilable(String),
-          match_type: T.nilable(Believe::MatchType::OrSymbol),
+          match_type: T.nilable(::Believe::MatchType::OrSymbol),
           possession_percentage: T.nilable(Float),
-          result: T.nilable(Believe::MatchResult::OrSymbol),
+          result: T.nilable(::Believe::MatchResult::OrSymbol),
           ted_halftime_speech: T.nilable(String),
           ticket_revenue_gbp:
-            T.nilable(Believe::MatchUpdateParams::TicketRevenueGbp::Variants),
-          turning_points: T.nilable(T::Array[Believe::TurningPoint::OrHash]),
+            T.nilable(::Believe::MatchUpdateParams::TicketRevenueGbp::Variants),
+          turning_points: T.nilable(T::Array[::Believe::TurningPoint::OrHash]),
           weather_temp_celsius: T.nilable(Float),
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::Match)
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::Match)
       end
       def update(
         match_id,
@@ -123,12 +124,12 @@ module Believe
       sig do
         params(
           limit: Integer,
-          match_type: T.nilable(Believe::MatchType::OrSymbol),
-          result: T.nilable(Believe::MatchResult::OrSymbol),
+          match_type: T.nilable(::Believe::MatchType::OrSymbol),
+          result: T.nilable(::Believe::MatchResult::OrSymbol),
           skip: Integer,
           team_id: T.nilable(String),
-          request_options: Believe::RequestOptions::OrHash
-        ).returns(Believe::Internal::SkipLimitPage[Believe::Match])
+          request_options: ::Believe::RequestOptions::OrHash
+        ).returns(::Believe::Internal::SkipLimitPage[::Believe::Match])
       end
       def list(
         # Maximum number of items to return (max: 100)
@@ -149,7 +150,7 @@ module Believe
       sig do
         params(
           match_id: String,
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).void
       end
       def delete(match_id, request_options: {})
@@ -159,7 +160,7 @@ module Believe
       sig do
         params(
           match_id: String,
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).returns(T::Hash[Symbol, T.anything])
       end
       def get_lesson(match_id, request_options: {})
@@ -169,7 +170,7 @@ module Believe
       sig do
         params(
           match_id: String,
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).returns(T::Array[T::Hash[Symbol, T.anything]])
       end
       def get_turning_points(match_id, request_options: {})
@@ -216,7 +217,7 @@ module Believe
           excitement_level: Integer,
           home_team: String,
           speed: Float,
-          request_options: Believe::RequestOptions::OrHash
+          request_options: ::Believe::RequestOptions::OrHash
         ).void
       end
       def stream_live(
@@ -233,7 +234,7 @@ module Believe
       end
 
       # @api private
-      sig { params(client: Believe::Client).returns(T.attached_class) }
+      sig { params(client: ::Believe::Client).returns(T.attached_class) }
       def self.new(client:)
       end
     end
