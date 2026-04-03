@@ -87,18 +87,12 @@ module Believe
     attr_reader :client_
 
     # Get a warm welcome and overview of available endpoints.
-    sig do
-      params(request_options: ::Believe::RequestOptions::OrHash).returns(
-        T.anything
-      )
-    end
-    def get_welcome(request_options: {})
-    end
+    sig { params(request_options: ::Believe::RequestOptions::OrHash).returns(T.anything) }
+    def get_welcome(request_options: {}); end
 
     # @api private
     sig { override.returns(T::Hash[String, String]) }
-    private def auth_headers
-    end
+    private def auth_headers; end
 
     # Creates and returns a new client for interacting with the API.
     sig do
@@ -109,20 +103,20 @@ module Believe
         timeout: Float,
         initial_retry_delay: Float,
         max_retry_delay: Float
-      ).returns(T.attached_class)
+      )
+        .returns(T.attached_class)
     end
     def self.new(
       # Defaults to `ENV["BELIEVE_API_KEY"]`
-      api_key: ENV["BELIEVE_API_KEY"],
+    api_key: ENV["BELIEVE_API_KEY"],
       # Override the default base URL for the API, e.g.,
-      # `"https://api.example.com/v2/"`. Defaults to `ENV["BELIEVE_BASE_URL"]`
-      base_url: ENV["BELIEVE_BASE_URL"],
+    # `"https://api.example.com/v2/"`. Defaults to `ENV["BELIEVE_BASE_URL"]`
+    base_url: ENV["BELIEVE_BASE_URL"],
       # Max number of retries to attempt after a failed retryable request.
-      max_retries: ::Believe::Client::DEFAULT_MAX_RETRIES,
+    max_retries: ::Believe::Client::DEFAULT_MAX_RETRIES,
       timeout: ::Believe::Client::DEFAULT_TIMEOUT_IN_SECONDS,
       initial_retry_delay: ::Believe::Client::DEFAULT_INITIAL_RETRY_DELAY,
       max_retry_delay: ::Believe::Client::DEFAULT_MAX_RETRY_DELAY
-    )
-    end
+    ); end
   end
 end

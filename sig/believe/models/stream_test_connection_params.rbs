@@ -1,7 +1,6 @@
 module Believe
   module Models
-    type stream_test_connection_params =
-      {  } & ::Believe::Internal::Type::request_parameters
+    type stream_test_connection_params = ({} & ::Believe::Internal::Type::request_parameters)
 
     class StreamTestConnectionParams < ::Believe::Internal::Type::BaseModel
       extend ::Believe::Internal::Type::RequestParameters::Converter
@@ -9,7 +8,7 @@ module Believe
 
       def initialize: (?request_options: ::Believe::request_opts) -> void
 
-      def to_hash: -> { request_options: ::Believe::RequestOptions }
+      def to_hash: () -> {request_options: ::Believe::RequestOptions}
     end
   end
 end

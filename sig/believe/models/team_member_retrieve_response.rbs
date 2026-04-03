@@ -1,15 +1,11 @@
 module Believe
   module Models
-    type team_member_retrieve_response =
-      ::Believe::Player
-      | ::Believe::Coach
-      | ::Believe::MedicalStaff
-      | ::Believe::EquipmentManager
+    type team_member_retrieve_response = (::Believe::Player | ::Believe::Coach | ::Believe::MedicalStaff | ::Believe::EquipmentManager)
 
     module TeamMemberRetrieveResponse
       extend ::Believe::Internal::Type::Union
 
-      def self?.variants: -> ::Array[::Believe::Models::team_member_retrieve_response]
+      def self?.variants: () -> ::Array[::Believe::Models::team_member_retrieve_response]
     end
   end
 end

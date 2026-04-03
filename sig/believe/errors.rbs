@@ -5,15 +5,9 @@ module Believe
     end
 
     class ConversionError < ::Believe::Errors::Error
-      def cause: -> StandardError?
+      def cause: () -> StandardError?
 
-      def initialize: (
-        on: Class,
-        method: Symbol,
-        target: top,
-        value: top,
-        ?cause: StandardError?
-      ) -> void
+      def initialize: (on: Class, method: Symbol, target: top, value: top, ?cause: StandardError?) -> void
     end
 
     class APIError < ::Believe::Errors::Error
@@ -25,61 +19,21 @@ module Believe
 
       attr_accessor body: top?
 
-      def initialize: (
-        url: URI::Generic,
-        ?status: Integer?,
-        ?headers: ::Hash[String, String]?,
-        ?body: Object?,
-        ?request: nil,
-        ?response: nil,
-        ?message: String?
-      ) -> void
+      def initialize: (url: URI::Generic, ?status: Integer?, ?headers: ::Hash[String, String]?, ?body: Object?, ?request: nil, ?response: nil, ?message: String?) -> void
     end
 
     class APIConnectionError < ::Believe::Errors::APIError
-      def initialize: (
-        url: URI::Generic,
-        ?status: nil,
-        ?headers: ::Hash[String, String]?,
-        ?body: nil,
-        ?request: nil,
-        ?response: nil,
-        ?message: String?
-      ) -> void
+      def initialize: (url: URI::Generic, ?status: nil, ?headers: ::Hash[String, String]?, ?body: nil, ?request: nil, ?response: nil, ?message: String?) -> void
     end
 
     class APITimeoutError < ::Believe::Errors::APIConnectionError
-      def initialize: (
-        url: URI::Generic,
-        ?status: nil,
-        ?headers: ::Hash[String, String]?,
-        ?body: nil,
-        ?request: nil,
-        ?response: nil,
-        ?message: String?
-      ) -> void
+      def initialize: (url: URI::Generic, ?status: nil, ?headers: ::Hash[String, String]?, ?body: nil, ?request: nil, ?response: nil, ?message: String?) -> void
     end
 
     class APIStatusError < ::Believe::Errors::APIError
-      def self.for: (
-        url: URI::Generic,
-        status: Integer,
-        headers: ::Hash[String, String]?,
-        body: Object?,
-        request: nil,
-        response: nil,
-        ?message: String?
-      ) -> instance
+      def self.for: (url: URI::Generic, status: Integer, headers: ::Hash[String, String]?, body: Object?, request: nil, response: nil, ?message: String?) -> instance
 
-      def initialize: (
-        url: URI::Generic,
-        status: Integer,
-        headers: ::Hash[String, String]?,
-        body: Object?,
-        request: nil,
-        response: nil,
-        ?message: String?
-      ) -> void
+      def initialize: (url: URI::Generic, status: Integer, headers: ::Hash[String, String]?, body: Object?, request: nil, response: nil, ?message: String?) -> void
     end
 
     class BadRequestError < ::Believe::Errors::APIStatusError

@@ -1,6 +1,6 @@
 module Believe
   module Models
-    type match_type = :league | :cup | :friendly | :playoff | :final
+    type match_type = (:league | :cup | :friendly | :playoff | :final)
 
     module MatchType
       extend ::Believe::Internal::Type::Enum
@@ -11,7 +11,7 @@ module Believe
       PLAYOFF: :playoff
       FINAL: :final
 
-      def self?.values: -> ::Array[::Believe::Models::match_type]
+      def self?.values: () -> ::Array[::Believe::Models::match_type]
     end
   end
 end

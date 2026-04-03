@@ -3,13 +3,7 @@
 module Believe
   module Models
     class BelieveSubmitResponse < ::Believe::Internal::Type::BaseModel
-      OrHash =
-        T.type_alias do
-          T.any(
-            ::Believe::Models::BelieveSubmitResponse,
-            ::Believe::Internal::AnyHash
-          )
-        end
+      OrHash = T.type_alias { T.any(::Believe::Models::BelieveSubmitResponse, ::Believe::Internal::AnyHash) }
 
       # Suggested action to take
       sig { returns(String) }
@@ -39,35 +33,35 @@ module Believe
           goldfish_wisdom: String,
           relevant_quote: String,
           ted_response: String
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
       def self.new(
         # Suggested action to take
-        action_suggestion:,
+      action_suggestion:,
         # Your current believe-o-meter score
-        believe_score:,
+      believe_score:,
         # A reminder to have a goldfish memory when needed
-        goldfish_wisdom:,
+      goldfish_wisdom:,
         # A relevant Ted Lasso quote
-        relevant_quote:,
+      relevant_quote:,
         # Ted's motivational response
-        ted_response:
-      )
-      end
+      ted_response:
+      ); end
 
       sig do
-        override.returns(
-          {
-            action_suggestion: String,
-            believe_score: Integer,
-            goldfish_wisdom: String,
-            relevant_quote: String,
-            ted_response: String
-          }
-        )
+        override
+          .returns(
+            {
+              action_suggestion: String,
+              believe_score: Integer,
+              goldfish_wisdom: String,
+              relevant_quote: String,
+              ted_response: String
+            }
+          )
       end
-      def to_hash
-      end
+      def to_hash; end
     end
   end
 end

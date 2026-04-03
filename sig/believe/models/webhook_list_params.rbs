@@ -1,7 +1,6 @@
 module Believe
   module Models
-    type webhook_list_params =
-      {  } & ::Believe::Internal::Type::request_parameters
+    type webhook_list_params = ({} & ::Believe::Internal::Type::request_parameters)
 
     class WebhookListParams < ::Believe::Internal::Type::BaseModel
       extend ::Believe::Internal::Type::RequestParameters::Converter
@@ -9,7 +8,7 @@ module Believe
 
       def initialize: (?request_options: ::Believe::request_opts) -> void
 
-      def to_hash: -> { request_options: ::Believe::RequestOptions }
+      def to_hash: () -> {request_options: ::Believe::RequestOptions}
     end
   end
 end

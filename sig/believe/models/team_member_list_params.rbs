@@ -1,13 +1,11 @@
 module Believe
   module Models
-    type team_member_list_params =
-      {
-        limit: Integer,
-        member_type: ::Believe::Models::TeamMemberListParams::member_type?,
-        skip: Integer,
-        team_id: String?
-      }
-      & ::Believe::Internal::Type::request_parameters
+    type team_member_list_params = ({
+      limit: Integer,
+      member_type: ::Believe::Models::TeamMemberListParams::member_type?,
+      skip: Integer,
+      team_id: String?
+    } & ::Believe::Internal::Type::request_parameters)
 
     class TeamMemberListParams < ::Believe::Internal::Type::BaseModel
       extend ::Believe::Internal::Type::RequestParameters::Converter
@@ -25,15 +23,9 @@ module Believe
 
       attr_accessor team_id: String?
 
-      def initialize: (
-        ?limit: Integer,
-        ?member_type: ::Believe::Models::TeamMemberListParams::member_type?,
-        ?skip: Integer,
-        ?team_id: String?,
-        ?request_options: ::Believe::request_opts
-      ) -> void
+      def initialize: (?limit: Integer, ?member_type: ::Believe::Models::TeamMemberListParams::member_type?, ?skip: Integer, ?team_id: String?, ?request_options: ::Believe::request_opts) -> void
 
-      def to_hash: -> {
+      def to_hash: () -> {
         limit: Integer,
         member_type: ::Believe::Models::TeamMemberListParams::member_type?,
         skip: Integer,
@@ -41,7 +33,7 @@ module Believe
         request_options: ::Believe::RequestOptions
       }
 
-      type member_type = :player | :coach | :medical_staff | :equipment_manager
+      type member_type = (:player | :coach | :medical_staff | :equipment_manager)
 
       module MemberType
         extend ::Believe::Internal::Type::Enum
@@ -51,7 +43,7 @@ module Believe
         MEDICAL_STAFF: :medical_staff
         EQUIPMENT_MANAGER: :equipment_manager
 
-        def self?.values: -> ::Array[::Believe::Models::TeamMemberListParams::member_type]
+        def self?.values: () -> ::Array[::Believe::Models::TeamMemberListParams::member_type]
       end
     end
   end

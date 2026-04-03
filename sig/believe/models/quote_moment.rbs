@@ -1,17 +1,6 @@
 module Believe
   module Models
-    type quote_moment =
-      :halftime_speech
-      | :press_conference
-      | :locker_room
-      | :training
-      | :biscuits_with_boss
-      | :pub
-      | :one_on_one
-      | :celebration
-      | :crisis
-      | :casual
-      | :confrontation
+    type quote_moment = (:halftime_speech | :press_conference | :locker_room | :training | :biscuits_with_boss | :pub | :one_on_one | :celebration | :crisis | :casual | :confrontation)
 
     module QuoteMoment
       extend ::Believe::Internal::Type::Enum
@@ -28,7 +17,7 @@ module Believe
       CASUAL: :casual
       CONFRONTATION: :confrontation
 
-      def self?.values: -> ::Array[::Believe::Models::quote_moment]
+      def self?.values: () -> ::Array[::Believe::Models::quote_moment]
     end
   end
 end

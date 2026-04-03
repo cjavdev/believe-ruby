@@ -21,46 +21,43 @@ module Believe
           buyer_email: T.nilable(String),
           coupon_code: T.nilable(String),
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(::Believe::TicketSale)
+        )
+          .returns(::Believe::TicketSale)
       end
       def create(
         # Name of the ticket buyer
-        buyer_name:,
+      buyer_name:,
         # Currency code (GBP, USD, or EUR)
-        currency:,
+      currency:,
         # Discount amount applied from coupon
-        discount:,
+      discount:,
         # ID of the match
-        match_id:,
+      match_id:,
         # How the ticket was purchased
-        purchase_method:,
+      purchase_method:,
         # Number of tickets purchased
-        quantity:,
+      quantity:,
         # Subtotal before discount and tax (unit_price \* quantity)
-        subtotal:,
+      subtotal:,
         # Tax amount (20% UK VAT on discounted subtotal)
-        tax:,
+      tax:,
         # Final total (subtotal - discount + tax)
-        total:,
+      total:,
         # Price per ticket (decimal string)
-        unit_price:,
+      unit_price:,
         # Email of the ticket buyer
-        buyer_email: nil,
+      buyer_email: nil,
         # Coupon code applied, if any
-        coupon_code: nil,
+      coupon_code: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       # Retrieve detailed information about a specific ticket sale.
       sig do
-        params(
-          ticket_sale_id: String,
-          request_options: ::Believe::RequestOptions::OrHash
-        ).returns(::Believe::TicketSale)
+        params(ticket_sale_id: String, request_options: ::Believe::RequestOptions::OrHash)
+          .returns(::Believe::TicketSale)
       end
-      def retrieve(ticket_sale_id, request_options: {})
-      end
+      def retrieve(ticket_sale_id, request_options: {}); end
 
       # Update specific fields of an existing ticket sale.
       sig do
@@ -79,7 +76,8 @@ module Believe
           total: T.nilable(String),
           unit_price: T.nilable(String),
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(::Believe::TicketSale)
+        )
+          .returns(::Believe::TicketSale)
       end
       def update(
         ticket_sale_id,
@@ -90,15 +88,14 @@ module Believe
         discount: nil,
         match_id: nil,
         # How the ticket was purchased.
-        purchase_method: nil,
+      purchase_method: nil,
         quantity: nil,
         subtotal: nil,
         tax: nil,
         total: nil,
         unit_price: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       # Get a paginated list of all ticket sales with optional filtering. With 300
       # records, this endpoint is ideal for practicing pagination.
@@ -111,39 +108,32 @@ module Believe
           purchase_method: T.nilable(::Believe::PurchaseMethod::OrSymbol),
           skip: Integer,
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(::Believe::Internal::SkipLimitPage[::Believe::TicketSale])
+        )
+          .returns(::Believe::Internal::SkipLimitPage[::Believe::TicketSale])
       end
       def list(
         # Filter by coupon code (use 'none' for sales without coupons)
-        coupon_code: nil,
+      coupon_code: nil,
         # Filter by currency (GBP, USD, EUR)
-        currency: nil,
+      currency: nil,
         # Maximum number of items to return (max: 100)
-        limit: nil,
+      limit: nil,
         # Filter by match ID
-        match_id: nil,
+      match_id: nil,
         # Filter by purchase method
-        purchase_method: nil,
+      purchase_method: nil,
         # Number of items to skip (offset)
-        skip: nil,
+      skip: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       # Remove a ticket sale from the database.
-      sig do
-        params(
-          ticket_sale_id: String,
-          request_options: ::Believe::RequestOptions::OrHash
-        ).void
-      end
-      def delete(ticket_sale_id, request_options: {})
-      end
+      sig { params(ticket_sale_id: String, request_options: ::Believe::RequestOptions::OrHash).void }
+      def delete(ticket_sale_id, request_options: {}); end
 
       # @api private
       sig { params(client: ::Believe::Client).returns(T.attached_class) }
-      def self.new(client:)
-      end
+      def self.new(client:); end
     end
   end
 end

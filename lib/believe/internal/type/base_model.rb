@@ -69,15 +69,7 @@ module Believe
             [name_sym, setter].each { undef_method(_1) } if known_fields.key?(name_sym)
 
             known_fields[name_sym] =
-              {
-                mode: @mode,
-                api_name: api_name,
-                required: required,
-                nilable: nilable,
-                const: const,
-                type_fn: type_fn,
-                meta: meta
-              }
+              {mode: @mode, api_name: api_name, required: required, nilable: nilable, const: const, type_fn: type_fn, meta: meta}
 
             define_method(setter) do |value|
               target = type_fn.call
@@ -103,32 +95,14 @@ module Believe
               in true | false if ::Believe::Internal::Type::Converter === target
                 @data.fetch(name_sym)
               in ::StandardError => e
-                raise ::Believe::Errors::ConversionError.new(
-                  on: self.class,
-                  method: __method__,
-                  target: target,
-                  value: @data.fetch(name_sym),
-                  cause: e
-                )
+                raise ::Believe::Errors::ConversionError.new(on: self.class, method: __method__, target: target, value: @data.fetch(name_sym), cause: e)
               else
                 Kernel.then do
                   value = @data.fetch(name_sym) { const == ::Believe::Internal::OMIT ? nil : const }
                   state = ::Believe::Internal::Type::Converter.new_coerce_state(translate_names: false)
-                  if (nilable || !required) && value.nil?
-                    nil
-                  else
-                    ::Believe::Internal::Type::Converter.coerce(
-                      target, value, state: state
-                    )
-                  end
+                  (nilable || !required) && value.nil? ? nil : ::Believe::Internal::Type::Converter.coerce(target, value, state: state)
                 rescue StandardError => e
-                  raise ::Believe::Errors::ConversionError.new(
-                    on: self.class,
-                    method: __method__,
-                    target: target,
-                    value: value,
-                    cause: e
-                  )
+                  raise ::Believe::Errors::ConversionError.new(on: self.class, method: __method__, target: target, value: value, cause: e)
                 end
               end
             end
@@ -182,9 +156,9 @@ module Believe
           # @param blk [Proc]
           private def request_only(&blk)
             @mode = :dump
-            blk.call
-          ensure
-            @mode = nil
+              blk.call
+            ensure
+              @mode = nil
           end
 
           # @api private
@@ -194,9 +168,9 @@ module Believe
           # @param blk [Proc]
           private def response_only(&blk)
             @mode = :coerce
-            blk.call
-          ensure
-            @mode = nil
+              blk.call
+            ensure
+              @mode = nil
           end
 
           # @api public
@@ -205,7 +179,9 @@ module Believe
           #
           # @return [Boolean]
           def ==(other)
+            # rubocop:disable Layout/LineLength
             other.is_a?(Class) && other <= ::Believe::Internal::Type::BaseModel && other.fields == fields
+            # rubocop:enable Layout/LineLength
           end
 
           # @api public
@@ -317,7 +293,7 @@ module Believe
           # @return [Hash{Object=>Object}, Object]
           def dump(value, state:)
             unless (coerced = ::Believe::Internal::Util.coerce_hash(value)).is_a?(Hash)
-              return super
+              return super(value, state: state)
             end
 
             acc = {}
@@ -493,6 +469,7 @@ module Believe
           #
           # @return [String]
           def inspect(depth: 0)
+            # rubocop:disable Layout/LineLength
             return super() if depth.positive?
 
             depth = depth.succ
@@ -506,6 +483,7 @@ module Believe
             end
 
             "#{name}[#{deferred.inspect}]"
+            # rubocop:enable Layout/LineLength
           end
         end
 

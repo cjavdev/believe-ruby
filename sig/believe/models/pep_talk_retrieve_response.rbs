@@ -1,33 +1,17 @@
 module Believe
   module Models
-    type pep_talk_retrieve_response =
-      {
-        chunks: ::Array[::Believe::Models::PepTalkRetrieveResponse::Chunk],
-        text: String
-      }
+    type pep_talk_retrieve_response = {chunks: ::Array[::Believe::Models::PepTalkRetrieveResponse::Chunk], text: String}
 
     class PepTalkRetrieveResponse < ::Believe::Internal::Type::BaseModel
       attr_accessor chunks: ::Array[::Believe::Models::PepTalkRetrieveResponse::Chunk]
 
       attr_accessor text: String
 
-      def initialize: (
-        chunks: ::Array[::Believe::Models::PepTalkRetrieveResponse::Chunk],
-        text: String
-      ) -> void
+      def initialize: (chunks: ::Array[::Believe::Models::PepTalkRetrieveResponse::Chunk], text: String) -> void
 
-      def to_hash: -> {
-        chunks: ::Array[::Believe::Models::PepTalkRetrieveResponse::Chunk],
-        text: String
-      }
+      def to_hash: () -> {chunks: ::Array[::Believe::Models::PepTalkRetrieveResponse::Chunk], text: String}
 
-      type chunk =
-        {
-          chunk_id: Integer,
-          is_final: bool,
-          text: String,
-          emotional_beat: String?
-        }
+      type chunk = {chunk_id: Integer, is_final: bool, text: String, emotional_beat: String?}
 
       class Chunk < ::Believe::Internal::Type::BaseModel
         attr_accessor chunk_id: Integer
@@ -38,19 +22,9 @@ module Believe
 
         attr_accessor emotional_beat: String?
 
-        def initialize: (
-          chunk_id: Integer,
-          is_final: bool,
-          text: String,
-          ?emotional_beat: String?
-        ) -> void
+        def initialize: (chunk_id: Integer, is_final: bool, text: String, ?emotional_beat: String?) -> void
 
-        def to_hash: -> {
-          chunk_id: Integer,
-          is_final: bool,
-          text: String,
-          emotional_beat: String?
-        }
+        def to_hash: () -> {chunk_id: Integer, is_final: bool, text: String, emotional_beat: String?}
       end
     end
   end

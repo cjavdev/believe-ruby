@@ -16,8 +16,7 @@ module Believe
       FINAL = T.let(:final, ::Believe::MatchType::TaggedSymbol)
 
       sig { override.returns(T::Array[::Believe::MatchType::TaggedSymbol]) }
-      def self.values
-      end
+      def self.values; end
     end
   end
 end

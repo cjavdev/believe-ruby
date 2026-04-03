@@ -1,13 +1,6 @@
 module Believe
   module Models
-    type match_stream_live_params =
-      {
-        away_team: String,
-        excitement_level: Integer,
-        home_team: String,
-        speed: Float
-      }
-      & ::Believe::Internal::Type::request_parameters
+    type match_stream_live_params = ({away_team: String, excitement_level: Integer, home_team: String, speed: Float} & ::Believe::Internal::Type::request_parameters)
 
     class MatchStreamLiveParams < ::Believe::Internal::Type::BaseModel
       extend ::Believe::Internal::Type::RequestParameters::Converter
@@ -29,15 +22,9 @@ module Believe
 
       def speed=: (Float) -> Float
 
-      def initialize: (
-        ?away_team: String,
-        ?excitement_level: Integer,
-        ?home_team: String,
-        ?speed: Float,
-        ?request_options: ::Believe::request_opts
-      ) -> void
+      def initialize: (?away_team: String, ?excitement_level: Integer, ?home_team: String, ?speed: Float, ?request_options: ::Believe::request_opts) -> void
 
-      def to_hash: -> {
+      def to_hash: () -> {
         away_team: String,
         excitement_level: Integer,
         home_team: String,

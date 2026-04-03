@@ -2,7 +2,7 @@
 
 require_relative "../test_helper"
 
-class Believe::Test::Resources::BelieveTest < Believe::Test::ResourceTest
+class Believe::Test::Resources::BelieveTest < ::Believe::Test::ResourceTest
   def test_submit_required_params
     skip("Mock server tests are disabled")
 

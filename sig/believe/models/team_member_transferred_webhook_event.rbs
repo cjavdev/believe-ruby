@@ -1,12 +1,11 @@
 module Believe
   module Models
-    type team_member_transferred_webhook_event =
-      {
-        created_at: Time,
-        data: ::Believe::TeamMemberTransferredWebhookEvent::Data,
-        event_id: String,
-        event_type: ::Believe::Models::TeamMemberTransferredWebhookEvent::event_type
-      }
+    type team_member_transferred_webhook_event = {
+      created_at: Time,
+      data: ::Believe::TeamMemberTransferredWebhookEvent::Data,
+      event_id: String,
+      event_type: ::Believe::Models::TeamMemberTransferredWebhookEvent::event_type
+    }
 
     class TeamMemberTransferredWebhookEvent < ::Believe::Internal::Type::BaseModel
       attr_accessor created_at: Time
@@ -17,35 +16,29 @@ module Believe
 
       attr_accessor event_type: ::Believe::Models::TeamMemberTransferredWebhookEvent::event_type
 
-      def initialize: (
-        created_at: Time,
-        data: ::Believe::TeamMemberTransferredWebhookEvent::Data,
-        event_id: String,
-        event_type: ::Believe::Models::TeamMemberTransferredWebhookEvent::event_type
-      ) -> void
+      def initialize: (created_at: Time, data: ::Believe::TeamMemberTransferredWebhookEvent::Data, event_id: String, event_type: ::Believe::Models::TeamMemberTransferredWebhookEvent::event_type) -> void
 
-      def to_hash: -> {
+      def to_hash: () -> {
         created_at: Time,
         data: ::Believe::TeamMemberTransferredWebhookEvent::Data,
         event_id: String,
         event_type: ::Believe::Models::TeamMemberTransferredWebhookEvent::event_type
       }
 
-      type data =
-        {
-          character_id: String,
-          character_name: String,
-          member_type: ::Believe::Models::TeamMemberTransferredWebhookEvent::Data::member_type,
-          team_id: String,
-          team_member_id: String,
-          team_name: String,
-          ted_reaction: String,
-          transfer_type: ::Believe::Models::TeamMemberTransferredWebhookEvent::Data::transfer_type,
-          previous_team_id: String?,
-          previous_team_name: String?,
-          transfer_fee_gbp: String?,
-          years_with_previous_team: Integer?
-        }
+      type data = {
+        character_id: String,
+        character_name: String,
+        member_type: ::Believe::Models::TeamMemberTransferredWebhookEvent::Data::member_type,
+        team_id: String,
+        team_member_id: String,
+        team_name: String,
+        ted_reaction: String,
+        transfer_type: ::Believe::Models::TeamMemberTransferredWebhookEvent::Data::transfer_type,
+        previous_team_id: String?,
+        previous_team_name: String?,
+        transfer_fee_gbp: String?,
+        years_with_previous_team: Integer?
+      }
 
       class Data < ::Believe::Internal::Type::BaseModel
         attr_accessor character_id: String
@@ -72,22 +65,9 @@ module Believe
 
         attr_accessor years_with_previous_team: Integer?
 
-        def initialize: (
-          character_id: String,
-          character_name: String,
-          member_type: ::Believe::Models::TeamMemberTransferredWebhookEvent::Data::member_type,
-          team_id: String,
-          team_member_id: String,
-          team_name: String,
-          ted_reaction: String,
-          transfer_type: ::Believe::Models::TeamMemberTransferredWebhookEvent::Data::transfer_type,
-          ?previous_team_id: String?,
-          ?previous_team_name: String?,
-          ?transfer_fee_gbp: String?,
-          ?years_with_previous_team: Integer?
-        ) -> void
+        def initialize: (character_id: String, character_name: String, member_type: ::Believe::Models::TeamMemberTransferredWebhookEvent::Data::member_type, team_id: String, team_member_id: String, team_name: String, ted_reaction: String, transfer_type: ::Believe::Models::TeamMemberTransferredWebhookEvent::Data::transfer_type, ?previous_team_id: String?, ?previous_team_name: String?, ?transfer_fee_gbp: String?, ?years_with_previous_team: Integer?) -> void
 
-        def to_hash: -> {
+        def to_hash: () -> {
           character_id: String,
           character_name: String,
           member_type: ::Believe::Models::TeamMemberTransferredWebhookEvent::Data::member_type,
@@ -102,8 +82,7 @@ module Believe
           years_with_previous_team: Integer?
         }
 
-        type member_type =
-          :player | :coach | :medical_staff | :equipment_manager
+        type member_type = (:player | :coach | :medical_staff | :equipment_manager)
 
         module MemberType
           extend ::Believe::Internal::Type::Enum
@@ -113,10 +92,10 @@ module Believe
           MEDICAL_STAFF: :medical_staff
           EQUIPMENT_MANAGER: :equipment_manager
 
-          def self?.values: -> ::Array[::Believe::Models::TeamMemberTransferredWebhookEvent::Data::member_type]
+          def self?.values: () -> ::Array[::Believe::Models::TeamMemberTransferredWebhookEvent::Data::member_type]
         end
 
-        type transfer_type = :joined | :departed
+        type transfer_type = (:joined | :departed)
 
         module TransferType
           extend ::Believe::Internal::Type::Enum
@@ -124,7 +103,7 @@ module Believe
           JOINED: :joined
           DEPARTED: :departed
 
-          def self?.values: -> ::Array[::Believe::Models::TeamMemberTransferredWebhookEvent::Data::transfer_type]
+          def self?.values: () -> ::Array[::Believe::Models::TeamMemberTransferredWebhookEvent::Data::transfer_type]
         end
       end
 
@@ -135,7 +114,7 @@ module Believe
 
         TEAM_MEMBER_TRANSFERRED: :"team_member.transferred"
 
-        def self?.values: -> ::Array[::Believe::Models::TeamMemberTransferredWebhookEvent::event_type]
+        def self?.values: () -> ::Array[::Believe::Models::TeamMemberTransferredWebhookEvent::event_type]
       end
     end
   end

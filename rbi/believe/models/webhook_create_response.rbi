@@ -3,13 +3,7 @@
 module Believe
   module Models
     class WebhookCreateResponse < ::Believe::Internal::Type::BaseModel
-      OrHash =
-        T.type_alias do
-          T.any(
-            ::Believe::Models::WebhookCreateResponse,
-            ::Believe::Internal::AnyHash
-          )
-        end
+      OrHash = T.type_alias { T.any(::Believe::Models::WebhookCreateResponse, ::Believe::Internal::AnyHash) }
 
       # The registered webhook details
       sig { returns(::Believe::RegisteredWebhook) }
@@ -34,33 +28,20 @@ module Believe
 
       # Response after registering a webhook.
       sig do
-        params(
-          webhook: ::Believe::RegisteredWebhook::OrHash,
-          message: String,
-          ted_says: String
-        ).returns(T.attached_class)
+        params(webhook: ::Believe::RegisteredWebhook::OrHash, message: String, ted_says: String)
+          .returns(T.attached_class)
       end
       def self.new(
         # The registered webhook details
-        webhook:,
+      webhook:,
         # Status message
-        message: nil,
+      message: nil,
         # Ted's reaction
-        ted_says: nil
-      )
-      end
+      ted_says: nil
+      ); end
 
-      sig do
-        override.returns(
-          {
-            webhook: ::Believe::RegisteredWebhook,
-            message: String,
-            ted_says: String
-          }
-        )
-      end
-      def to_hash
-      end
+      sig { override.returns({webhook: ::Believe::RegisteredWebhook, message: String, ted_says: String}) }
+      def to_hash; end
     end
   end
 end

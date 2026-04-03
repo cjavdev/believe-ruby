@@ -3,10 +3,7 @@
 module Believe
   module Models
     class EmotionalStats < ::Believe::Internal::Type::BaseModel
-      OrHash =
-        T.type_alias do
-          T.any(::Believe::EmotionalStats, ::Believe::Internal::AnyHash)
-        end
+      OrHash = T.type_alias { T.any(::Believe::EmotionalStats, ::Believe::Internal::AnyHash) }
 
       # Level of curiosity over judgment (0-100)
       sig { returns(Integer) }
@@ -36,35 +33,29 @@ module Believe
           optimism: Integer,
           resilience: Integer,
           vulnerability: Integer
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
       def self.new(
         # Level of curiosity over judgment (0-100)
-        curiosity:,
+      curiosity:,
         # Capacity for empathy (0-100)
-        empathy:,
+      empathy:,
         # Level of optimism (0-100)
-        optimism:,
+      optimism:,
         # Bounce-back ability (0-100)
-        resilience:,
+      resilience:,
         # Willingness to be vulnerable (0-100)
-        vulnerability:
-      )
-      end
+      vulnerability:
+      ); end
 
       sig do
-        override.returns(
-          {
-            curiosity: Integer,
-            empathy: Integer,
-            optimism: Integer,
-            resilience: Integer,
-            vulnerability: Integer
-          }
-        )
+        override
+          .returns(
+            {curiosity: Integer, empathy: Integer, optimism: Integer, resilience: Integer, vulnerability: Integer}
+          )
       end
-      def to_hash
-      end
+      def to_hash; end
     end
   end
 end

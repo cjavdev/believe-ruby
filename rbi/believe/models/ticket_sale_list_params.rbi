@@ -6,10 +6,7 @@ module Believe
       extend ::Believe::Internal::Type::RequestParameters::Converter
       include ::Believe::Internal::Type::RequestParameters
 
-      OrHash =
-        T.type_alias do
-          T.any(::Believe::TicketSaleListParams, ::Believe::Internal::AnyHash)
-        end
+      OrHash = T.type_alias { T.any(::Believe::TicketSaleListParams, ::Believe::Internal::AnyHash) }
 
       # Filter by coupon code (use 'none' for sales without coupons)
       sig { returns(T.nilable(String)) }
@@ -50,40 +47,40 @@ module Believe
           purchase_method: T.nilable(::Believe::PurchaseMethod::OrSymbol),
           skip: Integer,
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
       def self.new(
         # Filter by coupon code (use 'none' for sales without coupons)
-        coupon_code: nil,
+      coupon_code: nil,
         # Filter by currency (GBP, USD, EUR)
-        currency: nil,
+      currency: nil,
         # Maximum number of items to return (max: 100)
-        limit: nil,
+      limit: nil,
         # Filter by match ID
-        match_id: nil,
+      match_id: nil,
         # Filter by purchase method
-        purchase_method: nil,
+      purchase_method: nil,
         # Number of items to skip (offset)
-        skip: nil,
+      skip: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       sig do
-        override.returns(
-          {
-            coupon_code: T.nilable(String),
-            currency: T.nilable(String),
-            limit: Integer,
-            match_id: T.nilable(String),
-            purchase_method: T.nilable(::Believe::PurchaseMethod::OrSymbol),
-            skip: Integer,
-            request_options: ::Believe::RequestOptions
-          }
-        )
+        override
+          .returns(
+            {
+              coupon_code: T.nilable(String),
+              currency: T.nilable(String),
+              limit: Integer,
+              match_id: T.nilable(String),
+              purchase_method: T.nilable(::Believe::PurchaseMethod::OrSymbol),
+              skip: Integer,
+              request_options: ::Believe::RequestOptions
+            }
+          )
       end
-      def to_hash
-      end
+      def to_hash; end
     end
   end
 end

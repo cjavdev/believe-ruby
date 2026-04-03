@@ -1,21 +1,19 @@
 module Believe
   module Models
-    type ticket_sale_create_params =
-      {
-        buyer_name: String,
-        currency: String,
-        discount: String,
-        match_id: String,
-        purchase_method: ::Believe::Models::purchase_method,
-        quantity: Integer,
-        subtotal: String,
-        tax: String,
-        total: String,
-        unit_price: String,
-        buyer_email: String?,
-        coupon_code: String?
-      }
-      & ::Believe::Internal::Type::request_parameters
+    type ticket_sale_create_params = ({
+      buyer_name: String,
+      currency: String,
+      discount: String,
+      match_id: String,
+      purchase_method: ::Believe::Models::purchase_method,
+      quantity: Integer,
+      subtotal: String,
+      tax: String,
+      total: String,
+      unit_price: String,
+      buyer_email: String?,
+      coupon_code: String?
+    } & ::Believe::Internal::Type::request_parameters)
 
     class TicketSaleCreateParams < ::Believe::Internal::Type::BaseModel
       extend ::Believe::Internal::Type::RequestParameters::Converter
@@ -45,23 +43,9 @@ module Believe
 
       attr_accessor coupon_code: String?
 
-      def initialize: (
-        buyer_name: String,
-        currency: String,
-        discount: String,
-        match_id: String,
-        purchase_method: ::Believe::Models::purchase_method,
-        quantity: Integer,
-        subtotal: String,
-        tax: String,
-        total: String,
-        unit_price: String,
-        ?buyer_email: String?,
-        ?coupon_code: String?,
-        ?request_options: ::Believe::request_opts
-      ) -> void
+      def initialize: (buyer_name: String, currency: String, discount: String, match_id: String, purchase_method: ::Believe::Models::purchase_method, quantity: Integer, subtotal: String, tax: String, total: String, unit_price: String, ?buyer_email: String?, ?coupon_code: String?, ?request_options: ::Believe::request_opts) -> void
 
-      def to_hash: -> {
+      def to_hash: () -> {
         buyer_name: String,
         currency: String,
         discount: String,

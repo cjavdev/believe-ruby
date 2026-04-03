@@ -1,22 +1,21 @@
 module Believe
   module Models
-    type character =
-      {
-        id: String,
-        background: String,
-        emotional_stats: ::Believe::EmotionalStats,
-        name: String,
-        personality_traits: ::Array[String],
-        role: ::Believe::Models::character_role,
-        date_of_birth: Date?,
-        email: String?,
-        growth_arcs: ::Array[::Believe::GrowthArc],
-        height_meters: Float?,
-        profile_image_url: String?,
-        salary_gbp: String?,
-        signature_quotes: ::Array[String],
-        team_id: String?
-      }
+    type character = {
+      id: String,
+      background: String,
+      emotional_stats: ::Believe::EmotionalStats,
+      name: String,
+      personality_traits: ::Array[String],
+      role: ::Believe::Models::character_role,
+      date_of_birth: Date?,
+      email: String?,
+      growth_arcs: ::Array[::Believe::GrowthArc],
+      height_meters: Float?,
+      profile_image_url: String?,
+      salary_gbp: String?,
+      signature_quotes: ::Array[String],
+      team_id: String?
+    }
 
     class Character < ::Believe::Internal::Type::BaseModel
       attr_accessor id: String
@@ -37,9 +36,7 @@ module Believe
 
       attr_reader growth_arcs: ::Array[::Believe::GrowthArc]?
 
-      def growth_arcs=: (
-        ::Array[::Believe::GrowthArc]
-      ) -> ::Array[::Believe::GrowthArc]
+      def growth_arcs=: (::Array[::Believe::GrowthArc]) -> ::Array[::Believe::GrowthArc]
 
       attr_accessor height_meters: Float?
 
@@ -53,24 +50,9 @@ module Believe
 
       attr_accessor team_id: String?
 
-      def initialize: (
-        id: String,
-        background: String,
-        emotional_stats: ::Believe::EmotionalStats,
-        name: String,
-        personality_traits: ::Array[String],
-        role: ::Believe::Models::character_role,
-        ?date_of_birth: Date?,
-        ?email: String?,
-        ?growth_arcs: ::Array[::Believe::GrowthArc],
-        ?height_meters: Float?,
-        ?profile_image_url: String?,
-        ?salary_gbp: String?,
-        ?signature_quotes: ::Array[String],
-        ?team_id: String?
-      ) -> void
+      def initialize: (id: String, background: String, emotional_stats: ::Believe::EmotionalStats, name: String, personality_traits: ::Array[String], role: ::Believe::Models::character_role, ?date_of_birth: Date?, ?email: String?, ?growth_arcs: ::Array[::Believe::GrowthArc], ?height_meters: Float?, ?profile_image_url: String?, ?salary_gbp: String?, ?signature_quotes: ::Array[String], ?team_id: String?) -> void
 
-      def to_hash: -> {
+      def to_hash: () -> {
         id: String,
         background: String,
         emotional_stats: ::Believe::EmotionalStats,

@@ -48,13 +48,7 @@ module Believe
       # @see ::Believe::Models::MatchCreateParams
       def create(params)
         parsed, options = ::Believe::MatchCreateParams.dump_request(params)
-        @client.request(
-          method: :post,
-          path: "matches",
-          body: parsed,
-          model: ::Believe::Match,
-          options: options
-        )
+        @client.request(method: :post, path: "matches", body: parsed, model: ::Believe::Match, options: options)
       end
 
       # Retrieve detailed information about a specific match.

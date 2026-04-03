@@ -1,15 +1,14 @@
 module Believe
   module Models
-    type equipment_manager =
-      {
-        id: String,
-        character_id: String,
-        team_id: String,
-        years_with_team: Integer,
-        is_head_kitman: bool,
-        member_type: ::Believe::Models::EquipmentManager::member_type,
-        responsibilities: ::Array[String]
-      }
+    type equipment_manager = {
+      id: String,
+      character_id: String,
+      team_id: String,
+      years_with_team: Integer,
+      is_head_kitman: bool,
+      member_type: ::Believe::Models::EquipmentManager::member_type,
+      responsibilities: ::Array[String]
+    }
 
     class EquipmentManager < ::Believe::Internal::Type::BaseModel
       attr_accessor id: String
@@ -26,25 +25,15 @@ module Believe
 
       attr_reader member_type: ::Believe::Models::EquipmentManager::member_type?
 
-      def member_type=: (
-        ::Believe::Models::EquipmentManager::member_type
-      ) -> ::Believe::Models::EquipmentManager::member_type
+      def member_type=: (::Believe::Models::EquipmentManager::member_type) -> ::Believe::Models::EquipmentManager::member_type
 
       attr_reader responsibilities: ::Array[String]?
 
       def responsibilities=: (::Array[String]) -> ::Array[String]
 
-      def initialize: (
-        id: String,
-        character_id: String,
-        team_id: String,
-        years_with_team: Integer,
-        ?is_head_kitman: bool,
-        ?member_type: ::Believe::Models::EquipmentManager::member_type,
-        ?responsibilities: ::Array[String]
-      ) -> void
+      def initialize: (id: String, character_id: String, team_id: String, years_with_team: Integer, ?is_head_kitman: bool, ?member_type: ::Believe::Models::EquipmentManager::member_type, ?responsibilities: ::Array[String]) -> void
 
-      def to_hash: -> {
+      def to_hash: () -> {
         id: String,
         character_id: String,
         team_id: String,
@@ -61,7 +50,7 @@ module Believe
 
         EQUIPMENT_MANAGER: :equipment_manager
 
-        def self?.values: -> ::Array[::Believe::Models::EquipmentManager::member_type]
+        def self?.values: () -> ::Array[::Believe::Models::EquipmentManager::member_type]
       end
     end
   end

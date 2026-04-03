@@ -1,11 +1,6 @@
 module Believe
   module Models
-    type medical_specialty =
-      :team_doctor
-      | :physiotherapist
-      | :sports_psychologist
-      | :nutritionist
-      | :massage_therapist
+    type medical_specialty = (:team_doctor | :physiotherapist | :sports_psychologist | :nutritionist | :massage_therapist)
 
     module MedicalSpecialty
       extend ::Believe::Internal::Type::Enum
@@ -16,7 +11,7 @@ module Believe
       NUTRITIONIST: :nutritionist
       MASSAGE_THERAPIST: :massage_therapist
 
-      def self?.values: -> ::Array[::Believe::Models::medical_specialty]
+      def self?.values: () -> ::Array[::Believe::Models::medical_specialty]
     end
   end
 end

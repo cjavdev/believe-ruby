@@ -19,8 +19,7 @@ module Believe
       LIGUE_1 = T.let(:"Ligue 1", ::Believe::League::TaggedSymbol)
 
       sig { override.returns(T::Array[::Believe::League::TaggedSymbol]) }
-      def self.values
-      end
+      def self.values; end
     end
   end
 end

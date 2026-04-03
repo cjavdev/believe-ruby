@@ -6,10 +6,7 @@ module Believe
       extend ::Believe::Internal::Type::RequestParameters::Converter
       include ::Believe::Internal::Type::RequestParameters
 
-      OrHash =
-        T.type_alias do
-          T.any(::Believe::EpisodeUpdateParams, ::Believe::Internal::AnyHash)
-        end
+      OrHash = T.type_alias { T.any(::Believe::EpisodeUpdateParams, ::Believe::Internal::AnyHash) }
 
       sig { returns(String) }
       attr_accessor :episode_id
@@ -78,7 +75,8 @@ module Believe
           viewer_rating: T.nilable(Float),
           writer: T.nilable(String),
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
       def self.new(
         episode_id:,
@@ -98,34 +96,33 @@ module Believe
         viewer_rating: nil,
         writer: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       sig do
-        override.returns(
-          {
-            episode_id: String,
-            air_date: T.nilable(Date),
-            biscuits_with_boss_moment: T.nilable(String),
-            character_focus: T.nilable(T::Array[String]),
-            director: T.nilable(String),
-            episode_number: T.nilable(Integer),
-            main_theme: T.nilable(String),
-            memorable_moments: T.nilable(T::Array[String]),
-            runtime_minutes: T.nilable(Integer),
-            season: T.nilable(Integer),
-            synopsis: T.nilable(String),
-            ted_wisdom: T.nilable(String),
-            title: T.nilable(String),
-            us_viewers_millions: T.nilable(Float),
-            viewer_rating: T.nilable(Float),
-            writer: T.nilable(String),
-            request_options: ::Believe::RequestOptions
-          }
-        )
+        override
+          .returns(
+            {
+              episode_id: String,
+              air_date: T.nilable(Date),
+              biscuits_with_boss_moment: T.nilable(String),
+              character_focus: T.nilable(T::Array[String]),
+              director: T.nilable(String),
+              episode_number: T.nilable(Integer),
+              main_theme: T.nilable(String),
+              memorable_moments: T.nilable(T::Array[String]),
+              runtime_minutes: T.nilable(Integer),
+              season: T.nilable(Integer),
+              synopsis: T.nilable(String),
+              ted_wisdom: T.nilable(String),
+              title: T.nilable(String),
+              us_viewers_millions: T.nilable(Float),
+              viewer_rating: T.nilable(Float),
+              writer: T.nilable(String),
+              request_options: ::Believe::RequestOptions
+            }
+          )
       end
-      def to_hash
-      end
+      def to_hash; end
     end
   end
 end

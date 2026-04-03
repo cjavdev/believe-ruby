@@ -82,6 +82,7 @@ module Believe
           #
           # @return [Pathname, StringIO, IO, String, Object]
           def dump(value, state:)
+            # rubocop:disable Lint/DuplicateBranch
             case value
             in StringIO | String
               # https://datatracker.ietf.org/doc/html/rfc7578#section-4.2
@@ -96,6 +97,7 @@ module Believe
             else
               value
             end
+            # rubocop:enable Lint/DuplicateBranch
           end
 
           # @api private

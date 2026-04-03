@@ -3,13 +3,7 @@
 module Believe
   module Models
     class PressSimulateResponse < ::Believe::Internal::Type::BaseModel
-      OrHash =
-        T.type_alias do
-          T.any(
-            ::Believe::Models::PressSimulateResponse,
-            ::Believe::Internal::AnyHash
-          )
-        end
+      OrHash = T.type_alias { T.any(::Believe::Models::PressSimulateResponse, ::Believe::Internal::AnyHash) }
 
       # The actual wisdom beneath the humor
       sig { returns(String) }
@@ -39,35 +33,35 @@ module Believe
           reporter_reaction: String,
           response: String,
           deflection_humor: T.nilable(String)
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
       def self.new(
         # The actual wisdom beneath the humor
-        actual_wisdom:,
+      actual_wisdom:,
         # How Ted would dodge a follow-up
-        follow_up_dodge:,
+      follow_up_dodge:,
         # How reporters would react
-        reporter_reaction:,
+      reporter_reaction:,
         # Ted's press conference answer
-        response:,
+      response:,
         # Humorous deflection if appropriate
-        deflection_humor: nil
-      )
-      end
+      deflection_humor: nil
+      ); end
 
       sig do
-        override.returns(
-          {
-            actual_wisdom: String,
-            follow_up_dodge: String,
-            reporter_reaction: String,
-            response: String,
-            deflection_humor: T.nilable(String)
-          }
-        )
+        override
+          .returns(
+            {
+              actual_wisdom: String,
+              follow_up_dodge: String,
+              reporter_reaction: String,
+              response: String,
+              deflection_humor: T.nilable(String)
+            }
+          )
       end
-      def to_hash
-      end
+      def to_hash; end
     end
   end
 end

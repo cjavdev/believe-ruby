@@ -3,10 +3,7 @@
 module Believe
   module Models
     class TicketSale < ::Believe::Internal::Type::BaseModel
-      OrHash =
-        T.type_alias do
-          T.any(::Believe::TicketSale, ::Believe::Internal::AnyHash)
-        end
+      OrHash = T.type_alias { T.any(::Believe::TicketSale, ::Believe::Internal::AnyHash) }
 
       # Unique identifier
       sig { returns(String) }
@@ -76,59 +73,59 @@ module Believe
           unit_price: String,
           buyer_email: T.nilable(String),
           coupon_code: T.nilable(String)
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
       def self.new(
         # Unique identifier
-        id:,
+      id:,
         # Name of the ticket buyer
-        buyer_name:,
+      buyer_name:,
         # Currency code (GBP, USD, or EUR)
-        currency:,
+      currency:,
         # Discount amount applied from coupon
-        discount:,
+      discount:,
         # ID of the match
-        match_id:,
+      match_id:,
         # How the ticket was purchased
-        purchase_method:,
+      purchase_method:,
         # Number of tickets purchased
-        quantity:,
+      quantity:,
         # Subtotal before discount and tax (unit_price \* quantity)
-        subtotal:,
+      subtotal:,
         # Tax amount (20% UK VAT on discounted subtotal)
-        tax:,
+      tax:,
         # Final total (subtotal - discount + tax)
-        total:,
+      total:,
         # Price per ticket (decimal string)
-        unit_price:,
+      unit_price:,
         # Email of the ticket buyer
-        buyer_email: nil,
+      buyer_email: nil,
         # Coupon code applied, if any
-        coupon_code: nil
-      )
-      end
+      coupon_code: nil
+      ); end
 
       sig do
-        override.returns(
-          {
-            id: String,
-            buyer_name: String,
-            currency: String,
-            discount: String,
-            match_id: String,
-            purchase_method: ::Believe::PurchaseMethod::TaggedSymbol,
-            quantity: Integer,
-            subtotal: String,
-            tax: String,
-            total: String,
-            unit_price: String,
-            buyer_email: T.nilable(String),
-            coupon_code: T.nilable(String)
-          }
-        )
+        override
+          .returns(
+            {
+              id: String,
+              buyer_name: String,
+              currency: String,
+              discount: String,
+              match_id: String,
+              purchase_method: ::Believe::PurchaseMethod::TaggedSymbol,
+              quantity: Integer,
+              subtotal: String,
+              tax: String,
+              total: String,
+              unit_price: String,
+              buyer_email: T.nilable(String),
+              coupon_code: T.nilable(String)
+            }
+          )
       end
-      def to_hash
-      end
+      def to_hash; end
     end
   end
 end

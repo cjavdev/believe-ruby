@@ -3,10 +3,7 @@
 module Believe
   module Models
     class TurningPoint < ::Believe::Internal::Type::BaseModel
-      OrHash =
-        T.type_alias do
-          T.any(::Believe::TurningPoint, ::Believe::Internal::AnyHash)
-        end
+      OrHash = T.type_alias { T.any(::Believe::TurningPoint, ::Believe::Internal::AnyHash) }
 
       # What happened
       sig { returns(String) }
@@ -31,32 +28,27 @@ module Believe
           emotional_impact: String,
           minute: Integer,
           character_involved: T.nilable(String)
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
       def self.new(
         # What happened
-        description:,
+      description:,
         # How this affected the team emotionally
-        emotional_impact:,
+      emotional_impact:,
         # Minute of the match
-        minute:,
+      minute:,
         # Character ID who was central to this moment
-        character_involved: nil
-      )
-      end
+      character_involved: nil
+      ); end
 
       sig do
-        override.returns(
-          {
-            description: String,
-            emotional_impact: String,
-            minute: Integer,
-            character_involved: T.nilable(String)
-          }
-        )
+        override
+          .returns(
+            {description: String, emotional_impact: String, minute: Integer, character_involved: T.nilable(String)}
+          )
       end
-      def to_hash
-      end
+      def to_hash; end
     end
   end
 end

@@ -3,8 +3,7 @@
 module Believe
   module Models
     class Player < ::Believe::Internal::Type::BaseModel
-      OrHash =
-        T.type_alias { T.any(::Believe::Player, ::Believe::Internal::AnyHash) }
+      OrHash = T.type_alias { T.any(::Believe::Player, ::Believe::Internal::AnyHash) }
 
       # Unique identifier for this team membership
       sig { returns(String) }
@@ -71,68 +70,62 @@ module Believe
           goals_scored: Integer,
           is_captain: T::Boolean,
           member_type: ::Believe::Player::MemberType::OrSymbol
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
       def self.new(
         # Unique identifier for this team membership
-        id:,
+      id:,
         # ID of the character (references /characters/{id})
-        character_id:,
+      character_id:,
         # Jersey/shirt number
-        jersey_number:,
+      jersey_number:,
         # Playing position on the field
-        position:,
+      position:,
         # ID of the team they belong to
-        team_id:,
+      team_id:,
         # Number of years with the current team
-        years_with_team:,
+      years_with_team:,
         # Total assists for the team
-        assists: nil,
+      assists: nil,
         # Total goals scored for the team
-        goals_scored: nil,
+      goals_scored: nil,
         # Whether this player is team captain
-        is_captain: nil,
+      is_captain: nil,
         # Discriminator field indicating this is a player
-        member_type: nil
-      )
-      end
+      member_type: nil
+      ); end
 
       sig do
-        override.returns(
-          {
-            id: String,
-            character_id: String,
-            jersey_number: Integer,
-            position: ::Believe::Position::TaggedSymbol,
-            team_id: String,
-            years_with_team: Integer,
-            assists: Integer,
-            goals_scored: Integer,
-            is_captain: T::Boolean,
-            member_type: ::Believe::Player::MemberType::TaggedSymbol
-          }
-        )
+        override
+          .returns(
+            {
+              id: String,
+              character_id: String,
+              jersey_number: Integer,
+              position: ::Believe::Position::TaggedSymbol,
+              team_id: String,
+              years_with_team: Integer,
+              assists: Integer,
+              goals_scored: Integer,
+              is_captain: T::Boolean,
+              member_type: ::Believe::Player::MemberType::TaggedSymbol
+            }
+          )
       end
-      def to_hash
-      end
+      def to_hash; end
 
       # Discriminator field indicating this is a player
       module MemberType
         extend ::Believe::Internal::Type::Enum
 
-        TaggedSymbol =
-          T.type_alias { T.all(Symbol, ::Believe::Player::MemberType) }
+        TaggedSymbol = T.type_alias { T.all(Symbol, ::Believe::Player::MemberType) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         PLAYER = T.let(:player, ::Believe::Player::MemberType::TaggedSymbol)
 
-        sig do
-          override.returns(
-            T::Array[::Believe::Player::MemberType::TaggedSymbol]
-          )
-        end
-        def self.values
-        end
+        sig { override.returns(T::Array[::Believe::Player::MemberType::TaggedSymbol]) }
+        def self.values; end
       end
     end
   end

@@ -23,10 +23,8 @@ module Believe
       FORGIVENESS = T.let(:forgiveness, ::Believe::QuoteTheme::TaggedSymbol)
       PHILOSOPHY = T.let(:philosophy, ::Believe::QuoteTheme::TaggedSymbol)
       ROMANCE = T.let(:romance, ::Believe::QuoteTheme::TaggedSymbol)
-      CULTURAL_PRIDE =
-        T.let(:"cultural-pride", ::Believe::QuoteTheme::TaggedSymbol)
-      CULTURAL_DIFFERENCES =
-        T.let(:"cultural-differences", ::Believe::QuoteTheme::TaggedSymbol)
+      CULTURAL_PRIDE = T.let(:"cultural-pride", ::Believe::QuoteTheme::TaggedSymbol)
+      CULTURAL_DIFFERENCES = T.let(:"cultural-differences", ::Believe::QuoteTheme::TaggedSymbol)
       ANTAGONISM = T.let(:antagonism, ::Believe::QuoteTheme::TaggedSymbol)
       CELEBRATION = T.let(:celebration, ::Believe::QuoteTheme::TaggedSymbol)
       IDENTITY = T.let(:identity, ::Believe::QuoteTheme::TaggedSymbol)
@@ -44,8 +42,7 @@ module Believe
       MATURITY = T.let(:maturity, ::Believe::QuoteTheme::TaggedSymbol)
 
       sig { override.returns(T::Array[::Believe::QuoteTheme::TaggedSymbol]) }
-      def self.values
-      end
+      def self.values; end
     end
   end
 end

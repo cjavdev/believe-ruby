@@ -1,8 +1,6 @@
 module Believe
   module Models
-    type quote_list_by_character_params =
-      { character_id: String, limit: Integer, skip: Integer }
-      & ::Believe::Internal::Type::request_parameters
+    type quote_list_by_character_params = ({character_id: String, limit: Integer, skip: Integer} & ::Believe::Internal::Type::request_parameters)
 
     class QuoteListByCharacterParams < ::Believe::Internal::Type::BaseModel
       extend ::Believe::Internal::Type::RequestParameters::Converter
@@ -18,19 +16,9 @@ module Believe
 
       def skip=: (Integer) -> Integer
 
-      def initialize: (
-        character_id: String,
-        ?limit: Integer,
-        ?skip: Integer,
-        ?request_options: ::Believe::request_opts
-      ) -> void
+      def initialize: (character_id: String, ?limit: Integer, ?skip: Integer, ?request_options: ::Believe::request_opts) -> void
 
-      def to_hash: -> {
-        character_id: String,
-        limit: Integer,
-        skip: Integer,
-        request_options: ::Believe::RequestOptions
-      }
+      def to_hash: () -> {character_id: String, limit: Integer, skip: Integer, request_options: ::Believe::RequestOptions}
     end
   end
 end

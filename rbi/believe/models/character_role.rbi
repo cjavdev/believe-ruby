@@ -21,8 +21,7 @@ module Believe
       OTHER = T.let(:other, ::Believe::CharacterRole::TaggedSymbol)
 
       sig { override.returns(T::Array[::Believe::CharacterRole::TaggedSymbol]) }
-      def self.values
-      end
+      def self.values; end
     end
   end
 end

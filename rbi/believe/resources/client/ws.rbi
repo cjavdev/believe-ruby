@@ -21,13 +21,11 @@ module Believe
         # ws.send("Hello!"); // Server responds with echo
         # ```
         sig { params(request_options: ::Believe::RequestOptions::OrHash).void }
-        def test_(request_options: {})
-        end
+        def test_(request_options: {}); end
 
         # @api private
         sig { params(client: ::Believe::Client).returns(T.attached_class) }
-        def self.new(client:)
-        end
+        def self.new(client:); end
       end
     end
   end

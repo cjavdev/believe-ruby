@@ -6,10 +6,7 @@ module Believe
       extend ::Believe::Internal::Type::RequestParameters::Converter
       include ::Believe::Internal::Type::RequestParameters
 
-      OrHash =
-        T.type_alias do
-          T.any(::Believe::QuoteListParams, ::Believe::Internal::AnyHash)
-        end
+      OrHash = T.type_alias { T.any(::Believe::QuoteListParams, ::Believe::Internal::AnyHash) }
 
       # Filter by character
       sig { returns(T.nilable(String)) }
@@ -55,43 +52,43 @@ module Believe
           skip: Integer,
           theme: T.nilable(::Believe::QuoteTheme::OrSymbol),
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
       def self.new(
         # Filter by character
-        character_id: nil,
+      character_id: nil,
         # Filter funny quotes
-        funny: nil,
+      funny: nil,
         # Filter inspirational quotes
-        inspirational: nil,
+      inspirational: nil,
         # Maximum number of items to return (max: 100)
-        limit: nil,
+      limit: nil,
         # Filter by moment type
-        moment_type: nil,
+      moment_type: nil,
         # Number of items to skip (offset)
-        skip: nil,
+      skip: nil,
         # Filter by theme
-        theme: nil,
+      theme: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       sig do
-        override.returns(
-          {
-            character_id: T.nilable(String),
-            funny: T.nilable(T::Boolean),
-            inspirational: T.nilable(T::Boolean),
-            limit: Integer,
-            moment_type: T.nilable(::Believe::QuoteMoment::OrSymbol),
-            skip: Integer,
-            theme: T.nilable(::Believe::QuoteTheme::OrSymbol),
-            request_options: ::Believe::RequestOptions
-          }
-        )
+        override
+          .returns(
+            {
+              character_id: T.nilable(String),
+              funny: T.nilable(T::Boolean),
+              inspirational: T.nilable(T::Boolean),
+              limit: Integer,
+              moment_type: T.nilable(::Believe::QuoteMoment::OrSymbol),
+              skip: Integer,
+              theme: T.nilable(::Believe::QuoteTheme::OrSymbol),
+              request_options: ::Believe::RequestOptions
+            }
+          )
       end
-      def to_hash
-      end
+      def to_hash; end
     end
   end
 end

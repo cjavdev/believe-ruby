@@ -6,10 +6,7 @@ module Believe
       extend ::Believe::Internal::Type::RequestParameters::Converter
       include ::Believe::Internal::Type::RequestParameters
 
-      OrHash =
-        T.type_alias do
-          T.any(::Believe::TeamCreateParams, ::Believe::Internal::AnyHash)
-        end
+      OrHash = T.type_alias { T.any(::Believe::TeamCreateParams, ::Believe::Internal::AnyHash) }
 
       # Team culture/morale score (0-100)
       sig { returns(Integer) }
@@ -39,11 +36,7 @@ module Believe
       attr_writer :values
 
       # Annual budget in GBP
-      sig do
-        returns(
-          T.nilable(::Believe::TeamCreateParams::AnnualBudgetGbp::Variants)
-        )
-      end
+      sig { returns(T.nilable(::Believe::TeamCreateParams::AnnualBudgetGbp::Variants)) }
       attr_accessor :annual_budget_gbp
 
       # Average match attendance
@@ -84,9 +77,7 @@ module Believe
       sig { returns(T.nilable(::Believe::GeoLocation)) }
       attr_reader :stadium_location
 
-      sig do
-        params(stadium_location: T.nilable(::Believe::GeoLocation::OrHash)).void
-      end
+      sig { params(stadium_location: T.nilable(::Believe::GeoLocation::OrHash)).void }
       attr_writer :stadium_location
 
       # Official team website
@@ -105,8 +96,7 @@ module Believe
           name: String,
           stadium: String,
           values: ::Believe::TeamValues::OrHash,
-          annual_budget_gbp:
-            T.nilable(::Believe::TeamCreateParams::AnnualBudgetGbp::Variants),
+          annual_budget_gbp: T.nilable(::Believe::TeamCreateParams::AnnualBudgetGbp::Variants),
           average_attendance: T.nilable(Float),
           contact_email: T.nilable(String),
           is_active: T::Boolean,
@@ -118,74 +108,73 @@ module Believe
           website: T.nilable(String),
           win_percentage: T.nilable(Float),
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
       def self.new(
         # Team culture/morale score (0-100)
-        culture_score:,
+      culture_score:,
         # Year the club was founded
-        founded_year:,
+      founded_year:,
         # Current league
-        league:,
+      league:,
         # Team name
-        name:,
+      name:,
         # Home stadium name
-        stadium:,
+      stadium:,
         # Team's core values
-        values:,
+      values:,
         # Annual budget in GBP
-        annual_budget_gbp: nil,
+      annual_budget_gbp: nil,
         # Average match attendance
-        average_attendance: nil,
+      average_attendance: nil,
         # Team contact email
-        contact_email: nil,
+      contact_email: nil,
         # Whether the team is currently active
-        is_active: nil,
+      is_active: nil,
         # Team nickname
-        nickname: nil,
+      nickname: nil,
         # Primary team color (hex)
-        primary_color: nil,
+      primary_color: nil,
         # List of rival team IDs
-        rival_teams: nil,
+      rival_teams: nil,
         # Secondary team color (hex)
-        secondary_color: nil,
+      secondary_color: nil,
         # Geographic coordinates for a location.
-        stadium_location: nil,
+      stadium_location: nil,
         # Official team website
-        website: nil,
+      website: nil,
         # Season win percentage
-        win_percentage: nil,
+      win_percentage: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       sig do
-        override.returns(
-          {
-            culture_score: Integer,
-            founded_year: Integer,
-            league: ::Believe::League::OrSymbol,
-            name: String,
-            stadium: String,
-            values: ::Believe::TeamValues,
-            annual_budget_gbp:
-              T.nilable(::Believe::TeamCreateParams::AnnualBudgetGbp::Variants),
-            average_attendance: T.nilable(Float),
-            contact_email: T.nilable(String),
-            is_active: T::Boolean,
-            nickname: T.nilable(String),
-            primary_color: T.nilable(String),
-            rival_teams: T::Array[String],
-            secondary_color: T.nilable(String),
-            stadium_location: T.nilable(::Believe::GeoLocation),
-            website: T.nilable(String),
-            win_percentage: T.nilable(Float),
-            request_options: ::Believe::RequestOptions
-          }
-        )
+        override
+          .returns(
+            {
+              culture_score: Integer,
+              founded_year: Integer,
+              league: ::Believe::League::OrSymbol,
+              name: String,
+              stadium: String,
+              values: ::Believe::TeamValues,
+              annual_budget_gbp: T.nilable(::Believe::TeamCreateParams::AnnualBudgetGbp::Variants),
+              average_attendance: T.nilable(Float),
+              contact_email: T.nilable(String),
+              is_active: T::Boolean,
+              nickname: T.nilable(String),
+              primary_color: T.nilable(String),
+              rival_teams: T::Array[String],
+              secondary_color: T.nilable(String),
+              stadium_location: T.nilable(::Believe::GeoLocation),
+              website: T.nilable(String),
+              win_percentage: T.nilable(Float),
+              request_options: ::Believe::RequestOptions
+            }
+          )
       end
-      def to_hash
-      end
+      def to_hash; end
 
       # Annual budget in GBP
       module AnnualBudgetGbp
@@ -193,13 +182,8 @@ module Believe
 
         Variants = T.type_alias { T.any(Float, String) }
 
-        sig do
-          override.returns(
-            T::Array[::Believe::TeamCreateParams::AnnualBudgetGbp::Variants]
-          )
-        end
-        def self.variants
-        end
+        sig { override.returns(T::Array[::Believe::TeamCreateParams::AnnualBudgetGbp::Variants]) }
+        def self.variants; end
       end
     end
   end

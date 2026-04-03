@@ -7,12 +7,7 @@ module Believe
       include ::Believe::Internal::Type::RequestParameters
 
       OrHash =
-        T.type_alias do
-          T.any(
-            ::Believe::ReframeTransformNegativeThoughtsParams,
-            ::Believe::Internal::AnyHash
-          )
-        end
+        T.type_alias { T.any(::Believe::ReframeTransformNegativeThoughtsParams, ::Believe::Internal::AnyHash) }
 
       # The negative thought to reframe
       sig { returns(String) }
@@ -30,28 +25,22 @@ module Believe
           negative_thought: String,
           recurring: T::Boolean,
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
       def self.new(
         # The negative thought to reframe
-        negative_thought:,
+      negative_thought:,
         # Is this a recurring thought?
-        recurring: nil,
+      recurring: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       sig do
-        override.returns(
-          {
-            negative_thought: String,
-            recurring: T::Boolean,
-            request_options: ::Believe::RequestOptions
-          }
-        )
+        override
+          .returns({negative_thought: String, recurring: T::Boolean, request_options: ::Believe::RequestOptions})
       end
-      def to_hash
-      end
+      def to_hash; end
     end
   end
 end

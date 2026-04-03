@@ -6,18 +6,10 @@ module Believe
     module TeamMemberListStaffResponse
       extend ::Believe::Internal::Type::Union
 
-      Variants =
-        T.type_alias do
-          T.any(::Believe::MedicalStaff, ::Believe::EquipmentManager)
-        end
+      Variants = T.type_alias { T.any(::Believe::MedicalStaff, ::Believe::EquipmentManager) }
 
-      sig do
-        override.returns(
-          T::Array[::Believe::Models::TeamMemberListStaffResponse::Variants]
-        )
-      end
-      def self.variants
-      end
+      sig { override.returns(T::Array[::Believe::Models::TeamMemberListStaffResponse::Variants]) }
+      def self.variants; end
     end
   end
 end

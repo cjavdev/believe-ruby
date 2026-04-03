@@ -3,10 +3,7 @@
 module Believe
   module Models
     class Character < ::Believe::Internal::Type::BaseModel
-      OrHash =
-        T.type_alias do
-          T.any(::Believe::Character, ::Believe::Internal::AnyHash)
-        end
+      OrHash = T.type_alias { T.any(::Believe::Character, ::Believe::Internal::AnyHash) }
 
       # Unique identifier
       sig { returns(String) }
@@ -90,62 +87,62 @@ module Believe
           salary_gbp: T.nilable(String),
           signature_quotes: T::Array[String],
           team_id: T.nilable(String)
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
       def self.new(
         # Unique identifier
-        id:,
+      id:,
         # Character background and history
-        background:,
+      background:,
         # Emotional intelligence stats
-        emotional_stats:,
+      emotional_stats:,
         # Character's full name
-        name:,
+      name:,
         # Key personality traits
-        personality_traits:,
+      personality_traits:,
         # Character's role
-        role:,
+      role:,
         # Character's date of birth
-        date_of_birth: nil,
+      date_of_birth: nil,
         # Character's email address
-        email: nil,
+      email: nil,
         # Character development across seasons
-        growth_arcs: nil,
+      growth_arcs: nil,
         # Height in meters
-        height_meters: nil,
+      height_meters: nil,
         # URL to character's profile image
-        profile_image_url: nil,
+      profile_image_url: nil,
         # Annual salary in GBP
-        salary_gbp: nil,
+      salary_gbp: nil,
         # Memorable quotes from this character
-        signature_quotes: nil,
+      signature_quotes: nil,
         # ID of the team they belong to
-        team_id: nil
-      )
-      end
+      team_id: nil
+      ); end
 
       sig do
-        override.returns(
-          {
-            id: String,
-            background: String,
-            emotional_stats: ::Believe::EmotionalStats,
-            name: String,
-            personality_traits: T::Array[String],
-            role: ::Believe::CharacterRole::TaggedSymbol,
-            date_of_birth: T.nilable(Date),
-            email: T.nilable(String),
-            growth_arcs: T::Array[::Believe::GrowthArc],
-            height_meters: T.nilable(Float),
-            profile_image_url: T.nilable(String),
-            salary_gbp: T.nilable(String),
-            signature_quotes: T::Array[String],
-            team_id: T.nilable(String)
-          }
-        )
+        override
+          .returns(
+            {
+              id: String,
+              background: String,
+              emotional_stats: ::Believe::EmotionalStats,
+              name: String,
+              personality_traits: T::Array[String],
+              role: ::Believe::CharacterRole::TaggedSymbol,
+              date_of_birth: T.nilable(Date),
+              email: T.nilable(String),
+              growth_arcs: T::Array[::Believe::GrowthArc],
+              height_meters: T.nilable(Float),
+              profile_image_url: T.nilable(String),
+              salary_gbp: T.nilable(String),
+              signature_quotes: T::Array[String],
+              team_id: T.nilable(String)
+            }
+          )
       end
-      def to_hash
-      end
+      def to_hash; end
     end
   end
 end

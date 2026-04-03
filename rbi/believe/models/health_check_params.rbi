@@ -6,22 +6,13 @@ module Believe
       extend ::Believe::Internal::Type::RequestParameters::Converter
       include ::Believe::Internal::Type::RequestParameters
 
-      OrHash =
-        T.type_alias do
-          T.any(::Believe::HealthCheckParams, ::Believe::Internal::AnyHash)
-        end
+      OrHash = T.type_alias { T.any(::Believe::HealthCheckParams, ::Believe::Internal::AnyHash) }
 
-      sig do
-        params(request_options: ::Believe::RequestOptions::OrHash).returns(
-          T.attached_class
-        )
-      end
-      def self.new(request_options: {})
-      end
+      sig { params(request_options: ::Believe::RequestOptions::OrHash).returns(T.attached_class) }
+      def self.new(request_options: {}); end
 
-      sig { override.returns({ request_options: ::Believe::RequestOptions }) }
-      def to_hash
-      end
+      sig { override.returns({request_options: ::Believe::RequestOptions}) }
+      def to_hash; end
     end
   end
 end

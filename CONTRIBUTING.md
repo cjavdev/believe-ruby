@@ -66,6 +66,8 @@ $ bundle exec rake
 
 ## Running tests
 
+
+
 ```bash
 $ bundle exec rake test
 ```

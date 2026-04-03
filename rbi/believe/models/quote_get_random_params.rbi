@@ -6,10 +6,7 @@ module Believe
       extend ::Believe::Internal::Type::RequestParameters::Converter
       include ::Believe::Internal::Type::RequestParameters
 
-      OrHash =
-        T.type_alias do
-          T.any(::Believe::QuoteGetRandomParams, ::Believe::Internal::AnyHash)
-        end
+      OrHash = T.type_alias { T.any(::Believe::QuoteGetRandomParams, ::Believe::Internal::AnyHash) }
 
       # Filter by character
       sig { returns(T.nilable(String)) }
@@ -29,31 +26,31 @@ module Believe
           inspirational: T.nilable(T::Boolean),
           theme: T.nilable(::Believe::QuoteTheme::OrSymbol),
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
       def self.new(
         # Filter by character
-        character_id: nil,
+      character_id: nil,
         # Filter inspirational quotes
-        inspirational: nil,
+      inspirational: nil,
         # Filter by theme
-        theme: nil,
+      theme: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       sig do
-        override.returns(
-          {
-            character_id: T.nilable(String),
-            inspirational: T.nilable(T::Boolean),
-            theme: T.nilable(::Believe::QuoteTheme::OrSymbol),
-            request_options: ::Believe::RequestOptions
-          }
-        )
+        override
+          .returns(
+            {
+              character_id: T.nilable(String),
+              inspirational: T.nilable(T::Boolean),
+              theme: T.nilable(::Believe::QuoteTheme::OrSymbol),
+              request_options: ::Believe::RequestOptions
+            }
+          )
       end
-      def to_hash
-      end
+      def to_hash; end
     end
   end
 end

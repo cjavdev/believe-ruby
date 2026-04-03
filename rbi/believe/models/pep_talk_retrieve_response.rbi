@@ -3,18 +3,10 @@
 module Believe
   module Models
     class PepTalkRetrieveResponse < ::Believe::Internal::Type::BaseModel
-      OrHash =
-        T.type_alias do
-          T.any(
-            ::Believe::Models::PepTalkRetrieveResponse,
-            ::Believe::Internal::AnyHash
-          )
-        end
+      OrHash = T.type_alias { T.any(::Believe::Models::PepTalkRetrieveResponse, ::Believe::Internal::AnyHash) }
 
       # Individual chunks of the pep talk
-      sig do
-        returns(T::Array[::Believe::Models::PepTalkRetrieveResponse::Chunk])
-      end
+      sig { returns(T::Array[::Believe::Models::PepTalkRetrieveResponse::Chunk]) }
       attr_accessor :chunks
 
       # The full pep talk text
@@ -23,39 +15,22 @@ module Believe
 
       # A complete pep talk response.
       sig do
-        params(
-          chunks:
-            T::Array[::Believe::Models::PepTalkRetrieveResponse::Chunk::OrHash],
-          text: String
-        ).returns(T.attached_class)
+        params(chunks: T::Array[::Believe::Models::PepTalkRetrieveResponse::Chunk::OrHash], text: String)
+          .returns(T.attached_class)
       end
       def self.new(
         # Individual chunks of the pep talk
-        chunks:,
+      chunks:,
         # The full pep talk text
-        text:
-      )
-      end
+      text:
+      ); end
 
-      sig do
-        override.returns(
-          {
-            chunks: T::Array[::Believe::Models::PepTalkRetrieveResponse::Chunk],
-            text: String
-          }
-        )
-      end
-      def to_hash
-      end
+      sig { override.returns({chunks: T::Array[::Believe::Models::PepTalkRetrieveResponse::Chunk], text: String}) }
+      def to_hash; end
 
       class Chunk < ::Believe::Internal::Type::BaseModel
         OrHash =
-          T.type_alias do
-            T.any(
-              ::Believe::Models::PepTalkRetrieveResponse::Chunk,
-              ::Believe::Internal::AnyHash
-            )
-          end
+          T.type_alias { T.any(::Believe::Models::PepTalkRetrieveResponse::Chunk, ::Believe::Internal::AnyHash) }
 
         # Chunk sequence number
         sig { returns(Integer) }
@@ -76,38 +51,26 @@ module Believe
 
         # A chunk of a streaming pep talk from Ted.
         sig do
-          params(
-            chunk_id: Integer,
-            is_final: T::Boolean,
-            text: String,
-            emotional_beat: T.nilable(String)
-          ).returns(T.attached_class)
+          params(chunk_id: Integer, is_final: T::Boolean, text: String, emotional_beat: T.nilable(String))
+            .returns(T.attached_class)
         end
         def self.new(
           # Chunk sequence number
-          chunk_id:,
+        chunk_id:,
           # Is this the final chunk
-          is_final:,
+        is_final:,
           # The text of this chunk
-          text:,
+        text:,
           # The emotional purpose of this chunk (e.g., greeting, acknowledgment, wisdom,
-          # affirmation, encouragement)
-          emotional_beat: nil
-        )
-        end
+        # affirmation, encouragement)
+        emotional_beat: nil
+        ); end
 
         sig do
-          override.returns(
-            {
-              chunk_id: Integer,
-              is_final: T::Boolean,
-              text: String,
-              emotional_beat: T.nilable(String)
-            }
-          )
+          override
+            .returns({chunk_id: Integer, is_final: T::Boolean, text: String, emotional_beat: T.nilable(String)})
         end
-        def to_hash
-        end
+        def to_hash; end
       end
     end
   end
