@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.1 (2026-04-09)
+
+Full Changelog: [v0.2.0...v0.2.1](https://github.com/cjavdev/believe-ruby/compare/v0.2.0...v0.2.1)
+
+### Bug Fixes
+
+* multipart encoding for file arrays ([70a8ef3](https://github.com/cjavdev/believe-ruby/commit/70a8ef33ea0a9d15e50836511f1ede14af2f9455))
+
 ## 0.2.0 (2026-04-03)
 
 Full Changelog: [v0.1.0...v0.2.0](https://github.com/cjavdev/believe-ruby/compare/v0.1.0...v0.2.0)
