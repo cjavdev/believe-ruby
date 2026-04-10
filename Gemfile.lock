@@ -11,7 +11,7 @@ GIT
 PATH
   remote: .
   specs:
-    believe (0.2.0)
+    believe (0.2.1)
       cgi
       connection_pool
 
