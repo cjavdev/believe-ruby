@@ -1,11 +1,6 @@
 module Believe
   module Models
-    type team_member_update_params =
-      {
-        member_id: String,
-        updates: ::Believe::Models::TeamMemberUpdateParams::updates
-      }
-      & ::Believe::Internal::Type::request_parameters
+    type team_member_update_params = ({member_id: String, updates: ::Believe::Models::TeamMemberUpdateParams::updates} & ::Believe::Internal::Type::request_parameters)
 
     class TeamMemberUpdateParams < ::Believe::Internal::Type::BaseModel
       extend ::Believe::Internal::Type::RequestParameters::Converter
@@ -15,37 +10,28 @@ module Believe
 
       attr_accessor updates: ::Believe::Models::TeamMemberUpdateParams::updates
 
-      def initialize: (
-        member_id: String,
-        updates: ::Believe::Models::TeamMemberUpdateParams::updates,
-        ?request_options: ::Believe::request_opts
-      ) -> void
+      def initialize: (member_id: String, updates: ::Believe::Models::TeamMemberUpdateParams::updates, ?request_options: ::Believe::request_opts) -> void
 
-      def to_hash: -> {
+      def to_hash: () -> {
         member_id: String,
         updates: ::Believe::Models::TeamMemberUpdateParams::updates,
         request_options: ::Believe::RequestOptions
       }
 
-      type updates =
-        ::Believe::TeamMemberUpdateParams::Updates::PlayerUpdate
-        | ::Believe::TeamMemberUpdateParams::Updates::CoachUpdate
-        | ::Believe::TeamMemberUpdateParams::Updates::MedicalStaffUpdate
-        | ::Believe::TeamMemberUpdateParams::Updates::EquipmentManagerUpdate
+      type updates = (::Believe::TeamMemberUpdateParams::Updates::PlayerUpdate | ::Believe::TeamMemberUpdateParams::Updates::CoachUpdate | ::Believe::TeamMemberUpdateParams::Updates::MedicalStaffUpdate | ::Believe::TeamMemberUpdateParams::Updates::EquipmentManagerUpdate)
 
       module Updates
         extend ::Believe::Internal::Type::Union
 
-        type player_update =
-          {
-            assists: Integer?,
-            goals_scored: Integer?,
-            is_captain: bool?,
-            jersey_number: Integer?,
-            position: ::Believe::Models::position?,
-            team_id: String?,
-            years_with_team: Integer?
-          }
+        type player_update = {
+          assists: Integer?,
+          goals_scored: Integer?,
+          is_captain: bool?,
+          jersey_number: Integer?,
+          position: ::Believe::Models::position?,
+          team_id: String?,
+          years_with_team: Integer?
+        }
 
         class PlayerUpdate < ::Believe::Internal::Type::BaseModel
           attr_accessor assists: Integer?
@@ -62,17 +48,9 @@ module Believe
 
           attr_accessor years_with_team: Integer?
 
-          def initialize: (
-            ?assists: Integer?,
-            ?goals_scored: Integer?,
-            ?is_captain: bool?,
-            ?jersey_number: Integer?,
-            ?position: ::Believe::Models::position?,
-            ?team_id: String?,
-            ?years_with_team: Integer?
-          ) -> void
+          def initialize: (?assists: Integer?, ?goals_scored: Integer?, ?is_captain: bool?, ?jersey_number: Integer?, ?position: ::Believe::Models::position?, ?team_id: String?, ?years_with_team: Integer?) -> void
 
-          def to_hash: -> {
+          def to_hash: () -> {
             assists: Integer?,
             goals_scored: Integer?,
             is_captain: bool?,
@@ -83,14 +61,13 @@ module Believe
           }
         end
 
-        type coach_update =
-          {
-            certifications: ::Array[String]?,
-            specialty: ::Believe::Models::coach_specialty?,
-            team_id: String?,
-            win_rate: Float?,
-            years_with_team: Integer?
-          }
+        type coach_update = {
+          certifications: ::Array[String]?,
+          specialty: ::Believe::Models::coach_specialty?,
+          team_id: String?,
+          win_rate: Float?,
+          years_with_team: Integer?
+        }
 
         class CoachUpdate < ::Believe::Internal::Type::BaseModel
           attr_accessor certifications: ::Array[String]?
@@ -103,15 +80,9 @@ module Believe
 
           attr_accessor years_with_team: Integer?
 
-          def initialize: (
-            ?certifications: ::Array[String]?,
-            ?specialty: ::Believe::Models::coach_specialty?,
-            ?team_id: String?,
-            ?win_rate: Float?,
-            ?years_with_team: Integer?
-          ) -> void
+          def initialize: (?certifications: ::Array[String]?, ?specialty: ::Believe::Models::coach_specialty?, ?team_id: String?, ?win_rate: Float?, ?years_with_team: Integer?) -> void
 
-          def to_hash: -> {
+          def to_hash: () -> {
             certifications: ::Array[String]?,
             specialty: ::Believe::Models::coach_specialty?,
             team_id: String?,
@@ -120,14 +91,13 @@ module Believe
           }
         end
 
-        type medical_staff_update =
-          {
-            license_number: String?,
-            qualifications: ::Array[String]?,
-            specialty: ::Believe::Models::medical_specialty?,
-            team_id: String?,
-            years_with_team: Integer?
-          }
+        type medical_staff_update = {
+          license_number: String?,
+          qualifications: ::Array[String]?,
+          specialty: ::Believe::Models::medical_specialty?,
+          team_id: String?,
+          years_with_team: Integer?
+        }
 
         class MedicalStaffUpdate < ::Believe::Internal::Type::BaseModel
           attr_accessor license_number: String?
@@ -140,15 +110,9 @@ module Believe
 
           attr_accessor years_with_team: Integer?
 
-          def initialize: (
-            ?license_number: String?,
-            ?qualifications: ::Array[String]?,
-            ?specialty: ::Believe::Models::medical_specialty?,
-            ?team_id: String?,
-            ?years_with_team: Integer?
-          ) -> void
+          def initialize: (?license_number: String?, ?qualifications: ::Array[String]?, ?specialty: ::Believe::Models::medical_specialty?, ?team_id: String?, ?years_with_team: Integer?) -> void
 
-          def to_hash: -> {
+          def to_hash: () -> {
             license_number: String?,
             qualifications: ::Array[String]?,
             specialty: ::Believe::Models::medical_specialty?,
@@ -157,13 +121,7 @@ module Believe
           }
         end
 
-        type equipment_manager_update =
-          {
-            is_head_kitman: bool?,
-            responsibilities: ::Array[String]?,
-            team_id: String?,
-            years_with_team: Integer?
-          }
+        type equipment_manager_update = {is_head_kitman: bool?, responsibilities: ::Array[String]?, team_id: String?, years_with_team: Integer?}
 
         class EquipmentManagerUpdate < ::Believe::Internal::Type::BaseModel
           attr_accessor is_head_kitman: bool?
@@ -174,22 +132,12 @@ module Believe
 
           attr_accessor years_with_team: Integer?
 
-          def initialize: (
-            ?is_head_kitman: bool?,
-            ?responsibilities: ::Array[String]?,
-            ?team_id: String?,
-            ?years_with_team: Integer?
-          ) -> void
+          def initialize: (?is_head_kitman: bool?, ?responsibilities: ::Array[String]?, ?team_id: String?, ?years_with_team: Integer?) -> void
 
-          def to_hash: -> {
-            is_head_kitman: bool?,
-            responsibilities: ::Array[String]?,
-            team_id: String?,
-            years_with_team: Integer?
-          }
+          def to_hash: () -> {is_head_kitman: bool?, responsibilities: ::Array[String]?, team_id: String?, years_with_team: Integer?}
         end
 
-        def self?.variants: -> ::Array[::Believe::Models::TeamMemberUpdateParams::updates]
+        def self?.variants: () -> ::Array[::Believe::Models::TeamMemberUpdateParams::updates]
       end
     end
   end

@@ -10,21 +10,20 @@ module Believe
           negative_thought: String,
           recurring: T::Boolean,
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(::Believe::Models::ReframeTransformNegativeThoughtsResponse)
+        )
+          .returns(::Believe::Models::ReframeTransformNegativeThoughtsResponse)
       end
       def transform_negative_thoughts(
         # The negative thought to reframe
-        negative_thought:,
+      negative_thought:,
         # Is this a recurring thought?
-        recurring: nil,
+      recurring: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       # @api private
       sig { params(client: ::Believe::Client).returns(T.attached_class) }
-      def self.new(client:)
-      end
+      def self.new(client:); end
     end
   end
 end

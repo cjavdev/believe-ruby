@@ -1,8 +1,6 @@
 module Believe
   module Models
-    type press_simulate_params =
-      { question: String, hostile: bool, topic: String? }
-      & ::Believe::Internal::Type::request_parameters
+    type press_simulate_params = ({question: String, hostile: bool, topic: String?} & ::Believe::Internal::Type::request_parameters)
 
     class PressSimulateParams < ::Believe::Internal::Type::BaseModel
       extend ::Believe::Internal::Type::RequestParameters::Converter
@@ -16,19 +14,9 @@ module Believe
 
       attr_accessor topic: String?
 
-      def initialize: (
-        question: String,
-        ?hostile: bool,
-        ?topic: String?,
-        ?request_options: ::Believe::request_opts
-      ) -> void
+      def initialize: (question: String, ?hostile: bool, ?topic: String?, ?request_options: ::Believe::request_opts) -> void
 
-      def to_hash: -> {
-        question: String,
-        hostile: bool,
-        topic: String?,
-        request_options: ::Believe::RequestOptions
-      }
+      def to_hash: () -> {question: String, hostile: bool, topic: String?, request_options: ::Believe::RequestOptions}
     end
   end
 end

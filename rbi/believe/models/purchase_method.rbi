@@ -14,11 +14,8 @@ module Believe
       WILL_CALL = T.let(:will_call, ::Believe::PurchaseMethod::TaggedSymbol)
       PHONE = T.let(:phone, ::Believe::PurchaseMethod::TaggedSymbol)
 
-      sig do
-        override.returns(T::Array[::Believe::PurchaseMethod::TaggedSymbol])
-      end
-      def self.values
-      end
+      sig { override.returns(T::Array[::Believe::PurchaseMethod::TaggedSymbol]) }
+      def self.values; end
     end
   end
 end

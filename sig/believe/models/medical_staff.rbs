@@ -1,16 +1,15 @@
 module Believe
   module Models
-    type medical_staff =
-      {
-        id: String,
-        character_id: String,
-        specialty: ::Believe::Models::medical_specialty,
-        team_id: String,
-        years_with_team: Integer,
-        license_number: String?,
-        member_type: ::Believe::Models::MedicalStaff::member_type,
-        qualifications: ::Array[String]
-      }
+    type medical_staff = {
+      id: String,
+      character_id: String,
+      specialty: ::Believe::Models::medical_specialty,
+      team_id: String,
+      years_with_team: Integer,
+      license_number: String?,
+      member_type: ::Believe::Models::MedicalStaff::member_type,
+      qualifications: ::Array[String]
+    }
 
     class MedicalStaff < ::Believe::Internal::Type::BaseModel
       attr_accessor id: String
@@ -27,26 +26,15 @@ module Believe
 
       attr_reader member_type: ::Believe::Models::MedicalStaff::member_type?
 
-      def member_type=: (
-        ::Believe::Models::MedicalStaff::member_type
-      ) -> ::Believe::Models::MedicalStaff::member_type
+      def member_type=: (::Believe::Models::MedicalStaff::member_type) -> ::Believe::Models::MedicalStaff::member_type
 
       attr_reader qualifications: ::Array[String]?
 
       def qualifications=: (::Array[String]) -> ::Array[String]
 
-      def initialize: (
-        id: String,
-        character_id: String,
-        specialty: ::Believe::Models::medical_specialty,
-        team_id: String,
-        years_with_team: Integer,
-        ?license_number: String?,
-        ?member_type: ::Believe::Models::MedicalStaff::member_type,
-        ?qualifications: ::Array[String]
-      ) -> void
+      def initialize: (id: String, character_id: String, specialty: ::Believe::Models::medical_specialty, team_id: String, years_with_team: Integer, ?license_number: String?, ?member_type: ::Believe::Models::MedicalStaff::member_type, ?qualifications: ::Array[String]) -> void
 
-      def to_hash: -> {
+      def to_hash: () -> {
         id: String,
         character_id: String,
         specialty: ::Believe::Models::medical_specialty,
@@ -64,7 +52,7 @@ module Believe
 
         MEDICAL_STAFF: :medical_staff
 
-        def self?.values: -> ::Array[::Believe::Models::MedicalStaff::member_type]
+        def self?.values: () -> ::Array[::Believe::Models::MedicalStaff::member_type]
       end
     end
   end

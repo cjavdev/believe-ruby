@@ -1,21 +1,20 @@
 module Believe
   module Models
-    type ticket_sale =
-      {
-        id: String,
-        buyer_name: String,
-        currency: String,
-        discount: String,
-        match_id: String,
-        purchase_method: ::Believe::Models::purchase_method,
-        quantity: Integer,
-        subtotal: String,
-        tax: String,
-        total: String,
-        unit_price: String,
-        buyer_email: String?,
-        coupon_code: String?
-      }
+    type ticket_sale = {
+      id: String,
+      buyer_name: String,
+      currency: String,
+      discount: String,
+      match_id: String,
+      purchase_method: ::Believe::Models::purchase_method,
+      quantity: Integer,
+      subtotal: String,
+      tax: String,
+      total: String,
+      unit_price: String,
+      buyer_email: String?,
+      coupon_code: String?
+    }
 
     class TicketSale < ::Believe::Internal::Type::BaseModel
       attr_accessor id: String
@@ -44,23 +43,9 @@ module Believe
 
       attr_accessor coupon_code: String?
 
-      def initialize: (
-        id: String,
-        buyer_name: String,
-        currency: String,
-        discount: String,
-        match_id: String,
-        purchase_method: ::Believe::Models::purchase_method,
-        quantity: Integer,
-        subtotal: String,
-        tax: String,
-        total: String,
-        unit_price: String,
-        ?buyer_email: String?,
-        ?coupon_code: String?
-      ) -> void
+      def initialize: (id: String, buyer_name: String, currency: String, discount: String, match_id: String, purchase_method: ::Believe::Models::purchase_method, quantity: Integer, subtotal: String, tax: String, total: String, unit_price: String, ?buyer_email: String?, ?coupon_code: String?) -> void
 
-      def to_hash: -> {
+      def to_hash: () -> {
         id: String,
         buyer_name: String,
         currency: String,

@@ -6,10 +6,7 @@ module Believe
       extend ::Believe::Internal::Type::RequestParameters::Converter
       include ::Believe::Internal::Type::RequestParameters
 
-      OrHash =
-        T.type_alias do
-          T.any(::Believe::WebhookCreateParams, ::Believe::Internal::AnyHash)
-        end
+      OrHash = T.type_alias { T.any(::Believe::WebhookCreateParams, ::Believe::Internal::AnyHash) }
 
       # The URL to send webhook events to
       sig { returns(String) }
@@ -20,80 +17,53 @@ module Believe
       attr_accessor :description
 
       # List of event types to subscribe to. If not provided, subscribes to all events.
-      sig do
-        returns(
-          T.nilable(
-            T::Array[::Believe::WebhookCreateParams::EventType::OrSymbol]
-          )
-        )
-      end
+      sig { returns(T.nilable(T::Array[::Believe::WebhookCreateParams::EventType::OrSymbol])) }
       attr_accessor :event_types
 
       sig do
         params(
           url: String,
           description: T.nilable(String),
-          event_types:
-            T.nilable(
-              T::Array[::Believe::WebhookCreateParams::EventType::OrSymbol]
-            ),
+          event_types: T.nilable(T::Array[::Believe::WebhookCreateParams::EventType::OrSymbol]),
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
       def self.new(
         # The URL to send webhook events to
-        url:,
+      url:,
         # Optional description for this webhook
-        description: nil,
+      description: nil,
         # List of event types to subscribe to. If not provided, subscribes to all events.
-        event_types: nil,
+      event_types: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       sig do
-        override.returns(
-          {
-            url: String,
-            description: T.nilable(String),
-            event_types:
-              T.nilable(
-                T::Array[::Believe::WebhookCreateParams::EventType::OrSymbol]
-              ),
-            request_options: ::Believe::RequestOptions
-          }
-        )
+        override
+          .returns(
+            {
+              url: String,
+              description: T.nilable(String),
+              event_types: T.nilable(T::Array[::Believe::WebhookCreateParams::EventType::OrSymbol]),
+              request_options: ::Believe::RequestOptions
+            }
+          )
       end
-      def to_hash
-      end
+      def to_hash; end
 
       module EventType
         extend ::Believe::Internal::Type::Enum
 
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, ::Believe::WebhookCreateParams::EventType)
-          end
+        TaggedSymbol = T.type_alias { T.all(Symbol, ::Believe::WebhookCreateParams::EventType) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        MATCH_COMPLETED =
-          T.let(
-            :"match.completed",
-            ::Believe::WebhookCreateParams::EventType::TaggedSymbol
-          )
+        MATCH_COMPLETED = T.let(:"match.completed", ::Believe::WebhookCreateParams::EventType::TaggedSymbol)
         TEAM_MEMBER_TRANSFERRED =
-          T.let(
-            :"team_member.transferred",
-            ::Believe::WebhookCreateParams::EventType::TaggedSymbol
-          )
+          T.let(:"team_member.transferred", ::Believe::WebhookCreateParams::EventType::TaggedSymbol)
 
-        sig do
-          override.returns(
-            T::Array[::Believe::WebhookCreateParams::EventType::TaggedSymbol]
-          )
-        end
-        def self.values
-        end
+        sig { override.returns(T::Array[::Believe::WebhookCreateParams::EventType::TaggedSymbol]) }
+        def self.values; end
       end
     end
   end

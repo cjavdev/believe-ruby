@@ -6,13 +6,7 @@ module Believe
 
     module Coaching
       class CoachingPrinciple < ::Believe::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(
-              ::Believe::Coaching::CoachingPrinciple,
-              ::Believe::Internal::AnyHash
-            )
-          end
+        OrHash = T.type_alias { T.any(::Believe::Coaching::CoachingPrinciple, ::Believe::Internal::AnyHash) }
 
         # Principle identifier
         sig { returns(String) }
@@ -47,38 +41,38 @@ module Believe
             explanation: String,
             principle: String,
             ted_quote: String
-          ).returns(T.attached_class)
+          )
+            .returns(T.attached_class)
         end
         def self.new(
           # Principle identifier
-          id:,
+        id:,
           # How to apply this principle
-          application:,
+        application:,
           # Example from the show
-          example_from_show:,
+        example_from_show:,
           # What this principle means
-          explanation:,
+        explanation:,
           # The coaching principle
-          principle:,
+        principle:,
           # Related Ted quote
-          ted_quote:
-        )
-        end
+        ted_quote:
+        ); end
 
         sig do
-          override.returns(
-            {
-              id: String,
-              application: String,
-              example_from_show: String,
-              explanation: String,
-              principle: String,
-              ted_quote: String
-            }
-          )
+          override
+            .returns(
+              {
+                id: String,
+                application: String,
+                example_from_show: String,
+                explanation: String,
+                principle: String,
+                ted_quote: String
+              }
+            )
         end
-        def to_hash
-        end
+        def to_hash; end
       end
     end
   end

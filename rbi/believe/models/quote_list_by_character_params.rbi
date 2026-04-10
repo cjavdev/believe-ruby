@@ -6,13 +6,7 @@ module Believe
       extend ::Believe::Internal::Type::RequestParameters::Converter
       include ::Believe::Internal::Type::RequestParameters
 
-      OrHash =
-        T.type_alias do
-          T.any(
-            ::Believe::QuoteListByCharacterParams,
-            ::Believe::Internal::AnyHash
-          )
-        end
+      OrHash = T.type_alias { T.any(::Believe::QuoteListByCharacterParams, ::Believe::Internal::AnyHash) }
 
       sig { returns(String) }
       attr_accessor :character_id
@@ -37,30 +31,23 @@ module Believe
           limit: Integer,
           skip: Integer,
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
       def self.new(
         character_id:,
         # Maximum number of items to return (max: 100)
-        limit: nil,
+      limit: nil,
         # Number of items to skip (offset)
-        skip: nil,
+      skip: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       sig do
-        override.returns(
-          {
-            character_id: String,
-            limit: Integer,
-            skip: Integer,
-            request_options: ::Believe::RequestOptions
-          }
-        )
+        override
+          .returns({character_id: String, limit: Integer, skip: Integer, request_options: ::Believe::RequestOptions})
       end
-      def to_hash
-      end
+      def to_hash; end
     end
   end
 end

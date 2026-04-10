@@ -6,10 +6,7 @@ module Believe
       extend ::Believe::Internal::Type::RequestParameters::Converter
       include ::Believe::Internal::Type::RequestParameters
 
-      OrHash =
-        T.type_alias do
-          T.any(::Believe::BiscuitListParams, ::Believe::Internal::AnyHash)
-        end
+      OrHash = T.type_alias { T.any(::Believe::BiscuitListParams, ::Believe::Internal::AnyHash) }
 
       # Maximum number of items to return (max: 100)
       sig { returns(T.nilable(Integer)) }
@@ -26,32 +23,19 @@ module Believe
       attr_writer :skip
 
       sig do
-        params(
-          limit: Integer,
-          skip: Integer,
-          request_options: ::Believe::RequestOptions::OrHash
-        ).returns(T.attached_class)
+        params(limit: Integer, skip: Integer, request_options: ::Believe::RequestOptions::OrHash)
+          .returns(T.attached_class)
       end
       def self.new(
         # Maximum number of items to return (max: 100)
-        limit: nil,
+      limit: nil,
         # Number of items to skip (offset)
-        skip: nil,
+      skip: nil,
         request_options: {}
-      )
-      end
+      ); end
 
-      sig do
-        override.returns(
-          {
-            limit: Integer,
-            skip: Integer,
-            request_options: ::Believe::RequestOptions
-          }
-        )
-      end
-      def to_hash
-      end
+      sig { override.returns({limit: Integer, skip: Integer, request_options: ::Believe::RequestOptions}) }
+      def to_hash; end
     end
   end
 end

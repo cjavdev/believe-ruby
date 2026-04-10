@@ -6,33 +6,16 @@ module Believe
       extend ::Believe::Internal::Type::RequestParameters::Converter
       include ::Believe::Internal::Type::RequestParameters
 
-      OrHash =
-        T.type_alias do
-          T.any(
-            ::Believe::CharacterRetrieveParams,
-            ::Believe::Internal::AnyHash
-          )
-        end
+      OrHash = T.type_alias { T.any(::Believe::CharacterRetrieveParams, ::Believe::Internal::AnyHash) }
 
       sig { returns(String) }
       attr_accessor :character_id
 
-      sig do
-        params(
-          character_id: String,
-          request_options: ::Believe::RequestOptions::OrHash
-        ).returns(T.attached_class)
-      end
-      def self.new(character_id:, request_options: {})
-      end
+      sig { params(character_id: String, request_options: ::Believe::RequestOptions::OrHash).returns(T.attached_class) }
+      def self.new(character_id:, request_options: {}); end
 
-      sig do
-        override.returns(
-          { character_id: String, request_options: ::Believe::RequestOptions }
-        )
-      end
-      def to_hash
-      end
+      sig { override.returns({character_id: String, request_options: ::Believe::RequestOptions}) }
+      def to_hash; end
     end
   end
 end

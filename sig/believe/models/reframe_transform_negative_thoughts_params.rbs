@@ -1,8 +1,6 @@
 module Believe
   module Models
-    type reframe_transform_negative_thoughts_params =
-      { negative_thought: String, recurring: bool }
-      & ::Believe::Internal::Type::request_parameters
+    type reframe_transform_negative_thoughts_params = ({negative_thought: String, recurring: bool} & ::Believe::Internal::Type::request_parameters)
 
     class ReframeTransformNegativeThoughtsParams < ::Believe::Internal::Type::BaseModel
       extend ::Believe::Internal::Type::RequestParameters::Converter
@@ -14,17 +12,9 @@ module Believe
 
       def recurring=: (bool) -> bool
 
-      def initialize: (
-        negative_thought: String,
-        ?recurring: bool,
-        ?request_options: ::Believe::request_opts
-      ) -> void
+      def initialize: (negative_thought: String, ?recurring: bool, ?request_options: ::Believe::request_opts) -> void
 
-      def to_hash: -> {
-        negative_thought: String,
-        recurring: bool,
-        request_options: ::Believe::RequestOptions
-      }
+      def to_hash: () -> {negative_thought: String, recurring: bool, request_options: ::Believe::RequestOptions}
     end
   end
 end

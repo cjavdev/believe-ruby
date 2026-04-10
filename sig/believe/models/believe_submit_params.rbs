@@ -1,13 +1,11 @@
 module Believe
   module Models
-    type believe_submit_params =
-      {
-        situation: String,
-        situation_type: ::Believe::Models::BelieveSubmitParams::situation_type,
-        context: String?,
-        intensity: Integer
-      }
-      & ::Believe::Internal::Type::request_parameters
+    type believe_submit_params = ({
+      situation: String,
+      situation_type: ::Believe::Models::BelieveSubmitParams::situation_type,
+      context: String?,
+      intensity: Integer
+    } & ::Believe::Internal::Type::request_parameters)
 
     class BelieveSubmitParams < ::Believe::Internal::Type::BaseModel
       extend ::Believe::Internal::Type::RequestParameters::Converter
@@ -23,15 +21,9 @@ module Believe
 
       def intensity=: (Integer) -> Integer
 
-      def initialize: (
-        situation: String,
-        situation_type: ::Believe::Models::BelieveSubmitParams::situation_type,
-        ?context: String?,
-        ?intensity: Integer,
-        ?request_options: ::Believe::request_opts
-      ) -> void
+      def initialize: (situation: String, situation_type: ::Believe::Models::BelieveSubmitParams::situation_type, ?context: String?, ?intensity: Integer, ?request_options: ::Believe::request_opts) -> void
 
-      def to_hash: -> {
+      def to_hash: () -> {
         situation: String,
         situation_type: ::Believe::Models::BelieveSubmitParams::situation_type,
         context: String?,
@@ -39,15 +31,7 @@ module Believe
         request_options: ::Believe::RequestOptions
       }
 
-      type situation_type =
-        :work_challenge
-        | :personal_setback
-        | :team_conflict
-        | :self_doubt
-        | :big_decision
-        | :failure
-        | :new_beginning
-        | :relationship
+      type situation_type = (:work_challenge | :personal_setback | :team_conflict | :self_doubt | :big_decision | :failure | :new_beginning | :relationship)
 
       module SituationType
         extend ::Believe::Internal::Type::Enum
@@ -61,7 +45,7 @@ module Believe
         NEW_BEGINNING: :new_beginning
         RELATIONSHIP: :relationship
 
-        def self?.values: -> ::Array[::Believe::Models::BelieveSubmitParams::situation_type]
+        def self?.values: () -> ::Array[::Believe::Models::BelieveSubmitParams::situation_type]
       end
     end
   end

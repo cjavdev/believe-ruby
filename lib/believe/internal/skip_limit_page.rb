@@ -81,9 +81,11 @@ module Believe
       #
       # @return [String]
       def inspect
+        # rubocop:disable Layout/LineLength
         model = ::Believe::Internal::Type::Converter.inspect(@model, depth: 1)
 
         "#<#{self.class}[#{model}]:0x#{object_id.to_s(16)} total=#{total.inspect} skip=#{skip.inspect}>"
+        # rubocop:enable Layout/LineLength
       end
     end
   end

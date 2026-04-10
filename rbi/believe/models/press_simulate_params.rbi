@@ -6,10 +6,7 @@ module Believe
       extend ::Believe::Internal::Type::RequestParameters::Converter
       include ::Believe::Internal::Type::RequestParameters
 
-      OrHash =
-        T.type_alias do
-          T.any(::Believe::PressSimulateParams, ::Believe::Internal::AnyHash)
-        end
+      OrHash = T.type_alias { T.any(::Believe::PressSimulateParams, ::Believe::Internal::AnyHash) }
 
       # The press question to answer
       sig { returns(String) }
@@ -32,31 +29,26 @@ module Believe
           hostile: T::Boolean,
           topic: T.nilable(String),
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
       def self.new(
         # The press question to answer
-        question:,
+      question:,
         # Is this a hostile question from Trent Crimm?
-        hostile: nil,
+      hostile: nil,
         # Topic category
-        topic: nil,
+      topic: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       sig do
-        override.returns(
-          {
-            question: String,
-            hostile: T::Boolean,
-            topic: T.nilable(String),
-            request_options: ::Believe::RequestOptions
-          }
-        )
+        override
+          .returns(
+            {question: String, hostile: T::Boolean, topic: T.nilable(String), request_options: ::Believe::RequestOptions}
+          )
       end
-      def to_hash
-      end
+      def to_hash; end
     end
   end
 end

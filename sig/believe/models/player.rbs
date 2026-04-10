@@ -1,18 +1,17 @@
 module Believe
   module Models
-    type player =
-      {
-        id: String,
-        character_id: String,
-        jersey_number: Integer,
-        position: ::Believe::Models::position,
-        team_id: String,
-        years_with_team: Integer,
-        assists: Integer,
-        goals_scored: Integer,
-        is_captain: bool,
-        member_type: ::Believe::Models::Player::member_type
-      }
+    type player = {
+      id: String,
+      character_id: String,
+      jersey_number: Integer,
+      position: ::Believe::Models::position,
+      team_id: String,
+      years_with_team: Integer,
+      assists: Integer,
+      goals_scored: Integer,
+      is_captain: bool,
+      member_type: ::Believe::Models::Player::member_type
+    }
 
     class Player < ::Believe::Internal::Type::BaseModel
       attr_accessor id: String
@@ -41,24 +40,11 @@ module Believe
 
       attr_reader member_type: ::Believe::Models::Player::member_type?
 
-      def member_type=: (
-        ::Believe::Models::Player::member_type
-      ) -> ::Believe::Models::Player::member_type
+      def member_type=: (::Believe::Models::Player::member_type) -> ::Believe::Models::Player::member_type
 
-      def initialize: (
-        id: String,
-        character_id: String,
-        jersey_number: Integer,
-        position: ::Believe::Models::position,
-        team_id: String,
-        years_with_team: Integer,
-        ?assists: Integer,
-        ?goals_scored: Integer,
-        ?is_captain: bool,
-        ?member_type: ::Believe::Models::Player::member_type
-      ) -> void
+      def initialize: (id: String, character_id: String, jersey_number: Integer, position: ::Believe::Models::position, team_id: String, years_with_team: Integer, ?assists: Integer, ?goals_scored: Integer, ?is_captain: bool, ?member_type: ::Believe::Models::Player::member_type) -> void
 
-      def to_hash: -> {
+      def to_hash: () -> {
         id: String,
         character_id: String,
         jersey_number: Integer,
@@ -78,7 +64,7 @@ module Believe
 
         PLAYER: :player
 
-        def self?.values: -> ::Array[::Believe::Models::Player::member_type]
+        def self?.values: () -> ::Array[::Believe::Models::Player::member_type]
       end
     end
   end

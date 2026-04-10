@@ -7,18 +7,10 @@ module Believe
       extend ::Believe::Internal::Type::Union
 
       Variants =
-        T.type_alias do
-          T.any(
-            ::Believe::MatchCompletedWebhookEvent,
-            ::Believe::TeamMemberTransferredWebhookEvent
-          )
-        end
+        T.type_alias { T.any(::Believe::MatchCompletedWebhookEvent, ::Believe::TeamMemberTransferredWebhookEvent) }
 
-      sig do
-        override.returns(T::Array[::Believe::UnwrapWebhookEvent::Variants])
-      end
-      def self.variants
-      end
+      sig { override.returns(T::Array[::Believe::UnwrapWebhookEvent::Variants]) }
+      def self.variants; end
     end
   end
 end

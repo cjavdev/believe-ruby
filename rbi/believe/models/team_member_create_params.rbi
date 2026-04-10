@@ -6,10 +6,7 @@ module Believe
       extend ::Believe::Internal::Type::RequestParameters::Converter
       include ::Believe::Internal::Type::RequestParameters
 
-      OrHash =
-        T.type_alias do
-          T.any(::Believe::TeamMemberCreateParams, ::Believe::Internal::AnyHash)
-        end
+      OrHash = T.type_alias { T.any(::Believe::TeamMemberCreateParams, ::Believe::Internal::AnyHash) }
 
       # A football player on the team.
       sig do
@@ -26,39 +23,37 @@ module Believe
 
       sig do
         params(
-          member:
-            T.any(
-              ::Believe::TeamMemberCreateParams::Member::Player::OrHash,
-              ::Believe::TeamMemberCreateParams::Member::Coach::OrHash,
-              ::Believe::TeamMemberCreateParams::Member::MedicalStaff::OrHash,
-              ::Believe::TeamMemberCreateParams::Member::EquipmentManager::OrHash
-            ),
+          member: T.any(
+            ::Believe::TeamMemberCreateParams::Member::Player::OrHash,
+            ::Believe::TeamMemberCreateParams::Member::Coach::OrHash,
+            ::Believe::TeamMemberCreateParams::Member::MedicalStaff::OrHash,
+            ::Believe::TeamMemberCreateParams::Member::EquipmentManager::OrHash
+          ),
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
       def self.new(
         # A football player on the team.
-        member:,
+      member:,
         request_options: {}
-      )
-      end
+      ); end
 
       sig do
-        override.returns(
-          {
-            member:
-              T.any(
+        override
+          .returns(
+            {
+              member: T.any(
                 ::Believe::TeamMemberCreateParams::Member::Player,
                 ::Believe::TeamMemberCreateParams::Member::Coach,
                 ::Believe::TeamMemberCreateParams::Member::MedicalStaff,
                 ::Believe::TeamMemberCreateParams::Member::EquipmentManager
               ),
-            request_options: ::Believe::RequestOptions
-          }
-        )
+              request_options: ::Believe::RequestOptions
+            }
+          )
       end
-      def to_hash
-      end
+      def to_hash; end
 
       # A football player on the team.
       module Member
@@ -76,12 +71,7 @@ module Believe
 
         class Player < ::Believe::Internal::Type::BaseModel
           OrHash =
-            T.type_alias do
-              T.any(
-                ::Believe::TeamMemberCreateParams::Member::Player,
-                ::Believe::Internal::AnyHash
-              )
-            end
+            T.type_alias { T.any(::Believe::TeamMemberCreateParams::Member::Player, ::Believe::Internal::AnyHash) }
 
           # ID of the character (references /characters/{id})
           sig { returns(String) }
@@ -125,21 +115,10 @@ module Believe
           attr_writer :is_captain
 
           # Discriminator field indicating this is a player
-          sig do
-            returns(
-              T.nilable(
-                ::Believe::TeamMemberCreateParams::Member::Player::MemberType::OrSymbol
-              )
-            )
-          end
+          sig { returns(T.nilable(::Believe::TeamMemberCreateParams::Member::Player::MemberType::OrSymbol)) }
           attr_reader :member_type
 
-          sig do
-            params(
-              member_type:
-                ::Believe::TeamMemberCreateParams::Member::Player::MemberType::OrSymbol
-            ).void
-          end
+          sig { params(member_type: ::Believe::TeamMemberCreateParams::Member::Player::MemberType::OrSymbol).void }
           attr_writer :member_type
 
           # A football player on the team.
@@ -153,90 +132,67 @@ module Believe
               assists: Integer,
               goals_scored: Integer,
               is_captain: T::Boolean,
-              member_type:
-                ::Believe::TeamMemberCreateParams::Member::Player::MemberType::OrSymbol
-            ).returns(T.attached_class)
+              member_type: ::Believe::TeamMemberCreateParams::Member::Player::MemberType::OrSymbol
+            )
+              .returns(T.attached_class)
           end
           def self.new(
             # ID of the character (references /characters/{id})
-            character_id:,
+          character_id:,
             # Jersey/shirt number
-            jersey_number:,
+          jersey_number:,
             # Playing position on the field
-            position:,
+          position:,
             # ID of the team they belong to
-            team_id:,
+          team_id:,
             # Number of years with the current team
-            years_with_team:,
+          years_with_team:,
             # Total assists for the team
-            assists: nil,
+          assists: nil,
             # Total goals scored for the team
-            goals_scored: nil,
+          goals_scored: nil,
             # Whether this player is team captain
-            is_captain: nil,
+          is_captain: nil,
             # Discriminator field indicating this is a player
-            member_type: nil
-          )
-          end
+          member_type: nil
+          ); end
 
           sig do
-            override.returns(
-              {
-                character_id: String,
-                jersey_number: Integer,
-                position: ::Believe::Position::OrSymbol,
-                team_id: String,
-                years_with_team: Integer,
-                assists: Integer,
-                goals_scored: Integer,
-                is_captain: T::Boolean,
-                member_type:
-                  ::Believe::TeamMemberCreateParams::Member::Player::MemberType::OrSymbol
-              }
-            )
+            override
+              .returns(
+                {
+                  character_id: String,
+                  jersey_number: Integer,
+                  position: ::Believe::Position::OrSymbol,
+                  team_id: String,
+                  years_with_team: Integer,
+                  assists: Integer,
+                  goals_scored: Integer,
+                  is_captain: T::Boolean,
+                  member_type: ::Believe::TeamMemberCreateParams::Member::Player::MemberType::OrSymbol
+                }
+              )
           end
-          def to_hash
-          end
+          def to_hash; end
 
           # Discriminator field indicating this is a player
           module MemberType
             extend ::Believe::Internal::Type::Enum
 
             TaggedSymbol =
-              T.type_alias do
-                T.all(
-                  Symbol,
-                  ::Believe::TeamMemberCreateParams::Member::Player::MemberType
-                )
-              end
+              T.type_alias { T.all(Symbol, ::Believe::TeamMemberCreateParams::Member::Player::MemberType) }
             OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-            PLAYER =
-              T.let(
-                :player,
-                ::Believe::TeamMemberCreateParams::Member::Player::MemberType::TaggedSymbol
-              )
+            PLAYER = T.let(:player, ::Believe::TeamMemberCreateParams::Member::Player::MemberType::TaggedSymbol)
 
-            sig do
-              override.returns(
-                T::Array[
-                  ::Believe::TeamMemberCreateParams::Member::Player::MemberType::TaggedSymbol
-                ]
-              )
-            end
-            def self.values
-            end
+            sig { override.returns(T::Array[::Believe::TeamMemberCreateParams::Member::Player::MemberType::TaggedSymbol]) }
+            def self.values; end
           end
         end
 
         class Coach < ::Believe::Internal::Type::BaseModel
           OrHash =
-            T.type_alias do
-              T.any(
-                ::Believe::TeamMemberCreateParams::Member::Coach,
-                ::Believe::Internal::AnyHash
-              )
-            end
+            T.type_alias { T.any(::Believe::TeamMemberCreateParams::Member::Coach, ::Believe::Internal::AnyHash) }
 
           # ID of the character (references /characters/{id})
           sig { returns(String) }
@@ -262,21 +218,10 @@ module Believe
           attr_writer :certifications
 
           # Discriminator field indicating this is a coach
-          sig do
-            returns(
-              T.nilable(
-                ::Believe::TeamMemberCreateParams::Member::Coach::MemberType::OrSymbol
-              )
-            )
-          end
+          sig { returns(T.nilable(::Believe::TeamMemberCreateParams::Member::Coach::MemberType::OrSymbol)) }
           attr_reader :member_type
 
-          sig do
-            params(
-              member_type:
-                ::Believe::TeamMemberCreateParams::Member::Coach::MemberType::OrSymbol
-            ).void
-          end
+          sig { params(member_type: ::Believe::TeamMemberCreateParams::Member::Coach::MemberType::OrSymbol).void }
           attr_writer :member_type
 
           # Career win rate (0.0 to 1.0)
@@ -291,85 +236,62 @@ module Believe
               team_id: String,
               years_with_team: Integer,
               certifications: T::Array[String],
-              member_type:
-                ::Believe::TeamMemberCreateParams::Member::Coach::MemberType::OrSymbol,
+              member_type: ::Believe::TeamMemberCreateParams::Member::Coach::MemberType::OrSymbol,
               win_rate: T.nilable(Float)
-            ).returns(T.attached_class)
+            )
+              .returns(T.attached_class)
           end
           def self.new(
             # ID of the character (references /characters/{id})
-            character_id:,
+          character_id:,
             # Coaching specialty/role
-            specialty:,
+          specialty:,
             # ID of the team they belong to
-            team_id:,
+          team_id:,
             # Number of years with the current team
-            years_with_team:,
+          years_with_team:,
             # Coaching certifications and licenses
-            certifications: nil,
+          certifications: nil,
             # Discriminator field indicating this is a coach
-            member_type: nil,
+          member_type: nil,
             # Career win rate (0.0 to 1.0)
-            win_rate: nil
-          )
-          end
+          win_rate: nil
+          ); end
 
           sig do
-            override.returns(
-              {
-                character_id: String,
-                specialty: ::Believe::CoachSpecialty::OrSymbol,
-                team_id: String,
-                years_with_team: Integer,
-                certifications: T::Array[String],
-                member_type:
-                  ::Believe::TeamMemberCreateParams::Member::Coach::MemberType::OrSymbol,
-                win_rate: T.nilable(Float)
-              }
-            )
+            override
+              .returns(
+                {
+                  character_id: String,
+                  specialty: ::Believe::CoachSpecialty::OrSymbol,
+                  team_id: String,
+                  years_with_team: Integer,
+                  certifications: T::Array[String],
+                  member_type: ::Believe::TeamMemberCreateParams::Member::Coach::MemberType::OrSymbol,
+                  win_rate: T.nilable(Float)
+                }
+              )
           end
-          def to_hash
-          end
+          def to_hash; end
 
           # Discriminator field indicating this is a coach
           module MemberType
             extend ::Believe::Internal::Type::Enum
 
             TaggedSymbol =
-              T.type_alias do
-                T.all(
-                  Symbol,
-                  ::Believe::TeamMemberCreateParams::Member::Coach::MemberType
-                )
-              end
+              T.type_alias { T.all(Symbol, ::Believe::TeamMemberCreateParams::Member::Coach::MemberType) }
             OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-            COACH =
-              T.let(
-                :coach,
-                ::Believe::TeamMemberCreateParams::Member::Coach::MemberType::TaggedSymbol
-              )
+            COACH = T.let(:coach, ::Believe::TeamMemberCreateParams::Member::Coach::MemberType::TaggedSymbol)
 
-            sig do
-              override.returns(
-                T::Array[
-                  ::Believe::TeamMemberCreateParams::Member::Coach::MemberType::TaggedSymbol
-                ]
-              )
-            end
-            def self.values
-            end
+            sig { override.returns(T::Array[::Believe::TeamMemberCreateParams::Member::Coach::MemberType::TaggedSymbol]) }
+            def self.values; end
           end
         end
 
         class MedicalStaff < ::Believe::Internal::Type::BaseModel
           OrHash =
-            T.type_alias do
-              T.any(
-                ::Believe::TeamMemberCreateParams::Member::MedicalStaff,
-                ::Believe::Internal::AnyHash
-              )
-            end
+            T.type_alias { T.any(::Believe::TeamMemberCreateParams::Member::MedicalStaff, ::Believe::Internal::AnyHash) }
 
           # ID of the character (references /characters/{id})
           sig { returns(String) }
@@ -392,21 +314,10 @@ module Believe
           attr_accessor :license_number
 
           # Discriminator field indicating this is medical staff
-          sig do
-            returns(
-              T.nilable(
-                ::Believe::TeamMemberCreateParams::Member::MedicalStaff::MemberType::OrSymbol
-              )
-            )
-          end
+          sig { returns(T.nilable(::Believe::TeamMemberCreateParams::Member::MedicalStaff::MemberType::OrSymbol)) }
           attr_reader :member_type
 
-          sig do
-            params(
-              member_type:
-                ::Believe::TeamMemberCreateParams::Member::MedicalStaff::MemberType::OrSymbol
-            ).void
-          end
+          sig { params(member_type: ::Believe::TeamMemberCreateParams::Member::MedicalStaff::MemberType::OrSymbol).void }
           attr_writer :member_type
 
           # Medical qualifications and degrees
@@ -424,85 +335,66 @@ module Believe
               team_id: String,
               years_with_team: Integer,
               license_number: T.nilable(String),
-              member_type:
-                ::Believe::TeamMemberCreateParams::Member::MedicalStaff::MemberType::OrSymbol,
+              member_type: ::Believe::TeamMemberCreateParams::Member::MedicalStaff::MemberType::OrSymbol,
               qualifications: T::Array[String]
-            ).returns(T.attached_class)
+            )
+              .returns(T.attached_class)
           end
           def self.new(
             # ID of the character (references /characters/{id})
-            character_id:,
+          character_id:,
             # Medical specialty
-            specialty:,
+          specialty:,
             # ID of the team they belong to
-            team_id:,
+          team_id:,
             # Number of years with the current team
-            years_with_team:,
+          years_with_team:,
             # Professional license number
-            license_number: nil,
+          license_number: nil,
             # Discriminator field indicating this is medical staff
-            member_type: nil,
+          member_type: nil,
             # Medical qualifications and degrees
-            qualifications: nil
-          )
-          end
+          qualifications: nil
+          ); end
 
           sig do
-            override.returns(
-              {
-                character_id: String,
-                specialty: ::Believe::MedicalSpecialty::OrSymbol,
-                team_id: String,
-                years_with_team: Integer,
-                license_number: T.nilable(String),
-                member_type:
-                  ::Believe::TeamMemberCreateParams::Member::MedicalStaff::MemberType::OrSymbol,
-                qualifications: T::Array[String]
-              }
-            )
+            override
+              .returns(
+                {
+                  character_id: String,
+                  specialty: ::Believe::MedicalSpecialty::OrSymbol,
+                  team_id: String,
+                  years_with_team: Integer,
+                  license_number: T.nilable(String),
+                  member_type: ::Believe::TeamMemberCreateParams::Member::MedicalStaff::MemberType::OrSymbol,
+                  qualifications: T::Array[String]
+                }
+              )
           end
-          def to_hash
-          end
+          def to_hash; end
 
           # Discriminator field indicating this is medical staff
           module MemberType
             extend ::Believe::Internal::Type::Enum
 
             TaggedSymbol =
-              T.type_alias do
-                T.all(
-                  Symbol,
-                  ::Believe::TeamMemberCreateParams::Member::MedicalStaff::MemberType
-                )
-              end
+              T.type_alias { T.all(Symbol, ::Believe::TeamMemberCreateParams::Member::MedicalStaff::MemberType) }
             OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             MEDICAL_STAFF =
-              T.let(
-                :medical_staff,
-                ::Believe::TeamMemberCreateParams::Member::MedicalStaff::MemberType::TaggedSymbol
-              )
+              T.let(:medical_staff, ::Believe::TeamMemberCreateParams::Member::MedicalStaff::MemberType::TaggedSymbol)
 
             sig do
-              override.returns(
-                T::Array[
-                  ::Believe::TeamMemberCreateParams::Member::MedicalStaff::MemberType::TaggedSymbol
-                ]
-              )
+              override
+                .returns(T::Array[::Believe::TeamMemberCreateParams::Member::MedicalStaff::MemberType::TaggedSymbol])
             end
-            def self.values
-            end
+            def self.values; end
           end
         end
 
         class EquipmentManager < ::Believe::Internal::Type::BaseModel
           OrHash =
-            T.type_alias do
-              T.any(
-                ::Believe::TeamMemberCreateParams::Member::EquipmentManager,
-                ::Believe::Internal::AnyHash
-              )
-            end
+            T.type_alias { T.any(::Believe::TeamMemberCreateParams::Member::EquipmentManager, ::Believe::Internal::AnyHash) }
 
           # ID of the character (references /characters/{id})
           sig { returns(String) }
@@ -524,20 +416,11 @@ module Believe
           attr_writer :is_head_kitman
 
           # Discriminator field indicating this is an equipment manager
-          sig do
-            returns(
-              T.nilable(
-                ::Believe::TeamMemberCreateParams::Member::EquipmentManager::MemberType::OrSymbol
-              )
-            )
-          end
+          sig { returns(T.nilable(::Believe::TeamMemberCreateParams::Member::EquipmentManager::MemberType::OrSymbol)) }
           attr_reader :member_type
 
           sig do
-            params(
-              member_type:
-                ::Believe::TeamMemberCreateParams::Member::EquipmentManager::MemberType::OrSymbol
-            ).void
+            params(member_type: ::Believe::TeamMemberCreateParams::Member::EquipmentManager::MemberType::OrSymbol).void
           end
           attr_writer :member_type
 
@@ -555,54 +438,47 @@ module Believe
               team_id: String,
               years_with_team: Integer,
               is_head_kitman: T::Boolean,
-              member_type:
-                ::Believe::TeamMemberCreateParams::Member::EquipmentManager::MemberType::OrSymbol,
+              member_type: ::Believe::TeamMemberCreateParams::Member::EquipmentManager::MemberType::OrSymbol,
               responsibilities: T::Array[String]
-            ).returns(T.attached_class)
+            )
+              .returns(T.attached_class)
           end
           def self.new(
             # ID of the character (references /characters/{id})
-            character_id:,
+          character_id:,
             # ID of the team they belong to
-            team_id:,
+          team_id:,
             # Number of years with the current team
-            years_with_team:,
+          years_with_team:,
             # Whether this is the head equipment manager
-            is_head_kitman: nil,
+          is_head_kitman: nil,
             # Discriminator field indicating this is an equipment manager
-            member_type: nil,
+          member_type: nil,
             # List of responsibilities
-            responsibilities: nil
-          )
-          end
+          responsibilities: nil
+          ); end
 
           sig do
-            override.returns(
-              {
-                character_id: String,
-                team_id: String,
-                years_with_team: Integer,
-                is_head_kitman: T::Boolean,
-                member_type:
-                  ::Believe::TeamMemberCreateParams::Member::EquipmentManager::MemberType::OrSymbol,
-                responsibilities: T::Array[String]
-              }
-            )
+            override
+              .returns(
+                {
+                  character_id: String,
+                  team_id: String,
+                  years_with_team: Integer,
+                  is_head_kitman: T::Boolean,
+                  member_type: ::Believe::TeamMemberCreateParams::Member::EquipmentManager::MemberType::OrSymbol,
+                  responsibilities: T::Array[String]
+                }
+              )
           end
-          def to_hash
-          end
+          def to_hash; end
 
           # Discriminator field indicating this is an equipment manager
           module MemberType
             extend ::Believe::Internal::Type::Enum
 
             TaggedSymbol =
-              T.type_alias do
-                T.all(
-                  Symbol,
-                  ::Believe::TeamMemberCreateParams::Member::EquipmentManager::MemberType
-                )
-              end
+              T.type_alias { T.all(Symbol, ::Believe::TeamMemberCreateParams::Member::EquipmentManager::MemberType) }
             OrSymbol = T.type_alias { T.any(Symbol, String) }
 
             EQUIPMENT_MANAGER =
@@ -612,24 +488,15 @@ module Believe
               )
 
             sig do
-              override.returns(
-                T::Array[
-                  ::Believe::TeamMemberCreateParams::Member::EquipmentManager::MemberType::TaggedSymbol
-                ]
-              )
+              override
+                .returns(T::Array[::Believe::TeamMemberCreateParams::Member::EquipmentManager::MemberType::TaggedSymbol])
             end
-            def self.values
-            end
+            def self.values; end
           end
         end
 
-        sig do
-          override.returns(
-            T::Array[::Believe::TeamMemberCreateParams::Member::Variants]
-          )
-        end
-        def self.variants
-        end
+        sig { override.returns(T::Array[::Believe::TeamMemberCreateParams::Member::Variants]) }
+        def self.variants; end
       end
     end
   end

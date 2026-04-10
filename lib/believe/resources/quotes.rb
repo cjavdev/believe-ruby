@@ -37,13 +37,7 @@ module Believe
       # @see ::Believe::Models::QuoteCreateParams
       def create(params)
         parsed, options = ::Believe::QuoteCreateParams.dump_request(params)
-        @client.request(
-          method: :post,
-          path: "quotes",
-          body: parsed,
-          model: ::Believe::Quote,
-          options: options
-        )
+        @client.request(method: :post, path: "quotes", body: parsed, model: ::Believe::Quote, options: options)
       end
 
       # Retrieve a specific quote by its ID.

@@ -1,37 +1,6 @@
 module Believe
   module Models
-    type quote_theme =
-      :belief
-      | :teamwork
-      | :curiosity
-      | :kindness
-      | :resilience
-      | :vulnerability
-      | :growth
-      | :humor
-      | :wisdom
-      | :leadership
-      | :love
-      | :forgiveness
-      | :philosophy
-      | :romance
-      | :"cultural-pride"
-      | :"cultural-differences"
-      | :antagonism
-      | :celebration
-      | :identity
-      | :isolation
-      | :power
-      | :sacrifice
-      | :standards
-      | :confidence
-      | :conflict
-      | :honesty
-      | :integrity
-      | :intimidation
-      | :ambition
-      | :narcissism
-      | :maturity
+    type quote_theme = (:belief | :teamwork | :curiosity | :kindness | :resilience | :vulnerability | :growth | :humor | :wisdom | :leadership | :love | :forgiveness | :philosophy | :romance | :"cultural-pride" | :"cultural-differences" | :antagonism | :celebration | :identity | :isolation | :power | :sacrifice | :standards | :confidence | :conflict | :honesty | :integrity | :intimidation | :ambition | :narcissism | :maturity)
 
     module QuoteTheme
       extend ::Believe::Internal::Type::Enum
@@ -68,7 +37,7 @@ module Believe
       NARCISSISM: :narcissism
       MATURITY: :maturity
 
-      def self?.values: -> ::Array[::Believe::Models::quote_theme]
+      def self?.values: () -> ::Array[::Believe::Models::quote_theme]
     end
   end
 end

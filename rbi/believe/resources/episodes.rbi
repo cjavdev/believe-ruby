@@ -23,52 +23,46 @@ module Believe
           us_viewers_millions: T.nilable(Float),
           viewer_rating: T.nilable(Float),
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(::Believe::Episode)
+        )
+          .returns(::Believe::Episode)
       end
       def create(
         # Original air date
-        air_date:,
+      air_date:,
         # Characters with significant development
-        character_focus:,
+      character_focus:,
         # Episode director
-        director:,
+      director:,
         # Episode number within season
-        episode_number:,
+      episode_number:,
         # Central theme of the episode
-        main_theme:,
+      main_theme:,
         # Episode runtime in minutes
-        runtime_minutes:,
+      runtime_minutes:,
         # Season number
-        season:,
+      season:,
         # Brief plot synopsis
-        synopsis:,
+      synopsis:,
         # Key piece of Ted wisdom from the episode
-        ted_wisdom:,
+      ted_wisdom:,
         # Episode title
-        title:,
+      title:,
         # Episode writer(s)
-        writer:,
+      writer:,
         # Notable biscuits with the boss scene
-        biscuits_with_boss_moment: nil,
+      biscuits_with_boss_moment: nil,
         # Standout moments from the episode
-        memorable_moments: nil,
+      memorable_moments: nil,
         # US viewership in millions
-        us_viewers_millions: nil,
+      us_viewers_millions: nil,
         # Viewer rating out of 10
-        viewer_rating: nil,
+      viewer_rating: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       # Retrieve detailed information about a specific episode.
-      sig do
-        params(
-          episode_id: String,
-          request_options: ::Believe::RequestOptions::OrHash
-        ).returns(::Believe::Episode)
-      end
-      def retrieve(episode_id, request_options: {})
-      end
+      sig { params(episode_id: String, request_options: ::Believe::RequestOptions::OrHash).returns(::Believe::Episode) }
+      def retrieve(episode_id, request_options: {}); end
 
       # Update specific fields of an existing episode.
       sig do
@@ -90,7 +84,8 @@ module Believe
           viewer_rating: T.nilable(Float),
           writer: T.nilable(String),
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(::Believe::Episode)
+        )
+          .returns(::Believe::Episode)
       end
       def update(
         episode_id,
@@ -110,8 +105,7 @@ module Believe
         viewer_rating: nil,
         writer: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       # Get a paginated list of all Ted Lasso episodes with optional filtering by
       # season.
@@ -122,45 +116,35 @@ module Believe
           season: T.nilable(Integer),
           skip: Integer,
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(::Believe::Internal::SkipLimitPage[::Believe::Episode])
+        )
+          .returns(::Believe::Internal::SkipLimitPage[::Believe::Episode])
       end
       def list(
         # Filter by character focus (character ID)
-        character_focus: nil,
+      character_focus: nil,
         # Maximum number of items to return (max: 100)
-        limit: nil,
+      limit: nil,
         # Filter by season
-        season: nil,
+      season: nil,
         # Number of items to skip (offset)
-        skip: nil,
+      skip: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       # Remove an episode from the database.
-      sig do
-        params(
-          episode_id: String,
-          request_options: ::Believe::RequestOptions::OrHash
-        ).void
-      end
-      def delete(episode_id, request_options: {})
-      end
+      sig { params(episode_id: String, request_options: ::Believe::RequestOptions::OrHash).void }
+      def delete(episode_id, request_options: {}); end
 
       # Get Ted's wisdom and memorable moments from a specific episode.
       sig do
-        params(
-          episode_id: String,
-          request_options: ::Believe::RequestOptions::OrHash
-        ).returns(T::Hash[Symbol, T.anything])
+        params(episode_id: String, request_options: ::Believe::RequestOptions::OrHash)
+          .returns(T::Hash[Symbol, T.anything])
       end
-      def get_wisdom(episode_id, request_options: {})
-      end
+      def get_wisdom(episode_id, request_options: {}); end
 
       # @api private
       sig { params(client: ::Believe::Client).returns(T.attached_class) }
-      def self.new(client:)
-      end
+      def self.new(client:); end
     end
   end
 end

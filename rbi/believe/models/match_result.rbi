@@ -15,8 +15,7 @@ module Believe
       PENDING = T.let(:pending, ::Believe::MatchResult::TaggedSymbol)
 
       sig { override.returns(T::Array[::Believe::MatchResult::TaggedSymbol]) }
-      def self.values
-      end
+      def self.values; end
     end
   end
 end

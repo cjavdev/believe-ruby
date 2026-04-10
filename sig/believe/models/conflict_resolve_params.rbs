@@ -1,13 +1,11 @@
 module Believe
   module Models
-    type conflict_resolve_params =
-      {
-        conflict_type: ::Believe::Models::ConflictResolveParams::conflict_type,
-        description: String,
-        parties_involved: ::Array[String],
-        attempts_made: ::Array[String]?
-      }
-      & ::Believe::Internal::Type::request_parameters
+    type conflict_resolve_params = ({
+      conflict_type: ::Believe::Models::ConflictResolveParams::conflict_type,
+      description: String,
+      parties_involved: ::Array[String],
+      attempts_made: ::Array[String]?
+    } & ::Believe::Internal::Type::request_parameters)
 
     class ConflictResolveParams < ::Believe::Internal::Type::BaseModel
       extend ::Believe::Internal::Type::RequestParameters::Converter
@@ -21,15 +19,9 @@ module Believe
 
       attr_accessor attempts_made: ::Array[String]?
 
-      def initialize: (
-        conflict_type: ::Believe::Models::ConflictResolveParams::conflict_type,
-        description: String,
-        parties_involved: ::Array[String],
-        ?attempts_made: ::Array[String]?,
-        ?request_options: ::Believe::request_opts
-      ) -> void
+      def initialize: (conflict_type: ::Believe::Models::ConflictResolveParams::conflict_type, description: String, parties_involved: ::Array[String], ?attempts_made: ::Array[String]?, ?request_options: ::Believe::request_opts) -> void
 
-      def to_hash: -> {
+      def to_hash: () -> {
         conflict_type: ::Believe::Models::ConflictResolveParams::conflict_type,
         description: String,
         parties_involved: ::Array[String],
@@ -37,13 +29,7 @@ module Believe
         request_options: ::Believe::RequestOptions
       }
 
-      type conflict_type =
-        :interpersonal
-        | :team_dynamics
-        | :leadership
-        | :ego
-        | :miscommunication
-        | :competition
+      type conflict_type = (:interpersonal | :team_dynamics | :leadership | :ego | :miscommunication | :competition)
 
       module ConflictType
         extend ::Believe::Internal::Type::Enum
@@ -55,7 +41,7 @@ module Believe
         MISCOMMUNICATION: :miscommunication
         COMPETITION: :competition
 
-        def self?.values: -> ::Array[::Believe::Models::ConflictResolveParams::conflict_type]
+        def self?.values: () -> ::Array[::Believe::Models::ConflictResolveParams::conflict_type]
       end
     end
   end

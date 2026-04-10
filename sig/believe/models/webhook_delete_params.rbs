@@ -1,7 +1,6 @@
 module Believe
   module Models
-    type webhook_delete_params =
-      { webhook_id: String } & ::Believe::Internal::Type::request_parameters
+    type webhook_delete_params = ({webhook_id: String} & ::Believe::Internal::Type::request_parameters)
 
     class WebhookDeleteParams < ::Believe::Internal::Type::BaseModel
       extend ::Believe::Internal::Type::RequestParameters::Converter
@@ -9,15 +8,9 @@ module Believe
 
       attr_accessor webhook_id: String
 
-      def initialize: (
-        webhook_id: String,
-        ?request_options: ::Believe::request_opts
-      ) -> void
+      def initialize: (webhook_id: String, ?request_options: ::Believe::request_opts) -> void
 
-      def to_hash: -> {
-        webhook_id: String,
-        request_options: ::Believe::RequestOptions
-      }
+      def to_hash: () -> {webhook_id: String, request_options: ::Believe::RequestOptions}
     end
   end
 end

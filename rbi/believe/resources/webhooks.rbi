@@ -29,52 +29,38 @@ module Believe
         params(
           url: String,
           description: T.nilable(String),
-          event_types:
-            T.nilable(
-              T::Array[::Believe::WebhookCreateParams::EventType::OrSymbol]
-            ),
+          event_types: T.nilable(T::Array[::Believe::WebhookCreateParams::EventType::OrSymbol]),
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(::Believe::Models::WebhookCreateResponse)
+        )
+          .returns(::Believe::Models::WebhookCreateResponse)
       end
       def create(
         # The URL to send webhook events to
-        url:,
+      url:,
         # Optional description for this webhook
-        description: nil,
+      description: nil,
         # List of event types to subscribe to. If not provided, subscribes to all events.
-        event_types: nil,
+      event_types: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       # Get details of a specific webhook endpoint.
       sig do
-        params(
-          webhook_id: String,
-          request_options: ::Believe::RequestOptions::OrHash
-        ).returns(::Believe::RegisteredWebhook)
+        params(webhook_id: String, request_options: ::Believe::RequestOptions::OrHash)
+          .returns(::Believe::RegisteredWebhook)
       end
-      def retrieve(webhook_id, request_options: {})
-      end
+      def retrieve(webhook_id, request_options: {}); end
 
       # Get a list of all registered webhook endpoints.
-      sig do
-        params(request_options: ::Believe::RequestOptions::OrHash).returns(
-          T::Array[::Believe::RegisteredWebhook]
-        )
-      end
-      def list(request_options: {})
-      end
+      sig { params(request_options: ::Believe::RequestOptions::OrHash).returns(T::Array[::Believe::RegisteredWebhook]) }
+      def list(request_options: {}); end
 
       # Unregister a webhook endpoint. It will no longer receive events.
       sig do
-        params(
-          webhook_id: String,
-          request_options: ::Believe::RequestOptions::OrHash
-        ).returns(T::Hash[Symbol, T.anything])
+        params(webhook_id: String, request_options: ::Believe::RequestOptions::OrHash)
+          .returns(T::Hash[Symbol, T.anything])
       end
-      def delete(webhook_id, request_options: {})
-      end
+      def delete(webhook_id, request_options: {}); end
 
       # Trigger a webhook event and deliver it to all subscribed endpoints.
       #
@@ -108,43 +94,36 @@ module Believe
       sig do
         params(
           event_type: ::Believe::WebhookTriggerEventParams::EventType::OrSymbol,
-          payload:
-            T.nilable(
-              T.any(
-                ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::OrHash,
-                ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::OrHash
-              )
-            ),
+          payload: T.nilable(
+            T.any(
+              ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::OrHash,
+              ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::OrHash
+            )
+          ),
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(::Believe::Models::WebhookTriggerEventResponse)
+        )
+          .returns(::Believe::Models::WebhookTriggerEventResponse)
       end
       def trigger_event(
         # The type of event to trigger
-        event_type:,
+      event_type:,
         # Optional event payload. If not provided, a sample payload will be generated.
-        payload: nil,
+      payload: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       sig do
-        params(payload: String).returns(
-          T.any(
-            ::Believe::MatchCompletedWebhookEvent,
-            ::Believe::TeamMemberTransferredWebhookEvent
-          )
-        )
+        params(payload: String)
+          .returns(T.any(::Believe::MatchCompletedWebhookEvent, ::Believe::TeamMemberTransferredWebhookEvent))
       end
       def unwrap(
         # The raw webhook payload as a string
-        payload
-      )
-      end
+      payload
+      ); end
 
       # @api private
       sig { params(client: ::Believe::Client).returns(T.attached_class) }
-      def self.new(client:)
-      end
+      def self.new(client:); end
     end
   end
 end

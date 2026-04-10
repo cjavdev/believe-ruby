@@ -1,13 +1,12 @@
 module Believe
   module Models
-    type believe_submit_response =
-      {
-        action_suggestion: String,
-        believe_score: Integer,
-        goldfish_wisdom: String,
-        relevant_quote: String,
-        ted_response: String
-      }
+    type believe_submit_response = {
+      action_suggestion: String,
+      believe_score: Integer,
+      goldfish_wisdom: String,
+      relevant_quote: String,
+      ted_response: String
+    }
 
     class BelieveSubmitResponse < ::Believe::Internal::Type::BaseModel
       attr_accessor action_suggestion: String
@@ -20,15 +19,9 @@ module Believe
 
       attr_accessor ted_response: String
 
-      def initialize: (
-        action_suggestion: String,
-        believe_score: Integer,
-        goldfish_wisdom: String,
-        relevant_quote: String,
-        ted_response: String
-      ) -> void
+      def initialize: (action_suggestion: String, believe_score: Integer, goldfish_wisdom: String, relevant_quote: String, ted_response: String) -> void
 
-      def to_hash: -> {
+      def to_hash: () -> {
         action_suggestion: String,
         believe_score: Integer,
         goldfish_wisdom: String,

@@ -15,13 +15,8 @@ module Believe
         # @api private
         module Converter
           # @api private
-          sig do
-            params(params: T.anything).returns(
-              [T.anything, ::Believe::Internal::AnyHash]
-            )
-          end
-          def dump_request(params)
-          end
+          sig { params(params: T.anything).returns([T.anything, ::Believe::Internal::AnyHash]) }
+          def dump_request(params); end
         end
       end
     end

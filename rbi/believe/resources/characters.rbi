@@ -17,53 +17,49 @@ module Believe
           growth_arcs: T::Array[::Believe::GrowthArc::OrHash],
           height_meters: T.nilable(Float),
           profile_image_url: T.nilable(String),
-          salary_gbp:
-            T.nilable(::Believe::CharacterCreateParams::SalaryGbp::Variants),
+          salary_gbp: T.nilable(::Believe::CharacterCreateParams::SalaryGbp::Variants),
           signature_quotes: T::Array[String],
           team_id: T.nilable(String),
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(::Believe::Character)
+        )
+          .returns(::Believe::Character)
       end
       def create(
         # Character background and history
-        background:,
+      background:,
         # Emotional intelligence stats
-        emotional_stats:,
+      emotional_stats:,
         # Character's full name
-        name:,
+      name:,
         # Key personality traits
-        personality_traits:,
+      personality_traits:,
         # Character's role
-        role:,
+      role:,
         # Character's date of birth
-        date_of_birth: nil,
+      date_of_birth: nil,
         # Character's email address
-        email: nil,
+      email: nil,
         # Character development across seasons
-        growth_arcs: nil,
+      growth_arcs: nil,
         # Height in meters
-        height_meters: nil,
+      height_meters: nil,
         # URL to character's profile image
-        profile_image_url: nil,
+      profile_image_url: nil,
         # Annual salary in GBP
-        salary_gbp: nil,
+      salary_gbp: nil,
         # Memorable quotes from this character
-        signature_quotes: nil,
+      signature_quotes: nil,
         # ID of the team they belong to
-        team_id: nil,
+      team_id: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       # Retrieve detailed information about a specific character.
       sig do
-        params(
-          character_id: String,
-          request_options: ::Believe::RequestOptions::OrHash
-        ).returns(::Believe::Character)
+        params(character_id: String, request_options: ::Believe::RequestOptions::OrHash)
+          .returns(::Believe::Character)
       end
-      def retrieve(character_id, request_options: {})
-      end
+      def retrieve(character_id, request_options: {}); end
 
       # Update specific fields of an existing character.
       sig do
@@ -79,12 +75,12 @@ module Believe
           personality_traits: T.nilable(T::Array[String]),
           profile_image_url: T.nilable(String),
           role: T.nilable(::Believe::CharacterRole::OrSymbol),
-          salary_gbp:
-            T.nilable(::Believe::CharacterUpdateParams::SalaryGbp::Variants),
+          salary_gbp: T.nilable(::Believe::CharacterUpdateParams::SalaryGbp::Variants),
           signature_quotes: T.nilable(T::Array[String]),
           team_id: T.nilable(String),
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(::Believe::Character)
+        )
+          .returns(::Believe::Character)
       end
       def update(
         character_id,
@@ -92,20 +88,19 @@ module Believe
         date_of_birth: nil,
         email: nil,
         # Emotional intelligence statistics for a character.
-        emotional_stats: nil,
+      emotional_stats: nil,
         growth_arcs: nil,
         height_meters: nil,
         name: nil,
         personality_traits: nil,
         profile_image_url: nil,
         # Roles characters can have.
-        role: nil,
+      role: nil,
         salary_gbp: nil,
         signature_quotes: nil,
         team_id: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       # Get a paginated list of Ted Lasso characters.
       sig do
@@ -116,47 +111,34 @@ module Believe
           skip: Integer,
           team_id: T.nilable(String),
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(::Believe::Internal::SkipLimitPage[::Believe::Character])
+        )
+          .returns(::Believe::Internal::SkipLimitPage[::Believe::Character])
       end
       def list(
         # Maximum number of items to return (max: 100)
-        limit: nil,
+      limit: nil,
         # Minimum optimism score
-        min_optimism: nil,
+      min_optimism: nil,
         # Filter by role
-        role: nil,
+      role: nil,
         # Number of items to skip (offset)
-        skip: nil,
+      skip: nil,
         # Filter by team ID
-        team_id: nil,
+      team_id: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       # Remove a character from the database.
-      sig do
-        params(
-          character_id: String,
-          request_options: ::Believe::RequestOptions::OrHash
-        ).void
-      end
-      def delete(character_id, request_options: {})
-      end
+      sig { params(character_id: String, request_options: ::Believe::RequestOptions::OrHash).void }
+      def delete(character_id, request_options: {}); end
 
       # Get all signature quotes from a specific character.
-      sig do
-        params(
-          character_id: String,
-          request_options: ::Believe::RequestOptions::OrHash
-        ).returns(T::Array[String])
-      end
-      def get_quotes(character_id, request_options: {})
-      end
+      sig { params(character_id: String, request_options: ::Believe::RequestOptions::OrHash).returns(T::Array[String]) }
+      def get_quotes(character_id, request_options: {}); end
 
       # @api private
       sig { params(client: ::Believe::Client).returns(T.attached_class) }
-      def self.new(client:)
-      end
+      def self.new(client:); end
     end
   end
 end

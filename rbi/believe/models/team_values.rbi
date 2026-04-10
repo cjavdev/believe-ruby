@@ -3,10 +3,7 @@
 module Believe
   module Models
     class TeamValues < ::Believe::Internal::Type::BaseModel
-      OrHash =
-        T.type_alias do
-          T.any(::Believe::TeamValues, ::Believe::Internal::AnyHash)
-        end
+      OrHash = T.type_alias { T.any(::Believe::TeamValues, ::Believe::Internal::AnyHash) }
 
       # The team's primary guiding value
       sig { returns(String) }
@@ -22,33 +19,20 @@ module Believe
 
       # Core values that define a team's culture.
       sig do
-        params(
-          primary_value: String,
-          secondary_values: T::Array[String],
-          team_motto: String
-        ).returns(T.attached_class)
+        params(primary_value: String, secondary_values: T::Array[String], team_motto: String)
+          .returns(T.attached_class)
       end
       def self.new(
         # The team's primary guiding value
-        primary_value:,
+      primary_value:,
         # Supporting values
-        secondary_values:,
+      secondary_values:,
         # Team's motivational motto
-        team_motto:
-      )
-      end
+      team_motto:
+      ); end
 
-      sig do
-        override.returns(
-          {
-            primary_value: String,
-            secondary_values: T::Array[String],
-            team_motto: String
-          }
-        )
-      end
-      def to_hash
-      end
+      sig { override.returns({primary_value: String, secondary_values: T::Array[String], team_motto: String}) }
+      def to_hash; end
     end
   end
 end

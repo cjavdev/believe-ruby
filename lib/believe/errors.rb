@@ -25,7 +25,7 @@ module Believe
         message = [
           "Failed to parse #{cls}.#{method} from #{value.class} to #{target.inspect}.",
           "To get the unparsed API response, use #{cls}[#{method.inspect}].",
-          cause && "Cause: #{cause.message}"
+          cause && "Cause: #{cause.message}",
         ].filter(&:itself).join(" ")
 
         @cause = cause
@@ -84,17 +84,7 @@ module Believe
       # @param request [nil]
       # @param response [nil]
       # @param message [String, nil]
-      def initialize(
-        url:,
-        status: nil,
-        headers: nil,
-        body: nil,
-        request: nil,
-        response: nil,
-        message: "Connection error."
-      )
-        super
-      end
+      def initialize(url:, status: nil, headers: nil, body: nil, request: nil, response: nil, message: "Connection error.") = super
     end
 
     class APITimeoutError < ::Believe::Errors::APIConnectionError
@@ -107,17 +97,7 @@ module Believe
       # @param request [nil]
       # @param response [nil]
       # @param message [String, nil]
-      def initialize(
-        url:,
-        status: nil,
-        headers: nil,
-        body: nil,
-        request: nil,
-        response: nil,
-        message: "Request timed out."
-      )
-        super
-      end
+      def initialize(url:, status: nil, headers: nil, body: nil, request: nil, response: nil, message: "Request timed out.") = super
     end
 
     class APIStatusError < ::Believe::Errors::APIError
@@ -134,15 +114,7 @@ module Believe
       # @return [self]
       def self.for(url:, status:, headers:, body:, request:, response:, message: nil)
         kwargs =
-          {
-            url: url,
-            status: status,
-            headers: headers,
-            body: body,
-            request: request,
-            response: response,
-            message: message
-          }
+          {url: url, status: status, headers: headers, body: body, request: request, response: response, message: message}
 
         case status
         in 400

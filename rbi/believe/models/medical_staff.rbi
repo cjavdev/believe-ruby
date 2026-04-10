@@ -3,10 +3,7 @@
 module Believe
   module Models
     class MedicalStaff < ::Believe::Internal::Type::BaseModel
-      OrHash =
-        T.type_alias do
-          T.any(::Believe::MedicalStaff, ::Believe::Internal::AnyHash)
-        end
+      OrHash = T.type_alias { T.any(::Believe::MedicalStaff, ::Believe::Internal::AnyHash) }
 
       # Unique identifier for this team membership
       sig { returns(String) }
@@ -33,14 +30,10 @@ module Believe
       attr_accessor :license_number
 
       # Discriminator field indicating this is medical staff
-      sig do
-        returns(T.nilable(::Believe::MedicalStaff::MemberType::TaggedSymbol))
-      end
+      sig { returns(T.nilable(::Believe::MedicalStaff::MemberType::TaggedSymbol)) }
       attr_reader :member_type
 
-      sig do
-        params(member_type: ::Believe::MedicalStaff::MemberType::OrSymbol).void
-      end
+      sig { params(member_type: ::Believe::MedicalStaff::MemberType::OrSymbol).void }
       attr_writer :member_type
 
       # Medical qualifications and degrees
@@ -61,66 +54,56 @@ module Believe
           license_number: T.nilable(String),
           member_type: ::Believe::MedicalStaff::MemberType::OrSymbol,
           qualifications: T::Array[String]
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
       def self.new(
         # Unique identifier for this team membership
-        id:,
+      id:,
         # ID of the character (references /characters/{id})
-        character_id:,
+      character_id:,
         # Medical specialty
-        specialty:,
+      specialty:,
         # ID of the team they belong to
-        team_id:,
+      team_id:,
         # Number of years with the current team
-        years_with_team:,
+      years_with_team:,
         # Professional license number
-        license_number: nil,
+      license_number: nil,
         # Discriminator field indicating this is medical staff
-        member_type: nil,
+      member_type: nil,
         # Medical qualifications and degrees
-        qualifications: nil
-      )
-      end
+      qualifications: nil
+      ); end
 
       sig do
-        override.returns(
-          {
-            id: String,
-            character_id: String,
-            specialty: ::Believe::MedicalSpecialty::TaggedSymbol,
-            team_id: String,
-            years_with_team: Integer,
-            license_number: T.nilable(String),
-            member_type: ::Believe::MedicalStaff::MemberType::TaggedSymbol,
-            qualifications: T::Array[String]
-          }
-        )
+        override
+          .returns(
+            {
+              id: String,
+              character_id: String,
+              specialty: ::Believe::MedicalSpecialty::TaggedSymbol,
+              team_id: String,
+              years_with_team: Integer,
+              license_number: T.nilable(String),
+              member_type: ::Believe::MedicalStaff::MemberType::TaggedSymbol,
+              qualifications: T::Array[String]
+            }
+          )
       end
-      def to_hash
-      end
+      def to_hash; end
 
       # Discriminator field indicating this is medical staff
       module MemberType
         extend ::Believe::Internal::Type::Enum
 
-        TaggedSymbol =
-          T.type_alias { T.all(Symbol, ::Believe::MedicalStaff::MemberType) }
+        TaggedSymbol = T.type_alias { T.all(Symbol, ::Believe::MedicalStaff::MemberType) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        MEDICAL_STAFF =
-          T.let(
-            :medical_staff,
-            ::Believe::MedicalStaff::MemberType::TaggedSymbol
-          )
+        MEDICAL_STAFF = T.let(:medical_staff, ::Believe::MedicalStaff::MemberType::TaggedSymbol)
 
-        sig do
-          override.returns(
-            T::Array[::Believe::MedicalStaff::MemberType::TaggedSymbol]
-          )
-        end
-        def self.values
-        end
+        sig { override.returns(T::Array[::Believe::MedicalStaff::MemberType::TaggedSymbol]) }
+        def self.values; end
       end
     end
   end

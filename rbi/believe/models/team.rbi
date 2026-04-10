@@ -3,8 +3,7 @@
 module Believe
   module Models
     class Team < ::Believe::Internal::Type::BaseModel
-      OrHash =
-        T.type_alias { T.any(::Believe::Team, ::Believe::Internal::AnyHash) }
+      OrHash = T.type_alias { T.any(::Believe::Team, ::Believe::Internal::AnyHash) }
 
       # Unique identifier
       sig { returns(String) }
@@ -79,9 +78,7 @@ module Believe
       sig { returns(T.nilable(::Believe::GeoLocation)) }
       attr_reader :stadium_location
 
-      sig do
-        params(stadium_location: T.nilable(::Believe::GeoLocation::OrHash)).void
-      end
+      sig { params(stadium_location: T.nilable(::Believe::GeoLocation::OrHash)).void }
       attr_writer :stadium_location
 
       # Official team website
@@ -113,74 +110,74 @@ module Believe
           stadium_location: T.nilable(::Believe::GeoLocation::OrHash),
           website: T.nilable(String),
           win_percentage: T.nilable(Float)
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
       def self.new(
         # Unique identifier
-        id:,
+      id:,
         # Team culture/morale score (0-100)
-        culture_score:,
+      culture_score:,
         # Year the club was founded
-        founded_year:,
+      founded_year:,
         # Current league
-        league:,
+      league:,
         # Team name
-        name:,
+      name:,
         # Home stadium name
-        stadium:,
+      stadium:,
         # Team's core values
-        values:,
+      values:,
         # Annual budget in GBP
-        annual_budget_gbp: nil,
+      annual_budget_gbp: nil,
         # Average match attendance
-        average_attendance: nil,
+      average_attendance: nil,
         # Team contact email
-        contact_email: nil,
+      contact_email: nil,
         # Whether the team is currently active
-        is_active: nil,
+      is_active: nil,
         # Team nickname
-        nickname: nil,
+      nickname: nil,
         # Primary team color (hex)
-        primary_color: nil,
+      primary_color: nil,
         # List of rival team IDs
-        rival_teams: nil,
+      rival_teams: nil,
         # Secondary team color (hex)
-        secondary_color: nil,
+      secondary_color: nil,
         # Geographic coordinates for a location.
-        stadium_location: nil,
+      stadium_location: nil,
         # Official team website
-        website: nil,
+      website: nil,
         # Season win percentage
-        win_percentage: nil
-      )
-      end
+      win_percentage: nil
+      ); end
 
       sig do
-        override.returns(
-          {
-            id: String,
-            culture_score: Integer,
-            founded_year: Integer,
-            league: ::Believe::League::TaggedSymbol,
-            name: String,
-            stadium: String,
-            values: ::Believe::TeamValues,
-            annual_budget_gbp: T.nilable(String),
-            average_attendance: T.nilable(Float),
-            contact_email: T.nilable(String),
-            is_active: T::Boolean,
-            nickname: T.nilable(String),
-            primary_color: T.nilable(String),
-            rival_teams: T::Array[String],
-            secondary_color: T.nilable(String),
-            stadium_location: T.nilable(::Believe::GeoLocation),
-            website: T.nilable(String),
-            win_percentage: T.nilable(Float)
-          }
-        )
+        override
+          .returns(
+            {
+              id: String,
+              culture_score: Integer,
+              founded_year: Integer,
+              league: ::Believe::League::TaggedSymbol,
+              name: String,
+              stadium: String,
+              values: ::Believe::TeamValues,
+              annual_budget_gbp: T.nilable(String),
+              average_attendance: T.nilable(Float),
+              contact_email: T.nilable(String),
+              is_active: T::Boolean,
+              nickname: T.nilable(String),
+              primary_color: T.nilable(String),
+              rival_teams: T::Array[String],
+              secondary_color: T.nilable(String),
+              stadium_location: T.nilable(::Believe::GeoLocation),
+              website: T.nilable(String),
+              win_percentage: T.nilable(Float)
+            }
+          )
       end
-      def to_hash
-      end
+      def to_hash; end
     end
   end
 end

@@ -6,10 +6,7 @@ module Believe
       extend ::Believe::Internal::Type::RequestParameters::Converter
       include ::Believe::Internal::Type::RequestParameters
 
-      OrHash =
-        T.type_alias do
-          T.any(::Believe::TicketSaleCreateParams, ::Believe::Internal::AnyHash)
-        end
+      OrHash = T.type_alias { T.any(::Believe::TicketSaleCreateParams, ::Believe::Internal::AnyHash) }
 
       # Name of the ticket buyer
       sig { returns(String) }
@@ -74,58 +71,58 @@ module Believe
           buyer_email: T.nilable(String),
           coupon_code: T.nilable(String),
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
       def self.new(
         # Name of the ticket buyer
-        buyer_name:,
+      buyer_name:,
         # Currency code (GBP, USD, or EUR)
-        currency:,
+      currency:,
         # Discount amount applied from coupon
-        discount:,
+      discount:,
         # ID of the match
-        match_id:,
+      match_id:,
         # How the ticket was purchased
-        purchase_method:,
+      purchase_method:,
         # Number of tickets purchased
-        quantity:,
+      quantity:,
         # Subtotal before discount and tax (unit_price \* quantity)
-        subtotal:,
+      subtotal:,
         # Tax amount (20% UK VAT on discounted subtotal)
-        tax:,
+      tax:,
         # Final total (subtotal - discount + tax)
-        total:,
+      total:,
         # Price per ticket (decimal string)
-        unit_price:,
+      unit_price:,
         # Email of the ticket buyer
-        buyer_email: nil,
+      buyer_email: nil,
         # Coupon code applied, if any
-        coupon_code: nil,
+      coupon_code: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       sig do
-        override.returns(
-          {
-            buyer_name: String,
-            currency: String,
-            discount: String,
-            match_id: String,
-            purchase_method: ::Believe::PurchaseMethod::OrSymbol,
-            quantity: Integer,
-            subtotal: String,
-            tax: String,
-            total: String,
-            unit_price: String,
-            buyer_email: T.nilable(String),
-            coupon_code: T.nilable(String),
-            request_options: ::Believe::RequestOptions
-          }
-        )
+        override
+          .returns(
+            {
+              buyer_name: String,
+              currency: String,
+              discount: String,
+              match_id: String,
+              purchase_method: ::Believe::PurchaseMethod::OrSymbol,
+              quantity: Integer,
+              subtotal: String,
+              tax: String,
+              total: String,
+              unit_price: String,
+              buyer_email: T.nilable(String),
+              coupon_code: T.nilable(String),
+              request_options: ::Believe::RequestOptions
+            }
+          )
       end
-      def to_hash
-      end
+      def to_hash; end
     end
   end
 end

@@ -4,12 +4,7 @@ module Believe
   module Models
     class TeamMemberTransferredWebhookEvent < ::Believe::Internal::Type::BaseModel
       OrHash =
-        T.type_alias do
-          T.any(
-            ::Believe::TeamMemberTransferredWebhookEvent,
-            ::Believe::Internal::AnyHash
-          )
-        end
+        T.type_alias { T.any(::Believe::TeamMemberTransferredWebhookEvent, ::Believe::Internal::AnyHash) }
 
       # When the event was created
       sig { returns(Time) }
@@ -19,11 +14,7 @@ module Believe
       sig { returns(::Believe::TeamMemberTransferredWebhookEvent::Data) }
       attr_reader :data
 
-      sig do
-        params(
-          data: ::Believe::TeamMemberTransferredWebhookEvent::Data::OrHash
-        ).void
-      end
+      sig { params(data: ::Believe::TeamMemberTransferredWebhookEvent::Data::OrHash).void }
       attr_writer :data
 
       # Unique identifier for this event
@@ -31,11 +22,7 @@ module Believe
       attr_accessor :event_id
 
       # The type of webhook event
-      sig do
-        returns(
-          ::Believe::TeamMemberTransferredWebhookEvent::EventType::TaggedSymbol
-        )
-      end
+      sig { returns(::Believe::TeamMemberTransferredWebhookEvent::EventType::TaggedSymbol) }
       attr_accessor :event_type
 
       # Webhook event sent when a team member (player, coach, staff) transfers between
@@ -45,44 +32,37 @@ module Believe
           created_at: Time,
           data: ::Believe::TeamMemberTransferredWebhookEvent::Data::OrHash,
           event_id: String,
-          event_type:
-            ::Believe::TeamMemberTransferredWebhookEvent::EventType::OrSymbol
-        ).returns(T.attached_class)
+          event_type: ::Believe::TeamMemberTransferredWebhookEvent::EventType::OrSymbol
+        )
+          .returns(T.attached_class)
       end
       def self.new(
         # When the event was created
-        created_at:,
+      created_at:,
         # Data payload for a team member transfer event.
-        data:,
+      data:,
         # Unique identifier for this event
-        event_id:,
+      event_id:,
         # The type of webhook event
-        event_type:
-      )
-      end
+      event_type:
+      ); end
 
       sig do
-        override.returns(
-          {
-            created_at: Time,
-            data: ::Believe::TeamMemberTransferredWebhookEvent::Data,
-            event_id: String,
-            event_type:
-              ::Believe::TeamMemberTransferredWebhookEvent::EventType::TaggedSymbol
-          }
-        )
+        override
+          .returns(
+            {
+              created_at: Time,
+              data: ::Believe::TeamMemberTransferredWebhookEvent::Data,
+              event_id: String,
+              event_type: ::Believe::TeamMemberTransferredWebhookEvent::EventType::TaggedSymbol
+            }
+          )
       end
-      def to_hash
-      end
+      def to_hash; end
 
       class Data < ::Believe::Internal::Type::BaseModel
         OrHash =
-          T.type_alias do
-            T.any(
-              ::Believe::TeamMemberTransferredWebhookEvent::Data,
-              ::Believe::Internal::AnyHash
-            )
-          end
+          T.type_alias { T.any(::Believe::TeamMemberTransferredWebhookEvent::Data, ::Believe::Internal::AnyHash) }
 
         # ID of the character (links to /characters)
         sig { returns(String) }
@@ -93,11 +73,7 @@ module Believe
         attr_accessor :character_name
 
         # Type of team member
-        sig do
-          returns(
-            ::Believe::TeamMemberTransferredWebhookEvent::Data::MemberType::TaggedSymbol
-          )
-        end
+        sig { returns(::Believe::TeamMemberTransferredWebhookEvent::Data::MemberType::TaggedSymbol) }
         attr_accessor :member_type
 
         # ID of the team involved
@@ -117,11 +93,7 @@ module Believe
         attr_accessor :ted_reaction
 
         # Whether the member joined or departed
-        sig do
-          returns(
-            ::Believe::TeamMemberTransferredWebhookEvent::Data::TransferType::TaggedSymbol
-          )
-        end
+        sig { returns(::Believe::TeamMemberTransferredWebhookEvent::Data::TransferType::TaggedSymbol) }
         attr_accessor :transfer_type
 
         # Previous team ID (for joins from another team)
@@ -145,114 +117,84 @@ module Believe
           params(
             character_id: String,
             character_name: String,
-            member_type:
-              ::Believe::TeamMemberTransferredWebhookEvent::Data::MemberType::OrSymbol,
+            member_type: ::Believe::TeamMemberTransferredWebhookEvent::Data::MemberType::OrSymbol,
             team_id: String,
             team_member_id: String,
             team_name: String,
             ted_reaction: String,
-            transfer_type:
-              ::Believe::TeamMemberTransferredWebhookEvent::Data::TransferType::OrSymbol,
+            transfer_type: ::Believe::TeamMemberTransferredWebhookEvent::Data::TransferType::OrSymbol,
             previous_team_id: T.nilable(String),
             previous_team_name: T.nilable(String),
             transfer_fee_gbp: T.nilable(String),
             years_with_previous_team: T.nilable(Integer)
-          ).returns(T.attached_class)
+          )
+            .returns(T.attached_class)
         end
         def self.new(
           # ID of the character (links to /characters)
-          character_id:,
+        character_id:,
           # Name of the character
-          character_name:,
+        character_name:,
           # Type of team member
-          member_type:,
+        member_type:,
           # ID of the team involved
-          team_id:,
+        team_id:,
           # ID of the team member
-          team_member_id:,
+        team_member_id:,
           # Name of the team involved
-          team_name:,
+        team_name:,
           # Ted's reaction to the transfer
-          ted_reaction:,
+        ted_reaction:,
           # Whether the member joined or departed
-          transfer_type:,
+        transfer_type:,
           # Previous team ID (for joins from another team)
-          previous_team_id: nil,
+        previous_team_id: nil,
           # Previous team name (for joins from another team)
-          previous_team_name: nil,
+        previous_team_name: nil,
           # Transfer fee in GBP (for players)
-          transfer_fee_gbp: nil,
+        transfer_fee_gbp: nil,
           # Years spent with previous team
-          years_with_previous_team: nil
-        )
-        end
+        years_with_previous_team: nil
+        ); end
 
         sig do
-          override.returns(
-            {
-              character_id: String,
-              character_name: String,
-              member_type:
-                ::Believe::TeamMemberTransferredWebhookEvent::Data::MemberType::TaggedSymbol,
-              team_id: String,
-              team_member_id: String,
-              team_name: String,
-              ted_reaction: String,
-              transfer_type:
-                ::Believe::TeamMemberTransferredWebhookEvent::Data::TransferType::TaggedSymbol,
-              previous_team_id: T.nilable(String),
-              previous_team_name: T.nilable(String),
-              transfer_fee_gbp: T.nilable(String),
-              years_with_previous_team: T.nilable(Integer)
-            }
-          )
+          override
+            .returns(
+              {
+                character_id: String,
+                character_name: String,
+                member_type: ::Believe::TeamMemberTransferredWebhookEvent::Data::MemberType::TaggedSymbol,
+                team_id: String,
+                team_member_id: String,
+                team_name: String,
+                ted_reaction: String,
+                transfer_type: ::Believe::TeamMemberTransferredWebhookEvent::Data::TransferType::TaggedSymbol,
+                previous_team_id: T.nilable(String),
+                previous_team_name: T.nilable(String),
+                transfer_fee_gbp: T.nilable(String),
+                years_with_previous_team: T.nilable(Integer)
+              }
+            )
         end
-        def to_hash
-        end
+        def to_hash; end
 
         # Type of team member
         module MemberType
           extend ::Believe::Internal::Type::Enum
 
           TaggedSymbol =
-            T.type_alias do
-              T.all(
-                Symbol,
-                ::Believe::TeamMemberTransferredWebhookEvent::Data::MemberType
-              )
-            end
+            T.type_alias { T.all(Symbol, ::Believe::TeamMemberTransferredWebhookEvent::Data::MemberType) }
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-          PLAYER =
-            T.let(
-              :player,
-              ::Believe::TeamMemberTransferredWebhookEvent::Data::MemberType::TaggedSymbol
-            )
-          COACH =
-            T.let(
-              :coach,
-              ::Believe::TeamMemberTransferredWebhookEvent::Data::MemberType::TaggedSymbol
-            )
+          PLAYER = T.let(:player, ::Believe::TeamMemberTransferredWebhookEvent::Data::MemberType::TaggedSymbol)
+          COACH = T.let(:coach, ::Believe::TeamMemberTransferredWebhookEvent::Data::MemberType::TaggedSymbol)
           MEDICAL_STAFF =
-            T.let(
-              :medical_staff,
-              ::Believe::TeamMemberTransferredWebhookEvent::Data::MemberType::TaggedSymbol
-            )
+            T.let(:medical_staff, ::Believe::TeamMemberTransferredWebhookEvent::Data::MemberType::TaggedSymbol)
           EQUIPMENT_MANAGER =
-            T.let(
-              :equipment_manager,
-              ::Believe::TeamMemberTransferredWebhookEvent::Data::MemberType::TaggedSymbol
-            )
+            T.let(:equipment_manager, ::Believe::TeamMemberTransferredWebhookEvent::Data::MemberType::TaggedSymbol)
 
-          sig do
-            override.returns(
-              T::Array[
-                ::Believe::TeamMemberTransferredWebhookEvent::Data::MemberType::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
+          sig { override.returns(T::Array[::Believe::TeamMemberTransferredWebhookEvent::Data::MemberType::TaggedSymbol]) }
+          def self.values; end
         end
 
         # Whether the member joined or departed
@@ -260,34 +202,15 @@ module Believe
           extend ::Believe::Internal::Type::Enum
 
           TaggedSymbol =
-            T.type_alias do
-              T.all(
-                Symbol,
-                ::Believe::TeamMemberTransferredWebhookEvent::Data::TransferType
-              )
-            end
+            T.type_alias { T.all(Symbol, ::Believe::TeamMemberTransferredWebhookEvent::Data::TransferType) }
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-          JOINED =
-            T.let(
-              :joined,
-              ::Believe::TeamMemberTransferredWebhookEvent::Data::TransferType::TaggedSymbol
-            )
+          JOINED = T.let(:joined, ::Believe::TeamMemberTransferredWebhookEvent::Data::TransferType::TaggedSymbol)
           DEPARTED =
-            T.let(
-              :departed,
-              ::Believe::TeamMemberTransferredWebhookEvent::Data::TransferType::TaggedSymbol
-            )
+            T.let(:departed, ::Believe::TeamMemberTransferredWebhookEvent::Data::TransferType::TaggedSymbol)
 
-          sig do
-            override.returns(
-              T::Array[
-                ::Believe::TeamMemberTransferredWebhookEvent::Data::TransferType::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
+          sig { override.returns(T::Array[::Believe::TeamMemberTransferredWebhookEvent::Data::TransferType::TaggedSymbol]) }
+          def self.values; end
         end
       end
 
@@ -295,30 +218,14 @@ module Believe
       module EventType
         extend ::Believe::Internal::Type::Enum
 
-        TaggedSymbol =
-          T.type_alias do
-            T.all(
-              Symbol,
-              ::Believe::TeamMemberTransferredWebhookEvent::EventType
-            )
-          end
+        TaggedSymbol = T.type_alias { T.all(Symbol, ::Believe::TeamMemberTransferredWebhookEvent::EventType) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         TEAM_MEMBER_TRANSFERRED =
-          T.let(
-            :"team_member.transferred",
-            ::Believe::TeamMemberTransferredWebhookEvent::EventType::TaggedSymbol
-          )
+          T.let(:"team_member.transferred", ::Believe::TeamMemberTransferredWebhookEvent::EventType::TaggedSymbol)
 
-        sig do
-          override.returns(
-            T::Array[
-              ::Believe::TeamMemberTransferredWebhookEvent::EventType::TaggedSymbol
-            ]
-          )
-        end
-        def self.values
-        end
+        sig { override.returns(T::Array[::Believe::TeamMemberTransferredWebhookEvent::EventType::TaggedSymbol]) }
+        def self.values; end
       end
     end
   end

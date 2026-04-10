@@ -6,10 +6,7 @@ module Believe
       extend ::Believe::Internal::Type::RequestParameters::Converter
       include ::Believe::Internal::Type::RequestParameters
 
-      OrHash =
-        T.type_alias do
-          T.any(::Believe::QuoteCreateParams, ::Believe::Internal::AnyHash)
-        end
+      OrHash = T.type_alias { T.any(::Believe::QuoteCreateParams, ::Believe::Internal::AnyHash) }
 
       # ID of the character who said it
       sig { returns(String) }
@@ -57,9 +54,7 @@ module Believe
       sig { returns(T.nilable(T::Array[::Believe::QuoteTheme::OrSymbol])) }
       attr_reader :secondary_themes
 
-      sig do
-        params(secondary_themes: T::Array[::Believe::QuoteTheme::OrSymbol]).void
-      end
+      sig { params(secondary_themes: T::Array[::Believe::QuoteTheme::OrSymbol]).void }
       attr_writer :secondary_themes
 
       # Number of times shared on social media
@@ -80,55 +75,55 @@ module Believe
           secondary_themes: T::Array[::Believe::QuoteTheme::OrSymbol],
           times_shared: T.nilable(Integer),
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
       def self.new(
         # ID of the character who said it
-        character_id:,
+      character_id:,
         # Context in which the quote was said
-        context:,
+      context:,
         # Type of moment when the quote was said
-        moment_type:,
+      moment_type:,
         # The quote text
-        text:,
+      text:,
         # Primary theme of the quote
-        theme:,
+      theme:,
         # Episode where the quote appears
-        episode_id: nil,
+      episode_id: nil,
         # Whether this quote is humorous
-        is_funny: nil,
+      is_funny: nil,
         # Whether this quote is inspirational
-        is_inspirational: nil,
+      is_inspirational: nil,
         # Popularity/virality score (0-100)
-        popularity_score: nil,
+      popularity_score: nil,
         # Additional themes
-        secondary_themes: nil,
+      secondary_themes: nil,
         # Number of times shared on social media
-        times_shared: nil,
+      times_shared: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       sig do
-        override.returns(
-          {
-            character_id: String,
-            context: String,
-            moment_type: ::Believe::QuoteMoment::OrSymbol,
-            text: String,
-            theme: ::Believe::QuoteTheme::OrSymbol,
-            episode_id: T.nilable(String),
-            is_funny: T::Boolean,
-            is_inspirational: T::Boolean,
-            popularity_score: T.nilable(Float),
-            secondary_themes: T::Array[::Believe::QuoteTheme::OrSymbol],
-            times_shared: T.nilable(Integer),
-            request_options: ::Believe::RequestOptions
-          }
-        )
+        override
+          .returns(
+            {
+              character_id: String,
+              context: String,
+              moment_type: ::Believe::QuoteMoment::OrSymbol,
+              text: String,
+              theme: ::Believe::QuoteTheme::OrSymbol,
+              episode_id: T.nilable(String),
+              is_funny: T::Boolean,
+              is_inspirational: T::Boolean,
+              popularity_score: T.nilable(Float),
+              secondary_themes: T::Array[::Believe::QuoteTheme::OrSymbol],
+              times_shared: T.nilable(Integer),
+              request_options: ::Believe::RequestOptions
+            }
+          )
       end
-      def to_hash
-      end
+      def to_hash; end
     end
   end
 end

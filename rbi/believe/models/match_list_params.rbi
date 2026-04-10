@@ -6,10 +6,7 @@ module Believe
       extend ::Believe::Internal::Type::RequestParameters::Converter
       include ::Believe::Internal::Type::RequestParameters
 
-      OrHash =
-        T.type_alias do
-          T.any(::Believe::MatchListParams, ::Believe::Internal::AnyHash)
-        end
+      OrHash = T.type_alias { T.any(::Believe::MatchListParams, ::Believe::Internal::AnyHash) }
 
       # Maximum number of items to return (max: 100)
       sig { returns(T.nilable(Integer)) }
@@ -45,37 +42,37 @@ module Believe
           skip: Integer,
           team_id: T.nilable(String),
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
       def self.new(
         # Maximum number of items to return (max: 100)
-        limit: nil,
+      limit: nil,
         # Filter by match type
-        match_type: nil,
+      match_type: nil,
         # Filter by result
-        result: nil,
+      result: nil,
         # Number of items to skip (offset)
-        skip: nil,
+      skip: nil,
         # Filter by team (home or away)
-        team_id: nil,
+      team_id: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       sig do
-        override.returns(
-          {
-            limit: Integer,
-            match_type: T.nilable(::Believe::MatchType::OrSymbol),
-            result: T.nilable(::Believe::MatchResult::OrSymbol),
-            skip: Integer,
-            team_id: T.nilable(String),
-            request_options: ::Believe::RequestOptions
-          }
-        )
+        override
+          .returns(
+            {
+              limit: Integer,
+              match_type: T.nilable(::Believe::MatchType::OrSymbol),
+              result: T.nilable(::Believe::MatchResult::OrSymbol),
+              skip: Integer,
+              team_id: T.nilable(String),
+              request_options: ::Believe::RequestOptions
+            }
+          )
       end
-      def to_hash
-      end
+      def to_hash; end
     end
   end
 end

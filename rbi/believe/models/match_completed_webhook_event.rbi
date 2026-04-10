@@ -3,13 +3,7 @@
 module Believe
   module Models
     class MatchCompletedWebhookEvent < ::Believe::Internal::Type::BaseModel
-      OrHash =
-        T.type_alias do
-          T.any(
-            ::Believe::MatchCompletedWebhookEvent,
-            ::Believe::Internal::AnyHash
-          )
-        end
+      OrHash = T.type_alias { T.any(::Believe::MatchCompletedWebhookEvent, ::Believe::Internal::AnyHash) }
 
       # When the event was created
       sig { returns(Time) }
@@ -19,9 +13,7 @@ module Believe
       sig { returns(::Believe::MatchCompletedWebhookEvent::Data) }
       attr_reader :data
 
-      sig do
-        params(data: ::Believe::MatchCompletedWebhookEvent::Data::OrHash).void
-      end
+      sig { params(data: ::Believe::MatchCompletedWebhookEvent::Data::OrHash).void }
       attr_writer :data
 
       # Unique identifier for this event
@@ -29,9 +21,7 @@ module Believe
       attr_accessor :event_id
 
       # The type of webhook event
-      sig do
-        returns(::Believe::MatchCompletedWebhookEvent::EventType::TaggedSymbol)
-      end
+      sig { returns(::Believe::MatchCompletedWebhookEvent::EventType::TaggedSymbol) }
       attr_accessor :event_type
 
       # Webhook event sent when a match completes.
@@ -41,42 +31,36 @@ module Believe
           data: ::Believe::MatchCompletedWebhookEvent::Data::OrHash,
           event_id: String,
           event_type: ::Believe::MatchCompletedWebhookEvent::EventType::OrSymbol
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
       def self.new(
         # When the event was created
-        created_at:,
+      created_at:,
         # Data payload for a match completed event.
-        data:,
+      data:,
         # Unique identifier for this event
-        event_id:,
+      event_id:,
         # The type of webhook event
-        event_type:
-      )
-      end
+      event_type:
+      ); end
 
       sig do
-        override.returns(
-          {
-            created_at: Time,
-            data: ::Believe::MatchCompletedWebhookEvent::Data,
-            event_id: String,
-            event_type:
-              ::Believe::MatchCompletedWebhookEvent::EventType::TaggedSymbol
-          }
-        )
+        override
+          .returns(
+            {
+              created_at: Time,
+              data: ::Believe::MatchCompletedWebhookEvent::Data,
+              event_id: String,
+              event_type: ::Believe::MatchCompletedWebhookEvent::EventType::TaggedSymbol
+            }
+          )
       end
-      def to_hash
-      end
+      def to_hash; end
 
       class Data < ::Believe::Internal::Type::BaseModel
         OrHash =
-          T.type_alias do
-            T.any(
-              ::Believe::MatchCompletedWebhookEvent::Data,
-              ::Believe::Internal::AnyHash
-            )
-          end
+          T.type_alias { T.any(::Believe::MatchCompletedWebhookEvent::Data, ::Believe::Internal::AnyHash) }
 
         # Final away team score
         sig { returns(Integer) }
@@ -103,19 +87,11 @@ module Believe
         attr_accessor :match_id
 
         # Type of match
-        sig do
-          returns(
-            ::Believe::MatchCompletedWebhookEvent::Data::MatchType::TaggedSymbol
-          )
-        end
+        sig { returns(::Believe::MatchCompletedWebhookEvent::Data::MatchType::TaggedSymbol) }
         attr_accessor :match_type
 
         # Match result from home team perspective
-        sig do
-          returns(
-            ::Believe::MatchCompletedWebhookEvent::Data::Result::TaggedSymbol
-          )
-        end
+        sig { returns(::Believe::MatchCompletedWebhookEvent::Data::Result::TaggedSymbol) }
         attr_accessor :result
 
         # Ted's post-match wisdom
@@ -139,148 +115,89 @@ module Believe
             home_score: Integer,
             home_team_id: String,
             match_id: String,
-            match_type:
-              ::Believe::MatchCompletedWebhookEvent::Data::MatchType::OrSymbol,
-            result:
-              ::Believe::MatchCompletedWebhookEvent::Data::Result::OrSymbol,
+            match_type: ::Believe::MatchCompletedWebhookEvent::Data::MatchType::OrSymbol,
+            result: ::Believe::MatchCompletedWebhookEvent::Data::Result::OrSymbol,
             ted_post_match_quote: String,
             lesson_learned: T.nilable(String),
             man_of_the_match: T.nilable(String)
-          ).returns(T.attached_class)
+          )
+            .returns(T.attached_class)
         end
         def self.new(
           # Final away team score
-          away_score:,
+        away_score:,
           # Away team ID
-          away_team_id:,
+        away_team_id:,
           # When the match completed
-          completed_at:,
+        completed_at:,
           # Final home team score
-          home_score:,
+        home_score:,
           # Home team ID
-          home_team_id:,
+        home_team_id:,
           # Unique match identifier
-          match_id:,
+        match_id:,
           # Type of match
-          match_type:,
+        match_type:,
           # Match result from home team perspective
-          result:,
+        result:,
           # Ted's post-match wisdom
-          ted_post_match_quote:,
+        ted_post_match_quote:,
           # Ted's lesson from the match
-          lesson_learned: nil,
+        lesson_learned: nil,
           # Player of the match (if awarded)
-          man_of_the_match: nil
-        )
-        end
+        man_of_the_match: nil
+        ); end
 
         sig do
-          override.returns(
-            {
-              away_score: Integer,
-              away_team_id: String,
-              completed_at: Time,
-              home_score: Integer,
-              home_team_id: String,
-              match_id: String,
-              match_type:
-                ::Believe::MatchCompletedWebhookEvent::Data::MatchType::TaggedSymbol,
-              result:
-                ::Believe::MatchCompletedWebhookEvent::Data::Result::TaggedSymbol,
-              ted_post_match_quote: String,
-              lesson_learned: T.nilable(String),
-              man_of_the_match: T.nilable(String)
-            }
-          )
+          override
+            .returns(
+              {
+                away_score: Integer,
+                away_team_id: String,
+                completed_at: Time,
+                home_score: Integer,
+                home_team_id: String,
+                match_id: String,
+                match_type: ::Believe::MatchCompletedWebhookEvent::Data::MatchType::TaggedSymbol,
+                result: ::Believe::MatchCompletedWebhookEvent::Data::Result::TaggedSymbol,
+                ted_post_match_quote: String,
+                lesson_learned: T.nilable(String),
+                man_of_the_match: T.nilable(String)
+              }
+            )
         end
-        def to_hash
-        end
+        def to_hash; end
 
         # Type of match
         module MatchType
           extend ::Believe::Internal::Type::Enum
 
-          TaggedSymbol =
-            T.type_alias do
-              T.all(
-                Symbol,
-                ::Believe::MatchCompletedWebhookEvent::Data::MatchType
-              )
-            end
+          TaggedSymbol = T.type_alias { T.all(Symbol, ::Believe::MatchCompletedWebhookEvent::Data::MatchType) }
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-          LEAGUE =
-            T.let(
-              :league,
-              ::Believe::MatchCompletedWebhookEvent::Data::MatchType::TaggedSymbol
-            )
-          CUP =
-            T.let(
-              :cup,
-              ::Believe::MatchCompletedWebhookEvent::Data::MatchType::TaggedSymbol
-            )
-          FRIENDLY =
-            T.let(
-              :friendly,
-              ::Believe::MatchCompletedWebhookEvent::Data::MatchType::TaggedSymbol
-            )
-          PLAYOFF =
-            T.let(
-              :playoff,
-              ::Believe::MatchCompletedWebhookEvent::Data::MatchType::TaggedSymbol
-            )
-          FINAL =
-            T.let(
-              :final,
-              ::Believe::MatchCompletedWebhookEvent::Data::MatchType::TaggedSymbol
-            )
+          LEAGUE = T.let(:league, ::Believe::MatchCompletedWebhookEvent::Data::MatchType::TaggedSymbol)
+          CUP = T.let(:cup, ::Believe::MatchCompletedWebhookEvent::Data::MatchType::TaggedSymbol)
+          FRIENDLY = T.let(:friendly, ::Believe::MatchCompletedWebhookEvent::Data::MatchType::TaggedSymbol)
+          PLAYOFF = T.let(:playoff, ::Believe::MatchCompletedWebhookEvent::Data::MatchType::TaggedSymbol)
+          FINAL = T.let(:final, ::Believe::MatchCompletedWebhookEvent::Data::MatchType::TaggedSymbol)
 
-          sig do
-            override.returns(
-              T::Array[
-                ::Believe::MatchCompletedWebhookEvent::Data::MatchType::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
+          sig { override.returns(T::Array[::Believe::MatchCompletedWebhookEvent::Data::MatchType::TaggedSymbol]) }
+          def self.values; end
         end
 
         # Match result from home team perspective
         module Result
           extend ::Believe::Internal::Type::Enum
 
-          TaggedSymbol =
-            T.type_alias do
-              T.all(Symbol, ::Believe::MatchCompletedWebhookEvent::Data::Result)
-            end
+          TaggedSymbol = T.type_alias { T.all(Symbol, ::Believe::MatchCompletedWebhookEvent::Data::Result) }
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-          HOME_WIN =
-            T.let(
-              :home_win,
-              ::Believe::MatchCompletedWebhookEvent::Data::Result::TaggedSymbol
-            )
-          AWAY_WIN =
-            T.let(
-              :away_win,
-              ::Believe::MatchCompletedWebhookEvent::Data::Result::TaggedSymbol
-            )
-          DRAW =
-            T.let(
-              :draw,
-              ::Believe::MatchCompletedWebhookEvent::Data::Result::TaggedSymbol
-            )
+          HOME_WIN = T.let(:home_win, ::Believe::MatchCompletedWebhookEvent::Data::Result::TaggedSymbol)
+          AWAY_WIN = T.let(:away_win, ::Believe::MatchCompletedWebhookEvent::Data::Result::TaggedSymbol)
+          DRAW = T.let(:draw, ::Believe::MatchCompletedWebhookEvent::Data::Result::TaggedSymbol)
 
-          sig do
-            override.returns(
-              T::Array[
-                ::Believe::MatchCompletedWebhookEvent::Data::Result::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
+          sig { override.returns(T::Array[::Believe::MatchCompletedWebhookEvent::Data::Result::TaggedSymbol]) }
+          def self.values; end
         end
       end
 
@@ -288,27 +205,14 @@ module Believe
       module EventType
         extend ::Believe::Internal::Type::Enum
 
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, ::Believe::MatchCompletedWebhookEvent::EventType)
-          end
+        TaggedSymbol = T.type_alias { T.all(Symbol, ::Believe::MatchCompletedWebhookEvent::EventType) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         MATCH_COMPLETED =
-          T.let(
-            :"match.completed",
-            ::Believe::MatchCompletedWebhookEvent::EventType::TaggedSymbol
-          )
+          T.let(:"match.completed", ::Believe::MatchCompletedWebhookEvent::EventType::TaggedSymbol)
 
-        sig do
-          override.returns(
-            T::Array[
-              ::Believe::MatchCompletedWebhookEvent::EventType::TaggedSymbol
-            ]
-          )
-        end
-        def self.values
-        end
+        sig { override.returns(T::Array[::Believe::MatchCompletedWebhookEvent::EventType::TaggedSymbol]) }
+        def self.values; end
       end
     end
   end

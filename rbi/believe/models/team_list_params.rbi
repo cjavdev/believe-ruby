@@ -6,10 +6,7 @@ module Believe
       extend ::Believe::Internal::Type::RequestParameters::Converter
       include ::Believe::Internal::Type::RequestParameters
 
-      OrHash =
-        T.type_alias do
-          T.any(::Believe::TeamListParams, ::Believe::Internal::AnyHash)
-        end
+      OrHash = T.type_alias { T.any(::Believe::TeamListParams, ::Believe::Internal::AnyHash) }
 
       # Filter by league
       sig { returns(T.nilable(::Believe::League::OrSymbol)) }
@@ -40,34 +37,34 @@ module Believe
           min_culture_score: T.nilable(Integer),
           skip: Integer,
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
       def self.new(
         # Filter by league
-        league: nil,
+      league: nil,
         # Maximum number of items to return (max: 100)
-        limit: nil,
+      limit: nil,
         # Minimum culture score
-        min_culture_score: nil,
+      min_culture_score: nil,
         # Number of items to skip (offset)
-        skip: nil,
+      skip: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       sig do
-        override.returns(
-          {
-            league: T.nilable(::Believe::League::OrSymbol),
-            limit: Integer,
-            min_culture_score: T.nilable(Integer),
-            skip: Integer,
-            request_options: ::Believe::RequestOptions
-          }
-        )
+        override
+          .returns(
+            {
+              league: T.nilable(::Believe::League::OrSymbol),
+              limit: Integer,
+              min_culture_score: T.nilable(Integer),
+              skip: Integer,
+              request_options: ::Believe::RequestOptions
+            }
+          )
       end
-      def to_hash
-      end
+      def to_hash; end
     end
   end
 end

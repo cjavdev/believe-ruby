@@ -6,10 +6,7 @@ module Believe
       extend ::Believe::Internal::Type::RequestParameters::Converter
       include ::Believe::Internal::Type::RequestParameters
 
-      OrHash =
-        T.type_alias do
-          T.any(::Believe::EpisodeListParams, ::Believe::Internal::AnyHash)
-        end
+      OrHash = T.type_alias { T.any(::Believe::EpisodeListParams, ::Believe::Internal::AnyHash) }
 
       # Filter by character focus (character ID)
       sig { returns(T.nilable(String)) }
@@ -40,34 +37,34 @@ module Believe
           season: T.nilable(Integer),
           skip: Integer,
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
       def self.new(
         # Filter by character focus (character ID)
-        character_focus: nil,
+      character_focus: nil,
         # Maximum number of items to return (max: 100)
-        limit: nil,
+      limit: nil,
         # Filter by season
-        season: nil,
+      season: nil,
         # Number of items to skip (offset)
-        skip: nil,
+      skip: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       sig do
-        override.returns(
-          {
-            character_focus: T.nilable(String),
-            limit: Integer,
-            season: T.nilable(Integer),
-            skip: Integer,
-            request_options: ::Believe::RequestOptions
-          }
-        )
+        override
+          .returns(
+            {
+              character_focus: T.nilable(String),
+              limit: Integer,
+              season: T.nilable(Integer),
+              skip: Integer,
+              request_options: ::Believe::RequestOptions
+            }
+          )
       end
-      def to_hash
-      end
+      def to_hash; end
     end
   end
 end
