@@ -3,8 +3,7 @@
 module Believe
   module Models
     class Biscuit < ::Believe::Internal::Type::BaseModel
-      OrHash =
-        T.type_alias { T.any(::Believe::Biscuit, ::Believe::Internal::AnyHash) }
+      OrHash = T.type_alias { T.any(::Believe::Biscuit, ::Believe::Internal::AnyHash) }
 
       # Biscuit identifier
       sig { returns(String) }
@@ -39,38 +38,38 @@ module Believe
           ted_note: String,
           type: ::Believe::Biscuit::Type::OrSymbol,
           warmth_level: Integer
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
       def self.new(
         # Biscuit identifier
-        id:,
+      id:,
         # Message that comes with the biscuit
-        message:,
+      message:,
         # What this biscuit pairs well with
-        pairs_well_with:,
+      pairs_well_with:,
         # A handwritten note from Ted
-        ted_note:,
+      ted_note:,
         # Type of biscuit
-        type:,
+      type:,
         # How warm and fresh (1-10)
-        warmth_level:
-      )
-      end
+      warmth_level:
+      ); end
 
       sig do
-        override.returns(
-          {
-            id: String,
-            message: String,
-            pairs_well_with: String,
-            ted_note: String,
-            type: ::Believe::Biscuit::Type::TaggedSymbol,
-            warmth_level: Integer
-          }
-        )
+        override
+          .returns(
+            {
+              id: String,
+              message: String,
+              pairs_well_with: String,
+              ted_note: String,
+              type: ::Believe::Biscuit::Type::TaggedSymbol,
+              warmth_level: Integer
+            }
+          )
       end
-      def to_hash
-      end
+      def to_hash; end
 
       # Type of biscuit
       module Type
@@ -81,20 +80,13 @@ module Believe
 
         CLASSIC = T.let(:classic, ::Believe::Biscuit::Type::TaggedSymbol)
         SHORTBREAD = T.let(:shortbread, ::Believe::Biscuit::Type::TaggedSymbol)
-        CHOCOLATE_CHIP =
-          T.let(:chocolate_chip, ::Believe::Biscuit::Type::TaggedSymbol)
-        OATMEAL_RAISIN =
-          T.let(:oatmeal_raisin, ::Believe::Biscuit::Type::TaggedSymbol)
-        SNICKERDOODLE =
-          T.let(:snickerdoodle, ::Believe::Biscuit::Type::TaggedSymbol)
-        LEMON_DRIZZLE =
-          T.let(:lemon_drizzle, ::Believe::Biscuit::Type::TaggedSymbol)
+        CHOCOLATE_CHIP = T.let(:chocolate_chip, ::Believe::Biscuit::Type::TaggedSymbol)
+        OATMEAL_RAISIN = T.let(:oatmeal_raisin, ::Believe::Biscuit::Type::TaggedSymbol)
+        SNICKERDOODLE = T.let(:snickerdoodle, ::Believe::Biscuit::Type::TaggedSymbol)
+        LEMON_DRIZZLE = T.let(:lemon_drizzle, ::Believe::Biscuit::Type::TaggedSymbol)
 
-        sig do
-          override.returns(T::Array[::Believe::Biscuit::Type::TaggedSymbol])
-        end
-        def self.values
-        end
+        sig { override.returns(T::Array[::Believe::Biscuit::Type::TaggedSymbol]) }
+        def self.values; end
       end
     end
   end

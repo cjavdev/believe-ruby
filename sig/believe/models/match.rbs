@@ -1,24 +1,23 @@
 module Believe
   module Models
-    type match =
-      {
-        id: String,
-        away_team_id: String,
-        date: Time,
-        home_team_id: String,
-        match_type: ::Believe::Models::match_type,
-        attendance: Integer?,
-        away_score: Integer,
-        episode_id: String?,
-        home_score: Integer,
-        lesson_learned: String?,
-        possession_percentage: Float?,
-        result: ::Believe::Models::match_result,
-        ted_halftime_speech: String?,
-        ticket_revenue_gbp: String?,
-        turning_points: ::Array[::Believe::TurningPoint],
-        weather_temp_celsius: Float?
-      }
+    type match = {
+      id: String,
+      away_team_id: String,
+      date: Time,
+      home_team_id: String,
+      match_type: ::Believe::Models::match_type,
+      attendance: Integer?,
+      away_score: Integer,
+      episode_id: String?,
+      home_score: Integer,
+      lesson_learned: String?,
+      possession_percentage: Float?,
+      result: ::Believe::Models::match_result,
+      ted_halftime_speech: String?,
+      ticket_revenue_gbp: String?,
+      turning_points: ::Array[::Believe::TurningPoint],
+      weather_temp_celsius: Float?
+    }
 
     class Match < ::Believe::Internal::Type::BaseModel
       attr_accessor id: String
@@ -49,9 +48,7 @@ module Believe
 
       attr_reader result: ::Believe::Models::match_result?
 
-      def result=: (
-        ::Believe::Models::match_result
-      ) -> ::Believe::Models::match_result
+      def result=: (::Believe::Models::match_result) -> ::Believe::Models::match_result
 
       attr_accessor ted_halftime_speech: String?
 
@@ -59,32 +56,13 @@ module Believe
 
       attr_reader turning_points: ::Array[::Believe::TurningPoint]?
 
-      def turning_points=: (
-        ::Array[::Believe::TurningPoint]
-      ) -> ::Array[::Believe::TurningPoint]
+      def turning_points=: (::Array[::Believe::TurningPoint]) -> ::Array[::Believe::TurningPoint]
 
       attr_accessor weather_temp_celsius: Float?
 
-      def initialize: (
-        id: String,
-        away_team_id: String,
-        date: Time,
-        home_team_id: String,
-        match_type: ::Believe::Models::match_type,
-        ?attendance: Integer?,
-        ?away_score: Integer,
-        ?episode_id: String?,
-        ?home_score: Integer,
-        ?lesson_learned: String?,
-        ?possession_percentage: Float?,
-        ?result: ::Believe::Models::match_result,
-        ?ted_halftime_speech: String?,
-        ?ticket_revenue_gbp: String?,
-        ?turning_points: ::Array[::Believe::TurningPoint],
-        ?weather_temp_celsius: Float?
-      ) -> void
+      def initialize: (id: String, away_team_id: String, date: Time, home_team_id: String, match_type: ::Believe::Models::match_type, ?attendance: Integer?, ?away_score: Integer, ?episode_id: String?, ?home_score: Integer, ?lesson_learned: String?, ?possession_percentage: Float?, ?result: ::Believe::Models::match_result, ?ted_halftime_speech: String?, ?ticket_revenue_gbp: String?, ?turning_points: ::Array[::Believe::TurningPoint], ?weather_temp_celsius: Float?) -> void
 
-      def to_hash: -> {
+      def to_hash: () -> {
         id: String,
         away_team_id: String,
         date: Time,

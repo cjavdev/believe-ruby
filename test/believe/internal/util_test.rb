@@ -88,7 +88,7 @@ class ::Believe::Test::UtilDataHandlingTest < Minitest::Test
 
       ::Believe::Internal::Util.dig(Object, 1) => nil
       ::Believe::Internal::Util.dig([], 1.0) { 2 } => 2
-      ::Believe::Internal::Util.dig([], ->(_) { 2 }) => 2
+      ::Believe::Internal::Util.dig([], -> (_) { 2 }) => 2
       ::Believe::Internal::Util.dig([1], -> { _1 in [1] }) => true
     end
   end
@@ -174,7 +174,7 @@ class ::Believe::Test::RegexMatchTest < Minitest::Test
       "application/arbitrary+json" => true,
       "application/ARBITRARY+json" => true,
       "application/vnd.github.v3+json" => true,
-      "application/vnd.api+json" => true
+      "application/vnd.api+json" => true,
     }
     cases.each do |header, verdict|
       assert_pattern do
@@ -190,7 +190,7 @@ class ::Believe::Test::RegexMatchTest < Minitest::Test
       "application/jsonl" => true,
       "application/x-jsonl" => true,
       "application/json" => false,
-      "application/vnd.api+json" => false
+      "application/vnd.api+json" => false,
     }
     cases.each do |header, verdict|
       assert_pattern do
@@ -242,7 +242,7 @@ class ::Believe::Test::UtilFormDataEncodingTest < Minitest::Test
     cases = {
       "abc" => ["", "abc"],
       StringIO.new("abc") => ["", "abc"],
-      fileinput => %w[upload abc],
+      fileinput => ["upload", "abc"],
       ::Believe::FilePart.new(StringIO.new("abc")) => ["", "abc"],
       file => [file.basename.to_path, /^class ::Believe/],
       ::Believe::FilePart.new(file, filename: "d o g") => ["d%20o%20g", /^class ::Believe/]
@@ -496,7 +496,7 @@ class ::Believe::Test::UtilContentDecodingTest < Minitest::Test
       "charset=uTf-8 application/json; " => Encoding::UTF_8,
       "charset=UTF-8; application/json; " => Encoding::UTF_8,
       "charset=ISO-8859-1 ;application/json; " => Encoding::ISO_8859_1,
-      "charset=EUC-KR ;application/json; " => Encoding::EUC_KR
+      "charset=EUC-KR ;application/json; " => Encoding::EUC_KR,
     }
     text = String.new.force_encoding(Encoding::BINARY)
     cases.each do |content_type, encoding|
@@ -658,9 +658,9 @@ class ::Believe::Test::UtilSseTest < Minitest::Test
       },
       "multibyte unicode" => {
         [
-          "data: \u1F62E\u200D\u1F4A8\n"
+          "data: \u1F62E\u200D\u1F4A8\n",
         ] => [
-          {data: "\u1F62E\u200D\u1F4A8\n"}
+          {data: "\u1F62E\u200D\u1F4A8\n"},
         ]
       }
     }

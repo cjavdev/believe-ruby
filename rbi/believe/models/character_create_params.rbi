@@ -6,10 +6,7 @@ module Believe
       extend ::Believe::Internal::Type::RequestParameters::Converter
       include ::Believe::Internal::Type::RequestParameters
 
-      OrHash =
-        T.type_alias do
-          T.any(::Believe::CharacterCreateParams, ::Believe::Internal::AnyHash)
-        end
+      OrHash = T.type_alias { T.any(::Believe::CharacterCreateParams, ::Believe::Internal::AnyHash) }
 
       # Character background and history
       sig { returns(String) }
@@ -58,11 +55,7 @@ module Believe
       attr_accessor :profile_image_url
 
       # Annual salary in GBP
-      sig do
-        returns(
-          T.nilable(::Believe::CharacterCreateParams::SalaryGbp::Variants)
-        )
-      end
+      sig { returns(T.nilable(::Believe::CharacterCreateParams::SalaryGbp::Variants)) }
       attr_accessor :salary_gbp
 
       # Memorable quotes from this character
@@ -88,67 +81,65 @@ module Believe
           growth_arcs: T::Array[::Believe::GrowthArc::OrHash],
           height_meters: T.nilable(Float),
           profile_image_url: T.nilable(String),
-          salary_gbp:
-            T.nilable(::Believe::CharacterCreateParams::SalaryGbp::Variants),
+          salary_gbp: T.nilable(::Believe::CharacterCreateParams::SalaryGbp::Variants),
           signature_quotes: T::Array[String],
           team_id: T.nilable(String),
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
       def self.new(
         # Character background and history
-        background:,
+      background:,
         # Emotional intelligence stats
-        emotional_stats:,
+      emotional_stats:,
         # Character's full name
-        name:,
+      name:,
         # Key personality traits
-        personality_traits:,
+      personality_traits:,
         # Character's role
-        role:,
+      role:,
         # Character's date of birth
-        date_of_birth: nil,
+      date_of_birth: nil,
         # Character's email address
-        email: nil,
+      email: nil,
         # Character development across seasons
-        growth_arcs: nil,
+      growth_arcs: nil,
         # Height in meters
-        height_meters: nil,
+      height_meters: nil,
         # URL to character's profile image
-        profile_image_url: nil,
+      profile_image_url: nil,
         # Annual salary in GBP
-        salary_gbp: nil,
+      salary_gbp: nil,
         # Memorable quotes from this character
-        signature_quotes: nil,
+      signature_quotes: nil,
         # ID of the team they belong to
-        team_id: nil,
+      team_id: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       sig do
-        override.returns(
-          {
-            background: String,
-            emotional_stats: ::Believe::EmotionalStats,
-            name: String,
-            personality_traits: T::Array[String],
-            role: ::Believe::CharacterRole::OrSymbol,
-            date_of_birth: T.nilable(Date),
-            email: T.nilable(String),
-            growth_arcs: T::Array[::Believe::GrowthArc],
-            height_meters: T.nilable(Float),
-            profile_image_url: T.nilable(String),
-            salary_gbp:
-              T.nilable(::Believe::CharacterCreateParams::SalaryGbp::Variants),
-            signature_quotes: T::Array[String],
-            team_id: T.nilable(String),
-            request_options: ::Believe::RequestOptions
-          }
-        )
+        override
+          .returns(
+            {
+              background: String,
+              emotional_stats: ::Believe::EmotionalStats,
+              name: String,
+              personality_traits: T::Array[String],
+              role: ::Believe::CharacterRole::OrSymbol,
+              date_of_birth: T.nilable(Date),
+              email: T.nilable(String),
+              growth_arcs: T::Array[::Believe::GrowthArc],
+              height_meters: T.nilable(Float),
+              profile_image_url: T.nilable(String),
+              salary_gbp: T.nilable(::Believe::CharacterCreateParams::SalaryGbp::Variants),
+              signature_quotes: T::Array[String],
+              team_id: T.nilable(String),
+              request_options: ::Believe::RequestOptions
+            }
+          )
       end
-      def to_hash
-      end
+      def to_hash; end
 
       # Annual salary in GBP
       module SalaryGbp
@@ -156,13 +147,8 @@ module Believe
 
         Variants = T.type_alias { T.any(Float, String) }
 
-        sig do
-          override.returns(
-            T::Array[::Believe::CharacterCreateParams::SalaryGbp::Variants]
-          )
-        end
-        def self.variants
-        end
+        sig { override.returns(T::Array[::Believe::CharacterCreateParams::SalaryGbp::Variants]) }
+        def self.variants; end
       end
     end
   end

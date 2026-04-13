@@ -1,20 +1,19 @@
 module Believe
   module Models
-    type quote =
-      {
-        id: String,
-        character_id: String,
-        context: String,
-        moment_type: ::Believe::Models::quote_moment,
-        text: String,
-        theme: ::Believe::Models::quote_theme,
-        episode_id: String?,
-        is_funny: bool,
-        is_inspirational: bool,
-        popularity_score: Float?,
-        secondary_themes: ::Array[::Believe::Models::quote_theme],
-        times_shared: Integer?
-      }
+    type quote = {
+      id: String,
+      character_id: String,
+      context: String,
+      moment_type: ::Believe::Models::quote_moment,
+      text: String,
+      theme: ::Believe::Models::quote_theme,
+      episode_id: String?,
+      is_funny: bool,
+      is_inspirational: bool,
+      popularity_score: Float?,
+      secondary_themes: ::Array[::Believe::Models::quote_theme],
+      times_shared: Integer?
+    }
 
     class Quote < ::Believe::Internal::Type::BaseModel
       attr_accessor id: String
@@ -43,28 +42,13 @@ module Believe
 
       attr_reader secondary_themes: ::Array[::Believe::Models::quote_theme]?
 
-      def secondary_themes=: (
-        ::Array[::Believe::Models::quote_theme]
-      ) -> ::Array[::Believe::Models::quote_theme]
+      def secondary_themes=: (::Array[::Believe::Models::quote_theme]) -> ::Array[::Believe::Models::quote_theme]
 
       attr_accessor times_shared: Integer?
 
-      def initialize: (
-        id: String,
-        character_id: String,
-        context: String,
-        moment_type: ::Believe::Models::quote_moment,
-        text: String,
-        theme: ::Believe::Models::quote_theme,
-        ?episode_id: String?,
-        ?is_funny: bool,
-        ?is_inspirational: bool,
-        ?popularity_score: Float?,
-        ?secondary_themes: ::Array[::Believe::Models::quote_theme],
-        ?times_shared: Integer?
-      ) -> void
+      def initialize: (id: String, character_id: String, context: String, moment_type: ::Believe::Models::quote_moment, text: String, theme: ::Believe::Models::quote_theme, ?episode_id: String?, ?is_funny: bool, ?is_inspirational: bool, ?popularity_score: Float?, ?secondary_themes: ::Array[::Believe::Models::quote_theme], ?times_shared: Integer?) -> void
 
-      def to_hash: -> {
+      def to_hash: () -> {
         id: String,
         character_id: String,
         context: String,

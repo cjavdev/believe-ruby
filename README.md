@@ -2,6 +2,8 @@
 
 The Believe Ruby library provides convenient access to the Believe REST API from any Ruby 3.2.0+ application. It ships with comprehensive types & docstrings in Yard, RBS, and RBI – [see below](https://github.com/cjavdev/believe-ruby#Sorbet) for usage with Sorbet. The standard library's `net/http` is used as the HTTP transport, with connection pooling via the `connection_pool` gem.
 
+
+
 It is generated with [Stainless](https://www.stainless.com/).
 
 ## MCP Server
@@ -17,6 +19,8 @@ Use the Believe MCP Server to enable AI assistants to interact with this API, al
 
 Documentation for releases of this gem can be found [on RubyDoc](https://gemdocs.org/gems/believe).
 
+
+
 ## Installation
 
 To use this gem, install via Bundler by adding the following to your application's `Gemfile`:
@@ -24,7 +28,7 @@ To use this gem, install via Bundler by adding the following to your application
 <!-- x-release-please-start-version -->
 
 ```ruby
-gem "believe", "~> 0.2.1"
+gem "believe", "~> 0.0.1"
 ```
 
 <!-- x-release-please-end -->
@@ -43,6 +47,8 @@ page = believe.characters.list
 
 puts(page.id)
 ```
+
+
 
 ### Pagination
 
@@ -234,7 +240,7 @@ This library provides comprehensive [RBI](https://sorbet.org/docs/rbi) definitio
 You can provide typesafe request parameters like so:
 
 ```ruby
-believe.characters.list
+believe.characters.list 
 ```
 
 Or, equivalently:

@@ -6,10 +6,7 @@ module Believe
       extend ::Believe::Internal::Type::RequestParameters::Converter
       include ::Believe::Internal::Type::RequestParameters
 
-      OrHash =
-        T.type_alias do
-          T.any(::Believe::PepTalkRetrieveParams, ::Believe::Internal::AnyHash)
-        end
+      OrHash = T.type_alias { T.any(::Believe::PepTalkRetrieveParams, ::Believe::Internal::AnyHash) }
 
       # If true, returns SSE stream instead of full response
       sig { returns(T.nilable(T::Boolean)) }
@@ -18,26 +15,15 @@ module Believe
       sig { params(stream: T::Boolean).void }
       attr_writer :stream
 
-      sig do
-        params(
-          stream: T::Boolean,
-          request_options: ::Believe::RequestOptions::OrHash
-        ).returns(T.attached_class)
-      end
+      sig { params(stream: T::Boolean, request_options: ::Believe::RequestOptions::OrHash).returns(T.attached_class) }
       def self.new(
         # If true, returns SSE stream instead of full response
-        stream: nil,
+      stream: nil,
         request_options: {}
-      )
-      end
+      ); end
 
-      sig do
-        override.returns(
-          { stream: T::Boolean, request_options: ::Believe::RequestOptions }
-        )
-      end
-      def to_hash
-      end
+      sig { override.returns({stream: T::Boolean, request_options: ::Believe::RequestOptions}) }
+      def to_hash; end
     end
   end
 end

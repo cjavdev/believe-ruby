@@ -7,13 +7,7 @@ module Believe
         extend ::Believe::Internal::Type::RequestParameters::Converter
         include ::Believe::Internal::Type::RequestParameters
 
-        OrHash =
-          T.type_alias do
-            T.any(
-              ::Believe::Teams::LogoUploadParams,
-              ::Believe::Internal::AnyHash
-            )
-          end
+        OrHash = T.type_alias { T.any(::Believe::Teams::LogoUploadParams, ::Believe::Internal::AnyHash) }
 
         sig { returns(String) }
         attr_accessor :team_id
@@ -27,27 +21,23 @@ module Believe
             team_id: String,
             file: ::Believe::Internal::FileInput,
             request_options: ::Believe::RequestOptions::OrHash
-          ).returns(T.attached_class)
+          )
+            .returns(T.attached_class)
         end
         def self.new(
           team_id:,
           # Logo image file
-          file:,
+        file:,
           request_options: {}
-        )
-        end
+        ); end
 
         sig do
-          override.returns(
-            {
-              team_id: String,
-              file: ::Believe::Internal::FileInput,
-              request_options: ::Believe::RequestOptions
-            }
-          )
+          override
+            .returns(
+              {team_id: String, file: ::Believe::Internal::FileInput, request_options: ::Believe::RequestOptions}
+            )
         end
-        def to_hash
-        end
+        def to_hash; end
       end
     end
   end

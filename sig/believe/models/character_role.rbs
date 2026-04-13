@@ -1,16 +1,6 @@
 module Believe
   module Models
-    type character_role =
-      :coach
-      | :player
-      | :owner
-      | :manager
-      | :staff
-      | :journalist
-      | :family
-      | :friend
-      | :fan
-      | :other
+    type character_role = (:coach | :player | :owner | :manager | :staff | :journalist | :family | :friend | :fan | :other)
 
     module CharacterRole
       extend ::Believe::Internal::Type::Enum
@@ -26,7 +16,7 @@ module Believe
       FAN: :fan
       OTHER: :other
 
-      def self?.values: -> ::Array[::Believe::Models::character_role]
+      def self?.values: () -> ::Array[::Believe::Models::character_role]
     end
   end
 end

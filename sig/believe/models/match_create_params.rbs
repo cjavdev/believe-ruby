@@ -1,24 +1,22 @@
 module Believe
   module Models
-    type match_create_params =
-      {
-        away_team_id: String,
-        date: Time,
-        home_team_id: String,
-        match_type: ::Believe::Models::match_type,
-        attendance: Integer?,
-        away_score: Integer,
-        episode_id: String?,
-        home_score: Integer,
-        lesson_learned: String?,
-        possession_percentage: Float?,
-        result: ::Believe::Models::match_result,
-        ted_halftime_speech: String?,
-        ticket_revenue_gbp: ::Believe::Models::MatchCreateParams::ticket_revenue_gbp?,
-        turning_points: ::Array[::Believe::TurningPoint],
-        weather_temp_celsius: Float?
-      }
-      & ::Believe::Internal::Type::request_parameters
+    type match_create_params = ({
+      away_team_id: String,
+      date: Time,
+      home_team_id: String,
+      match_type: ::Believe::Models::match_type,
+      attendance: Integer?,
+      away_score: Integer,
+      episode_id: String?,
+      home_score: Integer,
+      lesson_learned: String?,
+      possession_percentage: Float?,
+      result: ::Believe::Models::match_result,
+      ted_halftime_speech: String?,
+      ticket_revenue_gbp: ::Believe::Models::MatchCreateParams::ticket_revenue_gbp?,
+      turning_points: ::Array[::Believe::TurningPoint],
+      weather_temp_celsius: Float?
+    } & ::Believe::Internal::Type::request_parameters)
 
     class MatchCreateParams < ::Believe::Internal::Type::BaseModel
       extend ::Believe::Internal::Type::RequestParameters::Converter
@@ -50,9 +48,7 @@ module Believe
 
       attr_reader result: ::Believe::Models::match_result?
 
-      def result=: (
-        ::Believe::Models::match_result
-      ) -> ::Believe::Models::match_result
+      def result=: (::Believe::Models::match_result) -> ::Believe::Models::match_result
 
       attr_accessor ted_halftime_speech: String?
 
@@ -60,32 +56,13 @@ module Believe
 
       attr_reader turning_points: ::Array[::Believe::TurningPoint]?
 
-      def turning_points=: (
-        ::Array[::Believe::TurningPoint]
-      ) -> ::Array[::Believe::TurningPoint]
+      def turning_points=: (::Array[::Believe::TurningPoint]) -> ::Array[::Believe::TurningPoint]
 
       attr_accessor weather_temp_celsius: Float?
 
-      def initialize: (
-        away_team_id: String,
-        date: Time,
-        home_team_id: String,
-        match_type: ::Believe::Models::match_type,
-        ?attendance: Integer?,
-        ?away_score: Integer,
-        ?episode_id: String?,
-        ?home_score: Integer,
-        ?lesson_learned: String?,
-        ?possession_percentage: Float?,
-        ?result: ::Believe::Models::match_result,
-        ?ted_halftime_speech: String?,
-        ?ticket_revenue_gbp: ::Believe::Models::MatchCreateParams::ticket_revenue_gbp?,
-        ?turning_points: ::Array[::Believe::TurningPoint],
-        ?weather_temp_celsius: Float?,
-        ?request_options: ::Believe::request_opts
-      ) -> void
+      def initialize: (away_team_id: String, date: Time, home_team_id: String, match_type: ::Believe::Models::match_type, ?attendance: Integer?, ?away_score: Integer, ?episode_id: String?, ?home_score: Integer, ?lesson_learned: String?, ?possession_percentage: Float?, ?result: ::Believe::Models::match_result, ?ted_halftime_speech: String?, ?ticket_revenue_gbp: ::Believe::Models::MatchCreateParams::ticket_revenue_gbp?, ?turning_points: ::Array[::Believe::TurningPoint], ?weather_temp_celsius: Float?, ?request_options: ::Believe::request_opts) -> void
 
-      def to_hash: -> {
+      def to_hash: () -> {
         away_team_id: String,
         date: Time,
         home_team_id: String,
@@ -104,12 +81,12 @@ module Believe
         request_options: ::Believe::RequestOptions
       }
 
-      type ticket_revenue_gbp = Float | String
+      type ticket_revenue_gbp = (Float | String)
 
       module TicketRevenueGbp
         extend ::Believe::Internal::Type::Union
 
-        def self?.variants: -> ::Array[::Believe::Models::MatchCreateParams::ticket_revenue_gbp]
+        def self?.variants: () -> ::Array[::Believe::Models::MatchCreateParams::ticket_revenue_gbp]
       end
     end
   end

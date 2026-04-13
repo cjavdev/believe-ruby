@@ -1,20 +1,18 @@
 module Believe
   module Models
-    type quote_create_params =
-      {
-        character_id: String,
-        context: String,
-        moment_type: ::Believe::Models::quote_moment,
-        text: String,
-        theme: ::Believe::Models::quote_theme,
-        episode_id: String?,
-        is_funny: bool,
-        is_inspirational: bool,
-        popularity_score: Float?,
-        secondary_themes: ::Array[::Believe::Models::quote_theme],
-        times_shared: Integer?
-      }
-      & ::Believe::Internal::Type::request_parameters
+    type quote_create_params = ({
+      character_id: String,
+      context: String,
+      moment_type: ::Believe::Models::quote_moment,
+      text: String,
+      theme: ::Believe::Models::quote_theme,
+      episode_id: String?,
+      is_funny: bool,
+      is_inspirational: bool,
+      popularity_score: Float?,
+      secondary_themes: ::Array[::Believe::Models::quote_theme],
+      times_shared: Integer?
+    } & ::Believe::Internal::Type::request_parameters)
 
     class QuoteCreateParams < ::Believe::Internal::Type::BaseModel
       extend ::Believe::Internal::Type::RequestParameters::Converter
@@ -44,28 +42,13 @@ module Believe
 
       attr_reader secondary_themes: ::Array[::Believe::Models::quote_theme]?
 
-      def secondary_themes=: (
-        ::Array[::Believe::Models::quote_theme]
-      ) -> ::Array[::Believe::Models::quote_theme]
+      def secondary_themes=: (::Array[::Believe::Models::quote_theme]) -> ::Array[::Believe::Models::quote_theme]
 
       attr_accessor times_shared: Integer?
 
-      def initialize: (
-        character_id: String,
-        context: String,
-        moment_type: ::Believe::Models::quote_moment,
-        text: String,
-        theme: ::Believe::Models::quote_theme,
-        ?episode_id: String?,
-        ?is_funny: bool,
-        ?is_inspirational: bool,
-        ?popularity_score: Float?,
-        ?secondary_themes: ::Array[::Believe::Models::quote_theme],
-        ?times_shared: Integer?,
-        ?request_options: ::Believe::request_opts
-      ) -> void
+      def initialize: (character_id: String, context: String, moment_type: ::Believe::Models::quote_moment, text: String, theme: ::Believe::Models::quote_theme, ?episode_id: String?, ?is_funny: bool, ?is_inspirational: bool, ?popularity_score: Float?, ?secondary_themes: ::Array[::Believe::Models::quote_theme], ?times_shared: Integer?, ?request_options: ::Believe::request_opts) -> void
 
-      def to_hash: -> {
+      def to_hash: () -> {
         character_id: String,
         context: String,
         moment_type: ::Believe::Models::quote_moment,

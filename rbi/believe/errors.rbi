@@ -9,8 +9,7 @@ module Believe
 
     class ConversionError < ::Believe::Errors::Error
       sig { returns(T.nilable(StandardError)) }
-      def cause
-      end
+      def cause; end
 
       # @api private
       sig do
@@ -20,10 +19,10 @@ module Believe
           target: T.anything,
           value: T.anything,
           cause: T.nilable(StandardError)
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
-      def self.new(on:, method:, target:, value:, cause: nil)
-      end
+      def self.new(on:, method:, target:, value:, cause: nil); end
     end
 
     class APIError < ::Believe::Errors::Error
@@ -49,18 +48,10 @@ module Believe
           request: NilClass,
           response: NilClass,
           message: T.nilable(String)
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
-      def self.new(
-        url:,
-        status: nil,
-        headers: nil,
-        body: nil,
-        request: nil,
-        response: nil,
-        message: nil
-      )
-      end
+      def self.new(url:, status: nil, headers: nil, body: nil, request: nil, response: nil, message: nil); end
     end
 
     class APIConnectionError < ::Believe::Errors::APIError
@@ -80,18 +71,10 @@ module Believe
           request: NilClass,
           response: NilClass,
           message: T.nilable(String)
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
-      def self.new(
-        url:,
-        status: nil,
-        headers: nil,
-        body: nil,
-        request: nil,
-        response: nil,
-        message: "Connection error."
-      )
-      end
+      def self.new(url:, status: nil, headers: nil, body: nil, request: nil, response: nil, message: "Connection error."); end
     end
 
     class APITimeoutError < ::Believe::Errors::APIConnectionError
@@ -105,18 +88,10 @@ module Believe
           request: NilClass,
           response: NilClass,
           message: T.nilable(String)
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
-      def self.new(
-        url:,
-        status: nil,
-        headers: nil,
-        body: nil,
-        request: nil,
-        response: nil,
-        message: "Request timed out."
-      )
-      end
+      def self.new(url:, status: nil, headers: nil, body: nil, request: nil, response: nil, message: "Request timed out."); end
     end
 
     class APIStatusError < ::Believe::Errors::APIError
@@ -130,18 +105,10 @@ module Believe
           request: NilClass,
           response: NilClass,
           message: T.nilable(String)
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
-      def self.for(
-        url:,
-        status:,
-        headers:,
-        body:,
-        request:,
-        response:,
-        message: nil
-      )
-      end
+      def self.for(url:, status:, headers:, body:, request:, response:, message: nil); end
 
       sig { returns(Integer) }
       attr_accessor :status
@@ -156,18 +123,10 @@ module Believe
           request: NilClass,
           response: NilClass,
           message: T.nilable(String)
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
-      def self.new(
-        url:,
-        status:,
-        headers:,
-        body:,
-        request:,
-        response:,
-        message: nil
-      )
-      end
+      def self.new(url:, status:, headers:, body:, request:, response:, message: nil); end
     end
 
     class BadRequestError < ::Believe::Errors::APIStatusError

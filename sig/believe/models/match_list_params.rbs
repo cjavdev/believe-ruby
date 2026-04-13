@@ -1,14 +1,12 @@
 module Believe
   module Models
-    type match_list_params =
-      {
-        limit: Integer,
-        match_type: ::Believe::Models::match_type?,
-        result: ::Believe::Models::match_result?,
-        skip: Integer,
-        team_id: String?
-      }
-      & ::Believe::Internal::Type::request_parameters
+    type match_list_params = ({
+      limit: Integer,
+      match_type: ::Believe::Models::match_type?,
+      result: ::Believe::Models::match_result?,
+      skip: Integer,
+      team_id: String?
+    } & ::Believe::Internal::Type::request_parameters)
 
     class MatchListParams < ::Believe::Internal::Type::BaseModel
       extend ::Believe::Internal::Type::RequestParameters::Converter
@@ -28,16 +26,9 @@ module Believe
 
       attr_accessor team_id: String?
 
-      def initialize: (
-        ?limit: Integer,
-        ?match_type: ::Believe::Models::match_type?,
-        ?result: ::Believe::Models::match_result?,
-        ?skip: Integer,
-        ?team_id: String?,
-        ?request_options: ::Believe::request_opts
-      ) -> void
+      def initialize: (?limit: Integer, ?match_type: ::Believe::Models::match_type?, ?result: ::Believe::Models::match_result?, ?skip: Integer, ?team_id: String?, ?request_options: ::Believe::request_opts) -> void
 
-      def to_hash: -> {
+      def to_hash: () -> {
         limit: Integer,
         match_type: ::Believe::Models::match_type?,
         result: ::Believe::Models::match_result?,

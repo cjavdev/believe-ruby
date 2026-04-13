@@ -3,8 +3,7 @@
 module Believe
   module Models
     class Episode < ::Believe::Internal::Type::BaseModel
-      OrHash =
-        T.type_alias { T.any(::Believe::Episode, ::Believe::Internal::AnyHash) }
+      OrHash = T.type_alias { T.any(::Believe::Episode, ::Believe::Internal::AnyHash) }
 
       # Unique identifier (format: s##e##)
       sig { returns(String) }
@@ -92,68 +91,68 @@ module Believe
           memorable_moments: T::Array[String],
           us_viewers_millions: T.nilable(Float),
           viewer_rating: T.nilable(Float)
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
       def self.new(
         # Unique identifier (format: s##e##)
-        id:,
+      id:,
         # Original air date
-        air_date:,
+      air_date:,
         # Characters with significant development
-        character_focus:,
+      character_focus:,
         # Episode director
-        director:,
+      director:,
         # Episode number within season
-        episode_number:,
+      episode_number:,
         # Central theme of the episode
-        main_theme:,
+      main_theme:,
         # Episode runtime in minutes
-        runtime_minutes:,
+      runtime_minutes:,
         # Season number
-        season:,
+      season:,
         # Brief plot synopsis
-        synopsis:,
+      synopsis:,
         # Key piece of Ted wisdom from the episode
-        ted_wisdom:,
+      ted_wisdom:,
         # Episode title
-        title:,
+      title:,
         # Episode writer(s)
-        writer:,
+      writer:,
         # Notable biscuits with the boss scene
-        biscuits_with_boss_moment: nil,
+      biscuits_with_boss_moment: nil,
         # Standout moments from the episode
-        memorable_moments: nil,
+      memorable_moments: nil,
         # US viewership in millions
-        us_viewers_millions: nil,
+      us_viewers_millions: nil,
         # Viewer rating out of 10
-        viewer_rating: nil
-      )
-      end
+      viewer_rating: nil
+      ); end
 
       sig do
-        override.returns(
-          {
-            id: String,
-            air_date: Date,
-            character_focus: T::Array[String],
-            director: String,
-            episode_number: Integer,
-            main_theme: String,
-            runtime_minutes: Integer,
-            season: Integer,
-            synopsis: String,
-            ted_wisdom: String,
-            title: String,
-            writer: String,
-            biscuits_with_boss_moment: T.nilable(String),
-            memorable_moments: T::Array[String],
-            us_viewers_millions: T.nilable(Float),
-            viewer_rating: T.nilable(Float)
-          }
-        )
+        override
+          .returns(
+            {
+              id: String,
+              air_date: Date,
+              character_focus: T::Array[String],
+              director: String,
+              episode_number: Integer,
+              main_theme: String,
+              runtime_minutes: Integer,
+              season: Integer,
+              synopsis: String,
+              ted_wisdom: String,
+              title: String,
+              writer: String,
+              biscuits_with_boss_moment: T.nilable(String),
+              memorable_moments: T::Array[String],
+              us_viewers_millions: T.nilable(Float),
+              viewer_rating: T.nilable(Float)
+            }
+          )
       end
-      def to_hash
-      end
+      def to_hash; end
     end
   end
 end

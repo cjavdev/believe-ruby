@@ -2,7 +2,7 @@
 
 require_relative "../test_helper"
 
-class Believe::Test::Resources::TeamsTest < Believe::Test::ResourceTest
+class Believe::Test::Resources::TeamsTest < ::Believe::Test::ResourceTest
   def test_create_required_params
     skip("Mock server tests are disabled")
 
@@ -15,7 +15,7 @@ class Believe::Test::Resources::TeamsTest < Believe::Test::ResourceTest
         stadium: "London Stadium",
         values: {
           primary_value: "Pride",
-          secondary_values: %w[History Community Passion],
+          secondary_values: ["History", "Community", "Passion"],
           team_motto: "Forever Blowing Bubbles"
         }
       )

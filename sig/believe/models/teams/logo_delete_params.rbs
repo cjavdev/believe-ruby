@@ -1,9 +1,7 @@
 module Believe
   module Models
     module Teams
-      type logo_delete_params =
-        { team_id: String, file_id: String }
-        & ::Believe::Internal::Type::request_parameters
+      type logo_delete_params = ({team_id: String, file_id: String} & ::Believe::Internal::Type::request_parameters)
 
       class LogoDeleteParams < ::Believe::Internal::Type::BaseModel
         extend ::Believe::Internal::Type::RequestParameters::Converter
@@ -13,17 +11,9 @@ module Believe
 
         attr_accessor file_id: String
 
-        def initialize: (
-          team_id: String,
-          file_id: String,
-          ?request_options: ::Believe::request_opts
-        ) -> void
+        def initialize: (team_id: String, file_id: String, ?request_options: ::Believe::request_opts) -> void
 
-        def to_hash: -> {
-          team_id: String,
-          file_id: String,
-          request_options: ::Believe::RequestOptions
-        }
+        def to_hash: () -> {team_id: String, file_id: String, request_options: ::Believe::RequestOptions}
       end
     end
   end

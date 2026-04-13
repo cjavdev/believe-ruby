@@ -1,13 +1,6 @@
 module Believe
   module Models
-    type episode_list_params =
-      {
-        character_focus: String?,
-        limit: Integer,
-        season: Integer?,
-        skip: Integer
-      }
-      & ::Believe::Internal::Type::request_parameters
+    type episode_list_params = ({character_focus: String?, limit: Integer, season: Integer?, skip: Integer} & ::Believe::Internal::Type::request_parameters)
 
     class EpisodeListParams < ::Believe::Internal::Type::BaseModel
       extend ::Believe::Internal::Type::RequestParameters::Converter
@@ -25,15 +18,9 @@ module Believe
 
       def skip=: (Integer) -> Integer
 
-      def initialize: (
-        ?character_focus: String?,
-        ?limit: Integer,
-        ?season: Integer?,
-        ?skip: Integer,
-        ?request_options: ::Believe::request_opts
-      ) -> void
+      def initialize: (?character_focus: String?, ?limit: Integer, ?season: Integer?, ?skip: Integer, ?request_options: ::Believe::request_opts) -> void
 
-      def to_hash: -> {
+      def to_hash: () -> {
         character_focus: String?,
         limit: Integer,
         season: Integer?,

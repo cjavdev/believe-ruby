@@ -8,30 +8,28 @@ module Believe
       sig do
         params(
           situation: String,
-          situation_type:
-            ::Believe::BelieveSubmitParams::SituationType::OrSymbol,
+          situation_type: ::Believe::BelieveSubmitParams::SituationType::OrSymbol,
           context: T.nilable(String),
           intensity: Integer,
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(::Believe::Models::BelieveSubmitResponse)
+        )
+          .returns(::Believe::Models::BelieveSubmitResponse)
       end
       def submit(
         # Describe your situation
-        situation:,
+      situation:,
         # Type of situation
-        situation_type:,
+      situation_type:,
         # Additional context
-        context: nil,
+      context: nil,
         # How intense is the response needed (1=gentle, 10=full Ted)
-        intensity: nil,
+      intensity: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       # @api private
       sig { params(client: ::Believe::Client).returns(T.attached_class) }
-      def self.new(client:)
-      end
+      def self.new(client:); end
     end
   end
 end

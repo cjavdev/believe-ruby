@@ -30,14 +30,14 @@ module Believe
   end
 
   ::Believe::Internal::Util.walk_namespaces(::Believe::Models)
-                           .lazy
-                           .grep(::Believe::Internal::Type::Union)
-                           .each do |mod|
-    const = :Variants
-    next if mod.sorbet_constant_defined?(const)
+    .lazy
+    .grep(::Believe::Internal::Type::Union)
+    .each do |mod|
+      const = :Variants
+      next if mod.sorbet_constant_defined?(const)
 
-    mod.define_sorbet_constant!(const) { T.type_alias { mod.to_sorbet_type } }
-  end
+      mod.define_sorbet_constant!(const) { T.type_alias { mod.to_sorbet_type } }
+    end
 
   BelieveSubmitParams = ::Believe::Models::BelieveSubmitParams
 

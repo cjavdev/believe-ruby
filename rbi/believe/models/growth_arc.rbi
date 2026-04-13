@@ -3,10 +3,7 @@
 module Believe
   module Models
     class GrowthArc < ::Believe::Internal::Type::BaseModel
-      OrHash =
-        T.type_alias do
-          T.any(::Believe::GrowthArc, ::Believe::Internal::AnyHash)
-        end
+      OrHash = T.type_alias { T.any(::Believe::GrowthArc, ::Believe::Internal::AnyHash) }
 
       # Key breakthrough moment
       sig { returns(String) }
@@ -36,35 +33,29 @@ module Believe
           ending_point: String,
           season: Integer,
           starting_point: String
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
       def self.new(
         # Key breakthrough moment
-        breakthrough:,
+      breakthrough:,
         # Main challenge faced
-        challenge:,
+      challenge:,
         # Where the character ends up
-        ending_point:,
+      ending_point:,
         # Season number
-        season:,
+      season:,
         # Where the character starts emotionally
-        starting_point:
-      )
-      end
+      starting_point:
+      ); end
 
       sig do
-        override.returns(
-          {
-            breakthrough: String,
-            challenge: String,
-            ending_point: String,
-            season: Integer,
-            starting_point: String
-          }
-        )
+        override
+          .returns(
+            {breakthrough: String, challenge: String, ending_point: String, season: Integer, starting_point: String}
+          )
       end
-      def to_hash
-      end
+      def to_hash; end
     end
   end
 end

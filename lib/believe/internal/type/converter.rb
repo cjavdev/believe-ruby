@@ -64,7 +64,9 @@ module Believe
         #
         # @return [String]
         def inspect(depth: 0)
+          # rubocop:disable Layout/LineLength
           super()
+          # rubocop:enable Layout/LineLength
         end
 
         # rubocop:enable Lint/UnusedMethodArgument
@@ -185,6 +187,7 @@ module Believe
           #
           # @return [Object]
           def coerce(target, value, state: ::Believe::Internal::Type::Converter.new_coerce_state)
+            # rubocop:disable Lint/SuppressedException
             # rubocop:disable Metrics/BlockNesting
             exactness = state.fetch(:exactness)
 
@@ -266,6 +269,7 @@ module Believe
             exactness[:no] += 1
             value
             # rubocop:enable Metrics/BlockNesting
+            # rubocop:enable Lint/SuppressedException
           end
 
           # @api private

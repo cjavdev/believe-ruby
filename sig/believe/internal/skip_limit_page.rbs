@@ -9,7 +9,7 @@ module Believe
 
       attr_accessor skip: Integer
 
-      def inspect: -> String
+      def inspect: () -> String
     end
   end
 end

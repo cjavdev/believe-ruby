@@ -6,10 +6,7 @@ module Believe
       extend ::Believe::Internal::Type::RequestParameters::Converter
       include ::Believe::Internal::Type::RequestParameters
 
-      OrHash =
-        T.type_alias do
-          T.any(::Believe::QuoteListByThemeParams, ::Believe::Internal::AnyHash)
-        end
+      OrHash = T.type_alias { T.any(::Believe::QuoteListByThemeParams, ::Believe::Internal::AnyHash) }
 
       # Themes that quotes can be categorized under.
       sig { returns(::Believe::QuoteTheme::OrSymbol) }
@@ -35,31 +32,31 @@ module Believe
           limit: Integer,
           skip: Integer,
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
       def self.new(
         # Themes that quotes can be categorized under.
-        theme:,
+      theme:,
         # Maximum number of items to return (max: 100)
-        limit: nil,
+      limit: nil,
         # Number of items to skip (offset)
-        skip: nil,
+      skip: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       sig do
-        override.returns(
-          {
-            theme: ::Believe::QuoteTheme::OrSymbol,
-            limit: Integer,
-            skip: Integer,
-            request_options: ::Believe::RequestOptions
-          }
-        )
+        override
+          .returns(
+            {
+              theme: ::Believe::QuoteTheme::OrSymbol,
+              limit: Integer,
+              skip: Integer,
+              request_options: ::Believe::RequestOptions
+            }
+          )
       end
-      def to_hash
-      end
+      def to_hash; end
     end
   end
 end

@@ -1,12 +1,7 @@
 module Believe
   module Resources
     class Press
-      def simulate: (
-        question: String,
-        ?hostile: bool,
-        ?topic: String?,
-        ?request_options: ::Believe::request_opts
-      ) -> ::Believe::Models::PressSimulateResponse
+      def simulate: (question: String, ?hostile: bool, ?topic: String?, ?request_options: ::Believe::request_opts) -> ::Believe::Models::PressSimulateResponse
 
       def initialize: (client: ::Believe::Client) -> void
     end

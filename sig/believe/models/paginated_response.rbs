@@ -1,15 +1,14 @@
 module Believe
   module Models
-    type paginated_response =
-      {
-        data: ::Array[::Believe::Episode],
-        has_more: bool,
-        limit: Integer,
-        page: Integer,
-        pages: Integer,
-        skip: Integer,
-        total: Integer
-      }
+    type paginated_response = {
+      data: ::Array[::Believe::Episode],
+      has_more: bool,
+      limit: Integer,
+      page: Integer,
+      pages: Integer,
+      skip: Integer,
+      total: Integer
+    }
 
     class PaginatedResponse < ::Believe::Internal::Type::BaseModel
       attr_accessor data: ::Array[::Believe::Episode]
@@ -26,17 +25,9 @@ module Believe
 
       attr_accessor pages: Integer
 
-      def initialize: (
-        data: ::Array[::Believe::Episode],
-        has_more: bool,
-        limit: Integer,
-        page: Integer,
-        pages: Integer,
-        skip: Integer,
-        total: Integer
-      ) -> void
+      def initialize: (data: ::Array[::Believe::Episode], has_more: bool, limit: Integer, page: Integer, pages: Integer, skip: Integer, total: Integer) -> void
 
-      def to_hash: -> {
+      def to_hash: () -> {
         data: ::Array[::Believe::Episode],
         has_more: bool,
         limit: Integer,

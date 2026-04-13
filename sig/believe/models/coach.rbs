@@ -1,16 +1,15 @@
 module Believe
   module Models
-    type coach =
-      {
-        id: String,
-        character_id: String,
-        specialty: ::Believe::Models::coach_specialty,
-        team_id: String,
-        years_with_team: Integer,
-        certifications: ::Array[String],
-        member_type: ::Believe::Models::Coach::member_type,
-        win_rate: Float?
-      }
+    type coach = {
+      id: String,
+      character_id: String,
+      specialty: ::Believe::Models::coach_specialty,
+      team_id: String,
+      years_with_team: Integer,
+      certifications: ::Array[String],
+      member_type: ::Believe::Models::Coach::member_type,
+      win_rate: Float?
+    }
 
     class Coach < ::Believe::Internal::Type::BaseModel
       attr_accessor id: String
@@ -29,24 +28,13 @@ module Believe
 
       attr_reader member_type: ::Believe::Models::Coach::member_type?
 
-      def member_type=: (
-        ::Believe::Models::Coach::member_type
-      ) -> ::Believe::Models::Coach::member_type
+      def member_type=: (::Believe::Models::Coach::member_type) -> ::Believe::Models::Coach::member_type
 
       attr_accessor win_rate: Float?
 
-      def initialize: (
-        id: String,
-        character_id: String,
-        specialty: ::Believe::Models::coach_specialty,
-        team_id: String,
-        years_with_team: Integer,
-        ?certifications: ::Array[String],
-        ?member_type: ::Believe::Models::Coach::member_type,
-        ?win_rate: Float?
-      ) -> void
+      def initialize: (id: String, character_id: String, specialty: ::Believe::Models::coach_specialty, team_id: String, years_with_team: Integer, ?certifications: ::Array[String], ?member_type: ::Believe::Models::Coach::member_type, ?win_rate: Float?) -> void
 
-      def to_hash: -> {
+      def to_hash: () -> {
         id: String,
         character_id: String,
         specialty: ::Believe::Models::coach_specialty,
@@ -64,7 +52,7 @@ module Believe
 
         COACH: :coach
 
-        def self?.values: -> ::Array[::Believe::Models::Coach::member_type]
+        def self?.values: () -> ::Array[::Believe::Models::Coach::member_type]
       end
     end
   end

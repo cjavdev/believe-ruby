@@ -1,6 +1,6 @@
 module Believe
   module Models
-    type geo_location = { latitude: Float, longitude: Float }
+    type geo_location = {latitude: Float, longitude: Float}
 
     class GeoLocation < ::Believe::Internal::Type::BaseModel
       attr_accessor latitude: Float
@@ -9,7 +9,7 @@ module Believe
 
       def initialize: (latitude: Float, longitude: Float) -> void
 
-      def to_hash: -> { latitude: Float, longitude: Float }
+      def to_hash: () -> {latitude: Float, longitude: Float}
     end
   end
 end

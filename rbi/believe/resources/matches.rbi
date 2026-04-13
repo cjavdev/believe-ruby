@@ -22,57 +22,50 @@ module Believe
           possession_percentage: T.nilable(Float),
           result: ::Believe::MatchResult::OrSymbol,
           ted_halftime_speech: T.nilable(String),
-          ticket_revenue_gbp:
-            T.nilable(::Believe::MatchCreateParams::TicketRevenueGbp::Variants),
+          ticket_revenue_gbp: T.nilable(::Believe::MatchCreateParams::TicketRevenueGbp::Variants),
           turning_points: T::Array[::Believe::TurningPoint::OrHash],
           weather_temp_celsius: T.nilable(Float),
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(::Believe::Match)
+        )
+          .returns(::Believe::Match)
       end
       def create(
         # Away team ID
-        away_team_id:,
+      away_team_id:,
         # Match date and time
-        date:,
+      date:,
         # Home team ID
-        home_team_id:,
+      home_team_id:,
         # Type of match
-        match_type:,
+      match_type:,
         # Match attendance
-        attendance: nil,
+      attendance: nil,
         # Away team score
-        away_score: nil,
+      away_score: nil,
         # Episode ID where this match is featured
-        episode_id: nil,
+      episode_id: nil,
         # Home team score
-        home_score: nil,
+      home_score: nil,
         # The life lesson learned from this match
-        lesson_learned: nil,
+      lesson_learned: nil,
         # Home team possession percentage
-        possession_percentage: nil,
+      possession_percentage: nil,
         # Match result from home team perspective
-        result: nil,
+      result: nil,
         # Ted's inspirational halftime speech
-        ted_halftime_speech: nil,
+      ted_halftime_speech: nil,
         # Total ticket revenue in GBP
-        ticket_revenue_gbp: nil,
+      ticket_revenue_gbp: nil,
         # Key moments that changed the match
-        turning_points: nil,
+      turning_points: nil,
         # Temperature at kickoff in Celsius
-        weather_temp_celsius: nil,
+      weather_temp_celsius: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       # Retrieve detailed information about a specific match.
-      sig do
-        params(
-          match_id: String,
-          request_options: ::Believe::RequestOptions::OrHash
-        ).returns(::Believe::Match)
-      end
-      def retrieve(match_id, request_options: {})
-      end
+      sig { params(match_id: String, request_options: ::Believe::RequestOptions::OrHash).returns(::Believe::Match) }
+      def retrieve(match_id, request_options: {}); end
 
       # Update specific fields of an existing match (e.g., update score).
       sig do
@@ -90,12 +83,12 @@ module Believe
           possession_percentage: T.nilable(Float),
           result: T.nilable(::Believe::MatchResult::OrSymbol),
           ted_halftime_speech: T.nilable(String),
-          ticket_revenue_gbp:
-            T.nilable(::Believe::MatchUpdateParams::TicketRevenueGbp::Variants),
+          ticket_revenue_gbp: T.nilable(::Believe::MatchUpdateParams::TicketRevenueGbp::Variants),
           turning_points: T.nilable(T::Array[::Believe::TurningPoint::OrHash]),
           weather_temp_celsius: T.nilable(Float),
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(::Believe::Match)
+        )
+          .returns(::Believe::Match)
       end
       def update(
         match_id,
@@ -108,17 +101,16 @@ module Believe
         home_team_id: nil,
         lesson_learned: nil,
         # Types of matches.
-        match_type: nil,
+      match_type: nil,
         possession_percentage: nil,
         # Match result types.
-        result: nil,
+      result: nil,
         ted_halftime_speech: nil,
         ticket_revenue_gbp: nil,
         turning_points: nil,
         weather_temp_celsius: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       # Get a paginated list of all matches with optional filtering.
       sig do
@@ -129,52 +121,40 @@ module Believe
           skip: Integer,
           team_id: T.nilable(String),
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(::Believe::Internal::SkipLimitPage[::Believe::Match])
+        )
+          .returns(::Believe::Internal::SkipLimitPage[::Believe::Match])
       end
       def list(
         # Maximum number of items to return (max: 100)
-        limit: nil,
+      limit: nil,
         # Filter by match type
-        match_type: nil,
+      match_type: nil,
         # Filter by result
-        result: nil,
+      result: nil,
         # Number of items to skip (offset)
-        skip: nil,
+      skip: nil,
         # Filter by team (home or away)
-        team_id: nil,
+      team_id: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       # Remove a match from the database.
-      sig do
-        params(
-          match_id: String,
-          request_options: ::Believe::RequestOptions::OrHash
-        ).void
-      end
-      def delete(match_id, request_options: {})
-      end
+      sig { params(match_id: String, request_options: ::Believe::RequestOptions::OrHash).void }
+      def delete(match_id, request_options: {}); end
 
       # Get the life lesson learned from a specific match.
       sig do
-        params(
-          match_id: String,
-          request_options: ::Believe::RequestOptions::OrHash
-        ).returns(T::Hash[Symbol, T.anything])
+        params(match_id: String, request_options: ::Believe::RequestOptions::OrHash)
+          .returns(T::Hash[Symbol, T.anything])
       end
-      def get_lesson(match_id, request_options: {})
-      end
+      def get_lesson(match_id, request_options: {}); end
 
       # Get all turning points from a specific match.
       sig do
-        params(
-          match_id: String,
-          request_options: ::Believe::RequestOptions::OrHash
-        ).returns(T::Array[T::Hash[Symbol, T.anything]])
+        params(match_id: String, request_options: ::Believe::RequestOptions::OrHash)
+          .returns(T::Array[T::Hash[Symbol, T.anything]])
       end
-      def get_turning_points(match_id, request_options: {})
-      end
+      def get_turning_points(match_id, request_options: {}); end
 
       # WebSocket endpoint for real-time live match simulation.
       #
@@ -218,25 +198,24 @@ module Believe
           home_team: String,
           speed: Float,
           request_options: ::Believe::RequestOptions::OrHash
-        ).void
+        )
+          .void
       end
       def stream_live(
         # Away team name
-        away_team: nil,
+      away_team: nil,
         # How eventful the match should be (1=boring, 10=chaos)
-        excitement_level: nil,
+      excitement_level: nil,
         # Home team name
-        home_team: nil,
+      home_team: nil,
         # Simulation speed multiplier (1.0 = real-time)
-        speed: nil,
+      speed: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       # @api private
       sig { params(client: ::Believe::Client).returns(T.attached_class) }
-      def self.new(client:)
-      end
+      def self.new(client:); end
     end
   end
 end

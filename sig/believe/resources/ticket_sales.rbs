@@ -1,58 +1,15 @@
 module Believe
   module Resources
     class TicketSales
-      def create: (
-        buyer_name: String,
-        currency: String,
-        discount: String,
-        match_id: String,
-        purchase_method: ::Believe::Models::purchase_method,
-        quantity: Integer,
-        subtotal: String,
-        tax: String,
-        total: String,
-        unit_price: String,
-        ?buyer_email: String?,
-        ?coupon_code: String?,
-        ?request_options: ::Believe::request_opts
-      ) -> ::Believe::TicketSale
+      def create: (buyer_name: String, currency: String, discount: String, match_id: String, purchase_method: ::Believe::Models::purchase_method, quantity: Integer, subtotal: String, tax: String, total: String, unit_price: String, ?buyer_email: String?, ?coupon_code: String?, ?request_options: ::Believe::request_opts) -> ::Believe::TicketSale
 
-      def retrieve: (
-        String ticket_sale_id,
-        ?request_options: ::Believe::request_opts
-      ) -> ::Believe::TicketSale
+      def retrieve: (String ticket_sale_id, ?request_options: ::Believe::request_opts) -> ::Believe::TicketSale
 
-      def update: (
-        String ticket_sale_id,
-        ?buyer_email: String?,
-        ?buyer_name: String?,
-        ?coupon_code: String?,
-        ?currency: String?,
-        ?discount: String?,
-        ?match_id: String?,
-        ?purchase_method: ::Believe::Models::purchase_method?,
-        ?quantity: Integer?,
-        ?subtotal: String?,
-        ?tax: String?,
-        ?total: String?,
-        ?unit_price: String?,
-        ?request_options: ::Believe::request_opts
-      ) -> ::Believe::TicketSale
+      def update: (String ticket_sale_id, ?buyer_email: String?, ?buyer_name: String?, ?coupon_code: String?, ?currency: String?, ?discount: String?, ?match_id: String?, ?purchase_method: ::Believe::Models::purchase_method?, ?quantity: Integer?, ?subtotal: String?, ?tax: String?, ?total: String?, ?unit_price: String?, ?request_options: ::Believe::request_opts) -> ::Believe::TicketSale
 
-      def list: (
-        ?coupon_code: String?,
-        ?currency: String?,
-        ?limit: Integer,
-        ?match_id: String?,
-        ?purchase_method: ::Believe::Models::purchase_method?,
-        ?skip: Integer,
-        ?request_options: ::Believe::request_opts
-      ) -> ::Believe::Internal::SkipLimitPage[::Believe::TicketSale]
+      def list: (?coupon_code: String?, ?currency: String?, ?limit: Integer, ?match_id: String?, ?purchase_method: ::Believe::Models::purchase_method?, ?skip: Integer, ?request_options: ::Believe::request_opts) -> ::Believe::Internal::SkipLimitPage[::Believe::TicketSale]
 
-      def delete: (
-        String ticket_sale_id,
-        ?request_options: ::Believe::request_opts
-      ) -> nil
+      def delete: (String ticket_sale_id, ?request_options: ::Believe::request_opts) -> nil
 
       def initialize: (client: ::Believe::Client) -> void
     end

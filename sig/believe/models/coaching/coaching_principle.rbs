@@ -3,15 +3,14 @@ module Believe
     class CoachingPrinciple = Coaching::CoachingPrinciple
 
     module Coaching
-      type coaching_principle =
-        {
-          id: String,
-          application: String,
-          example_from_show: String,
-          explanation: String,
-          principle: String,
-          ted_quote: String
-        }
+      type coaching_principle = {
+        id: String,
+        application: String,
+        example_from_show: String,
+        explanation: String,
+        principle: String,
+        ted_quote: String
+      }
 
       class CoachingPrinciple < ::Believe::Internal::Type::BaseModel
         attr_accessor id: String
@@ -26,16 +25,9 @@ module Believe
 
         attr_accessor ted_quote: String
 
-        def initialize: (
-          id: String,
-          application: String,
-          example_from_show: String,
-          explanation: String,
-          principle: String,
-          ted_quote: String
-        ) -> void
+        def initialize: (id: String, application: String, example_from_show: String, explanation: String, principle: String, ted_quote: String) -> void
 
-        def to_hash: -> {
+        def to_hash: () -> {
           id: String,
           application: String,
           example_from_show: String,

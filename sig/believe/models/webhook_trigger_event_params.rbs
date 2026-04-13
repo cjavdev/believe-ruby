@@ -1,11 +1,9 @@
 module Believe
   module Models
-    type webhook_trigger_event_params =
-      {
-        event_type: ::Believe::Models::WebhookTriggerEventParams::event_type,
-        payload: ::Believe::Models::WebhookTriggerEventParams::payload?
-      }
-      & ::Believe::Internal::Type::request_parameters
+    type webhook_trigger_event_params = ({
+      event_type: ::Believe::Models::WebhookTriggerEventParams::event_type,
+      payload: ::Believe::Models::WebhookTriggerEventParams::payload?
+    } & ::Believe::Internal::Type::request_parameters)
 
     class WebhookTriggerEventParams < ::Believe::Internal::Type::BaseModel
       extend ::Believe::Internal::Type::RequestParameters::Converter
@@ -15,19 +13,15 @@ module Believe
 
       attr_accessor payload: ::Believe::Models::WebhookTriggerEventParams::payload?
 
-      def initialize: (
-        event_type: ::Believe::Models::WebhookTriggerEventParams::event_type,
-        ?payload: ::Believe::Models::WebhookTriggerEventParams::payload?,
-        ?request_options: ::Believe::request_opts
-      ) -> void
+      def initialize: (event_type: ::Believe::Models::WebhookTriggerEventParams::event_type, ?payload: ::Believe::Models::WebhookTriggerEventParams::payload?, ?request_options: ::Believe::request_opts) -> void
 
-      def to_hash: -> {
+      def to_hash: () -> {
         event_type: ::Believe::Models::WebhookTriggerEventParams::event_type,
         payload: ::Believe::Models::WebhookTriggerEventParams::payload?,
         request_options: ::Believe::RequestOptions
       }
 
-      type event_type = :"match.completed" | :"team_member.transferred"
+      type event_type = (:"match.completed" | :"team_member.transferred")
 
       module EventType
         extend ::Believe::Internal::Type::Enum
@@ -35,55 +29,46 @@ module Believe
         MATCH_COMPLETED: :"match.completed"
         TEAM_MEMBER_TRANSFERRED: :"team_member.transferred"
 
-        def self?.values: -> ::Array[::Believe::Models::WebhookTriggerEventParams::event_type]
+        def self?.values: () -> ::Array[::Believe::Models::WebhookTriggerEventParams::event_type]
       end
 
-      type payload =
-        ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted
-        | ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred
+      type payload = (::Believe::WebhookTriggerEventParams::Payload::MatchCompleted | ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred)
 
       module Payload
         extend ::Believe::Internal::Type::Union
 
-        type match_completed =
-          {
-            data: ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data,
-            event_type: ::Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::event_type
-          }
+        type match_completed = {
+          data: ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data,
+          event_type: ::Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::event_type
+        }
 
         class MatchCompleted < ::Believe::Internal::Type::BaseModel
           attr_accessor data: ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data
 
           attr_reader event_type: ::Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::event_type?
 
-          def event_type=: (
-            ::Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::event_type
-          ) -> ::Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::event_type
+          def event_type=: (::Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::event_type) -> ::Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::event_type
 
-          def initialize: (
-            data: ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data,
-            ?event_type: ::Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::event_type
-          ) -> void
+          def initialize: (data: ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data, ?event_type: ::Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::event_type) -> void
 
-          def to_hash: -> {
+          def to_hash: () -> {
             data: ::Believe::WebhookTriggerEventParams::Payload::MatchCompleted::Data,
             event_type: ::Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::event_type
           }
 
-          type data =
-            {
-              away_score: Integer,
-              away_team_id: String,
-              completed_at: Time,
-              home_score: Integer,
-              home_team_id: String,
-              match_id: String,
-              match_type: ::Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::Data::match_type,
-              result: ::Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::Data::result,
-              ted_post_match_quote: String,
-              lesson_learned: String?,
-              man_of_the_match: String?
-            }
+          type data = {
+            away_score: Integer,
+            away_team_id: String,
+            completed_at: Time,
+            home_score: Integer,
+            home_team_id: String,
+            match_id: String,
+            match_type: ::Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::Data::match_type,
+            result: ::Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::Data::result,
+            ted_post_match_quote: String,
+            lesson_learned: String?,
+            man_of_the_match: String?
+          }
 
           class Data < ::Believe::Internal::Type::BaseModel
             attr_accessor away_score: Integer
@@ -108,21 +93,9 @@ module Believe
 
             attr_accessor man_of_the_match: String?
 
-            def initialize: (
-              away_score: Integer,
-              away_team_id: String,
-              completed_at: Time,
-              home_score: Integer,
-              home_team_id: String,
-              match_id: String,
-              match_type: ::Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::Data::match_type,
-              result: ::Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::Data::result,
-              ted_post_match_quote: String,
-              ?lesson_learned: String?,
-              ?man_of_the_match: String?
-            ) -> void
+            def initialize: (away_score: Integer, away_team_id: String, completed_at: Time, home_score: Integer, home_team_id: String, match_id: String, match_type: ::Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::Data::match_type, result: ::Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::Data::result, ted_post_match_quote: String, ?lesson_learned: String?, ?man_of_the_match: String?) -> void
 
-            def to_hash: -> {
+            def to_hash: () -> {
               away_score: Integer,
               away_team_id: String,
               completed_at: Time,
@@ -136,7 +109,7 @@ module Believe
               man_of_the_match: String?
             }
 
-            type match_type = :league | :cup | :friendly | :playoff | :final
+            type match_type = (:league | :cup | :friendly | :playoff | :final)
 
             module MatchType
               extend ::Believe::Internal::Type::Enum
@@ -147,10 +120,10 @@ module Believe
               PLAYOFF: :playoff
               FINAL: :final
 
-              def self?.values: -> ::Array[::Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::Data::match_type]
+              def self?.values: () -> ::Array[::Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::Data::match_type]
             end
 
-            type result = :home_win | :away_win | :draw
+            type result = (:home_win | :away_win | :draw)
 
             module Result
               extend ::Believe::Internal::Type::Enum
@@ -159,7 +132,7 @@ module Believe
               AWAY_WIN: :away_win
               DRAW: :draw
 
-              def self?.values: -> ::Array[::Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::Data::result]
+              def self?.values: () -> ::Array[::Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::Data::result]
             end
           end
 
@@ -170,50 +143,43 @@ module Believe
 
             MATCH_COMPLETED: :"match.completed"
 
-            def self?.values: -> ::Array[::Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::event_type]
+            def self?.values: () -> ::Array[::Believe::Models::WebhookTriggerEventParams::Payload::MatchCompleted::event_type]
           end
         end
 
-        type team_member_transferred =
-          {
-            data: ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data,
-            event_type: ::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::event_type
-          }
+        type team_member_transferred = {
+          data: ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data,
+          event_type: ::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::event_type
+        }
 
         class TeamMemberTransferred < ::Believe::Internal::Type::BaseModel
           attr_accessor data: ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data
 
           attr_reader event_type: ::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::event_type?
 
-          def event_type=: (
-            ::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::event_type
-          ) -> ::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::event_type
+          def event_type=: (::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::event_type) -> ::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::event_type
 
-          def initialize: (
-            data: ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data,
-            ?event_type: ::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::event_type
-          ) -> void
+          def initialize: (data: ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data, ?event_type: ::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::event_type) -> void
 
-          def to_hash: -> {
+          def to_hash: () -> {
             data: ::Believe::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data,
             event_type: ::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::event_type
           }
 
-          type data =
-            {
-              character_id: String,
-              character_name: String,
-              member_type: ::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::member_type,
-              team_id: String,
-              team_member_id: String,
-              team_name: String,
-              ted_reaction: String,
-              transfer_type: ::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::transfer_type,
-              previous_team_id: String?,
-              previous_team_name: String?,
-              transfer_fee_gbp: String?,
-              years_with_previous_team: Integer?
-            }
+          type data = {
+            character_id: String,
+            character_name: String,
+            member_type: ::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::member_type,
+            team_id: String,
+            team_member_id: String,
+            team_name: String,
+            ted_reaction: String,
+            transfer_type: ::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::transfer_type,
+            previous_team_id: String?,
+            previous_team_name: String?,
+            transfer_fee_gbp: String?,
+            years_with_previous_team: Integer?
+          }
 
           class Data < ::Believe::Internal::Type::BaseModel
             attr_accessor character_id: String
@@ -240,22 +206,9 @@ module Believe
 
             attr_accessor years_with_previous_team: Integer?
 
-            def initialize: (
-              character_id: String,
-              character_name: String,
-              member_type: ::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::member_type,
-              team_id: String,
-              team_member_id: String,
-              team_name: String,
-              ted_reaction: String,
-              transfer_type: ::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::transfer_type,
-              ?previous_team_id: String?,
-              ?previous_team_name: String?,
-              ?transfer_fee_gbp: String?,
-              ?years_with_previous_team: Integer?
-            ) -> void
+            def initialize: (character_id: String, character_name: String, member_type: ::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::member_type, team_id: String, team_member_id: String, team_name: String, ted_reaction: String, transfer_type: ::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::transfer_type, ?previous_team_id: String?, ?previous_team_name: String?, ?transfer_fee_gbp: String?, ?years_with_previous_team: Integer?) -> void
 
-            def to_hash: -> {
+            def to_hash: () -> {
               character_id: String,
               character_name: String,
               member_type: ::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::member_type,
@@ -270,8 +223,7 @@ module Believe
               years_with_previous_team: Integer?
             }
 
-            type member_type =
-              :player | :coach | :medical_staff | :equipment_manager
+            type member_type = (:player | :coach | :medical_staff | :equipment_manager)
 
             module MemberType
               extend ::Believe::Internal::Type::Enum
@@ -281,10 +233,10 @@ module Believe
               MEDICAL_STAFF: :medical_staff
               EQUIPMENT_MANAGER: :equipment_manager
 
-              def self?.values: -> ::Array[::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::member_type]
+              def self?.values: () -> ::Array[::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::member_type]
             end
 
-            type transfer_type = :joined | :departed
+            type transfer_type = (:joined | :departed)
 
             module TransferType
               extend ::Believe::Internal::Type::Enum
@@ -292,7 +244,7 @@ module Believe
               JOINED: :joined
               DEPARTED: :departed
 
-              def self?.values: -> ::Array[::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::transfer_type]
+              def self?.values: () -> ::Array[::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::Data::transfer_type]
             end
           end
 
@@ -303,11 +255,11 @@ module Believe
 
             TEAM_MEMBER_TRANSFERRED: :"team_member.transferred"
 
-            def self?.values: -> ::Array[::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::event_type]
+            def self?.values: () -> ::Array[::Believe::Models::WebhookTriggerEventParams::Payload::TeamMemberTransferred::event_type]
           end
         end
 
-        def self?.variants: -> ::Array[::Believe::Models::WebhookTriggerEventParams::payload]
+        def self?.variants: () -> ::Array[::Believe::Models::WebhookTriggerEventParams::payload]
       end
     end
   end

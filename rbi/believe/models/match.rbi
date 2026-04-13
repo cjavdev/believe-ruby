@@ -3,8 +3,7 @@
 module Believe
   module Models
     class Match < ::Believe::Internal::Type::BaseModel
-      OrHash =
-        T.type_alias { T.any(::Believe::Match, ::Believe::Internal::AnyHash) }
+      OrHash = T.type_alias { T.any(::Believe::Match, ::Believe::Internal::AnyHash) }
 
       # Unique identifier
       sig { returns(String) }
@@ -75,9 +74,7 @@ module Believe
       sig { returns(T.nilable(T::Array[::Believe::TurningPoint])) }
       attr_reader :turning_points
 
-      sig do
-        params(turning_points: T::Array[::Believe::TurningPoint::OrHash]).void
-      end
+      sig { params(turning_points: T::Array[::Believe::TurningPoint::OrHash]).void }
       attr_writer :turning_points
 
       # Temperature at kickoff in Celsius
@@ -103,68 +100,68 @@ module Believe
           ticket_revenue_gbp: T.nilable(String),
           turning_points: T::Array[::Believe::TurningPoint::OrHash],
           weather_temp_celsius: T.nilable(Float)
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
       def self.new(
         # Unique identifier
-        id:,
+      id:,
         # Away team ID
-        away_team_id:,
+      away_team_id:,
         # Match date and time
-        date:,
+      date:,
         # Home team ID
-        home_team_id:,
+      home_team_id:,
         # Type of match
-        match_type:,
+      match_type:,
         # Match attendance
-        attendance: nil,
+      attendance: nil,
         # Away team score
-        away_score: nil,
+      away_score: nil,
         # Episode ID where this match is featured
-        episode_id: nil,
+      episode_id: nil,
         # Home team score
-        home_score: nil,
+      home_score: nil,
         # The life lesson learned from this match
-        lesson_learned: nil,
+      lesson_learned: nil,
         # Home team possession percentage
-        possession_percentage: nil,
+      possession_percentage: nil,
         # Match result from home team perspective
-        result: nil,
+      result: nil,
         # Ted's inspirational halftime speech
-        ted_halftime_speech: nil,
+      ted_halftime_speech: nil,
         # Total ticket revenue in GBP
-        ticket_revenue_gbp: nil,
+      ticket_revenue_gbp: nil,
         # Key moments that changed the match
-        turning_points: nil,
+      turning_points: nil,
         # Temperature at kickoff in Celsius
-        weather_temp_celsius: nil
-      )
-      end
+      weather_temp_celsius: nil
+      ); end
 
       sig do
-        override.returns(
-          {
-            id: String,
-            away_team_id: String,
-            date: Time,
-            home_team_id: String,
-            match_type: ::Believe::MatchType::TaggedSymbol,
-            attendance: T.nilable(Integer),
-            away_score: Integer,
-            episode_id: T.nilable(String),
-            home_score: Integer,
-            lesson_learned: T.nilable(String),
-            possession_percentage: T.nilable(Float),
-            result: ::Believe::MatchResult::TaggedSymbol,
-            ted_halftime_speech: T.nilable(String),
-            ticket_revenue_gbp: T.nilable(String),
-            turning_points: T::Array[::Believe::TurningPoint],
-            weather_temp_celsius: T.nilable(Float)
-          }
-        )
+        override
+          .returns(
+            {
+              id: String,
+              away_team_id: String,
+              date: Time,
+              home_team_id: String,
+              match_type: ::Believe::MatchType::TaggedSymbol,
+              attendance: T.nilable(Integer),
+              away_score: Integer,
+              episode_id: T.nilable(String),
+              home_score: Integer,
+              lesson_learned: T.nilable(String),
+              possession_percentage: T.nilable(Float),
+              result: ::Believe::MatchResult::TaggedSymbol,
+              ted_halftime_speech: T.nilable(String),
+              ticket_revenue_gbp: T.nilable(String),
+              turning_points: T::Array[::Believe::TurningPoint],
+              weather_temp_celsius: T.nilable(Float)
+            }
+          )
       end
-      def to_hash
-      end
+      def to_hash; end
     end
   end
 end

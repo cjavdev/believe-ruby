@@ -1,26 +1,24 @@
 module Believe
   module Models
-    type team_create_params =
-      {
-        culture_score: Integer,
-        founded_year: Integer,
-        league: ::Believe::Models::league,
-        name: String,
-        stadium: String,
-        values: ::Believe::TeamValues,
-        annual_budget_gbp: ::Believe::Models::TeamCreateParams::annual_budget_gbp?,
-        average_attendance: Float?,
-        contact_email: String?,
-        is_active: bool,
-        nickname: String?,
-        primary_color: String?,
-        rival_teams: ::Array[String],
-        secondary_color: String?,
-        stadium_location: ::Believe::GeoLocation?,
-        website: String?,
-        win_percentage: Float?
-      }
-      & ::Believe::Internal::Type::request_parameters
+    type team_create_params = ({
+      culture_score: Integer,
+      founded_year: Integer,
+      league: ::Believe::Models::league,
+      name: String,
+      stadium: String,
+      values: ::Believe::TeamValues,
+      annual_budget_gbp: ::Believe::Models::TeamCreateParams::annual_budget_gbp?,
+      average_attendance: Float?,
+      contact_email: String?,
+      is_active: bool,
+      nickname: String?,
+      primary_color: String?,
+      rival_teams: ::Array[String],
+      secondary_color: String?,
+      stadium_location: ::Believe::GeoLocation?,
+      website: String?,
+      win_percentage: Float?
+    } & ::Believe::Internal::Type::request_parameters)
 
     class TeamCreateParams < ::Believe::Internal::Type::BaseModel
       extend ::Believe::Internal::Type::RequestParameters::Converter
@@ -64,28 +62,9 @@ module Believe
 
       attr_accessor win_percentage: Float?
 
-      def initialize: (
-        culture_score: Integer,
-        founded_year: Integer,
-        league: ::Believe::Models::league,
-        name: String,
-        stadium: String,
-        values: ::Believe::TeamValues,
-        ?annual_budget_gbp: ::Believe::Models::TeamCreateParams::annual_budget_gbp?,
-        ?average_attendance: Float?,
-        ?contact_email: String?,
-        ?is_active: bool,
-        ?nickname: String?,
-        ?primary_color: String?,
-        ?rival_teams: ::Array[String],
-        ?secondary_color: String?,
-        ?stadium_location: ::Believe::GeoLocation?,
-        ?website: String?,
-        ?win_percentage: Float?,
-        ?request_options: ::Believe::request_opts
-      ) -> void
+      def initialize: (culture_score: Integer, founded_year: Integer, league: ::Believe::Models::league, name: String, stadium: String, values: ::Believe::TeamValues, ?annual_budget_gbp: ::Believe::Models::TeamCreateParams::annual_budget_gbp?, ?average_attendance: Float?, ?contact_email: String?, ?is_active: bool, ?nickname: String?, ?primary_color: String?, ?rival_teams: ::Array[String], ?secondary_color: String?, ?stadium_location: ::Believe::GeoLocation?, ?website: String?, ?win_percentage: Float?, ?request_options: ::Believe::request_opts) -> void
 
-      def to_hash: -> {
+      def to_hash: () -> {
         culture_score: Integer,
         founded_year: Integer,
         league: ::Believe::Models::league,
@@ -106,12 +85,12 @@ module Believe
         request_options: ::Believe::RequestOptions
       }
 
-      type annual_budget_gbp = Float | String
+      type annual_budget_gbp = (Float | String)
 
       module AnnualBudgetGbp
         extend ::Believe::Internal::Type::Union
 
-        def self?.variants: -> ::Array[::Believe::Models::TeamCreateParams::annual_budget_gbp]
+        def self?.variants: () -> ::Array[::Believe::Models::TeamCreateParams::annual_budget_gbp]
       end
     end
   end

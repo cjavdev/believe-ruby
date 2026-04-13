@@ -42,7 +42,7 @@ class Time
   def self.now = Thread.current.thread_variable_get(:time_now) || _now
 end
 
-class ::Believe::Test::SingletonClient < Believe::Client
+class ::Believe::Test::SingletonClient < ::Believe::Client
   include Singleton
 
   TEST_API_BASE_URL = ENV.fetch("TEST_API_BASE_URL", "http://localhost:4010")

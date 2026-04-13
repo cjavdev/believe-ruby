@@ -37,22 +37,21 @@ module Believe
       # ```
       sig do
         params(
-          member:
-            T.any(
-              ::Believe::TeamMemberCreateParams::Member::Player::OrHash,
-              ::Believe::TeamMemberCreateParams::Member::Coach::OrHash,
-              ::Believe::TeamMemberCreateParams::Member::MedicalStaff::OrHash,
-              ::Believe::TeamMemberCreateParams::Member::EquipmentManager::OrHash
-            ),
+          member: T.any(
+            ::Believe::TeamMemberCreateParams::Member::Player::OrHash,
+            ::Believe::TeamMemberCreateParams::Member::Coach::OrHash,
+            ::Believe::TeamMemberCreateParams::Member::MedicalStaff::OrHash,
+            ::Believe::TeamMemberCreateParams::Member::EquipmentManager::OrHash
+          ),
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(::Believe::Models::TeamMemberCreateResponse::Variants)
+        )
+          .returns(::Believe::Models::TeamMemberCreateResponse::Variants)
       end
       def create(
         # A football player on the team.
-        member:,
+      member:,
         request_options: {}
-      )
-      end
+      ); end
 
       # Retrieve detailed information about a specific team member.
       #
@@ -68,35 +67,31 @@ module Believe
       # Use `character_id` to fetch full character details from
       # `/characters/{character_id}`.
       sig do
-        params(
-          member_id: String,
-          request_options: ::Believe::RequestOptions::OrHash
-        ).returns(::Believe::Models::TeamMemberRetrieveResponse::Variants)
+        params(member_id: String, request_options: ::Believe::RequestOptions::OrHash)
+          .returns(::Believe::Models::TeamMemberRetrieveResponse::Variants)
       end
-      def retrieve(member_id, request_options: {})
-      end
+      def retrieve(member_id, request_options: {}); end
 
       # Update specific fields of an existing team member. Fields vary by member type.
       sig do
         params(
           member_id: String,
-          updates:
-            T.any(
-              ::Believe::TeamMemberUpdateParams::Updates::PlayerUpdate::OrHash,
-              ::Believe::TeamMemberUpdateParams::Updates::CoachUpdate::OrHash,
-              ::Believe::TeamMemberUpdateParams::Updates::MedicalStaffUpdate::OrHash,
-              ::Believe::TeamMemberUpdateParams::Updates::EquipmentManagerUpdate::OrHash
-            ),
+          updates: T.any(
+            ::Believe::TeamMemberUpdateParams::Updates::PlayerUpdate::OrHash,
+            ::Believe::TeamMemberUpdateParams::Updates::CoachUpdate::OrHash,
+            ::Believe::TeamMemberUpdateParams::Updates::MedicalStaffUpdate::OrHash,
+            ::Believe::TeamMemberUpdateParams::Updates::EquipmentManagerUpdate::OrHash
+          ),
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(::Believe::Models::TeamMemberUpdateResponse::Variants)
+        )
+          .returns(::Believe::Models::TeamMemberUpdateResponse::Variants)
       end
       def update(
         member_id,
         # Update model for players.
-        updates:,
+      updates:,
         request_options: {}
-      )
-      end
+      ); end
 
       # Get a paginated list of all team members.
       #
@@ -107,39 +102,28 @@ module Believe
       sig do
         params(
           limit: Integer,
-          member_type:
-            T.nilable(::Believe::TeamMemberListParams::MemberType::OrSymbol),
+          member_type: T.nilable(::Believe::TeamMemberListParams::MemberType::OrSymbol),
           skip: Integer,
           team_id: T.nilable(String),
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(
-          ::Believe::Internal::SkipLimitPage[
-            ::Believe::Models::TeamMemberListResponse::Variants
-          ]
         )
+          .returns(::Believe::Internal::SkipLimitPage[::Believe::Models::TeamMemberListResponse::Variants])
       end
       def list(
         # Maximum number of items to return (max: 100)
-        limit: nil,
+      limit: nil,
         # Filter by member type
-        member_type: nil,
+      member_type: nil,
         # Number of items to skip (offset)
-        skip: nil,
+      skip: nil,
         # Filter by team ID
-        team_id: nil,
+      team_id: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       # Remove a team member from the roster.
-      sig do
-        params(
-          member_id: String,
-          request_options: ::Believe::RequestOptions::OrHash
-        ).void
-      end
-      def delete(member_id, request_options: {})
-      end
+      sig { params(member_id: String, request_options: ::Believe::RequestOptions::OrHash).void }
+      def delete(member_id, request_options: {}); end
 
       # Get only coaches (filtered subset of team members).
       sig do
@@ -149,20 +133,20 @@ module Believe
           specialty: T.nilable(::Believe::CoachSpecialty::OrSymbol),
           team_id: T.nilable(String),
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(::Believe::Internal::SkipLimitPage[::Believe::Coach])
+        )
+          .returns(::Believe::Internal::SkipLimitPage[::Believe::Coach])
       end
       def list_coaches(
         # Maximum number of items to return (max: 100)
-        limit: nil,
+      limit: nil,
         # Number of items to skip (offset)
-        skip: nil,
+      skip: nil,
         # Filter by specialty
-        specialty: nil,
+      specialty: nil,
         # Filter by team ID
-        team_id: nil,
+      team_id: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       # Get only players (filtered subset of team members).
       sig do
@@ -172,20 +156,20 @@ module Believe
           skip: Integer,
           team_id: T.nilable(String),
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(::Believe::Internal::SkipLimitPage[::Believe::Player])
+        )
+          .returns(::Believe::Internal::SkipLimitPage[::Believe::Player])
       end
       def list_players(
         # Maximum number of items to return (max: 100)
-        limit: nil,
+      limit: nil,
         # Filter by position
-        position: nil,
+      position: nil,
         # Number of items to skip (offset)
-        skip: nil,
+      skip: nil,
         # Filter by team ID
-        team_id: nil,
+      team_id: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       # Get all staff members (medical staff and equipment managers).
       #
@@ -197,27 +181,22 @@ module Believe
           skip: Integer,
           team_id: T.nilable(String),
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(
-          ::Believe::Internal::SkipLimitPage[
-            ::Believe::Models::TeamMemberListStaffResponse::Variants
-          ]
         )
+          .returns(::Believe::Internal::SkipLimitPage[::Believe::Models::TeamMemberListStaffResponse::Variants])
       end
       def list_staff(
         # Maximum number of items to return (max: 100)
-        limit: nil,
+      limit: nil,
         # Number of items to skip (offset)
-        skip: nil,
+      skip: nil,
         # Filter by team ID
-        team_id: nil,
+      team_id: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       # @api private
       sig { params(client: ::Believe::Client).returns(T.attached_class) }
-      def self.new(client:)
-      end
+      def self.new(client:); end
     end
   end
 end

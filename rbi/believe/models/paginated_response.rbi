@@ -3,10 +3,7 @@
 module Believe
   module Models
     class PaginatedResponse < ::Believe::Internal::Type::BaseModel
-      OrHash =
-        T.type_alias do
-          T.any(::Believe::PaginatedResponse, ::Believe::Internal::AnyHash)
-        end
+      OrHash = T.type_alias { T.any(::Believe::PaginatedResponse, ::Believe::Internal::AnyHash) }
 
       sig { returns(T::Array[::Believe::Episode]) }
       attr_accessor :data
@@ -41,37 +38,37 @@ module Believe
           pages: Integer,
           skip: Integer,
           total: Integer
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
       def self.new(
         data:,
         # Whether there are more items after this page.
-        has_more:,
+      has_more:,
         limit:,
         # Current page number (1-indexed, for display purposes).
-        page:,
+      page:,
         # Total number of pages.
-        pages:,
+      pages:,
         skip:,
         total:
-      )
-      end
+      ); end
 
       sig do
-        override.returns(
-          {
-            data: T::Array[::Believe::Episode],
-            has_more: T::Boolean,
-            limit: Integer,
-            page: Integer,
-            pages: Integer,
-            skip: Integer,
-            total: Integer
-          }
-        )
+        override
+          .returns(
+            {
+              data: T::Array[::Believe::Episode],
+              has_more: T::Boolean,
+              limit: Integer,
+              page: Integer,
+              pages: Integer,
+              skip: Integer,
+              total: Integer
+            }
+          )
       end
-      def to_hash
-      end
+      def to_hash; end
     end
   end
 end

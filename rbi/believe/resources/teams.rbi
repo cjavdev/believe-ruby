@@ -17,8 +17,7 @@ module Believe
           name: String,
           stadium: String,
           values: ::Believe::TeamValues::OrHash,
-          annual_budget_gbp:
-            T.nilable(::Believe::TeamCreateParams::AnnualBudgetGbp::Variants),
+          annual_budget_gbp: T.nilable(::Believe::TeamCreateParams::AnnualBudgetGbp::Variants),
           average_attendance: T.nilable(Float),
           contact_email: T.nilable(String),
           is_active: T::Boolean,
@@ -30,63 +29,56 @@ module Believe
           website: T.nilable(String),
           win_percentage: T.nilable(Float),
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(::Believe::Team)
+        )
+          .returns(::Believe::Team)
       end
       def create(
         # Team culture/morale score (0-100)
-        culture_score:,
+      culture_score:,
         # Year the club was founded
-        founded_year:,
+      founded_year:,
         # Current league
-        league:,
+      league:,
         # Team name
-        name:,
+      name:,
         # Home stadium name
-        stadium:,
+      stadium:,
         # Team's core values
-        values:,
+      values:,
         # Annual budget in GBP
-        annual_budget_gbp: nil,
+      annual_budget_gbp: nil,
         # Average match attendance
-        average_attendance: nil,
+      average_attendance: nil,
         # Team contact email
-        contact_email: nil,
+      contact_email: nil,
         # Whether the team is currently active
-        is_active: nil,
+      is_active: nil,
         # Team nickname
-        nickname: nil,
+      nickname: nil,
         # Primary team color (hex)
-        primary_color: nil,
+      primary_color: nil,
         # List of rival team IDs
-        rival_teams: nil,
+      rival_teams: nil,
         # Secondary team color (hex)
-        secondary_color: nil,
+      secondary_color: nil,
         # Geographic coordinates for a location.
-        stadium_location: nil,
+      stadium_location: nil,
         # Official team website
-        website: nil,
+      website: nil,
         # Season win percentage
-        win_percentage: nil,
+      win_percentage: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       # Retrieve detailed information about a specific team.
-      sig do
-        params(
-          team_id: String,
-          request_options: ::Believe::RequestOptions::OrHash
-        ).returns(::Believe::Team)
-      end
-      def retrieve(team_id, request_options: {})
-      end
+      sig { params(team_id: String, request_options: ::Believe::RequestOptions::OrHash).returns(::Believe::Team) }
+      def retrieve(team_id, request_options: {}); end
 
       # Update specific fields of an existing team.
       sig do
         params(
           team_id: String,
-          annual_budget_gbp:
-            T.nilable(::Believe::TeamUpdateParams::AnnualBudgetGbp::Variants),
+          annual_budget_gbp: T.nilable(::Believe::TeamUpdateParams::AnnualBudgetGbp::Variants),
           average_attendance: T.nilable(Float),
           contact_email: T.nilable(String),
           culture_score: T.nilable(Integer),
@@ -104,7 +96,8 @@ module Believe
           website: T.nilable(String),
           win_percentage: T.nilable(Float),
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(::Believe::Team)
+        )
+          .returns(::Believe::Team)
       end
       def update(
         team_id,
@@ -115,7 +108,7 @@ module Believe
         founded_year: nil,
         is_active: nil,
         # Football leagues.
-        league: nil,
+      league: nil,
         name: nil,
         nickname: nil,
         primary_color: nil,
@@ -123,14 +116,13 @@ module Believe
         secondary_color: nil,
         stadium: nil,
         # Geographic coordinates for a location.
-        stadium_location: nil,
+      stadium_location: nil,
         # Core values that define a team's culture.
-        values: nil,
+      values: nil,
         website: nil,
         win_percentage: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       # Get a paginated list of all teams with optional filtering by league or culture
       # score.
@@ -141,65 +133,49 @@ module Believe
           min_culture_score: T.nilable(Integer),
           skip: Integer,
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(::Believe::Internal::SkipLimitPage[::Believe::Team])
+        )
+          .returns(::Believe::Internal::SkipLimitPage[::Believe::Team])
       end
       def list(
         # Filter by league
-        league: nil,
+      league: nil,
         # Maximum number of items to return (max: 100)
-        limit: nil,
+      limit: nil,
         # Minimum culture score
-        min_culture_score: nil,
+      min_culture_score: nil,
         # Number of items to skip (offset)
-        skip: nil,
+      skip: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       # Remove a team from the database (relegation to oblivion).
-      sig do
-        params(
-          team_id: String,
-          request_options: ::Believe::RequestOptions::OrHash
-        ).void
-      end
-      def delete(team_id, request_options: {})
-      end
+      sig { params(team_id: String, request_options: ::Believe::RequestOptions::OrHash).void }
+      def delete(team_id, request_options: {}); end
 
       # Get detailed culture and values information for a team.
       sig do
-        params(
-          team_id: String,
-          request_options: ::Believe::RequestOptions::OrHash
-        ).returns(T::Hash[Symbol, T.anything])
+        params(team_id: String, request_options: ::Believe::RequestOptions::OrHash)
+          .returns(T::Hash[Symbol, T.anything])
       end
-      def get_culture(team_id, request_options: {})
-      end
+      def get_culture(team_id, request_options: {}); end
 
       # Get all rival teams for a specific team.
       sig do
-        params(
-          team_id: String,
-          request_options: ::Believe::RequestOptions::OrHash
-        ).returns(T::Array[::Believe::Team])
+        params(team_id: String, request_options: ::Believe::RequestOptions::OrHash)
+          .returns(T::Array[::Believe::Team])
       end
-      def get_rivals(team_id, request_options: {})
-      end
+      def get_rivals(team_id, request_options: {}); end
 
       # List all uploaded logos for a team.
       sig do
-        params(
-          team_id: String,
-          request_options: ::Believe::RequestOptions::OrHash
-        ).returns(T::Array[::Believe::Teams::FileUpload])
+        params(team_id: String, request_options: ::Believe::RequestOptions::OrHash)
+          .returns(T::Array[::Believe::Teams::FileUpload])
       end
-      def list_logos(team_id, request_options: {})
-      end
+      def list_logos(team_id, request_options: {}); end
 
       # @api private
       sig { params(client: ::Believe::Client).returns(T.attached_class) }
-      def self.new(client:)
-      end
+      def self.new(client:); end
     end
   end
 end

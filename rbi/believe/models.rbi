@@ -129,8 +129,7 @@ module Believe
 
   QuoteUpdateParams = ::Believe::Models::QuoteUpdateParams
 
-  ReframeTransformNegativeThoughtsParams =
-    ::Believe::Models::ReframeTransformNegativeThoughtsParams
+  ReframeTransformNegativeThoughtsParams = ::Believe::Models::ReframeTransformNegativeThoughtsParams
 
   RegisteredWebhook = ::Believe::Models::RegisteredWebhook
 
@@ -164,8 +163,7 @@ module Believe
 
   TeamMemberRetrieveParams = ::Believe::Models::TeamMemberRetrieveParams
 
-  TeamMemberTransferredWebhookEvent =
-    ::Believe::Models::TeamMemberTransferredWebhookEvent
+  TeamMemberTransferredWebhookEvent = ::Believe::Models::TeamMemberTransferredWebhookEvent
 
   TeamMemberUpdateParams = ::Believe::Models::TeamMemberUpdateParams
 

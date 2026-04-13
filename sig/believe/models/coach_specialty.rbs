@@ -1,11 +1,6 @@
 module Believe
   module Models
-    type coach_specialty =
-      :head_coach
-      | :assistant_coach
-      | :goalkeeping_coach
-      | :fitness_coach
-      | :tactical_analyst
+    type coach_specialty = (:head_coach | :assistant_coach | :goalkeeping_coach | :fitness_coach | :tactical_analyst)
 
     module CoachSpecialty
       extend ::Believe::Internal::Type::Enum
@@ -16,7 +11,7 @@ module Believe
       FITNESS_COACH: :fitness_coach
       TACTICAL_ANALYST: :tactical_analyst
 
-      def self?.values: -> ::Array[::Believe::Models::coach_specialty]
+      def self?.values: () -> ::Array[::Believe::Models::coach_specialty]
     end
   end
 end

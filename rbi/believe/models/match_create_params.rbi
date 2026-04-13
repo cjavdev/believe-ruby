@@ -6,10 +6,7 @@ module Believe
       extend ::Believe::Internal::Type::RequestParameters::Converter
       include ::Believe::Internal::Type::RequestParameters
 
-      OrHash =
-        T.type_alias do
-          T.any(::Believe::MatchCreateParams, ::Believe::Internal::AnyHash)
-        end
+      OrHash = T.type_alias { T.any(::Believe::MatchCreateParams, ::Believe::Internal::AnyHash) }
 
       # Away team ID
       sig { returns(String) }
@@ -69,20 +66,14 @@ module Believe
       attr_accessor :ted_halftime_speech
 
       # Total ticket revenue in GBP
-      sig do
-        returns(
-          T.nilable(::Believe::MatchCreateParams::TicketRevenueGbp::Variants)
-        )
-      end
+      sig { returns(T.nilable(::Believe::MatchCreateParams::TicketRevenueGbp::Variants)) }
       attr_accessor :ticket_revenue_gbp
 
       # Key moments that changed the match
       sig { returns(T.nilable(T::Array[::Believe::TurningPoint])) }
       attr_reader :turning_points
 
-      sig do
-        params(turning_points: T::Array[::Believe::TurningPoint::OrHash]).void
-      end
+      sig { params(turning_points: T::Array[::Believe::TurningPoint::OrHash]).void }
       attr_writer :turning_points
 
       # Temperature at kickoff in Celsius
@@ -103,75 +94,71 @@ module Believe
           possession_percentage: T.nilable(Float),
           result: ::Believe::MatchResult::OrSymbol,
           ted_halftime_speech: T.nilable(String),
-          ticket_revenue_gbp:
-            T.nilable(::Believe::MatchCreateParams::TicketRevenueGbp::Variants),
+          ticket_revenue_gbp: T.nilable(::Believe::MatchCreateParams::TicketRevenueGbp::Variants),
           turning_points: T::Array[::Believe::TurningPoint::OrHash],
           weather_temp_celsius: T.nilable(Float),
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
       def self.new(
         # Away team ID
-        away_team_id:,
+      away_team_id:,
         # Match date and time
-        date:,
+      date:,
         # Home team ID
-        home_team_id:,
+      home_team_id:,
         # Type of match
-        match_type:,
+      match_type:,
         # Match attendance
-        attendance: nil,
+      attendance: nil,
         # Away team score
-        away_score: nil,
+      away_score: nil,
         # Episode ID where this match is featured
-        episode_id: nil,
+      episode_id: nil,
         # Home team score
-        home_score: nil,
+      home_score: nil,
         # The life lesson learned from this match
-        lesson_learned: nil,
+      lesson_learned: nil,
         # Home team possession percentage
-        possession_percentage: nil,
+      possession_percentage: nil,
         # Match result from home team perspective
-        result: nil,
+      result: nil,
         # Ted's inspirational halftime speech
-        ted_halftime_speech: nil,
+      ted_halftime_speech: nil,
         # Total ticket revenue in GBP
-        ticket_revenue_gbp: nil,
+      ticket_revenue_gbp: nil,
         # Key moments that changed the match
-        turning_points: nil,
+      turning_points: nil,
         # Temperature at kickoff in Celsius
-        weather_temp_celsius: nil,
+      weather_temp_celsius: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       sig do
-        override.returns(
-          {
-            away_team_id: String,
-            date: Time,
-            home_team_id: String,
-            match_type: ::Believe::MatchType::OrSymbol,
-            attendance: T.nilable(Integer),
-            away_score: Integer,
-            episode_id: T.nilable(String),
-            home_score: Integer,
-            lesson_learned: T.nilable(String),
-            possession_percentage: T.nilable(Float),
-            result: ::Believe::MatchResult::OrSymbol,
-            ted_halftime_speech: T.nilable(String),
-            ticket_revenue_gbp:
-              T.nilable(
-                ::Believe::MatchCreateParams::TicketRevenueGbp::Variants
-              ),
-            turning_points: T::Array[::Believe::TurningPoint],
-            weather_temp_celsius: T.nilable(Float),
-            request_options: ::Believe::RequestOptions
-          }
-        )
+        override
+          .returns(
+            {
+              away_team_id: String,
+              date: Time,
+              home_team_id: String,
+              match_type: ::Believe::MatchType::OrSymbol,
+              attendance: T.nilable(Integer),
+              away_score: Integer,
+              episode_id: T.nilable(String),
+              home_score: Integer,
+              lesson_learned: T.nilable(String),
+              possession_percentage: T.nilable(Float),
+              result: ::Believe::MatchResult::OrSymbol,
+              ted_halftime_speech: T.nilable(String),
+              ticket_revenue_gbp: T.nilable(::Believe::MatchCreateParams::TicketRevenueGbp::Variants),
+              turning_points: T::Array[::Believe::TurningPoint],
+              weather_temp_celsius: T.nilable(Float),
+              request_options: ::Believe::RequestOptions
+            }
+          )
       end
-      def to_hash
-      end
+      def to_hash; end
 
       # Total ticket revenue in GBP
       module TicketRevenueGbp
@@ -179,13 +166,8 @@ module Believe
 
         Variants = T.type_alias { T.any(Float, String) }
 
-        sig do
-          override.returns(
-            T::Array[::Believe::MatchCreateParams::TicketRevenueGbp::Variants]
-          )
-        end
-        def self.variants
-        end
+        sig { override.returns(T::Array[::Believe::MatchCreateParams::TicketRevenueGbp::Variants]) }
+        def self.variants; end
       end
     end
   end

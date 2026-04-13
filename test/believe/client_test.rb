@@ -40,7 +40,7 @@ class BelieveTest < Minitest::Test
     believe = ::Believe::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(::Believe::Errors::InternalServerError) do
-      believe.characters.list
+      believe.characters.list 
     end
 
     assert_requested(:any, /./, times: 3)
@@ -52,7 +52,7 @@ class BelieveTest < Minitest::Test
     believe = ::Believe::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 3)
 
     assert_raises(::Believe::Errors::InternalServerError) do
-      believe.characters.list
+      believe.characters.list 
     end
 
     assert_requested(:any, /./, times: 4)
@@ -92,7 +92,7 @@ class BelieveTest < Minitest::Test
     believe = ::Believe::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
 
     assert_raises(::Believe::Errors::InternalServerError) do
-      believe.characters.list
+      believe.characters.list 
     end
 
     assert_requested(:any, /./, times: 2)
@@ -112,7 +112,7 @@ class BelieveTest < Minitest::Test
 
     Thread.current.thread_variable_set(:time_now, time_now)
     assert_raises(::Believe::Errors::InternalServerError) do
-      believe.characters.list
+      believe.characters.list 
     end
     Thread.current.thread_variable_set(:time_now, nil)
 
@@ -130,7 +130,7 @@ class BelieveTest < Minitest::Test
     believe = ::Believe::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
 
     assert_raises(::Believe::Errors::InternalServerError) do
-      believe.characters.list
+      believe.characters.list 
     end
 
     assert_requested(:any, /./, times: 2)
@@ -143,7 +143,7 @@ class BelieveTest < Minitest::Test
     believe = ::Believe::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(::Believe::Errors::InternalServerError) do
-      believe.characters.list
+      believe.characters.list 
     end
 
     3.times do

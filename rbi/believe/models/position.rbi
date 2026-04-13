@@ -15,8 +15,7 @@ module Believe
       FORWARD = T.let(:forward, ::Believe::Position::TaggedSymbol)
 
       sig { override.returns(T::Array[::Believe::Position::TaggedSymbol]) }
-      def self.values
-      end
+      def self.values; end
     end
   end
 end

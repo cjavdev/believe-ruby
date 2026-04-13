@@ -1,8 +1,7 @@
 module Believe
   module Models
     module Matches
-      type commentary_stream_params =
-        { match_id: String } & ::Believe::Internal::Type::request_parameters
+      type commentary_stream_params = ({match_id: String} & ::Believe::Internal::Type::request_parameters)
 
       class CommentaryStreamParams < ::Believe::Internal::Type::BaseModel
         extend ::Believe::Internal::Type::RequestParameters::Converter
@@ -10,15 +9,9 @@ module Believe
 
         attr_accessor match_id: String
 
-        def initialize: (
-          match_id: String,
-          ?request_options: ::Believe::request_opts
-        ) -> void
+        def initialize: (match_id: String, ?request_options: ::Believe::request_opts) -> void
 
-        def to_hash: -> {
-          match_id: String,
-          request_options: ::Believe::RequestOptions
-        }
+        def to_hash: () -> {match_id: String, request_options: ::Believe::RequestOptions}
       end
     end
   end

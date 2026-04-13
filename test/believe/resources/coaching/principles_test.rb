@@ -2,7 +2,7 @@
 
 require_relative "../../test_helper"
 
-class Believe::Test::Resources::Coaching::PrinciplesTest < Believe::Test::ResourceTest
+class Believe::Test::Resources::Coaching::PrinciplesTest < ::Believe::Test::ResourceTest
   def test_retrieve
     skip("Mock server tests are disabled")
 

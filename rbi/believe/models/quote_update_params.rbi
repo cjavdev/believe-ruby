@@ -6,10 +6,7 @@ module Believe
       extend ::Believe::Internal::Type::RequestParameters::Converter
       include ::Believe::Internal::Type::RequestParameters
 
-      OrHash =
-        T.type_alias do
-          T.any(::Believe::QuoteUpdateParams, ::Believe::Internal::AnyHash)
-        end
+      OrHash = T.type_alias { T.any(::Believe::QuoteUpdateParams, ::Believe::Internal::AnyHash) }
 
       sig { returns(String) }
       attr_accessor :quote_id
@@ -59,13 +56,13 @@ module Believe
           is_inspirational: T.nilable(T::Boolean),
           moment_type: T.nilable(::Believe::QuoteMoment::OrSymbol),
           popularity_score: T.nilable(Float),
-          secondary_themes:
-            T.nilable(T::Array[::Believe::QuoteTheme::OrSymbol]),
+          secondary_themes: T.nilable(T::Array[::Believe::QuoteTheme::OrSymbol]),
           text: T.nilable(String),
           theme: T.nilable(::Believe::QuoteTheme::OrSymbol),
           times_shared: T.nilable(Integer),
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
       def self.new(
         quote_id:,
@@ -75,39 +72,37 @@ module Believe
         is_funny: nil,
         is_inspirational: nil,
         # Types of moments when quotes occur.
-        moment_type: nil,
+      moment_type: nil,
         popularity_score: nil,
         secondary_themes: nil,
         text: nil,
         # Themes that quotes can be categorized under.
-        theme: nil,
+      theme: nil,
         times_shared: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       sig do
-        override.returns(
-          {
-            quote_id: String,
-            character_id: T.nilable(String),
-            context: T.nilable(String),
-            episode_id: T.nilable(String),
-            is_funny: T.nilable(T::Boolean),
-            is_inspirational: T.nilable(T::Boolean),
-            moment_type: T.nilable(::Believe::QuoteMoment::OrSymbol),
-            popularity_score: T.nilable(Float),
-            secondary_themes:
-              T.nilable(T::Array[::Believe::QuoteTheme::OrSymbol]),
-            text: T.nilable(String),
-            theme: T.nilable(::Believe::QuoteTheme::OrSymbol),
-            times_shared: T.nilable(Integer),
-            request_options: ::Believe::RequestOptions
-          }
-        )
+        override
+          .returns(
+            {
+              quote_id: String,
+              character_id: T.nilable(String),
+              context: T.nilable(String),
+              episode_id: T.nilable(String),
+              is_funny: T.nilable(T::Boolean),
+              is_inspirational: T.nilable(T::Boolean),
+              moment_type: T.nilable(::Believe::QuoteMoment::OrSymbol),
+              popularity_score: T.nilable(Float),
+              secondary_themes: T.nilable(T::Array[::Believe::QuoteTheme::OrSymbol]),
+              text: T.nilable(String),
+              theme: T.nilable(::Believe::QuoteTheme::OrSymbol),
+              times_shared: T.nilable(Integer),
+              request_options: ::Believe::RequestOptions
+            }
+          )
       end
-      def to_hash
-      end
+      def to_hash; end
     end
   end
 end

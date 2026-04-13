@@ -2,5 +2,5 @@
 
 require_relative "../test_helper"
 
-class Believe::Test::Resources::ClientTest < Believe::Test::ResourceTest
+class Believe::Test::Resources::ClientTest < ::Believe::Test::ResourceTest
 end

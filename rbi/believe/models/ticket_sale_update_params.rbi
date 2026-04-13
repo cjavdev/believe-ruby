@@ -6,10 +6,7 @@ module Believe
       extend ::Believe::Internal::Type::RequestParameters::Converter
       include ::Believe::Internal::Type::RequestParameters
 
-      OrHash =
-        T.type_alias do
-          T.any(::Believe::TicketSaleUpdateParams, ::Believe::Internal::AnyHash)
-        end
+      OrHash = T.type_alias { T.any(::Believe::TicketSaleUpdateParams, ::Believe::Internal::AnyHash) }
 
       sig { returns(String) }
       attr_accessor :ticket_sale_id
@@ -67,7 +64,8 @@ module Believe
           total: T.nilable(String),
           unit_price: T.nilable(String),
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
       def self.new(
         ticket_sale_id:,
@@ -78,38 +76,37 @@ module Believe
         discount: nil,
         match_id: nil,
         # How the ticket was purchased.
-        purchase_method: nil,
+      purchase_method: nil,
         quantity: nil,
         subtotal: nil,
         tax: nil,
         total: nil,
         unit_price: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       sig do
-        override.returns(
-          {
-            ticket_sale_id: String,
-            buyer_email: T.nilable(String),
-            buyer_name: T.nilable(String),
-            coupon_code: T.nilable(String),
-            currency: T.nilable(String),
-            discount: T.nilable(String),
-            match_id: T.nilable(String),
-            purchase_method: T.nilable(::Believe::PurchaseMethod::OrSymbol),
-            quantity: T.nilable(Integer),
-            subtotal: T.nilable(String),
-            tax: T.nilable(String),
-            total: T.nilable(String),
-            unit_price: T.nilable(String),
-            request_options: ::Believe::RequestOptions
-          }
-        )
+        override
+          .returns(
+            {
+              ticket_sale_id: String,
+              buyer_email: T.nilable(String),
+              buyer_name: T.nilable(String),
+              coupon_code: T.nilable(String),
+              currency: T.nilable(String),
+              discount: T.nilable(String),
+              match_id: T.nilable(String),
+              purchase_method: T.nilable(::Believe::PurchaseMethod::OrSymbol),
+              quantity: T.nilable(Integer),
+              subtotal: T.nilable(String),
+              tax: T.nilable(String),
+              total: T.nilable(String),
+              unit_price: T.nilable(String),
+              request_options: ::Believe::RequestOptions
+            }
+          )
       end
-      def to_hash
-      end
+      def to_hash; end
     end
   end
 end

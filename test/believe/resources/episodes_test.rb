@@ -2,14 +2,14 @@
 
 require_relative "../test_helper"
 
-class Believe::Test::Resources::EpisodesTest < Believe::Test::ResourceTest
+class Believe::Test::Resources::EpisodesTest < ::Believe::Test::ResourceTest
   def test_create_required_params
     skip("Mock server tests are disabled")
 
     response =
       @believe.episodes.create(
         air_date: "2020-10-02",
-        character_focus: %w[ted-lasso coach-beard higgins nate],
+        character_focus: ["ted-lasso", "coach-beard", "higgins", "nate"],
         director: "MJ Delaney",
         episode_number: 8,
         main_theme: "The power of vulnerability and male friendship",

@@ -6,10 +6,7 @@ module Believe
       extend ::Believe::Internal::Type::RequestParameters::Converter
       include ::Believe::Internal::Type::RequestParameters
 
-      OrHash =
-        T.type_alias do
-          T.any(::Believe::MatchStreamLiveParams, ::Believe::Internal::AnyHash)
-        end
+      OrHash = T.type_alias { T.any(::Believe::MatchStreamLiveParams, ::Believe::Internal::AnyHash) }
 
       # Away team name
       sig { returns(T.nilable(String)) }
@@ -46,34 +43,34 @@ module Believe
           home_team: String,
           speed: Float,
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(T.attached_class)
+        )
+          .returns(T.attached_class)
       end
       def self.new(
         # Away team name
-        away_team: nil,
+      away_team: nil,
         # How eventful the match should be (1=boring, 10=chaos)
-        excitement_level: nil,
+      excitement_level: nil,
         # Home team name
-        home_team: nil,
+      home_team: nil,
         # Simulation speed multiplier (1.0 = real-time)
-        speed: nil,
+      speed: nil,
         request_options: {}
-      )
-      end
+      ); end
 
       sig do
-        override.returns(
-          {
-            away_team: String,
-            excitement_level: Integer,
-            home_team: String,
-            speed: Float,
-            request_options: ::Believe::RequestOptions
-          }
-        )
+        override
+          .returns(
+            {
+              away_team: String,
+              excitement_level: Integer,
+              home_team: String,
+              speed: Float,
+              request_options: ::Believe::RequestOptions
+            }
+          )
       end
-      def to_hash
-      end
+      def to_hash; end
     end
   end
 end
