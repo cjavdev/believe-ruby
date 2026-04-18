@@ -2,10 +2,10 @@
 
 module Believe
   module Models
-    class Character < ::Believe::Internal::Type::BaseModel
+    class Characterz < ::Believe::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
-          T.any(::Believe::Character, ::Believe::Internal::AnyHash)
+          T.any(::Believe::Characterz, ::Believe::Internal::AnyHash)
         end
 
       # Unique identifier
