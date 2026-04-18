@@ -16,7 +16,7 @@ class Believe::Test::Resources::CharactersTest < Believe::Test::ResourceTest
       )
 
     assert_pattern do
-      response => ::Believe::Character
+      response => ::Believe::Characterz
     end
 
     assert_pattern do
@@ -45,7 +45,7 @@ class Believe::Test::Resources::CharactersTest < Believe::Test::ResourceTest
     response = @believe.characters.retrieve("character_id")
 
     assert_pattern do
-      response => ::Believe::Character
+      response => ::Believe::Characterz
     end
 
     assert_pattern do
@@ -74,7 +74,7 @@ class Believe::Test::Resources::CharactersTest < Believe::Test::ResourceTest
     response = @believe.characters.update("character_id")
 
     assert_pattern do
-      response => ::Believe::Character
+      response => ::Believe::Characterz
     end
 
     assert_pattern do
@@ -110,7 +110,7 @@ class Believe::Test::Resources::CharactersTest < Believe::Test::ResourceTest
     return if row.nil?
 
     assert_pattern do
-      row => ::Believe::Character
+      row => ::Believe::Characterz
     end
 
     assert_pattern do
