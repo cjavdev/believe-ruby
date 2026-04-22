@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.0 (2026-04-22)
+
+Full Changelog: [v0.3.0...v0.4.0](https://github.com/cjavdev/believe-ruby/compare/v0.3.0...v0.4.0)
+
+### Features
+
+* **api:** manual updates ([ad9a42a](https://github.com/cjavdev/believe-ruby/commit/ad9a42a9f70c1089c74df000b2b381370e71cae3))
+
 ## 0.3.0 (2026-04-18)
 
 Full Changelog: [v0.2.1...v0.3.0](https://github.com/cjavdev/believe-ruby/compare/v0.2.1...v0.3.0)
