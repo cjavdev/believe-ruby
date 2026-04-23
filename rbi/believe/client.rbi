@@ -63,8 +63,7 @@ module Believe
     sig { returns(::Believe::Resources::Stream) }
     attr_reader :stream
 
-    # Team members with union types (oneOf) - Players, Coaches, Medical Staff,
-    # Equipment Managers
+    # Team members with union types (oneOf) - Players, Coaches, Medical Staff, Equipment Managers
     sig { returns(::Believe::Resources::TeamMembers) }
     attr_reader :team_members
 
@@ -72,8 +71,7 @@ module Believe
     sig { returns(::Believe::Resources::Webhooks) }
     attr_reader :webhooks
 
-    # Ticket sales with 300 records for practicing pagination, filtering, and
-    # financial data
+    # Ticket sales with 300 records for practicing pagination, filtering, and financial data
     sig { returns(::Believe::Resources::TicketSales) }
     attr_reader :ticket_sales
 
@@ -114,8 +112,7 @@ module Believe
     def self.new(
       # Defaults to `ENV["BELIEVE_API_KEY"]`
       api_key: ENV["BELIEVE_API_KEY"],
-      # Override the default base URL for the API, e.g.,
-      # `"https://api.example.com/v2/"`. Defaults to `ENV["BELIEVE_BASE_URL"]`
+      # Override the default base URL for the API, e.g., `"https://api.example.com/v2/"`. Defaults to `ENV["BELIEVE_BASE_URL"]`
       base_url: ENV["BELIEVE_BASE_URL"],
       # Max number of retries to attempt after a failed retryable request.
       max_retries: ::Believe::Client::DEFAULT_MAX_RETRIES,

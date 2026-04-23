@@ -219,13 +219,11 @@ module Believe
 
       # WebSocket endpoint for real-time live match simulation.
       #
-      # Connect to receive a stream of match events as they happen in a simulated
-      # football match.
+      # Connect to receive a stream of match events as they happen in a simulated football match.
       #
       # ## Connection
       #
-      # Connect via WebSocket with optional query parameters to customize the
-      # simulation.
+      # Connect via WebSocket with optional query parameters to customize the simulation.
       #
       # ## Example WebSocket URL
       #
@@ -236,7 +234,6 @@ module Believe
       # ## Server Messages
       #
       # The server sends JSON messages with these types:
-      #
       # - `match_start` - When the match begins
       # - `match_event` - For each match event (goals, fouls, cards, etc.)
       # - `match_end` - When the match concludes
@@ -246,7 +243,6 @@ module Believe
       # ## Client Messages
       #
       # Send JSON to control the simulation:
-      #
       # - `{"action": "ping"}` - Keep-alive, server responds with `{"type": "pong"}`
       # - `{"action": "pause"}` - Pause the simulation
       # - `{"action": "resume"}` - Resume a paused simulation

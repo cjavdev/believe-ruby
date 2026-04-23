@@ -5,11 +5,9 @@ module Believe
     module Type
       # @api private
       #
-      # Either `Pathname` or `StringIO`, or `IO`, or
-      # `::Believe::Internal::Type::FileInput`.
+      # Either `Pathname` or `StringIO`, or `IO`, or `::Believe::Internal::Type::FileInput`.
       #
-      # Note: when `IO` is used, all retries are disabled, since many IO` streams are
-      # not rewindable.
+      # Note: when `IO` is used, all retries are disabled, since many IO` streams are not rewindable.
       class FileInput
         extend ::Believe::Internal::Type::Converter
 

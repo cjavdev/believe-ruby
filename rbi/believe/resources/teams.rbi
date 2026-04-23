@@ -132,8 +132,7 @@ module Believe
       )
       end
 
-      # Get a paginated list of all teams with optional filtering by league or culture
-      # score.
+      # Get a paginated list of all teams with optional filtering by league or culture score.
       sig do
         params(
           league: T.nilable(::Believe::League::OrSymbol),

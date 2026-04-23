@@ -47,7 +47,7 @@ module Believe
       required :quantity, Integer
 
       # @!attribute subtotal
-      #   Subtotal before discount and tax (unit_price \* quantity)
+      #   Subtotal before discount and tax (unit_price * quantity)
       #
       #   @return [String]
       required :subtotal, String
@@ -99,7 +99,7 @@ module Believe
       #
       #   @param quantity [Integer] Number of tickets purchased
       #
-      #   @param subtotal [String] Subtotal before discount and tax (unit_price \* quantity)
+      #   @param subtotal [String] Subtotal before discount and tax (unit_price * quantity)
       #
       #   @param tax [String] Tax amount (20% UK VAT on discounted subtotal)
       #

@@ -131,8 +131,7 @@ module Believe
         )
       end
 
-      # Get a paginated list of all teams with optional filtering by league or culture
-      # score.
+      # Get a paginated list of all teams with optional filtering by league or culture score.
       #
       # @overload list(league: nil, limit: nil, min_culture_score: nil, skip: nil, request_options: {})
       #

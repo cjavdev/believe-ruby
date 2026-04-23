@@ -36,7 +36,7 @@ module Believe
       sig { returns(Integer) }
       attr_accessor :quantity
 
-      # Subtotal before discount and tax (unit_price \* quantity)
+      # Subtotal before discount and tax (unit_price * quantity)
       sig { returns(String) }
       attr_accessor :subtotal
 
@@ -93,7 +93,7 @@ module Believe
         purchase_method:,
         # Number of tickets purchased
         quantity:,
-        # Subtotal before discount and tax (unit_price \* quantity)
+        # Subtotal before discount and tax (unit_price * quantity)
         subtotal:,
         # Tax amount (20% UK VAT on discounted subtotal)
         tax:,

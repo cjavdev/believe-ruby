@@ -5,8 +5,7 @@ module Believe
     class Matches
       # Server-Sent Events (SSE) streaming endpoints
       class Commentary
-        # Stream live match commentary for a specific match. Uses Server-Sent Events (SSE)
-        # to stream commentary events in real-time.
+        # Stream live match commentary for a specific match. Uses Server-Sent Events (SSE) to stream commentary events in real-time.
         sig do
           params(
             match_id: String,

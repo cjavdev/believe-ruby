@@ -109,8 +109,7 @@ module Believe
         )
       end
 
-      # Get a paginated list of all Ted Lasso episodes with optional filtering by
-      # season.
+      # Get a paginated list of all Ted Lasso episodes with optional filtering by season.
       #
       # @overload list(character_focus: nil, limit: nil, season: nil, skip: nil, request_options: {})
       #
