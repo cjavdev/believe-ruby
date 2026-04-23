@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.1 (2026-04-23)
+
+Full Changelog: [v0.4.0...v0.4.1](https://github.com/cjavdev/believe-ruby/compare/v0.4.0...v0.4.1)
+
+### Chores
+
+* **internal:** more robust bootstrap script ([7e5f5c7](https://github.com/cjavdev/believe-ruby/commit/7e5f5c7339f8a8568d024990ff62b925b00c5373))
+
 ## 0.4.0 (2026-04-22)
 
 Full Changelog: [v0.3.0...v0.4.0](https://github.com/cjavdev/believe-ruby/compare/v0.3.0...v0.4.0)
