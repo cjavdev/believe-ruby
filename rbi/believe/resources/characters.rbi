@@ -22,7 +22,7 @@ module Believe
           signature_quotes: T::Array[String],
           team_id: T.nilable(String),
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(::Believe::Character)
+        ).returns(::Believe::Characterz)
       end
       def create(
         # Character background and history
@@ -60,7 +60,7 @@ module Believe
         params(
           character_id: String,
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(::Believe::Character)
+        ).returns(::Believe::Characterz)
       end
       def retrieve(character_id, request_options: {})
       end
@@ -84,7 +84,7 @@ module Believe
           signature_quotes: T.nilable(T::Array[String]),
           team_id: T.nilable(String),
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(::Believe::Character)
+        ).returns(::Believe::Characterz)
       end
       def update(
         character_id,
@@ -116,7 +116,7 @@ module Believe
           skip: Integer,
           team_id: T.nilable(String),
           request_options: ::Believe::RequestOptions::OrHash
-        ).returns(::Believe::Internal::SkipLimitPage[::Believe::Character])
+        ).returns(::Believe::Internal::SkipLimitPage[::Believe::Characterz])
       end
       def list(
         # Maximum number of items to return (max: 100)
