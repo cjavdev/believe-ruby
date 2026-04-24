@@ -438,8 +438,8 @@ module Believe
         # @return [Hash{Symbol=>Object}]
         #
         # @example
-        #   # `characterz` is a `::Believe::Characterz`
-        #   characterz => {
+        #   # `character` is a `::Believe::Character`
+        #   character => {
         #     id: id,
         #     background: background,
         #     emotional_stats: emotional_stats
