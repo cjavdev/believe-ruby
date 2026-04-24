@@ -11,8 +11,6 @@ module Believe
 
   BiscuitRetrieveParams = ::Believe::Models::BiscuitRetrieveParams
 
-  Character = ::Believe::Models::Character
-
   CharacterCreateParams = ::Believe::Models::CharacterCreateParams
 
   CharacterDeleteParams = ::Believe::Models::CharacterDeleteParams
@@ -26,6 +24,8 @@ module Believe
   CharacterRole = ::Believe::Models::CharacterRole
 
   CharacterUpdateParams = ::Believe::Models::CharacterUpdateParams
+
+  Characterz = ::Believe::Models::Characterz
 
   ClientGetWelcomeParams = ::Believe::Models::ClientGetWelcomeParams
 
