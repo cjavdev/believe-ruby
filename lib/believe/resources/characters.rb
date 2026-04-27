@@ -36,7 +36,7 @@ module Believe
       #
       # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [::Believe::Models::Characterz]
+      # @return [::Believe::Models::Character]
       #
       # @see ::Believe::Models::CharacterCreateParams
       def create(params)
@@ -45,7 +45,7 @@ module Believe
           method: :post,
           path: "characters",
           body: parsed,
-          model: ::Believe::Characterz,
+          model: ::Believe::Character,
           options: options
         )
       end
@@ -57,14 +57,14 @@ module Believe
       # @param character_id [String]
       # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [::Believe::Models::Characterz]
+      # @return [::Believe::Models::Character]
       #
       # @see ::Believe::Models::CharacterRetrieveParams
       def retrieve(character_id, params = {})
         @client.request(
           method: :get,
           path: ["characters/%1$s", character_id],
-          model: ::Believe::Characterz,
+          model: ::Believe::Character,
           options: params[:request_options]
         )
       end
@@ -103,7 +103,7 @@ module Believe
       #
       # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [::Believe::Models::Characterz]
+      # @return [::Believe::Models::Character]
       #
       # @see ::Believe::Models::CharacterUpdateParams
       def update(character_id, params = {})
@@ -112,7 +112,7 @@ module Believe
           method: :patch,
           path: ["characters/%1$s", character_id],
           body: parsed,
-          model: ::Believe::Characterz,
+          model: ::Believe::Character,
           options: options
         )
       end
@@ -133,7 +133,7 @@ module Believe
       #
       # @param request_options [::Believe::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [::Believe::Internal::SkipLimitPage<::Believe::Models::Characterz>]
+      # @return [::Believe::Internal::SkipLimitPage<::Believe::Models::Character>]
       #
       # @see ::Believe::Models::CharacterListParams
       def list(params = {})
@@ -144,7 +144,7 @@ module Believe
           path: "characters",
           query: query,
           page: ::Believe::Internal::SkipLimitPage,
-          model: ::Believe::Characterz,
+          model: ::Believe::Character,
           options: options
         )
       end
