@@ -16,12 +16,12 @@ module Believe
         ?signature_quotes: ::Array[String],
         ?team_id: String?,
         ?request_options: ::Believe::request_opts
-      ) -> ::Believe::Character
+      ) -> ::Believe::Characterz
 
       def retrieve: (
         String character_id,
         ?request_options: ::Believe::request_opts
-      ) -> ::Believe::Character
+      ) -> ::Believe::Characterz
 
       def update: (
         String character_id,
@@ -39,7 +39,7 @@ module Believe
         ?signature_quotes: ::Array[String]?,
         ?team_id: String?,
         ?request_options: ::Believe::request_opts
-      ) -> ::Believe::Character
+      ) -> ::Believe::Characterz
 
       def list: (
         ?limit: Integer,
@@ -48,7 +48,7 @@ module Believe
         ?skip: Integer,
         ?team_id: String?,
         ?request_options: ::Believe::request_opts
-      ) -> ::Believe::Internal::SkipLimitPage[::Believe::Character]
+      ) -> ::Believe::Internal::SkipLimitPage[::Believe::Characterz]
 
       def delete: (
         String character_id,
