@@ -3,7 +3,7 @@
 module Believe
   module Models
     # @see ::Believe::Resources::Characters#create
-    class Character < ::Believe::Internal::Type::BaseModel
+    class Characterz < ::Believe::Internal::Type::BaseModel
       # @!attribute id
       #   Unique identifier
       #
