@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.7.0 (2026-04-28)
+
+Full Changelog: [v0.6.0...v0.7.0](https://github.com/cjavdev/believe-ruby/compare/v0.6.0...v0.7.0)
+
+### Features
+
+* **api:** manual updates ([399c05d](https://github.com/cjavdev/believe-ruby/commit/399c05d449a032d127b85e45d4927c9c0f78223b))
+* support setting headers via env ([7d761a8](https://github.com/cjavdev/believe-ruby/commit/7d761a8240737ab83a9ca8501956e80546e480bb))
+
 ## 0.6.0 (2026-04-27)
 
 Full Changelog: [v0.5.0...v0.6.0](https://github.com/cjavdev/believe-ruby/compare/v0.5.0...v0.6.0)
