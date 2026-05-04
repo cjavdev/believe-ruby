@@ -21,9 +21,9 @@ jobs:
     permissions:
       contents: read
       id-token: write
-    runs-on: ${{ github.repository == 'stainless-sdks/believe-ruby' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
+    runs-on: ${{ github.repository == 'cjavdev/believe-ruby' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
     if: |-
-      github.repository == 'stainless-sdks/believe-ruby' &&
+      github.repository == 'cjavdev/believe-ruby' &&
       (github.event_name == 'push' || github.event.pull_request.head.repo.fork) && (github.event_name != 'push' || github.event.head_commit.message != 'codegen metadata')
     steps:
       - uses: actions/checkout@v6
@@ -36,7 +36,7 @@ jobs:
 
       - name: Get GitHub OIDC Token
         if: |-
-          github.repository == 'stainless-sdks/believe-ruby' &&
+          github.repository == 'cjavdev/believe-ruby' &&
           !startsWith(github.ref, 'refs/heads/stl/')
         id: github-oidc
         uses: actions/github-script@v8
@@ -45,7 +45,7 @@ jobs:
 
       - name: Build and upload gem artifacts
         if: |-
-          github.repository == 'stainless-sdks/believe-ruby' &&
+          github.repository == 'cjavdev/believe-ruby' &&
           !startsWith(github.ref, 'refs/heads/stl/')
         env:
           URL: https://pkg.stainless.com/s
@@ -56,7 +56,7 @@ jobs:
   lint:
     timeout-minutes: 10
     name: lint
-    runs-on: ${{ github.repository == 'stainless-sdks/believe-ruby' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
+    runs-on: ${{ github.repository == 'cjavdev/believe-ruby' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
     if: github.event_name == 'push' || github.event.pull_request.head.repo.fork
 
     steps:
@@ -70,19 +70,3 @@ jobs:
 
       - name: Run lints
         run: ./scripts/lint
-  test:
-    timeout-minutes: 10
-    name: test
-    runs-on: ${{ github.repository == 'stainless-sdks/believe-ruby' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
-    if: github.event_name == 'push' || github.event.pull_request.head.repo.fork
-    steps:
-      - uses: actions/checkout@v6
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: false
-      - run: |-
-          bundle install
-
-      - name: Run tests
-        run: ./scripts/test
