@@ -23,7 +23,7 @@ module Believe
       required :diamond_dogs_advice, String
 
       # @!attribute potential_outcome
-      #   What resolution could look like
+      #   What resolution could look like if successful
       #
       #   @return [String]
       required :potential_outcome, String
@@ -49,7 +49,7 @@ module Believe
       #
       #   @param diamond_dogs_advice [String] Advice from the Diamond Dogs support group
       #
-      #   @param potential_outcome [String] What resolution could look like
+      #   @param potential_outcome [String] What resolution could look like if successful
       #
       #   @param steps_to_resolution [Array<String>] Concrete steps to resolve the conflict
       #
