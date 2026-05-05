@@ -17,7 +17,7 @@ module Believe
       required :diagnosis, String
 
       # @!attribute diamond_dogs_advice
-      #   Advice from the Diamond Dogs support group
+      #   Advice from the Diamond Dogs support groups
       #
       #   @return [String]
       required :diamond_dogs_advice, String
@@ -47,7 +47,7 @@ module Believe
       #
       #   @param diagnosis [String] Understanding the root cause
       #
-      #   @param diamond_dogs_advice [String] Advice from the Diamond Dogs support group
+      #   @param diamond_dogs_advice [String] Advice from the Diamond Dogs support groups
       #
       #   @param potential_outcome [String] What resolution could look like if successful
       #
