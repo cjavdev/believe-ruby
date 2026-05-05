@@ -19,11 +19,11 @@ module Believe
       sig { returns(String) }
       attr_accessor :diagnosis
 
-      # Advice from the Diamond Dogs support group
+      # Advice from the Diamond Dogs support groups
       sig { returns(String) }
       attr_accessor :diamond_dogs_advice
 
-      # What resolution could look like
+      # What resolution could look like if successful
       sig { returns(String) }
       attr_accessor :potential_outcome
 
@@ -51,9 +51,9 @@ module Believe
         barbecue_sauce_wisdom:,
         # Understanding the root cause
         diagnosis:,
-        # Advice from the Diamond Dogs support group
+        # Advice from the Diamond Dogs support groups
         diamond_dogs_advice:,
-        # What resolution could look like
+        # What resolution could look like if successful
         potential_outcome:,
         # Concrete steps to resolve the conflict
         steps_to_resolution:,
