@@ -22,29 +22,6 @@ jobs:
       - run: |-
           bundle install
 
-      - name: Verify RubyGems API key
-        env:
-          GEM_HOST_API_KEY: ${{ secrets.BELIEVE_GEM_HOST_API_KEY || secrets.GEM_HOST_API_KEY }}
-        run: |
-          if [ -z "${GEM_HOST_API_KEY}" ]; then
-            echo "::error::GEM_HOST_API_KEY secret is not set (or resolves to empty) for this job."
-            exit 1
-          fi
-          echo "key length: ${#GEM_HOST_API_KEY}"
-          status=$(curl -sS -o /tmp/rg_body -w "%{http_code}" \
-            -H "Authorization: ${GEM_HOST_API_KEY}" \
-            https://rubygems.org/api/v1/api_key.json)
-          echo "rubygems auth status: ${status}"
-          cat /tmp/rg_body; echo
-          if [ "${status}" != "200" ]; then
-            echo "::error::RubyGems rejected the API key (HTTP ${status}). Check the secret value, scopes, and MFA settings."
-            exit 1
-          fi
-          if ! grep -q '"push_rubygem"' /tmp/rg_body; then
-            echo "::error::API key is valid but missing the 'push_rubygem' scope."
-            exit 1
-          fi
-
       - name: Publish to RubyGems.org
         run: |
           bash ./bin/publish-gem
