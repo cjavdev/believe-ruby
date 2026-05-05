@@ -23,7 +23,8 @@ module Believe
         )
       end
 
-      # Get a paginated list of Ted's famous homemade biscuits! Each comes with a heartwarming message.
+      # Get a paginated list of Ted's famous homemade biscuits! Each comes with a
+      # heartwarming message.
       #
       # @overload list(limit: nil, skip: nil, request_options: {})
       #

@@ -38,7 +38,8 @@ module Believe
       end
       attr_accessor :event_type
 
-      # Webhook event sent when a team member (player, coach, staff) transfers between teams.
+      # Webhook event sent when a team member (player, coach, staff) transfers between
+      # teams.
       sig do
         params(
           created_at: Time,

@@ -69,7 +69,8 @@ module Believe
         sig { returns(String) }
         attr_accessor :text
 
-        # The emotional purpose of this chunk (e.g., greeting, acknowledgment, wisdom, affirmation, encouragement)
+        # The emotional purpose of this chunk (e.g., greeting, acknowledgment, wisdom,
+        # affirmation, encouragement)
         sig { returns(T.nilable(String)) }
         attr_accessor :emotional_beat
 
@@ -89,7 +90,8 @@ module Believe
           is_final:,
           # The text of this chunk
           text:,
-          # The emotional purpose of this chunk (e.g., greeting, acknowledgment, wisdom, affirmation, encouragement)
+          # The emotional purpose of this chunk (e.g., greeting, acknowledgment, wisdom,
+          # affirmation, encouragement)
           emotional_beat: nil
         )
         end

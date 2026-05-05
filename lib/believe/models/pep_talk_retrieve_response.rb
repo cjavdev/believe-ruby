@@ -44,13 +44,15 @@ module Believe
         required :text, String
 
         # @!attribute emotional_beat
-        #   The emotional purpose of this chunk (e.g., greeting, acknowledgment, wisdom, affirmation, encouragement)
+        #   The emotional purpose of this chunk (e.g., greeting, acknowledgment, wisdom,
+        #   affirmation, encouragement)
         #
         #   @return [String, nil]
         optional :emotional_beat, String, nil?: true
 
         # @!method initialize(chunk_id:, is_final:, text:, emotional_beat: nil)
-        #   Some parameter documentations has been truncated, see {::Believe::Models::PepTalkRetrieveResponse::Chunk} for more details.
+        #   Some parameter documentations has been truncated, see
+        #   {::Believe::Models::PepTalkRetrieveResponse::Chunk} for more details.
         #
         #   A chunk of a streaming pep talk from Ted.
         #

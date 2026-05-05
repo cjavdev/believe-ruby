@@ -113,7 +113,8 @@ module Believe
       )
       end
 
-      # Get a paginated list of all Ted Lasso episodes with optional filtering by season.
+      # Get a paginated list of all Ted Lasso episodes with optional filtering by
+      # season.
       sig do
         params(
           character_focus: T.nilable(String),

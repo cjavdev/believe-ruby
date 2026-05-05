@@ -1,5 +1,42 @@
 # Changelog
 
+<<<<<<< HEAD
+=======
+## 0.7.0 (2026-04-28)
+
+Full Changelog: [v0.6.0...v0.7.0](https://github.com/cjavdev/believe-ruby/compare/v0.6.0...v0.7.0)
+
+### Features
+
+* **api:** manual updates ([399c05d](https://github.com/cjavdev/believe-ruby/commit/399c05d449a032d127b85e45d4927c9c0f78223b))
+* support setting headers via env ([7d761a8](https://github.com/cjavdev/believe-ruby/commit/7d761a8240737ab83a9ca8501956e80546e480bb))
+
+## 0.6.0 (2026-04-27)
+
+Full Changelog: [v0.5.0...v0.6.0](https://github.com/cjavdev/believe-ruby/compare/v0.5.0...v0.6.0)
+
+### Features
+
+* **api:** manual updates ([0ee1c0e](https://github.com/cjavdev/believe-ruby/commit/0ee1c0eaa4d8b1d6af7f3222df89061b363135f2))
+
+## 0.5.0 (2026-04-24)
+
+Full Changelog: [v0.4.1...v0.5.0](https://github.com/cjavdev/believe-ruby/compare/v0.4.1...v0.5.0)
+
+### Features
+
+* **api:** manual updates ([600ebfe](https://github.com/cjavdev/believe-ruby/commit/600ebfe3fd999542835d6c881bd00c619ba95e32))
+* **api:** manual updates ([ef31096](https://github.com/cjavdev/believe-ruby/commit/ef31096e72cc9165b50f5f5e2fc7ea7d1c4c25e8))
+
+## 0.4.1 (2026-04-23)
+
+Full Changelog: [v0.4.0...v0.4.1](https://github.com/cjavdev/believe-ruby/compare/v0.4.0...v0.4.1)
+
+### Chores
+
+* **internal:** more robust bootstrap script ([7e5f5c7](https://github.com/cjavdev/believe-ruby/commit/7e5f5c7339f8a8568d024990ff62b925b00c5373))
+
+>>>>>>> de0dac5 (Apply custom code)
 ## 0.4.0 (2026-04-22)
 
 Full Changelog: [v0.3.0...v0.4.0](https://github.com/cjavdev/believe-ruby/compare/v0.3.0...v0.4.0)
