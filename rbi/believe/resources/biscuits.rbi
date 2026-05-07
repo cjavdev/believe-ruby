@@ -14,8 +14,7 @@ module Believe
       def retrieve(biscuit_id, request_options: {})
       end
 
-      # Get a paginated list of Ted's famous homemade biscuits! Each comes with a
-      # heartwarming message.
+      # Get a paginated list of Ted's famous homemade biscuits! Each comes with a heartwarming message.
       sig do
         params(
           limit: Integer,

@@ -4,9 +4,7 @@ module Believe
   module Resources
     # Server-Sent Events (SSE) streaming endpoints
     class PepTalk
-      # Get a motivational pep talk from Ted Lasso himself. By default returns the
-      # complete pep talk. Add `?stream=true` to get Server-Sent Events (SSE) streaming
-      # the pep talk chunk by chunk.
+      # Get a motivational pep talk from Ted Lasso himself. By default returns the complete pep talk. Add `?stream=true` to get Server-Sent Events (SSE) streaming the pep talk chunk by chunk.
       #
       # @overload retrieve(stream: nil, request_options: {})
       #
