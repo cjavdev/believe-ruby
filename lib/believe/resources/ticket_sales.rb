@@ -2,8 +2,7 @@
 
 module Believe
   module Resources
-    # Ticket sales with 300 records for practicing pagination, filtering, and
-    # financial data
+    # Ticket sales with 300 records for practicing pagination, filtering, and financial data
     class TicketSales
       # Record a new ticket sale.
       #
@@ -21,7 +20,7 @@ module Believe
       #
       # @param quantity [Integer] Number of tickets purchased
       #
-      # @param subtotal [String] Subtotal before discount and tax (unit_price \* quantity)
+      # @param subtotal [String] Subtotal before discount and tax (unit_price * quantity)
       #
       # @param tax [String] Tax amount (20% UK VAT on discounted subtotal)
       #
@@ -114,8 +113,7 @@ module Believe
         )
       end
 
-      # Get a paginated list of all ticket sales with optional filtering. With 300
-      # records, this endpoint is ideal for practicing pagination.
+      # Get a paginated list of all ticket sales with optional filtering. With 300 records, this endpoint is ideal for practicing pagination.
       #
       # @overload list(coupon_code: nil, currency: nil, limit: nil, match_id: nil, purchase_method: nil, skip: nil, request_options: {})
       #

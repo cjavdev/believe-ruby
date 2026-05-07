@@ -105,8 +105,8 @@ module Believe
 
         # @api private
         #
-        # Recursively merge one hash with another. If the values at a given key are not
-        # both hashes, just take the new value.
+        # Recursively merge one hash with another.
+        # If the values at a given key are not both hashes, just take the new value.
         sig do
           params(
             values: T::Array[T.anything],
@@ -443,8 +443,7 @@ module Believe
         #
         # Assumes Strings have been forced into having `Encoding::BINARY`.
         #
-        # This decoder is responsible for reassembling lines split across multiple
-        # fragments.
+        # This decoder is responsible for reassembling lines split across multiple fragments.
         sig do
           params(enum: T::Enumerable[String]).returns(T::Enumerable[String])
         end

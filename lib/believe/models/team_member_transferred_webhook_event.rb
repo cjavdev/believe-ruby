@@ -28,8 +28,7 @@ module Believe
       required :event_type, enum: -> { ::Believe::TeamMemberTransferredWebhookEvent::EventType }
 
       # @!method initialize(created_at:, data:, event_id:, event_type:)
-      #   Webhook event sent when a team member (player, coach, staff) transfers between
-      #   teams.
+      #   Webhook event sent when a team member (player, coach, staff) transfers between teams.
       #
       #   @param created_at [Time] When the event was created
       #

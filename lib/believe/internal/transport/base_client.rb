@@ -436,8 +436,7 @@ module Believe
           end
         end
 
-        # Execute the request specified by `req`. This is the method that all resource
-        # methods call into.
+        # Execute the request specified by `req`. This is the method that all resource methods call into.
         #
         # @overload request(method, path, query: {}, headers: {}, body: nil, unwrap: nil, page: nil, stream: nil, model: ::Believe::Internal::Type::Unknown, options: {})
         #

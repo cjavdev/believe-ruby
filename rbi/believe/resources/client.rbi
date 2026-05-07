@@ -3,8 +3,7 @@
 module Believe
   module Resources
     class Client
-      # WebSocket endpoints for real-time bidirectional communication - Live match
-      # simulation
+      # WebSocket endpoints for real-time bidirectional communication - Live match simulation
       sig { returns(::Believe::Resources::Client::Ws) }
       attr_reader :ws
 

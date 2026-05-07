@@ -1,11 +1,9 @@
 # typed: strong
 
 module Believe
-  # Specify HTTP behaviour to use for a specific request. These options supplement
-  # or override those provided at the client level.
+  # Specify HTTP behaviour to use for a specific request. These options supplement or override those provided at the client level.
   #
-  # When making a request, you can pass an actual {RequestOptions} instance, or
-  # simply pass a Hash with symbol keys matching the attributes on this class.
+  # When making a request, you can pass an actual {RequestOptions} instance, or simply pass a Hash with symbol keys matching the attributes on this class.
   class RequestOptions < ::Believe::Internal::Type::BaseModel
     OrHash =
       T.type_alias do
@@ -17,13 +15,11 @@ module Believe
     def self.validate!(opts)
     end
 
-    # Idempotency key to send with request and all associated retries. Will only be
-    # sent for write requests.
+    # Idempotency key to send with request and all associated retries. Will only be sent for write requests.
     sig { returns(T.nilable(String)) }
     attr_accessor :idempotency_key
 
-    # Extra query params to send with the request. These are `.merge`’d into any
-    # `query` given at the client level.
+    # Extra query params to send with the request. These are `.merge`’d into any `query` given at the client level.
     sig do
       returns(
         T.nilable(T::Hash[String, T.nilable(T.any(T::Array[String], String))])
@@ -31,13 +27,11 @@ module Believe
     end
     attr_accessor :extra_query
 
-    # Extra headers to send with the request. These are `.merged`’d into any
-    # `extra_headers` given at the client level.
+    # Extra headers to send with the request. These are `.merged`’d into any `extra_headers` given at the client level.
     sig { returns(T.nilable(T::Hash[String, T.nilable(String)])) }
     attr_accessor :extra_headers
 
-    # Extra data to send with the request. These are deep merged into any data
-    # generated as part of the normal request.
+    # Extra data to send with the request. These are deep merged into any data generated as part of the normal request.
     sig { returns(T.nilable(T.anything)) }
     attr_accessor :extra_body
 

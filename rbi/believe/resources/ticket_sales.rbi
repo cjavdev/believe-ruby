@@ -2,8 +2,7 @@
 
 module Believe
   module Resources
-    # Ticket sales with 300 records for practicing pagination, filtering, and
-    # financial data
+    # Ticket sales with 300 records for practicing pagination, filtering, and financial data
     class TicketSales
       # Record a new ticket sale.
       sig do
@@ -36,7 +35,7 @@ module Believe
         purchase_method:,
         # Number of tickets purchased
         quantity:,
-        # Subtotal before discount and tax (unit_price \* quantity)
+        # Subtotal before discount and tax (unit_price * quantity)
         subtotal:,
         # Tax amount (20% UK VAT on discounted subtotal)
         tax:,
@@ -100,8 +99,7 @@ module Believe
       )
       end
 
-      # Get a paginated list of all ticket sales with optional filtering. With 300
-      # records, this endpoint is ideal for practicing pagination.
+      # Get a paginated list of all ticket sales with optional filtering. With 300 records, this endpoint is ideal for practicing pagination.
       sig do
         params(
           coupon_code: T.nilable(String),
