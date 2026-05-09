@@ -1,0 +1,55 @@
+module Believe
+  module Models
+    type ticket_sale_list_params =
+      {
+        coupon_code: String?,
+        currency: String?,
+        limit: Integer,
+        match_id: String?,
+        purchase_method: ::Believe::Models::purchase_method?,
+        skip: Integer
+      }
+      & ::Believe::Internal::Type::request_parameters
+
+    class TicketSaleListParams < ::Believe::Internal::Type::BaseModel
+      extend ::Believe::Internal::Type::RequestParameters::Converter
+      include ::Believe::Internal::Type::RequestParameters
+
+      attr_accessor coupon_code: String?
+
+      attr_accessor currency: String?
+
+      attr_reader limit: Integer?
+
+      def limit=: (Integer) -> Integer
+
+      attr_accessor match_id: String?
+
+      attr_accessor purchase_method: ::Believe::Models::purchase_method?
+
+      attr_reader skip: Integer?
+
+      def skip=: (Integer) -> Integer
+
+      def initialize: (
+        ?coupon_code: String?,
+        ?currency: String?,
+        ?limit: Integer,
+        ?match_id: String?,
+        ?purchase_method: ::Believe::Models::purchase_method?,
+        ?skip: Integer,
+        ?request_options: ::Believe::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        coupon_code: String?,
+        currency: String?,
+        limit: Integer,
+        match_id: String?,
+        purchase_method: ::Believe::Models::purchase_method?,
+        skip: Integer,
+        request_options: ::Believe::RequestOptions
+      }
+    end
+  end
+end
