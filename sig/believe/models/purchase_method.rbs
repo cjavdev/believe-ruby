@@ -1,0 +1,16 @@
+module Believe
+  module Models
+    type purchase_method = :online | :box_office | :will_call | :phone
+
+    module PurchaseMethod
+      extend ::Believe::Internal::Type::Enum
+
+      ONLINE: :online
+      BOX_OFFICE: :box_office
+      WILL_CALL: :will_call
+      PHONE: :phone
+
+      def self?.values: -> ::Array[::Believe::Models::purchase_method]
+    end
+  end
+end
