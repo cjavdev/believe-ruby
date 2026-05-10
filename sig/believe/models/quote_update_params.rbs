@@ -10,6 +10,7 @@ module Believe
         is_inspirational: bool?,
         moment_type: ::Believe::Models::quote_moment?,
         popularity_score: Float?,
+        season: Integer?,
         secondary_themes: ::Array[::Believe::Models::quote_theme]?,
         text: String?,
         theme: ::Believe::Models::quote_theme?,
@@ -37,6 +38,8 @@ module Believe
 
       attr_accessor popularity_score: Float?
 
+      attr_accessor season: Integer?
+
       attr_accessor secondary_themes: ::Array[::Believe::Models::quote_theme]?
 
       attr_accessor text: String?
@@ -54,6 +57,7 @@ module Believe
         ?is_inspirational: bool?,
         ?moment_type: ::Believe::Models::quote_moment?,
         ?popularity_score: Float?,
+        ?season: Integer?,
         ?secondary_themes: ::Array[::Believe::Models::quote_theme]?,
         ?text: String?,
         ?theme: ::Believe::Models::quote_theme?,
@@ -70,6 +74,7 @@ module Believe
         is_inspirational: bool?,
         moment_type: ::Believe::Models::quote_moment?,
         popularity_score: Float?,
+        season: Integer?,
         secondary_themes: ::Array[::Believe::Models::quote_theme]?,
         text: String?,
         theme: ::Believe::Models::quote_theme?,

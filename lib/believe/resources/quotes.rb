@@ -6,7 +6,7 @@ module Believe
     class Quotes
       # Add a new memorable quote to the collection.
       #
-      # @overload create(character_id:, context:, moment_type:, text:, theme:, episode_id: nil, is_funny: nil, is_inspirational: nil, popularity_score: nil, secondary_themes: nil, times_shared: nil, request_options: {})
+      # @overload create(character_id:, context:, moment_type:, text:, theme:, episode_id: nil, is_funny: nil, is_inspirational: nil, popularity_score: nil, season: nil, secondary_themes: nil, times_shared: nil, request_options: {})
       #
       # @param character_id [String] ID of the character who said it
       #
@@ -25,6 +25,8 @@ module Believe
       # @param is_inspirational [Boolean] Whether this quote is inspirational
       #
       # @param popularity_score [Float, nil] Popularity/virality score (0-100)
+      #
+      # @param season [Integer, nil] Season number (1-3) when the quote occurred
       #
       # @param secondary_themes [Array<Symbol, ::Believe::Models::QuoteTheme>] Additional themes
       #
@@ -67,7 +69,7 @@ module Believe
 
       # Update specific fields of an existing quote.
       #
-      # @overload update(quote_id, character_id: nil, context: nil, episode_id: nil, is_funny: nil, is_inspirational: nil, moment_type: nil, popularity_score: nil, secondary_themes: nil, text: nil, theme: nil, times_shared: nil, request_options: {})
+      # @overload update(quote_id, character_id: nil, context: nil, episode_id: nil, is_funny: nil, is_inspirational: nil, moment_type: nil, popularity_score: nil, season: nil, secondary_themes: nil, text: nil, theme: nil, times_shared: nil, request_options: {})
       #
       # @param quote_id [String]
       #
@@ -84,6 +86,8 @@ module Believe
       # @param moment_type [Symbol, ::Believe::Models::QuoteMoment, nil] Types of moments when quotes occur.
       #
       # @param popularity_score [Float, nil]
+      #
+      # @param season [Integer, nil]
       #
       # @param secondary_themes [Array<Symbol, ::Believe::Models::QuoteTheme>, nil]
       #

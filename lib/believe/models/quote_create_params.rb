@@ -61,6 +61,12 @@ module Believe
       #   @return [Float, nil]
       optional :popularity_score, Float, nil?: true
 
+      # @!attribute season
+      #   Season number (1-3) when the quote occurred
+      #
+      #   @return [Integer, nil]
+      optional :season, Integer, nil?: true
+
       # @!attribute secondary_themes
       #   Additional themes
       #
@@ -73,7 +79,7 @@ module Believe
       #   @return [Integer, nil]
       optional :times_shared, Integer, nil?: true
 
-      # @!method initialize(character_id:, context:, moment_type:, text:, theme:, episode_id: nil, is_funny: nil, is_inspirational: nil, popularity_score: nil, secondary_themes: nil, times_shared: nil, request_options: {})
+      # @!method initialize(character_id:, context:, moment_type:, text:, theme:, episode_id: nil, is_funny: nil, is_inspirational: nil, popularity_score: nil, season: nil, secondary_themes: nil, times_shared: nil, request_options: {})
       #   @param character_id [String] ID of the character who said it
       #
       #   @param context [String] Context in which the quote was said
@@ -91,6 +97,8 @@ module Believe
       #   @param is_inspirational [Boolean] Whether this quote is inspirational
       #
       #   @param popularity_score [Float, nil] Popularity/virality score (0-100)
+      #
+      #   @param season [Integer, nil] Season number (1-3) when the quote occurred
       #
       #   @param secondary_themes [Array<Symbol, ::Believe::Models::QuoteTheme>] Additional themes
       #

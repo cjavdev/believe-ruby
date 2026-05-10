@@ -52,6 +52,10 @@ module Believe
       sig { returns(T.nilable(Float)) }
       attr_accessor :popularity_score
 
+      # Season number (1-3) when the quote occurred
+      sig { returns(T.nilable(Integer)) }
+      attr_accessor :season
+
       # Additional themes
       sig { returns(T.nilable(T::Array[::Believe::QuoteTheme::TaggedSymbol])) }
       attr_reader :secondary_themes
@@ -78,6 +82,7 @@ module Believe
           is_funny: T::Boolean,
           is_inspirational: T::Boolean,
           popularity_score: T.nilable(Float),
+          season: T.nilable(Integer),
           secondary_themes: T::Array[::Believe::QuoteTheme::OrSymbol],
           times_shared: T.nilable(Integer)
         ).returns(T.attached_class)
@@ -103,6 +108,8 @@ module Believe
         is_inspirational: nil,
         # Popularity/virality score (0-100)
         popularity_score: nil,
+        # Season number (1-3) when the quote occurred
+        season: nil,
         # Additional themes
         secondary_themes: nil,
         # Number of times shared on social media
@@ -123,6 +130,7 @@ module Believe
             is_funny: T::Boolean,
             is_inspirational: T::Boolean,
             popularity_score: T.nilable(Float),
+            season: T.nilable(Integer),
             secondary_themes: T::Array[::Believe::QuoteTheme::TaggedSymbol],
             times_shared: T.nilable(Integer)
           }
