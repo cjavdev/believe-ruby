@@ -31,6 +31,7 @@ class Believe::Test::Resources::QuotesTest < Believe::Test::ResourceTest
         is_funny: ::Believe::Internal::Type::Boolean | nil,
         is_inspirational: ::Believe::Internal::Type::Boolean | nil,
         popularity_score: Float | nil,
+        season: Integer | nil,
         secondary_themes: ^(::Believe::Internal::Type::ArrayOf[enum: ::Believe::QuoteTheme]) | nil,
         times_shared: Integer | nil
       }
@@ -58,6 +59,7 @@ class Believe::Test::Resources::QuotesTest < Believe::Test::ResourceTest
         is_funny: ::Believe::Internal::Type::Boolean | nil,
         is_inspirational: ::Believe::Internal::Type::Boolean | nil,
         popularity_score: Float | nil,
+        season: Integer | nil,
         secondary_themes: ^(::Believe::Internal::Type::ArrayOf[enum: ::Believe::QuoteTheme]) | nil,
         times_shared: Integer | nil
       }
@@ -85,6 +87,7 @@ class Believe::Test::Resources::QuotesTest < Believe::Test::ResourceTest
         is_funny: ::Believe::Internal::Type::Boolean | nil,
         is_inspirational: ::Believe::Internal::Type::Boolean | nil,
         popularity_score: Float | nil,
+        season: Integer | nil,
         secondary_themes: ^(::Believe::Internal::Type::ArrayOf[enum: ::Believe::QuoteTheme]) | nil,
         times_shared: Integer | nil
       }
@@ -119,6 +122,7 @@ class Believe::Test::Resources::QuotesTest < Believe::Test::ResourceTest
         is_funny: ::Believe::Internal::Type::Boolean | nil,
         is_inspirational: ::Believe::Internal::Type::Boolean | nil,
         popularity_score: Float | nil,
+        season: Integer | nil,
         secondary_themes: ^(::Believe::Internal::Type::ArrayOf[enum: ::Believe::QuoteTheme]) | nil,
         times_shared: Integer | nil
       }
@@ -156,6 +160,7 @@ class Believe::Test::Resources::QuotesTest < Believe::Test::ResourceTest
         is_funny: ::Believe::Internal::Type::Boolean | nil,
         is_inspirational: ::Believe::Internal::Type::Boolean | nil,
         popularity_score: Float | nil,
+        season: Integer | nil,
         secondary_themes: ^(::Believe::Internal::Type::ArrayOf[enum: ::Believe::QuoteTheme]) | nil,
         times_shared: Integer | nil
       }
@@ -190,6 +195,7 @@ class Believe::Test::Resources::QuotesTest < Believe::Test::ResourceTest
         is_funny: ::Believe::Internal::Type::Boolean | nil,
         is_inspirational: ::Believe::Internal::Type::Boolean | nil,
         popularity_score: Float | nil,
+        season: Integer | nil,
         secondary_themes: ^(::Believe::Internal::Type::ArrayOf[enum: ::Believe::QuoteTheme]) | nil,
         times_shared: Integer | nil
       }
@@ -224,6 +230,7 @@ class Believe::Test::Resources::QuotesTest < Believe::Test::ResourceTest
         is_funny: ::Believe::Internal::Type::Boolean | nil,
         is_inspirational: ::Believe::Internal::Type::Boolean | nil,
         popularity_score: Float | nil,
+        season: Integer | nil,
         secondary_themes: ^(::Believe::Internal::Type::ArrayOf[enum: ::Believe::QuoteTheme]) | nil,
         times_shared: Integer | nil
       }
