@@ -23,7 +23,7 @@ module Believe
       required :jersey_number, Integer
 
       # @!attribute position
-      #   Playing position on the field
+      #   Players position on the field
       #
       #   @return [Symbol, ::Believe::Models::Position]
       required :position, enum: -> { ::Believe::Position }
@@ -73,7 +73,7 @@ module Believe
       #
       #   @param jersey_number [Integer] Jersey/shirt number
       #
-      #   @param position [Symbol, ::Believe::Models::Position] Playing position on the field
+      #   @param position [Symbol, ::Believe::Models::Position] Players position on the field
       #
       #   @param team_id [String] ID of the team they belong to
       #
