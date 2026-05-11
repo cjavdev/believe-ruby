@@ -11,6 +11,7 @@ module Believe
         ?is_funny: bool,
         ?is_inspirational: bool,
         ?popularity_score: Float?,
+        ?season: Integer?,
         ?secondary_themes: ::Array[::Believe::Models::quote_theme],
         ?times_shared: Integer?,
         ?request_options: ::Believe::request_opts
@@ -30,6 +31,7 @@ module Believe
         ?is_inspirational: bool?,
         ?moment_type: ::Believe::Models::quote_moment?,
         ?popularity_score: Float?,
+        ?season: Integer?,
         ?secondary_themes: ::Array[::Believe::Models::quote_theme]?,
         ?text: String?,
         ?theme: ::Believe::Models::quote_theme?,
