@@ -11,6 +11,7 @@ module Believe
         is_funny: bool,
         is_inspirational: bool,
         popularity_score: Float?,
+        season: Integer?,
         secondary_themes: ::Array[::Believe::Models::quote_theme],
         times_shared: Integer?
       }
@@ -42,6 +43,8 @@ module Believe
 
       attr_accessor popularity_score: Float?
 
+      attr_accessor season: Integer?
+
       attr_reader secondary_themes: ::Array[::Believe::Models::quote_theme]?
 
       def secondary_themes=: (
@@ -60,6 +63,7 @@ module Believe
         ?is_funny: bool,
         ?is_inspirational: bool,
         ?popularity_score: Float?,
+        ?season: Integer?,
         ?secondary_themes: ::Array[::Believe::Models::quote_theme],
         ?times_shared: Integer?,
         ?request_options: ::Believe::request_opts
@@ -75,6 +79,7 @@ module Believe
         is_funny: bool,
         is_inspirational: bool,
         popularity_score: Float?,
+        season: Integer?,
         secondary_themes: ::Array[::Believe::Models::quote_theme],
         times_shared: Integer?,
         request_options: ::Believe::RequestOptions
