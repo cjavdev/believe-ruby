@@ -1,0 +1,16 @@
+module Believe
+  module Models
+    module Client
+      type w_test_params = {  } & ::Believe::Internal::Type::request_parameters
+
+      class WTestParams < ::Believe::Internal::Type::BaseModel
+        extend ::Believe::Internal::Type::RequestParameters::Converter
+        include ::Believe::Internal::Type::RequestParameters
+
+        def initialize: (?request_options: ::Believe::request_opts) -> void
+
+        def to_hash: -> { request_options: ::Believe::RequestOptions }
+      end
+    end
+  end
+end
