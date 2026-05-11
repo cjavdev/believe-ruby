@@ -91,7 +91,7 @@ module Believe
           sig { returns(Integer) }
           attr_accessor :jersey_number
 
-          # Playing position on the field
+          # Players position on the field
           sig { returns(::Believe::Position::OrSymbol) }
           attr_accessor :position
 
@@ -162,7 +162,7 @@ module Believe
             character_id:,
             # Jersey/shirt number
             jersey_number:,
-            # Playing position on the field
+            # Players position on the field
             position:,
             # ID of the team they belong to
             team_id:,
