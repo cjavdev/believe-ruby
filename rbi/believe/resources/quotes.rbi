@@ -16,6 +16,7 @@ module Believe
           is_funny: T::Boolean,
           is_inspirational: T::Boolean,
           popularity_score: T.nilable(Float),
+          season: T.nilable(Integer),
           secondary_themes: T::Array[::Believe::QuoteTheme::OrSymbol],
           times_shared: T.nilable(Integer),
           request_options: ::Believe::RequestOptions::OrHash
@@ -40,6 +41,8 @@ module Believe
         is_inspirational: nil,
         # Popularity/virality score (0-100)
         popularity_score: nil,
+        # Season number (1-3) when the quote occurred
+        season: nil,
         # Additional themes
         secondary_themes: nil,
         # Number of times shared on social media
@@ -69,6 +72,7 @@ module Believe
           is_inspirational: T.nilable(T::Boolean),
           moment_type: T.nilable(::Believe::QuoteMoment::OrSymbol),
           popularity_score: T.nilable(Float),
+          season: T.nilable(Integer),
           secondary_themes:
             T.nilable(T::Array[::Believe::QuoteTheme::OrSymbol]),
           text: T.nilable(String),
@@ -87,6 +91,7 @@ module Believe
         # Types of moments when quotes occur.
         moment_type: nil,
         popularity_score: nil,
+        season: nil,
         secondary_themes: nil,
         text: nil,
         # Themes that quotes can be categorized under.

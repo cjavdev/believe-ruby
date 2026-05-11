@@ -15,35 +15,6 @@ on:
       - 'stl-preview-base/**'
 
 jobs:
-  build:
-    timeout-minutes: 10
-    name: build
-    permissions:
-      contents: read
-      id-token: write
-    runs-on: ubuntu-latest
-    if: |-
-      github.repository == 'cjavdev/believe-ruby' &&
-      (github.event_name == 'push' || github.event.pull_request.head.repo.fork) && (github.event_name != 'push' || github.event.head_commit.message != 'codegen metadata')
-    steps:
-      - uses: actions/checkout@v6
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: false
-      - run: |-
-          bundle install
-
-      - name: Build and upload gem artifacts
-        if: |-
-          github.repository == 'cjavdev/believe-ruby' &&
-          !startsWith(github.ref, 'refs/heads/stl/')
-        env:
-          URL: https://pkg.stainless.com/s
-          AUTH: ${{ steps.github-oidc.outputs.github_token }}
-          SHA: ${{ github.sha }}
-          PACKAGE_NAME: believe
-        run: ./scripts/utils/upload-artifact.sh
   lint:
     timeout-minutes: 10
     name: lint

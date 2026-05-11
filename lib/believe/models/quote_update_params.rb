@@ -48,6 +48,11 @@ module Believe
       #   @return [Float, nil]
       optional :popularity_score, Float, nil?: true
 
+      # @!attribute season
+      #
+      #   @return [Integer, nil]
+      optional :season, Integer, nil?: true
+
       # @!attribute secondary_themes
       #
       #   @return [Array<Symbol, ::Believe::Models::QuoteTheme>, nil]
@@ -71,7 +76,7 @@ module Believe
       #   @return [Integer, nil]
       optional :times_shared, Integer, nil?: true
 
-      # @!method initialize(quote_id:, character_id: nil, context: nil, episode_id: nil, is_funny: nil, is_inspirational: nil, moment_type: nil, popularity_score: nil, secondary_themes: nil, text: nil, theme: nil, times_shared: nil, request_options: {})
+      # @!method initialize(quote_id:, character_id: nil, context: nil, episode_id: nil, is_funny: nil, is_inspirational: nil, moment_type: nil, popularity_score: nil, season: nil, secondary_themes: nil, text: nil, theme: nil, times_shared: nil, request_options: {})
       #   @param quote_id [String]
       #
       #   @param character_id [String, nil]
@@ -87,6 +92,8 @@ module Believe
       #   @param moment_type [Symbol, ::Believe::Models::QuoteMoment, nil] Types of moments when quotes occur.
       #
       #   @param popularity_score [Float, nil]
+      #
+      #   @param season [Integer, nil]
       #
       #   @param secondary_themes [Array<Symbol, ::Believe::Models::QuoteTheme>, nil]
       #
