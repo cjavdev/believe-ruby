@@ -10,6 +10,7 @@ permissions:
 
 jobs:
   release-please:
+    if: github.repository == 'cjavdev/believe-ruby'
     runs-on: ubuntu-latest
 
     steps:
